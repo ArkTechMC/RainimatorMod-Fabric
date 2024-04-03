@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "rainimator:blocks/mystic_ore",
+    "particle": "rainimator:blocks/mystic_ore"
+  }
+}

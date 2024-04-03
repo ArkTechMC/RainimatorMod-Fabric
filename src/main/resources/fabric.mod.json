@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "rainimator",
+  "version": "0.1",
+  "name": "Rainimator",
+  "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/IAFEnvoy/Rainimator-fabric"
+  },
+  "license": "LGPL-3.0",
+  "icon": "logo.jpg",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.rainimator.rainimatormod.RainimatorMod"
+    ],
+    "client": [
+      "com.rainimator.rainimatormod.RainimatorModClient"
+    ],
+    "emi": [
+      "com.rainimator.rainimatormod.compat.emi.BossSpawnRecipePlugin"
+    ]
+  },
+  "mixins": [
+    "rainimator.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}

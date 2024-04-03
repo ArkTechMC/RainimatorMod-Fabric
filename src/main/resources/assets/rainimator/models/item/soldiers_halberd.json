@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/soldiers_halberd",
+  "textures": {
+    "texture": "rainimator:items/soldiers_halberd",
+    "particle": "rainimator:items/soldiers_halberd"
+  }
+}

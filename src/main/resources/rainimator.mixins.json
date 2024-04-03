@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.rainimator.rainimatormod.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BrewingRecipeRegistryMixin",
+    "LivingEntityMixin",
+    "PlayerInventoryMixin"
+  ],
+  "client": [
+    "PlayerRendererMixin",
+    "ScreenMixin",
+    "SkullBlockEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/mace",
+  "textures": {
+    "texture": "rainimator:items/mace_1",
+    "toothcrusher2": "rainimator:items/mace_2",
+    "particle": "rainimator:items/mace_1"
+  }
+}

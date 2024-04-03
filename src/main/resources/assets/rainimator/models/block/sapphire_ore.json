@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "rainimator:blocks/diamond_ore",
+    "particle": "rainimator:blocks/diamond_ore"
+  }
+}

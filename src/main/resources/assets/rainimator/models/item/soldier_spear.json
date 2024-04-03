@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/soldier_spear",
+  "textures": {
+    "0": "rainimator:items/soldier_spear",
+    "particle": "rainimator:items/soldier_spear"
+  }
+}
