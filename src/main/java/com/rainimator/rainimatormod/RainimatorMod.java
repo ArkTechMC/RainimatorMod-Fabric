@@ -20,9 +20,9 @@ public class RainimatorMod implements ModInitializer {
             LOGGER.error("[annoying_villagersbychentu] failed to load");
             System.exit(1);
         }
-        ModCreativeTab.load();
         Timeout.startTimeout();
         RegistryManager.register();
+        ModCreativeTab.load();
         TrinketsRegistry.register();
     }
 }

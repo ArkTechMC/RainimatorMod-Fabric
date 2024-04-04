@@ -6,10 +6,8 @@ import com.rainimator.rainimatormod.util.ModConstants;
 import com.rainimator.rainimatormod.util.SpawnBiome;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.registry.Registries;
@@ -71,23 +69,18 @@ public class ModEntities {
     public static final EntityType<Klaus2Entity> KLAUS_2 = register("klaus_2", build(Klaus2Entity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F));
     public static final EntityType<KralosEntity> KRALOS = register("kralos", build(KralosEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F));
 
-    private static <T extends Entity> EntityType<T> register(String registryName, EntityType.Builder<T> entityTypeBuilder) {
-        return register(registryName, () -> entityTypeBuilder.build(registryName));
+    private static <T extends Entity> EntityType<T> register(String registryName, FabricEntityTypeBuilder<T> entityTypeBuilder) {
+        return register(registryName, entityTypeBuilder::build);
     }
 
-    private static <T extends Entity> EntityType.Builder<T> build(EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, float sizeX, float sizeY) {
-        EntityType.Builder<T> builder = EntityType.Builder.create(constructor, category).maxTrackingRange(trackingRange).trackingTickInterval(updateInterval).setDimensions(sizeX, sizeY);
-        if (fireImmune) return builder.makeFireImmune();
+    private static <T extends Entity> FabricEntityTypeBuilder<T> build(EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, float sizeX, float sizeY) {
+        FabricEntityTypeBuilder<T> builder=FabricEntityTypeBuilder.create(category,constructor).trackRangeBlocks(trackingRange).trackedUpdateRate(updateInterval).dimensions(EntityDimensions.fixed(sizeX, sizeY));
+        if (fireImmune) return builder.fireImmune();
         return builder;
     }
 
     private static <T extends Entity> EntityType<T> register(String name, Supplier<EntityType<T>> provider) {
-        return register(name, provider.get());
-    }
-
-    private static <T extends Entity> EntityType<T> register(String name, EntityType<T> obj) {
-        Registry.register(Registries.ENTITY_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
-        return obj;
+        return Registry.register(Registries.ENTITY_TYPE, new Identifier(RainimatorMod.MOD_ID, name), provider.get());
     }
 
     public static void init() {
