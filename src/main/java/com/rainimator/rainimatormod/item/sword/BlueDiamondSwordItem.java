@@ -4,17 +4,14 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.ParticleUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Timeout;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.rainimator.rainimatormod.util.DamageUtil;
+import com.rainimator.rainimatormod.util.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,25 +20,22 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.explosion.Explosion;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlueDiamondSwordItem() {
-        super(TierBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override
@@ -52,17 +46,17 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         double z = entity.getZ();
         if (entity instanceof LivingEntity)
             if (entity.hasStatusEffect(StatusEffects.GLOWING) && Math.random() < 0.4D)
-                entity.damage(DamageSource.MAGIC, 5.0F);
+                entity.damage(DamageUtil.build(sourceentity, DamageTypes.MAGIC), 5.0F);
         if (Math.random() < 0.1D) {
-            if (entity.world instanceof ServerWorld _level) {
+            if (entity.getWorld() instanceof ServerWorld _level) {
                 LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                 if (entityToSpawn != null) {
-                    entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(x, y, z)));
+                    entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) x, (int) y, (int) z)));
                     entityToSpawn.setCosmetic(true);
                     _level.spawnEntity(entityToSpawn);
                 }
             }
-            entity.world.setBlockState(new BlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
+            entity.getWorld().setBlockState(new BlockPos((int) x, (int) y, (int) z), Blocks.FIRE.getDefaultState(), 3);
         }
 
         return retval;
@@ -80,7 +74,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         for (Entity entityiterator : _entfound) {
             if (entity.isSneaking()) {
                 if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.BLUE_DIAMOND_SWORD) {
-                    if (itemstack.damage(0, new Random(), null)) {
+                    if (itemstack.damage(0, entity.getRandom(), null)) {
                         itemstack.decrement(1);
                         itemstack.setDamage(0);
                     }
@@ -89,12 +83,12 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
-                        if (!_livEnt.world.isClient())
+                        if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
                         entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
-                        if (!entity.world.isClient())
-                            entity.sendMessage(new TranslatableText("item.rainimator.blue_diamond_sword.skill1"), true);
+                        if (!entity.getWorld().isClient())
+                            entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill1"), true);
                         if (world.isClient())
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
                         Runnable callback = () -> {
@@ -102,13 +96,13 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 if (world instanceof ServerWorld _level) {
                                     LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                                     if (entityToSpawn != null) {
-                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ())));
+                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ())));
                                         entityToSpawn.setCosmetic(true);
                                         _level.spawnEntity(entityToSpawn);
                                     }
                                 }
-                                world.setBlockState(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                                entityiterator.damage(DamageSource.MAGIC, 5);
+                                world.setBlockState(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                                entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5);
                             }
                         };
                         Timeout.create(40, callback);
@@ -120,20 +114,20 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         if ((WorldAccess) world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
-                        if (!_livEnt.world.isClient())
+                        if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
                         entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
-                        if (!entity.world.isClient())
-                            entity.sendMessage(new TranslatableText("item.rainimator.blue_diamond_sword.skill2"), true);
+                        if (!entity.getWorld().isClient())
+                            entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill2"), true);
                         if (((WorldAccess) world).isClient())
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
 
                         Runnable callback1 = () -> {
                             if (entityiterator.isAlive()) {
                                 if (!world.isClient())
-                                    world.createExplosion(null, (entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), 2, Explosion.DestructionType.NONE);
-                                entityiterator.damage(DamageSource.MAGIC, 5);
+                                    world.createExplosion(null, (entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), 2, World.ExplosionSourceType.NONE);
+                                entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5);
                             }
                         };
                         Timeout.create(40, callback1);
@@ -143,7 +137,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         Timeout.create(200, callback1);
                     } else if (entityiterator instanceof LivingEntity _livEnt && (_livEnt.getGroup() == EntityGroup.UNDEAD || _livEnt.getGroup() == EntityGroup.ILLAGER)) {
                         entityiterator.setOnFireFor(10);
-                        if (!_livEnt.world.isClient()) {
+                        if (!_livEnt.getWorld().isClient()) {
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 160, 2));
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 160, 0));
@@ -152,8 +146,8 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
-                        if (!entity.world.isClient())
-                            entity.sendMessage(new TranslatableText("item.rainimator.blue_diamond_sword.skill3"), true);
+                        if (!entity.getWorld().isClient())
+                            entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill3"), true);
                         if (world.isClient())
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
                         Runnable callback1 = () -> {
@@ -161,16 +155,16 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 _level.spawnParticles((DefaultParticleType) ModParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
                         };
                         Runnable callback2 = () -> {
-                            entityiterator.requestTeleport(x + MathHelper.nextDouble(new Random(), -1, 1), y + 2, z + MathHelper.nextDouble(new Random(), -1, 1));
+                            entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
                             if (entityiterator instanceof ServerPlayerEntity _serverPlayer)
-                                _serverPlayer.networkHandler.requestTeleport(x + MathHelper.nextDouble(new Random(), -1, 1), y + 2, z + MathHelper.nextDouble(new Random(), -1, 1), entityiterator.getYaw(), entityiterator.getPitch());
+                                _serverPlayer.networkHandler.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1), entityiterator.getYaw(), entityiterator.getPitch());
                         };
                         Runnable callback3 = () -> {
                             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_4"), 5, 1);
                             callback1.run();
-                            entityiterator.requestTeleport(x + MathHelper.nextDouble(new Random(), -1, 1), y + 2, z + MathHelper.nextDouble(new Random(), -1, 1));
+                            entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
                             if (entityiterator instanceof ServerPlayerEntity _serverPlayer)
-                                _serverPlayer.networkHandler.requestTeleport(x + MathHelper.nextDouble(new Random(), -1, 1), y + 2, z + MathHelper.nextDouble(new Random(), -1, 1), entityiterator.getYaw(), entityiterator.getPitch());
+                                _serverPlayer.networkHandler.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1), entityiterator.getYaw(), entityiterator.getPitch());
                         };
                         Timeout.create(20, callback3);
                         Timeout.create(40, callback3);
@@ -185,13 +179,13 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 if (world instanceof ServerWorld _level) {
                                     LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                                     if (entityToSpawn != null) {
-                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ())));
+                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ())));
                                         entityToSpawn.setCosmetic(true);
                                         _level.spawnEntity(entityToSpawn);
                                     }
                                 }
                                 if (!world.isClient())
-                                    world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, Explosion.DestructionType.NONE);
+                                    world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, World.ExplosionSourceType.NONE);
                                 if (world instanceof ServerWorld _level)
                                     _level.spawnParticles((DefaultParticleType) ModParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
                             }

@@ -11,14 +11,15 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class TricerEntity extends MonsterEntityBase {
@@ -70,39 +71,39 @@ public class TricerEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source.getSource() instanceof PersistentProjectileEntity)
-            return false;
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.CACTUS)
-            return false;
-        if (source == DamageSource.DROWN)
-            return false;
-        if (source == DamageSource.LIGHTNING_BOLT)
-            return false;
-        if (source.isExplosive())
-            return false;
-        if (source.getName().equals("trident"))
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        if (source == DamageSource.DRAGON_BREATH)
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.getSource() instanceof PersistentProjectileEntity)
+            return true;
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.CACTUS))
+            return true;
+        if (damageSource.isOf(DamageTypes.DROWN))
+            return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override

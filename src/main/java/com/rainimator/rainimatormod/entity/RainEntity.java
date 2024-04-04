@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -22,10 +23,10 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -83,12 +84,12 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 
     @Override
@@ -97,46 +98,51 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         double y = this.getY();
         double z = this.getZ();
         if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
-            if (!this.world.isClient()) {
+            if (!this.getWorld().isClient()) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
         if (this.hasStatusEffect(ModEffects.STUNNED))
-            if (!this.world.isClient()) {
+            if (!this.getWorld().isClient()) {
                 this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 3));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 3));
             }
-        if (source.getSource() instanceof PersistentProjectileEntity)
-            return false;
-        if (source == DamageSource.FALL)
-            return false;
-        if (source.isExplosive())
-            return false;
-        if (source.getName().equals("trident"))
-            return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.getSource() instanceof PersistentProjectileEntity)
+            return true;
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -154,11 +160,11 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        RainEntityProjectile entityarrow = new RainEntityProjectile(ModEntities.RAIN_PROJECTILE, this, this.world);
+        RainEntityProjectile entityarrow = new RainEntityProjectile(ModEntities.RAIN_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
         entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.world.spawnEntity(entityarrow);
+        this.getWorld().spawnEntity(entityarrow);
     }
 }

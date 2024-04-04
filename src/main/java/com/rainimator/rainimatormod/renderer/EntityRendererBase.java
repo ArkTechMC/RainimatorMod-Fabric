@@ -18,7 +18,7 @@ public class EntityRendererBase<T extends MobEntity> extends BipedEntityRenderer
     public EntityRendererBase(EntityRendererFactory.Context context, Stage.StagedEntityTextureProvider textureId, String eyeTextureId) {
         super(context, new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER)), 0.5F);
         this.textureId = textureId;
-        this.addFeature(new ArmorFeatureRenderer<>(this, new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER_INNER_ARMOR)), new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER_OUTER_ARMOR))));
+        this.addFeature(new ArmorFeatureRenderer<>(this, new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER_INNER_ARMOR)), new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER_OUTER_ARMOR)), context.getModelManager()));
         if (eyeTextureId != null)
             this.addFeature(new EyesFeatureRenderer<>(this) {
                 public RenderLayer getEyesTexture() {

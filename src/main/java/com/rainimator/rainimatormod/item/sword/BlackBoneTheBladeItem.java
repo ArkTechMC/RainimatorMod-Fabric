@@ -4,14 +4,10 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.ParticleUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Timeout;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.rainimator.rainimatormod.util.*;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -21,16 +17,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
-
-import java.util.Random;
 
 public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
     public BlackBoneTheBladeItem() {
-        super(TierBase.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, new Settings().fireproof());
     }
 
     @Override
@@ -41,9 +33,9 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
                 _entity.setTarget(sourceentity);
         entity.setOnFireFor(8);
         if (Math.random() < 0.1D)
-            entity.damage(DamageSource.MAGIC, MathHelper.nextInt(new Random(), 1, 3));
+            entity.damage(DamageUtil.build(sourceentity, DamageTypes.MAGIC), RandomHelper.nextInt(1, 3));
         if (Math.random() < 0.3D)
-            sourceentity.setHealth(sourceentity.getHealth() + MathHelper.nextInt(new Random(), 2, 5));
+            sourceentity.setHealth(sourceentity.getHealth() + RandomHelper.nextInt(2, 5));
         return retval;
     }
 
@@ -59,18 +51,17 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);
             if (!world.isClient())
-                world.createExplosion(null, entity.world.raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getX(), y + 1.0D, entity.world
-                        .raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getZ(), 1.0F, Explosion.DestructionType.NONE);
+                world.createExplosion(null, entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getX(), y + 1.0D,
+                        entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getZ(), 1.0F, World.ExplosionSourceType.NONE);
 
             entity.getItemCooldownManager().set(itemstack.getItem(), 700);
 
             Runnable callback = () -> {
                 if (world instanceof World) {
                     if (!world.isClient())
-                        world.createExplosion(null, entity.world
-                                .raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getX(), y + 1.0D, entity.world
-
-                                .raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getZ(), 2.0F, Explosion.DestructionType.NONE);
+                        world.createExplosion(null,
+                                entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getX(), y + 1.0D,
+                                entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getZ(), 2.0F, World.ExplosionSourceType.NONE);
                 }
             };
             Timeout.create(5, callback);

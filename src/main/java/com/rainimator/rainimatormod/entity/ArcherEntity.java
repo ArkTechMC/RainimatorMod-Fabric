@@ -2,24 +2,27 @@ package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class ArcherEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("archer");
@@ -61,10 +64,10 @@ public class ArcherEntity extends MonsterEntityBase {
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.DROWN)
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.DROWN))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -75,21 +78,31 @@ public class ArcherEntity extends MonsterEntityBase {
 
         if (Math.random() < 0.1D) {
             SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS, _level);
-            soldiersEntity.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + MathHelper.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            soldiersEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             soldiersEntity.initialize(_level, world.getLocalDifficulty(soldiersEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
             world.spawnEntity(soldiersEntity);
         } else if (Math.random() < 0.1D) {
             AgethaEntity agethaEntity = new AgethaEntity(ModEntities.AGETHA, _level);
-            agethaEntity.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + MathHelper.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            agethaEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             agethaEntity.initialize(_level, world.getLocalDifficulty(agethaEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
             world.spawnEntity(agethaEntity);
         } else if (Math.random() < 0.1D) {
             ArcherEntity archerEntity = new ArcherEntity(ModEntities.ARCHER, _level);
-            archerEntity.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + MathHelper.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            archerEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             archerEntity.initialize(_level, world.getLocalDifficulty(archerEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
             world.spawnEntity(archerEntity);
         }
 
         return ret_val;
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 }

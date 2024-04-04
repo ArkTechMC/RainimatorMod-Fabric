@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
@@ -24,7 +23,7 @@ public class SpawnEggBase extends SpawnEggItem implements IRainimatorInfo {
     public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
         super.appendTooltip(itemstack, world, list, flag);
         if (this.episode != Episode.None)
-            list.add(new LiteralText(RainimatorInfoManager.getHoverText()));
+            list.add(Text.literal(RainimatorInfoManager.getHoverText()));
     }
 
     @Override

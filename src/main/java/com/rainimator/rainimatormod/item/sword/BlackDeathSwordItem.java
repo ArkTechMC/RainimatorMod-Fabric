@@ -3,9 +3,8 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.SoundUtil;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 
 public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlackDeathSwordItem() {
-        super(TierBase.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, new Settings().fireproof());
     }
 
     @Override
@@ -34,18 +33,18 @@ public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInf
         if (entity instanceof MobEntity _entity)
             _entity.setTarget(sourceentity);
         if (Math.random() < 0.7D) {
-            if (!entity.world.isClient()) {
+            if (!entity.getWorld().isClient()) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 2));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 2));
             }
             if (Math.random() < 0.7D)
-                SoundUtil.playSound(entity.world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
             else
-                SoundUtil.playSound(entity.world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
-            if (entity.world instanceof ServerWorld _level)
+                SoundUtil.playSound(entity.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
+            if (entity.getWorld() instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ModParticles.FLOWER_WHITE, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         } else {
-            if (!sourceentity.world.isClient())
+            if (!sourceentity.getWorld().isClient())
                 sourceentity.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 1));
         }
 

@@ -2,8 +2,7 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.Entity;
@@ -25,17 +24,16 @@ import net.minecraft.world.World;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 public class FallenSoulAxeItem extends FoilSwordItemBase {
     public FallenSoulAxeItem() {
-        super(TierBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, new Settings().fireproof());
     }
 
     @Override
     public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
         boolean retval = super.postHit(itemstack, entity, sourceentity);
-        if (!entity.world.isClient())
+        if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 0));
         return retval;
     }
@@ -53,14 +51,14 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
             if (entity.isSneaking()) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
                 if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.FALLEN_SOUL_AXE) {
-                    if (itemstack.damage(0, new Random(), null)) {
+                    if (itemstack.damage(0, entity.getRandom(), null)) {
                         itemstack.decrement(1);
                         itemstack.setDamage(0);
                     }
                     continue;
                 }
                 if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.world.isClient())
+                    if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 0));
 
                 entityiterator.requestTeleport(x, y + 1.0D, z);
@@ -68,7 +66,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                     _serverPlayer.networkHandler.requestTeleport(x, y + 1.0D, z, entityiterator.getYaw(), entityiterator.getPitch());
 
                 if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.world.isClient())
+                    if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 50, 4));
 
                 for (double i = 2; i <= 5; i++) {

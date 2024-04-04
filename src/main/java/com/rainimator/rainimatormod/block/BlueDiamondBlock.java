@@ -3,10 +3,9 @@ package com.rainimator.rainimatormod.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.Material;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -23,7 +22,7 @@ public class BlueDiamondBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public BlueDiamondBlock() {
-        super(Settings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(5.0F, 10.0F).luminance(s -> 2).postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
+        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(5.0F, 10.0F).luminance(s -> 2).postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -40,7 +39,7 @@ public class BlueDiamondBlock extends Block {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState().with(FACING, context.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Deprecated
@@ -57,7 +56,7 @@ public class BlueDiamondBlock extends Block {
 
     @Deprecated
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;

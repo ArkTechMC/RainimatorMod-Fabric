@@ -2,6 +2,7 @@ package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -11,14 +12,16 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class BigUndeadSkeletonEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("big_blackbone");
@@ -60,26 +63,41 @@ public class BigUndeadSkeletonEntity extends MonsterEntityBase {
     public boolean damage(DamageSource source, float amount) {
         LivingEntity _livEnt = this;
         if (_livEnt.getHealth() < 200.0F)
-            if (this.world instanceof ServerWorld _level)
+            if (this.getWorld() instanceof ServerWorld _level)
                 if (Math.random() < 0.2D) {
                     WitherSkeletonEntity witherSkeleton = new WitherSkeletonEntity(EntityType.WITHER_SKELETON, _level);
-                    witherSkeleton.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), 1, 3), this.getY() + 2.0D, this.getZ(), this.world.getRandom().nextFloat() * 360.0F, 0.0F);
-                    ((MobEntity) witherSkeleton).initialize(_level, this.world.getLocalDifficulty(witherSkeleton.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                    this.world.spawnEntity(witherSkeleton);
+                    witherSkeleton.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ(), this.getWorld().getRandom().nextFloat() * 360.0F, 0.0F);
+                    ((MobEntity) witherSkeleton).initialize(_level, this.getWorld().getLocalDifficulty(witherSkeleton.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
+                    this.getWorld().spawnEntity(witherSkeleton);
                 } else if (Math.random() < 0.2D) {
                     WitheredSkeletonsEntity witheredSkeletonsEntity = new WitheredSkeletonsEntity(ModEntities.WITHERED_SKELETONS, _level);
-                    witheredSkeletonsEntity.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), 1, 3), this.getY() + 2.0D, this.getZ(), this.world.getRandom().nextFloat() * 360.0F, 0.0F);
-                    witheredSkeletonsEntity.initialize(_level, this.world.getLocalDifficulty(witheredSkeletonsEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                    this.world.spawnEntity(witheredSkeletonsEntity);
+                    witheredSkeletonsEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ(), this.getWorld().getRandom().nextFloat() * 360.0F, 0.0F);
+                    witheredSkeletonsEntity.initialize(_level, this.getWorld().getLocalDifficulty(witheredSkeletonsEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
+                    this.getWorld().spawnEntity(witheredSkeletonsEntity);
                 }
-        if (source == DamageSource.FALL)
-            return false;
-        if (source.isExplosive())
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 }

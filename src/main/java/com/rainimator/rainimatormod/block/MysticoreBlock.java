@@ -1,7 +1,10 @@
 package com.rainimator.rainimatormod.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,11 +12,11 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +34,7 @@ public class MysticoreBlock extends Block {
     private static final List<Pair<ItemConvertible, Double>> lootTable = new ArrayList<>();
 
     public MysticoreBlock() {
-        super(Settings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(25.0F, 50.0F).requiresTool().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
+        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(25.0F, 50.0F).requiresTool().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
         this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
     }
 
@@ -57,7 +60,7 @@ public class MysticoreBlock extends Block {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState().with(FACING, context.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Deprecated
@@ -74,7 +77,7 @@ public class MysticoreBlock extends Block {
 
     @Deprecated
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
@@ -103,8 +106,8 @@ public class MysticoreBlock extends Block {
                             break;
                         }
             } else {
-                if (!player.world.isClient())
-                    player.sendMessage(new TranslatableText("block.rainimator.mystic_ore.nothing"), true);
+                if (!player.getWorld().isClient())
+                    player.sendMessage(Text.translatable("block.rainimator.mystic_ore.nothing"), true);
                 if (!world.isClient()) {
                     ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(Blocks.COBBLED_DEEPSLATE));
                     entityToSpawn.setPickupDelay(10);

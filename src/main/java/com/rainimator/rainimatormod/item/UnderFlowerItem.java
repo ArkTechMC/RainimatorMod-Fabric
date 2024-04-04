@@ -2,7 +2,6 @@ package com.rainimator.rainimatormod.item;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 
 public class UnderFlowerItem extends FoilItemBase {
     public UnderFlowerItem() {
-        super(p -> p.group(ModCreativeTab.items).maxCount(1).rarity(Rarity.UNCOMMON));
+        super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -36,7 +35,7 @@ public class UnderFlowerItem extends FoilItemBase {
             else
                 _bs = Blocks.FIRE.getDefaultState();
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "under_flower"), 1.0F, 1.0F);
-            BlockPos _bp = new BlockPos(x, y + 1.0D, z);
+            BlockPos _bp = new BlockPos((int) x, (int) (y + 1.0D), (int) z);
             world.setBlockState(_bp, _bs, 3);
             entity.getItemCooldownManager().set(itemstack.getItem(), 400);
         }

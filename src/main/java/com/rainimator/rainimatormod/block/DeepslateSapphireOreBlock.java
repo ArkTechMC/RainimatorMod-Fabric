@@ -3,13 +3,12 @@ package com.rainimator.rainimatormod.block;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class DeepslateSapphireOreBlock extends Block {
     public DeepslateSapphireOreBlock() {
-        super(Settings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F).luminance(s -> 1).requiresTool());
+        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F).luminance(s -> 1).requiresTool());
     }
 
     @Deprecated
@@ -31,7 +30,7 @@ public class DeepslateSapphireOreBlock extends Block {
 
     @Deprecated
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;

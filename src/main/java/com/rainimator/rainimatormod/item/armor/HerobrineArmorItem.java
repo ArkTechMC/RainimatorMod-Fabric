@@ -2,8 +2,6 @@ package com.rainimator.rainimatormod.item.armor;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
@@ -12,16 +10,16 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
 public class HerobrineArmorItem extends ArmorItem {
-    public HerobrineArmorItem(EquipmentSlot slot, Item.Settings properties) {
+    public HerobrineArmorItem(Type slot, Item.Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 20;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 20;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{0, 0, 20, 0}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{0, 0, 20, 0}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -58,7 +56,7 @@ public class HerobrineArmorItem extends ArmorItem {
 
     public static class Chestplate extends HerobrineArmorItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, ModCreativeTab.createProperty());
+            super(Type.CHESTPLATE, new Settings());
         }
     }
 }

@@ -1,16 +1,16 @@
 package com.rainimator.rainimatormod.network;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 public class EnderBookSkillC2SPacket implements Packet<ServerPlayNetworkHandler> {
@@ -39,8 +39,8 @@ public class EnderBookSkillC2SPacket implements Packet<ServerPlayNetworkHandler>
     @Override
     public void apply(ServerPlayNetworkHandler handler) {
         ServerPlayerEntity player = handler.getPlayer();
-        if (player.world.getRegistryKey() == this.dimension)
-            player.sendMessage(new TranslatableText("item.rainimator.ender_book.error"), false);
+        if (player.getWorld().getRegistryKey() == this.dimension)
+            player.sendMessage(Text.translatable("item.rainimator.ender_book.error"), false);
         else {
             ServerWorld nextLevel = player.server.getWorld(this.dimension);
             if (nextLevel != null) {
@@ -51,7 +51,7 @@ public class EnderBookSkillC2SPacket implements Packet<ServerPlayNetworkHandler>
                 for (StatusEffectInstance effectInstance : player.getStatusEffects())
                     handler.sendPacket(new EntityStatusEffectS2CPacket(player.getId(), effectInstance));
                 handler.sendPacket(new WorldEventS2CPacket(1032, BlockPos.ORIGIN, 0, false));
-                player.sendMessage(new TranslatableText("item.rainimator.ender_book.success"), false);
+                player.sendMessage(Text.translatable("item.rainimator.ender_book.success"), false);
             }
         }
     }

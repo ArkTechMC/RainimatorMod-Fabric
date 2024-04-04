@@ -3,7 +3,6 @@ package com.rainimator.rainimatormod.item.tool;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 
 public class RubyPickaxeItem extends ItemBase {
     public RubyPickaxeItem() {
-        super(p -> p.group(ModCreativeTab.items).maxDamage(200).fireproof());
+        super(p -> p.maxDamage(200).fireproof());
     }
 
     @Override

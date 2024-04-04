@@ -2,10 +2,7 @@ package com.rainimator.rainimatormod.block;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.util.Consumer5;
-import com.rainimator.rainimatormod.util.EntityUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Timeout;
+import com.rainimator.rainimatormod.util.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,19 +10,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.network.MessageType;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -34,14 +29,13 @@ import net.minecraft.world.World;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 public class DarkObsidianBlock extends Block {
     public static final HashMap<Item, Consumer5<PlayerEntity, ServerWorld, Integer, Integer, Integer>> consumers = new HashMap<>();
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public DarkObsidianBlock() {
-        super(Settings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance(s -> 5).jumpVelocityMultiplier(0.8F).nonOpaque().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true).solidBlock((bs, br, bp) -> false));
+        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance(s -> 5).jumpVelocityMultiplier(0.8F).nonOpaque().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true).solidBlock((bs, br, bp) -> false));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -54,9 +48,9 @@ public class DarkObsidianBlock extends Block {
     public static synchronized void initConsumers() {
         consumers.put(ModItems.LIGHT_HEART, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.HEROBRINE, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIES, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.DARK_ZOMBIE, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.AZALEA, world, x + MathHelper.nextInt(new Random(), 1, 3), y, z);
+            EntityUtil.summon(ModEntities.ZOMBIES, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.DARK_ZOMBIE, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.AZALEA, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
         consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> {
             ItemStack _stktoremove = new ItemStack(Blocks.WITHER_ROSE);
@@ -65,10 +59,10 @@ public class DarkObsidianBlock extends Block {
         });
         consumers.put(Items.TOTEM_OF_UNDYING, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.KLAUS, world, x, y, z);
-            EntityUtil.summon(EntityType.PILLAGER, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(EntityType.PILLAGER, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(EntityType.PILLAGER, world, x - MathHelper.nextInt(new Random(), 1, 3), y, z);
-            EntityUtil.summon(EntityType.PILLAGER, world, x + MathHelper.nextInt(new Random(), 1, 3), y, z);
+            EntityUtil.summon(EntityType.PILLAGER, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(EntityType.PILLAGER, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(EntityType.PILLAGER, world, x - RandomHelper.nextInt(1, 3), y, z);
+            EntityUtil.summon(EntityType.PILLAGER, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
         consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> {
             ItemStack _stktoremove = new ItemStack(Blocks.WITHER_SKELETON_SKULL);
@@ -79,10 +73,10 @@ public class DarkObsidianBlock extends Block {
             ItemStack _stktoremove = new ItemStack(ModItems.SOUL_PEOPLE);
             entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.NAMTAR, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.MUTATED, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.SKELETON_SNOW, world, x + MathHelper.nextInt(new Random(), 1, 3), y, z);
-            EntityUtil.summon(ModEntities.WITHER_SHIELD, world, x - MathHelper.nextInt(new Random(), 1, 3), y, z);
+            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.MUTATED, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.SKELETON_SNOW, world, x + RandomHelper.nextInt(1, 3), y, z);
+            EntityUtil.summon(ModEntities.WITHER_SHIELD, world, x - RandomHelper.nextInt(1, 3), y, z);
         });
         consumers.put(ModItems.WITHER_BONE, (entity, world, x, y, z) -> {
             ItemStack _stktoremove = new ItemStack(ModItems.WITHER_BONE);
@@ -94,42 +88,42 @@ public class DarkObsidianBlock extends Block {
             ItemStack _stktoremove = new ItemStack(Items.GOLD_INGOT);
             entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_KING, world, x, y, z);
-            EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(Blocks.GOLD_BLOCK.asItem(), (entity, world, x, y, z) -> {
             ItemStack _stktoremove = new ItemStack(Blocks.GOLD_BLOCK);
             entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.PIGLIN_KING_ZOMBIES, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(ModItems.BAO_ZHU, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.NULL_LIKE, world, x, y, z));
         consumers.put(ModItems.WARRIOR_HEART, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.NAEUS, world, x, y, z);
-            EntityUtil.summon(ModEntities.WITHERED_SKELETONS, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.HOGSWORTH, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(ModEntities.WITHERED_SKELETONS, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.HOGSWORTH, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(ModItems.ICE_HEART, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.RAIN, world, x, y, z);
-            EntityUtil.summon(ModEntities.CIARA, world, x, y, z + MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.DARYLL, world, x, y, z - MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(ModEntities.CIARA, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.DARYLL, world, x, y, z - RandomHelper.nextInt(1, 3));
         });
         consumers.put(ModItems.ENDER_HEART, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.CERIS, world, x, y, z);
-            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x + MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x - MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x - RandomHelper.nextInt(1, 3));
         });
         consumers.put(ModItems.MAGIC_STARD, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.PATRICK, world, x, y, z);
-            EntityUtil.summon(ModEntities.HILDA, world, x, y, x - MathHelper.nextInt(new Random(), 1, 3));
-            EntityUtil.summon(ModEntities.SOLDIERS, world, x, y, x + MathHelper.nextInt(new Random(), 1, 3));
+            EntityUtil.summon(ModEntities.HILDA, world, x, y, x - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(ModEntities.SOLDIERS, world, x, y, x + RandomHelper.nextInt(1, 3));
         });
         consumers.put(ModItems.NETHERITE_WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.BLACKBONE, world, x, y, z));
         consumers.put(ModItems.UNDER_FLOWER, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.ABIGAIL, world, x, y, z));
     }
 
     @Override
-    public boolean isTranslucent(BlockState state, BlockView reader, BlockPos pos) {
+    public boolean isTransparent(BlockState state, BlockView reader, BlockPos pos) {
         return true;
     }
 
@@ -152,7 +146,7 @@ public class DarkObsidianBlock extends Block {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState().with(FACING, context.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Deprecated
@@ -169,7 +163,7 @@ public class DarkObsidianBlock extends Block {
 
     @Deprecated
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
@@ -199,7 +193,7 @@ public class DarkObsidianBlock extends Block {
             }
             SoundUtil.playSound(world, x, y, z, new Identifier("block.portal.travel"), 1, 1);
             if (!world.isClient() && world.getServer() != null)
-                world.getServer().getPlayerManager().broadcast(new TranslatableText("block.rainimator.dark_obsidian_block.running"), MessageType.SYSTEM, Util.NIL_UUID);
+                world.getServer().getPlayerManager().broadcast(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
             ItemStack _setstack = new ItemStack(Blocks.AIR);
             _setstack.setCount(1);
             entity.setStackInHand(Hand.MAIN_HAND, _setstack);

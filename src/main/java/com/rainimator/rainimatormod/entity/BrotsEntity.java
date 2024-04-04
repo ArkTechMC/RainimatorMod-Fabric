@@ -9,11 +9,16 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class BrotsEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("brots");
@@ -49,5 +54,15 @@ public class BrotsEntity extends MonsterEntityBase {
         this.targetSelector.add(4, new RevengeGoal(this));
         this.goalSelector.add(5, new LookAroundGoal(this));
         this.goalSelector.add(6, new SwimGoal(this));
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
     }
 }

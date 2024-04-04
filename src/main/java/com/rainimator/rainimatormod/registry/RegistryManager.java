@@ -7,7 +7,6 @@ public class RegistryManager {
         ModEntityRenderers.registerEntityRenderers();
         ModItems.init();
         ModModels.registerLayerDefinitions();
-//        ModOres.init();
         ModParticles.registerParticles();
         ModSounds.registerSounds();
         ModTrades.registerTrades();

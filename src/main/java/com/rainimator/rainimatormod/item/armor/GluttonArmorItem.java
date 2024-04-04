@@ -1,7 +1,6 @@
 package com.rainimator.rainimatormod.item.armor;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.renderer.model.ModelCustomModel;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -23,16 +22,16 @@ import java.util.Collections;
 import java.util.Map;
 
 public class GluttonArmorItem extends ArmorItem {
-    public GluttonArmorItem(EquipmentSlot slot, Item.Settings properties) {
+    public GluttonArmorItem(Type slot, Item.Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 25;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 25;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{0, 0, 0, 4}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{0, 0, 0, 4}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -69,7 +68,7 @@ public class GluttonArmorItem extends ArmorItem {
 
     public static class Helmet extends GluttonArmorItem implements ArmorRenderer {
         public Helmet() {
-            super(EquipmentSlot.HEAD, ModCreativeTab.createProperty());
+            super(Type.HELMET, new Settings());
             ArmorRenderer.register(this, this);
         }
 

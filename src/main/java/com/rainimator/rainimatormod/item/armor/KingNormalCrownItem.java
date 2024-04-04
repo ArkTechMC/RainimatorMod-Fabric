@@ -2,7 +2,6 @@ package com.rainimator.rainimatormod.item.armor;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.renderer.model.ModelKingNormalCrown;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -26,7 +25,7 @@ public class KingNormalCrownItem extends ItemBase {
 
     public static class Helmet extends KingNormalCrownItem implements ArmorRenderer {
         public Helmet() {
-            super(ModCreativeTab.createProperty());
+            super(new Settings());
             ArmorRenderer.register(this, this);
         }
 

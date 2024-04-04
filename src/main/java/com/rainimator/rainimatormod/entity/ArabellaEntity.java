@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.DamageUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Stage;
@@ -12,13 +13,17 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
@@ -68,25 +73,39 @@ public class ArabellaEntity extends MonsterEntityBase {
     @Override
     public boolean damage(DamageSource source, float amount) {
         Vec3d _center = this.getPos();
-        List<Entity> _entfound = this.world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
-                SoundUtil.playSound(this.world, this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
-                ParticleUtil.spawn3x3Particles(this.world, ModParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
-                entityiterator.damage(DamageSource.MAGIC, 6.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                ParticleUtil.spawn3x3Particles(this.getWorld(), ModParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
+                entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }
         }
-
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.DROWN)
-            return false;
-        if (source == DamageSource.DRAGON_BREATH)
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.DROWN))
+            return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 }

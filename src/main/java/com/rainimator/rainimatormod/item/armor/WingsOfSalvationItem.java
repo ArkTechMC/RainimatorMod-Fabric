@@ -1,24 +1,22 @@
 package com.rainimator.rainimatormod.item.armor;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
 public class WingsOfSalvationItem extends ArmorItem {
-    public WingsOfSalvationItem(EquipmentSlot slot, Settings properties) {
+    public WingsOfSalvationItem(Type slot, Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 15;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 15;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{0, 0, 0, 4}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{0, 0, 0, 4}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -55,7 +53,7 @@ public class WingsOfSalvationItem extends ArmorItem {
 
     public static class Chestplate extends WingsOfSalvationItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, ModCreativeTab.createProperty());
+            super(Type.CHESTPLATE, new Settings());
         }
     }
 }

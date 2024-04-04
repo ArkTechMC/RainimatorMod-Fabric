@@ -19,7 +19,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.explosion.Explosion;
 
 import java.util.Random;
 
@@ -37,7 +36,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
     public static void doHit(WorldAccess world, double x, double y, double z) {
         if (world instanceof World _level)
             if (!_level.isClient())
-                _level.createExplosion(null, x, y, z, 3.0F, Explosion.DestructionType.NONE);
+                _level.createExplosion(null, x, y, z, 3.0F, World.ExplosionSourceType.NONE);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ModParticles.LIGHTENING_ARC, x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
     }
@@ -75,13 +74,13 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
     @Override
     public void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        doHit(this.world, this.getX(), this.getY(), this.getZ());
+        doHit(this.getWorld(), this.getX(), this.getY(), this.getZ());
     }
 
     @Override
     public void onBlockHit(BlockHitResult blockHitResult) {
         super.onBlockHit(blockHitResult);
-        doHit(this.world, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+        doHit(this.getWorld(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
     }
 
     @Override

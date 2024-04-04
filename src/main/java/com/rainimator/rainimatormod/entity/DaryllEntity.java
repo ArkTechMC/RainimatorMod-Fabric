@@ -12,11 +12,16 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("daryll");
@@ -68,21 +73,31 @@ public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(ModEntities.DARYLL_PROJECTILE, this, this.world);
+        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(ModEntities.DARYLL_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
         entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.world.spawnEntity(entityarrow);
+        this.getWorld().spawnEntity(entityarrow);
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 }

@@ -2,34 +2,35 @@ package com.rainimator.rainimatormod.util;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
 public class ComponentUtil {
-    public static List<LiteralText> splitText(LiteralText arg_chatText, int chatWidth, TextRenderer fontRenderer) {
+    public static List<MutableText> splitText(MutableText arg_chatText, int chatWidth, TextRenderer fontRenderer) {
         int i = 0;
-        LiteralText ichatcomponent = new LiteralText("");
-        List<LiteralText> list = Lists.newArrayList();
-        List<LiteralText> chatComponents = Lists.newArrayList(arg_chatText);
+        MutableText ichatcomponent = Text.literal("");
+        List<MutableText> list = Lists.newArrayList();
+        List<MutableText> chatComponents = Lists.newArrayList(arg_chatText);
 
         for (int j = 0; j < chatComponents.size(); ++j) {
-            LiteralText currentChatComponent = chatComponents.get(j);
-            String unformattedText = currentChatComponent.asString();
+            MutableText currentChatComponent = chatComponents.get(j);
+            String unformattedText = currentChatComponent.getContent().toString();
             boolean addToList = false;
 
             if (unformattedText.contains("\n")) {
                 int k = unformattedText.indexOf(10);
                 String s1 = unformattedText.substring(k + 1);
                 unformattedText = unformattedText.substring(0, k + 1);
-                LiteralText chatcomponenttext = new LiteralText(getColorCode(unformattedText) + s1);
+                MutableText chatcomponenttext = Text.literal(getColorCode(unformattedText) + s1);
                 chatcomponenttext.setStyle(currentChatComponent.getStyle());
                 chatComponents.add(j + 1, chatcomponenttext);
                 addToList = true;
             }
             String textRemovedLastNewline = unformattedText.endsWith("\n") ? unformattedText.substring(0, unformattedText.length() - 1) : unformattedText;
             int textWidth = fontRenderer.getWidth(textRemovedLastNewline);
-            LiteralText newChatComponent = new LiteralText(textRemovedLastNewline);
+            MutableText newChatComponent = Text.literal(textRemovedLastNewline);
             newChatComponent.setStyle(currentChatComponent.getStyle());
 
             if (i + textWidth > chatWidth) {
@@ -44,12 +45,12 @@ public class ComponentUtil {
                         s2 = "";
                         s3 = unformattedText;
                     }
-                    LiteralText chatcomponenttext2 = new LiteralText(getColorCode(s2) + s3);
+                    MutableText chatcomponenttext2 = Text.literal(getColorCode(s2) + s3);
                     chatcomponenttext2.setStyle(currentChatComponent.getStyle());
                     chatComponents.add(j + 1, chatcomponenttext2);
                 }
                 textWidth = fontRenderer.getWidth(s2);
-                newChatComponent = new LiteralText(s2);
+                newChatComponent = Text.literal(s2);
                 newChatComponent.setStyle(currentChatComponent.getStyle());
                 addToList = true;
             }
@@ -61,7 +62,7 @@ public class ComponentUtil {
             if (addToList) {
                 list.add(ichatcomponent);
                 i = 0;
-                ichatcomponent = new LiteralText("");
+                ichatcomponent = Text.literal("");
             }
         }
         list.add(ichatcomponent);

@@ -1,8 +1,9 @@
 package com.rainimator.rainimatormod.effect;
 
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.util.DamageUtil;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -20,8 +21,8 @@ public class SoulDeathMobEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(DamageSource.GENERIC, 1.0F);
-        if (!entity.world.isClient()) {
+        entity.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 1.0F);
+        if (!entity.getWorld().isClient()) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 4));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 1));
         }

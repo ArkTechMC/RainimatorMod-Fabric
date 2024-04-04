@@ -3,7 +3,6 @@ package com.rainimator.rainimatormod.item.armor;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ArmorWithTickItem;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -16,16 +15,16 @@ import net.minecraft.world.World;
 
 
 public class SapphireArmorItem extends ArmorWithTickItem {
-    public SapphireArmorItem(EquipmentSlot slot, Item.Settings properties) {
+    public SapphireArmorItem(Type slot, Item.Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 40;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 40;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{5, 10, 12, 6}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{5, 10, 12, 6}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -68,7 +67,7 @@ public class SapphireArmorItem extends ArmorWithTickItem {
             if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.SAPPHIRE_CHESTPLATE)
                 if (entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.SAPPHIRE_LEGGINGS)
                     if (entity.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SAPPHIRE_BOOTS)
-                        if (!entity.world.isClient()) {
+                        if (!entity.getWorld().isClient()) {
                             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 300, 0));
                             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 80, 0));
                             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 1));
@@ -77,25 +76,25 @@ public class SapphireArmorItem extends ArmorWithTickItem {
 
     public static class Helmet extends SapphireArmorItem {
         public Helmet() {
-            super(EquipmentSlot.HEAD, ModCreativeTab.createProperty());
+            super(Type.HELMET, new Settings());
         }
     }
 
     public static class Chestplate extends SapphireArmorItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, ModCreativeTab.createProperty());
+            super(Type.CHESTPLATE, new Settings());
         }
     }
 
     public static class Leggings extends SapphireArmorItem {
         public Leggings() {
-            super(EquipmentSlot.LEGS, ModCreativeTab.createProperty());
+            super(Type.LEGGINGS, new Settings());
         }
     }
 
     public static class Boots extends SapphireArmorItem {
         public Boots() {
-            super(EquipmentSlot.FEET, ModCreativeTab.createProperty());
+            super(Type.BOOTS, new Settings());
         }
     }
 }

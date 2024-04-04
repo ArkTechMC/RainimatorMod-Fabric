@@ -4,7 +4,6 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.entity.WitheredSkeletonsEntity;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ArmorWithTickItem;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.renderer.model.ModelNetherCrown;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -33,20 +32,16 @@ import java.util.List;
 import java.util.Map;
 
 public class NetherTheCrownItem extends ArmorWithTickItem {
-    public NetherTheCrownItem(EquipmentSlot slot, Item.Settings properties) {
+    public NetherTheCrownItem(Type slot, Item.Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                (new int[4])[0] = 13;
-                (new int[4])[1] = 15;
-                (new int[4])[2] = 16;
-                (new int[4])[3] = 11;
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 30;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 30;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{0, 0, 0, 5}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{0, 0, 0, 5}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -125,7 +120,7 @@ public class NetherTheCrownItem extends ArmorWithTickItem {
 
     public static class Helmet extends NetherTheCrownItem implements ArmorRenderer {
         public Helmet() {
-            super(EquipmentSlot.HEAD, ModCreativeTab.createProperty().fireproof());
+            super(Type.HELMET, new Settings().fireproof());
             ArmorRenderer.register(this, this);
         }
 

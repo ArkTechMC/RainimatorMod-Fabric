@@ -21,6 +21,8 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class EndStaffItem extends ItemBase {
     public EndStaffItem() {
         super(p -> p.maxDamage(10000));
@@ -68,7 +70,7 @@ public class EndStaffItem extends ItemBase {
                     }
                 }
             if ((entity.getAbilities()).creativeMode || stack != ItemStack.EMPTY) {
-                EndStaffEntity entityarrow = EndStaffEntity.shoot(world, entity, world.getRandom(), 1.2F, 7.0D, 0);
+                EndStaffEntity entityarrow = EndStaffEntity.shoot(world, entity, new Random(), 1.2F, 7.0D, 0);
                 itemstack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
                 if ((entity.getAbilities()).creativeMode) {
                     entityarrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;

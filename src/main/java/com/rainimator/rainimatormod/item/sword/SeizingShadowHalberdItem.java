@@ -3,9 +3,8 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.SoundUtil;
@@ -39,14 +38,14 @@ import java.util.List;
 
 public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo {
     public SeizingShadowHalberdItem() {
-        super(TierBase.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof());
     }
 
     @Override
     public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
         boolean retval = super.postHit(itemstack, entity, sourceentity);
         if (Math.random() < 0.1D)
-            if (!entity.world.isClient())
+            if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(ModEffects.SHADOW_EROSION, 200, 0));
         return retval;
     }
@@ -66,9 +65,9 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
                     if ((Entity) entity instanceof PlayerEntity _player)
                         _player.getItemCooldownManager().set(itemstack.getItem(), 300);
 
-                    BlockPos pos = entity.world.raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(3)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
-                    BlockPos pos1 = entity.world.raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(1)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
-                    BlockPos pos2 = entity.world.raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(2)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                    BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(3)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                    BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(1)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                    BlockPos pos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(2)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
 
                     entityiterator.requestTeleport(pos.getX(), y, pos.getZ());
                     if (entityiterator instanceof ServerPlayerEntity _serverPlayer)

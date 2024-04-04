@@ -19,7 +19,7 @@ public class FeardarkMobEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.world.isClient()) {
+        if (!entity.getWorld().isClient()) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 1));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 200, 0));
         }

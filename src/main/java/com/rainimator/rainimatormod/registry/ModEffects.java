@@ -3,8 +3,9 @@ package com.rainimator.rainimatormod.registry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.effect.*;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.function.Supplier;
 
@@ -21,7 +22,7 @@ public class ModEffects {
     }
 
     private static StatusEffect register(String name, StatusEffect obj) {
-        Registry.register(Registry.STATUS_EFFECT, new Identifier(RainimatorMod.MOD_ID, name), obj);
+        Registry.register(Registries.STATUS_EFFECT, new Identifier(RainimatorMod.MOD_ID, name), obj);
         return obj;
     }
 }

@@ -11,17 +11,16 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
-import java.util.Objects;
 
 public class WitheredSkeletonsEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("withered_skeletons");
@@ -61,25 +60,25 @@ public class WitheredSkeletonsEntity extends MonsterEntityBase {
 
     @Override
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(Objects.requireNonNull(Registry.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.ambient"))), 0.15F, 1.0F);
+        this.playSound(Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.ambient")), 0.15F, 1.0F);
     }
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 }

@@ -2,8 +2,9 @@ package com.rainimator.rainimatormod.effect;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticles;
+import com.rainimator.rainimatormod.util.DamageUtil;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -24,10 +25,10 @@ public class ShadowErosionMobEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (Math.random() < 0.2D) {
-            entity.damage(DamageSource.MAGIC, 3.0F);
-            if (!entity.world.isClient())
+            entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
+            if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 0));
-            if (entity.world instanceof ServerWorld _level)
+            if (entity.getWorld() instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 10.0D, 0.0D, 0.001D);
         }
     }

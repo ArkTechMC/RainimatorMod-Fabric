@@ -2,7 +2,6 @@ package com.rainimator.rainimatormod.item;
 
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.Entity;
@@ -20,11 +19,9 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class MagicEnderPearlItem extends FoilItemBase {
     public MagicEnderPearlItem() {
-        super(p -> p.group(ModCreativeTab.items).maxDamage(40).fireproof().rarity(Rarity.RARE));
+        super(p -> p.maxDamage(40).fireproof().rarity(Rarity.RARE));
     }
 
     @Override
@@ -40,7 +37,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
         if (entity.isSprinting()) {
-            World projectileLevel = entity.world;
+            World projectileLevel = entity.getWorld();
             if (!projectileLevel.isClient()) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
@@ -51,13 +48,13 @@ public class MagicEnderPearlItem extends FoilItemBase {
 
             entity.getItemCooldownManager().set(itemstack.getItem(), 100);
 
-            if (itemstack.damage(1, new Random(), null)) {
+            if (itemstack.damage(1, entity.getRandom(), null)) {
                 itemstack.decrement(1);
                 itemstack.setDamage(0);
             }
 
         } else {
-            World projectileLevel = entity.world;
+            World projectileLevel = entity.getWorld();
             if (!projectileLevel.isClient()) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
@@ -69,14 +66,14 @@ public class MagicEnderPearlItem extends FoilItemBase {
             if (entity instanceof PlayerEntity)
                 entity.getItemCooldownManager().set(itemstack.getItem(), 80);
 
-            if (itemstack.damage(1, new Random(), null)) {
+            if (itemstack.damage(1, entity.getRandom(), null)) {
                 itemstack.decrement(1);
                 itemstack.setDamage(0);
             }
         }
         if (entity.isSneaking()) {
 
-            World projectileLevel = entity.world;
+            World projectileLevel = entity.getWorld();
             if (!projectileLevel.isClient()) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
@@ -87,7 +84,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
 
             entity.getItemCooldownManager().set(itemstack.getItem(), 300);
 
-            if (itemstack.damage(1, new Random(), null)) {
+            if (itemstack.damage(1, entity.getRandom(), null)) {
                 itemstack.decrement(1);
                 itemstack.setDamage(0);
             }

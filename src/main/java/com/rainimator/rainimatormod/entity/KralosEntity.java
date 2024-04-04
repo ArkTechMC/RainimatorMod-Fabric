@@ -17,24 +17,24 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.MessageType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -85,12 +85,12 @@ public class KralosEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
     }
 
     @Override
@@ -103,47 +103,53 @@ public class KralosEntity extends MonsterEntityBase {
             if (sourceentity instanceof LivingEntity _entity) {
                 this.setTarget(_entity);
                 if (Math.random() < 0.2D)
-                    if (!_entity.world.isClient())
+                    if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1));
             }
             if (this.getHealth() < 60.0F) {
                 if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) == 0) {
-                    if (!this.world.isClient())
+                    if (!this.getWorld().isClient())
                         this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 9999, 0));
                     this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
-                    if (this.world instanceof ServerWorld) {
-                        ServerWorld _level = (ServerWorld) this.world;
+                    if (this.getWorld() instanceof ServerWorld) {
+                        ServerWorld _level = (ServerWorld) this.getWorld();
                         LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                         if (entityToSpawn != null) {
-                            entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(x, y, z)));
+                            entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) x, (int) y, (int) z)));
                             entityToSpawn.setCosmetic(true);
                             _level.spawnEntity(entityToSpawn);
                         }
                     }
 
-                    this.world.setBlockState(new BlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
-                    SoundUtil.playSound(this.world, this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.scream"), 1.0F, 1.0F);
-                    if (this.world instanceof ServerWorld _level)
+                    this.getWorld().setBlockState(new BlockPos((int) x, (int) y, (int) z), Blocks.FIRE.getDefaultState(), 3);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.scream"), 1.0F, 1.0F);
+                    if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
-                    if (!this.world.isClient() && this.world.getServer() != null)
-                        this.world.getServer().getPlayerManager().broadcast(new TranslatableText("entity.rainimator.kralos.message"), MessageType.SYSTEM, Util.NIL_UUID);
+                    if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
+                        this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.kralos.message"), false);
                 }
             }
         }
-
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.CACTUS)
-            return false;
-        if (source == DamageSource.LIGHTNING_BOLT)
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.getSource() instanceof PersistentProjectileEntity)
+            return true;
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.CACTUS))
+            return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -157,15 +163,11 @@ public class KralosEntity extends MonsterEntityBase {
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (!this.world.isClient() && this.getServer() != null)
-                this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:kralos_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
-                if (this.isAlive()) {
-                    if (!this.world.isClient() && this.getServer() != null) {
-                        this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:kralos_boss_music neutral @a ~ ~ ~");
-                    }
-                }
+                if (this.isAlive())
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "kralos_boss_music"), 1, 1);
             };
+            Timeout.create(0, callback);
             Timeout.create(2480, callback);
             Timeout.create(4960, callback);
             Timeout.create(7440, callback);
@@ -181,12 +183,12 @@ public class KralosEntity extends MonsterEntityBase {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.world.isClient()) {
+        if (!this.getWorld().isClient()) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
         }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.world, new Identifier(RainimatorMod.MOD_ID, "kralos_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "kralos_boss_music"));
     }
 
     @Override

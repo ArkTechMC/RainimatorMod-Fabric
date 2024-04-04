@@ -3,26 +3,25 @@ package com.rainimator.rainimatormod.entity;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class PiglinCommanderEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("piglin_commander");
@@ -69,21 +68,21 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.piglin.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.piglin.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.death"));
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -94,12 +93,12 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
         double z = this.getZ();
         if (world instanceof ServerWorld _level) {
             MutatedEntity mutatedEntity = new MutatedEntity(ModEntities.MUTATED, _level);
-            mutatedEntity.refreshPositionAndAngles(x + MathHelper.nextInt(new Random(), -2, 2), y, z + MathHelper.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            mutatedEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             mutatedEntity.initialize(_level, world.getLocalDifficulty(mutatedEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
             world.spawnEntity(mutatedEntity);
             if (Math.random() < 0.4D) {
                 ZombiePiglinArtEntity zombiepiglinartEntity = new ZombiePiglinArtEntity(ModEntities.ZOMBIE_PIGLIN_ART, _level);
-                zombiepiglinartEntity.refreshPositionAndAngles(x + MathHelper.nextInt(new Random(), -2, 2), y, z + MathHelper.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+                zombiepiglinartEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
                 zombiepiglinartEntity.initialize(_level, world.getLocalDifficulty(zombiepiglinartEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
                 world.spawnEntity(zombiepiglinartEntity);
             }

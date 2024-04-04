@@ -6,17 +6,19 @@ import com.rainimator.rainimatormod.util.ModConstants;
 import com.rainimator.rainimatormod.util.SpawnBiome;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModEntities {
@@ -84,7 +86,7 @@ public class ModEntities {
     }
 
     private static <T extends Entity> EntityType<T> register(String name, EntityType<T> obj) {
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
+        Registry.register(Registries.ENTITY_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
         return obj;
     }
 

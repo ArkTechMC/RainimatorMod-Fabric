@@ -3,7 +3,6 @@ package com.rainimator.rainimatormod.item.armor;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ArmorWithTickItem;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -16,16 +15,16 @@ import net.minecraft.world.World;
 
 
 public class SoldiersArmorItem extends ArmorWithTickItem {
-    public SoldiersArmorItem(EquipmentSlot slot, Item.Settings properties) {
+    public SoldiersArmorItem(Type slot, Item.Settings properties) {
         super(new ArmorMaterial() {
             @Override
-            public int getDurability(EquipmentSlot slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEntitySlotId()] * 25;
+            public int getDurability(Type slot) {
+                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 25;
             }
 
             @Override
-            public int getProtectionAmount(EquipmentSlot slot) {
-                return new int[]{4, 8, 9, 4}[slot.getEntitySlotId()];
+            public int getProtection(Type slot) {
+                return new int[]{4, 8, 9, 4}[slot.getEquipmentSlot().getEntitySlotId()];
             }
 
             @Override
@@ -68,31 +67,31 @@ public class SoldiersArmorItem extends ArmorWithTickItem {
             if (entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.SOLDIERS_ARMOR_CHESTPLATE)
                 if (entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.SOLDIERS_ARMOR_LEGGINGS)
                     if (entity.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SOLDIERS_ARMOR_BOOTS)
-                        if (!entity.world.isClient())
+                        if (!entity.getWorld().isClient())
                             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
     }
 
     public static class Helmet extends SoldiersArmorItem {
         public Helmet() {
-            super(EquipmentSlot.HEAD, ModCreativeTab.createProperty());
+            super(Type.HELMET, new Settings());
         }
     }
 
     public static class Chestplate extends SoldiersArmorItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, ModCreativeTab.createProperty());
+            super(Type.CHESTPLATE, new Settings());
         }
     }
 
     public static class Leggings extends SoldiersArmorItem {
         public Leggings() {
-            super(EquipmentSlot.LEGS, ModCreativeTab.createProperty());
+            super(Type.LEGGINGS, new Settings());
         }
     }
 
     public static class Boots extends SoldiersArmorItem {
         public Boots() {
-            super(EquipmentSlot.FEET, ModCreativeTab.createProperty());
+            super(Type.BOOTS, new Settings());
         }
     }
 }

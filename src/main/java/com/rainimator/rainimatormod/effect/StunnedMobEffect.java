@@ -23,7 +23,7 @@ public class StunnedMobEffect extends StatusEffect {
         if (entity instanceof MobEntity _entity)
             _entity.getNavigation().stop();
         if (entity instanceof LivingEntity)
-            if (!entity.world.isClient()) {
+            if (!entity.getWorld().isClient()) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 4));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 40, 4));
             }

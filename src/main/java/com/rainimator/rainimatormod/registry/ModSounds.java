@@ -1,9 +1,10 @@
 package com.rainimator.rainimatormod.registry;
 
 import com.rainimator.rainimatormod.RainimatorMod;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +25,8 @@ public class ModSounds {
     public static void registerSounds() {
         for (String id : idMap) {
             Identifier location = new Identifier(RainimatorMod.MOD_ID, id);
-            SoundEvent soundEvent = new SoundEvent(location);
-            Registry.register(Registry.SOUND_EVENT, location, soundEvent);
+            SoundEvent soundEvent = SoundEvent.of(location);
+            Registry.register(Registries.SOUND_EVENT, location, soundEvent);
             REGISTRY.put(id, soundEvent);
         }
     }

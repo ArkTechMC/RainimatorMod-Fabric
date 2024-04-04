@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.entity;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.DamageUtil;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -13,14 +15,16 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("abigail");
@@ -70,26 +74,41 @@ public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob 
         if (source.getAttacker() instanceof LivingEntity _ent)
             this.setTarget(_ent);
         if (this.getHealth() <= 40.0F) {
-            this.setHealth(this.getHealth() + MathHelper.nextInt(new Random(), 1, 3));
+            this.setHealth(this.getHealth() + RandomHelper.nextInt(1, 3));
             if (Math.random() < 0.2D)
-                this.damage(DamageSource.MAGIC, 2.0F);
+                this.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 2.0F);
         }
-        if (source.getSource() instanceof PersistentProjectileEntity)
-            return false;
-        if (source.isExplosive())
-            return false;
-        if (source.getName().equals("trident"))
-            return false;
         return super.damage(source, amount);
     }
 
     @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.getSource() instanceof PersistentProjectileEntity)
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT))
+            return true;
+        return super.isInvulnerableTo(damageSource);
+    }
+
+    @Override
     public void attack(LivingEntity target, float flval) {
-        AbigailEntityProjectile entityarrow = new AbigailEntityProjectile(ModEntities.ABIGAIL_PROJECTILE, this, this.world);
+        AbigailEntityProjectile entityarrow = new AbigailEntityProjectile(ModEntities.ABIGAIL_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
         entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.world.spawnEntity(entityarrow);
+        this.getWorld().spawnEntity(entityarrow);
     }
 }

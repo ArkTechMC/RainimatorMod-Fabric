@@ -10,8 +10,7 @@
   ],
   "client": [
     "PlayerRendererMixin",
-    "ScreenMixin",
-    "SkullBlockEntityRendererMixin"
+    "DrawContextMixin"
   ],
   "injectors": {
     "defaultRequire": 1

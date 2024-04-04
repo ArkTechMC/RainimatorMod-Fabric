@@ -2,7 +2,6 @@ package com.rainimator.rainimatormod.item.shield;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -10,7 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.tag.ItemTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
@@ -24,7 +23,7 @@ public class NetheriteShieldItem extends ShieldItem {
     protected static final UUID MAIN_HAND_MODIFIER = UUID.fromString("7d766720-0695-46c6-b320-44529f3da63f");
 
     public NetheriteShieldItem() {
-        super(ModCreativeTab.createProperty().maxCount(1).maxDamage(2500).rarity(Rarity.UNCOMMON));
+        super(new Settings().maxCount(1).maxDamage(2500).rarity(Rarity.UNCOMMON));
     }
 
     @Override

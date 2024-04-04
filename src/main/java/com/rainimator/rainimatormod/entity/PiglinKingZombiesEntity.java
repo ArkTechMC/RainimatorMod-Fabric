@@ -14,16 +14,17 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -76,29 +77,29 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.FALL)
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.CACTUS))
+            return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
             return false;
-        if (source == DamageSource.CACTUS)
-            return false;
-        if (source == DamageSource.LIGHTNING_BOLT)
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
-        return super.damage(source, amount);
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -112,17 +113,15 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((DefaultParticleType) (ModParticles.YELLOW_STARS), x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (!this.world.isClient() && this.getServer() != null)
-                this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimtor:glutton_boss_music neutral @a ~ ~ ~");
             Timeout.create(30, () -> {
                 if (world instanceof World _level)
                     SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 5, 1);
             });
             Runnable callback = () -> {
                 if (this.isAlive())
-                    if (!this.world.isClient() && this.getServer() != null)
-                        this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimtor:glutton_boss_music neutral @a ~ ~ ~");
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "glutton_boss_music"), 5, 1);
             };
+            Timeout.create(0, callback);
             Timeout.create(5520, callback);
             Timeout.create(11040, callback);
             Timeout.create(16560, callback);
@@ -137,7 +136,7 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
     public void baseTick() {
         super.baseTick();
         if (!this.isAlive())
-            SoundUtil.stopSound(this.world, new Identifier(RainimatorMod.MOD_ID, "glutton_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "glutton_boss_music"));
     }
 
     @Override

@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
   "base": {
     "item": "rainimator:wither_bone"
   },
@@ -8,5 +8,8 @@
   },
   "result": {
     "item": "rainimator:netherite_wither_bone"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

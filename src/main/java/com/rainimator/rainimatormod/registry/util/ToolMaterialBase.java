@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
-public class TierBase {
+public class ToolMaterialBase {
     public static ToolMaterial of(int uses, float speed, float attackDamageBonus, int level, int enchantmentLevel) {
         return of(uses, speed, attackDamageBonus, level, enchantmentLevel, new Item[0]);
     }

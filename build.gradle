@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -39,8 +39,8 @@ dependencies {
     modImplementation "dev.emi:trinkets:${trinkets_version}"
 
     // EMI
-    modCompileOnly "dev.emi:emi:${emi_version}:api"
-    modLocalRuntime "dev.emi:emi:${emi_version}"
+    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 }
 
 processResources {

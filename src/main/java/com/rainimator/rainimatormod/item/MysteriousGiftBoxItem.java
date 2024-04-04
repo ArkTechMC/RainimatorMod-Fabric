@@ -3,7 +3,6 @@ package com.rainimator.rainimatormod.item;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
@@ -14,7 +13,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.UseAction;
@@ -28,7 +26,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
     private static final List<Triple<ItemConvertible, Integer, String>> lootTable = new ArrayList<>();
 
     public MysteriousGiftBoxItem() {
-        super(p -> p.group(ModCreativeTab.items).maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(0).saturationModifier(0.0F).alwaysEdible().build()));
+        super(p -> p.maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(0).saturationModifier(0.0F).alwaysEdible().build()));
     }
 
     private static synchronized void initLootTable() {
@@ -113,7 +111,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
     @Override
     public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
         super.appendTooltip(itemstack, world, list, flag);
-        list.add(new TranslatableText("item.rainimator.mysterious_gift_box.tooltip"));
+        list.add(Text.translatable("item.rainimator.mysterious_gift_box.tooltip"));
     }
 
     @Override
@@ -132,14 +130,14 @@ public class MysteriousGiftBoxItem extends ItemBase {
             for (Triple<ItemConvertible, Integer, String> triple : lootTable) {
                 if (Math.random() < 0.1D) {
                     stack = new ItemStack(triple.getLeft(), triple.getMiddle());
-                    if (!triple.getRight().isBlank() && !_player.world.isClient())
-                        _player.sendMessage(new TranslatableText(triple.getRight()), true);
+                    if (!triple.getRight().isBlank() && !_player.getWorld().isClient())
+                        _player.sendMessage(Text.translatable(triple.getRight()), true);
                     break;
                 }
             }
             if (stack.getItem() == Items.AIR)
-                if (!_player.world.isClient())
-                    _player.sendMessage(new TranslatableText("item.rainimator.mysterious_gift_box.goodluck4"), true);
+                if (!_player.getWorld().isClient())
+                    _player.sendMessage(Text.translatable("item.rainimator.mysterious_gift_box.goodluck4"), true);
             _player.getInventory().insertStack(stack);
         }
         return retval;

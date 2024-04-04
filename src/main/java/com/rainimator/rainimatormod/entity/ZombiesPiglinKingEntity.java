@@ -13,6 +13,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -21,11 +22,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -78,23 +79,23 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.piglin.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.piglin.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.death"));
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.CACTUS)
-            return false;
-        if (source.isExplosive())
-            return false;
-        return super.damage(source, amount);
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.CACTUS))
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -108,13 +109,11 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (!this.world.isClient() && this.getServer() != null)
-                this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:piglin_king_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
                 if (this.isAlive())
-                    if (!this.world.isClient() && this.getServer() != null)
-                        this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:piglin_king_boss_music neutral @a ~ ~ ~");
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "piglin_king_boss_music"), 1, 1);
             };
+            Timeout.create(0, callback);
             Timeout.create(3480, callback);
             Timeout.create(6960, callback);
             Timeout.create(10440, callback);
@@ -128,10 +127,10 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.world.isClient())
+        if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0));
         if (!((Entity) this).isAlive())
-            SoundUtil.stopSound(this.world, new Identifier(RainimatorMod.MOD_ID, "piglin_king_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "piglin_king_boss_music"));
     }
 
     @Override

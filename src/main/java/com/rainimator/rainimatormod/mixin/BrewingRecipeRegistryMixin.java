@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BrewingRecipeRegistry.class)
 public class BrewingRecipeRegistryMixin {
     @Shadow
-    private static void registerPotionRecipe(Potion input, Item item, Potion output) {
+    public static void registerPotionRecipe(Potion input, Item item, Potion output) {
     }
 
     @Inject(method = "registerDefaults", at = @At("RETURN"))

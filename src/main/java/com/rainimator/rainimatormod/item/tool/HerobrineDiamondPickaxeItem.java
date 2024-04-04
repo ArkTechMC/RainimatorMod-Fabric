@@ -1,7 +1,6 @@
 package com.rainimator.rainimatormod.item.tool;
 
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -13,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,7 +20,7 @@ import net.minecraft.world.WorldAccess;
 
 public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     public HerobrineDiamondPickaxeItem() {
-        super(TierBase.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, new Settings().fireproof());
     }
 
     @Override
@@ -34,8 +33,8 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
             for (double i = -1; i <= 1; i++)
                 for (double j = -1; j <= 1; j++)
                     if (i != 0 || j != 0) {
-                        BlockPos _pos = new BlockPos(x + i, y, z + j);
-                        Block.dropStacks(((WorldAccess) world).getBlockState(_pos), world, new BlockPos(x, y, z), null);
+                        BlockPos _pos = new BlockPos((int) (x + i), (int) y, (int) (z + j));
+                        Block.dropStacks(((WorldAccess) world).getBlockState(_pos), world, new BlockPos((int) x, (int) y, (int) z), null);
                         world.breakBlock(_pos, false);
                     }
         return retval;
@@ -49,12 +48,12 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
         double y = context.getBlockPos().getY();
         double z = context.getBlockPos().getZ();
         if (context.getPlayer() != null) {
-            world.breakBlock(new BlockPos(x, y, z), false);
+            world.breakBlock(new BlockPos((int) x, (int) y, (int) z), false);
             if (!world.isClient())
                 world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
             if (context.getPlayer() instanceof PlayerEntity)
-                if (!context.getPlayer().world.isClient())
-                    context.getPlayer().sendMessage(new TranslatableText("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
+                if (!context.getPlayer().getWorld().isClient())
+                    context.getPlayer().sendMessage(Text.translatable("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
             if (context.getPlayer() instanceof PlayerEntity)
                 context.getPlayer().getItemCooldownManager().set(context.getStack().getItem(), 4800);
         }

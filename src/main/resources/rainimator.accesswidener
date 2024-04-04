@@ -3,6 +3,4 @@ accessible method net/minecraft/entity/SpawnRestriction register (Lnet/minecraft
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/client/render/entity/EntityRenderers register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/client/render/entity/EntityRendererFactory;)V
 accessible method net/minecraft/particle/DefaultParticleType <init> (Z)V
-accessible method net/minecraft/entity/damage/DamageSource <init> (Ljava/lang/String;)V
-accessible method net/minecraft/entity/damage/DamageSource setBypassesArmor ()Lnet/minecraft/entity/damage/DamageSource;
 accessible class net/minecraft/world/biome/Biome$Weather

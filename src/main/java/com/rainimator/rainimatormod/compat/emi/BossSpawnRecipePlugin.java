@@ -74,26 +74,20 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
 
         @Override
         public int getDisplayWidth() {
-            return 76;
+            return 140;
         }
 
         @Override
         public int getDisplayHeight() {
-            return 18;
+            return 44;
         }
 
         @Override
         public void addWidgets(WidgetHolder widgets) {
             widgets.addTexture(TEXTURE, 0, 0);
-
-            // Adds an input slot on the left
-            widgets.addSlot(this.getInputs().get(0), 14, 13);
-            widgets.addSlot(EmiIngredient.of(List.of(WORKSTATION)), 62, 13);
-
-            // Adds an output slot on the right
-            // Note that output slots need to call `recipeContext` to inform EMI about their recipe context
-            // This includes being able to resolve recipe trees, favorite stacks with recipe context, and more
-            widgets.addSlot(this.getOutputs().get(0), 110, 13).recipeContext(this);
+            widgets.addSlot(this.getInputs().get(0), 13, 12);
+            widgets.addSlot(EmiIngredient.of(List.of(WORKSTATION)), 61, 12);
+            widgets.addSlot(this.getOutputs().get(0), 109, 12).recipeContext(this);
         }
     }
 }

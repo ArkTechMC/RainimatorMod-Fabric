@@ -18,6 +18,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -29,12 +30,12 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -88,12 +89,12 @@ public class Klaus2Entity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.vindicator.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.vindicator.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.vindicator.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.vindicator.death"));
     }
 
     @Override
@@ -117,48 +118,48 @@ public class Klaus2Entity extends MonsterEntityBase {
                 }
             }
             if ((EnchantmentHelper.getLevel(Enchantments.PROTECTION, this.getEquippedStack(EquipmentSlot.HEAD)) != 0)) {
-                if (!this.world.isClient()) {
+                if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                 }
                 if (Math.random() < 0.1) {
-                    if (!this.world.isClient())
+                    if (!this.getWorld().isClient())
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 0));
-                    SoundUtil.playSound(this.world, x, y, z, new Identifier("block.anvil.land"), 1, 1);
-                    if (this.world instanceof ServerWorld _level)
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier("block.anvil.land"), 1, 1);
+                    if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
                 }
             }
             if ((EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) != 0)) {
-                if (!this.world.isClient())
+                if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
                 if (Math.random() < 0.1) {
-                    if (sourceentity instanceof LivingEntity _entity && !_entity.world.isClient())
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(ModEffects.STUNNED, 100, 0));
-                    SoundUtil.playSound(this.world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "stunned"), 5, 1);
-                    if (this.world instanceof ServerWorld _level)
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "stunned"), 5, 1);
+                    if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles((DefaultParticleType) (ModParticles.YELLOW_STARS), x, y, z, 50, 1, 2, 1, 1);
                 }
             }
             if (this.getMainHandStack().getItem() == ModItems.SOUL_RAIDING_HAMMER) {
-                if (!this.world.isClient())
+                if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 1));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.world, x, y, z, new Identifier("block.anvil.land"), 1, 1);
-                    if (this.world instanceof ServerWorld _level)
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier("block.anvil.land"), 1, 1);
+                    if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
-                    if (sourceentity instanceof LivingEntity _entity && !_entity.world.isClient())
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 1));
                 }
             }
             if (this.getMainHandStack().getItem() == ModItems.SEIZING_SHADOW_HALBERD) {
-                if (!this.world.isClient())
+                if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 2));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.world, x, y, z, new Identifier("block.anvil.land"), 1, 1);
-                    if (this.world instanceof ServerWorld _level)
+                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier("block.anvil.land"), 1, 1);
+                    if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
-                    if (sourceentity instanceof LivingEntity _entity && !_entity.world.isClient()) {
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient()) {
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 1));
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1));
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 1));
@@ -166,27 +167,32 @@ public class Klaus2Entity extends MonsterEntityBase {
                 }
             }
         }
-        if (source.getSource() instanceof PersistentProjectileEntity)
-            return false;
-        if (source == DamageSource.FALL)
-            return false;
-        if (source == DamageSource.CACTUS)
-            return false;
-        if (source == DamageSource.LIGHTNING_BOLT)
-            return false;
-        if (source.isExplosive())
-            return false;
-        if (source.getName().equals("trident"))
-            return false;
-        if (source == DamageSource.ANVIL)
-            return false;
-        if (source == DamageSource.DRAGON_BREATH)
-            return false;
-        if (source == DamageSource.WITHER)
-            return false;
-        if (source.getName().equals("witherSkull"))
-            return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource damageSource) {
+        if (damageSource.getSource() instanceof PersistentProjectileEntity)
+            return true;
+        if (damageSource.isOf(DamageTypes.FALL))
+            return true;
+        if (damageSource.isOf(DamageTypes.CACTUS))
+            return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
+            return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION))
+            return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT))
+            return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
+            return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER))
+            return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
+        return super.isInvulnerableTo(damageSource);
     }
 
     @Override
@@ -206,14 +212,11 @@ public class Klaus2Entity extends MonsterEntityBase {
             }
         }
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (!this.world.isClient() && this.getServer() != null)
-                this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
-
             Runnable callback = () -> {
                 if (this.isAlive())
-                    if (!this.world.isClient() && this.getServer() != null)
-                        this.getServer().getCommandManager().execute(this.getCommandSource().withSilent().withLevel(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "klaus_boss_music"), 1, 1F);
             };
+            Timeout.create(0, callback);
             Timeout.create(6060, callback);
             Timeout.create(12120, callback);
             Timeout.create(18180, callback);
@@ -228,10 +231,10 @@ public class Klaus2Entity extends MonsterEntityBase {
     public void baseTick() {
         super.baseTick();
         if (!this.isAlive())
-            SoundUtil.stopSound(this.world, new Identifier(RainimatorMod.MOD_ID, "klaus_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "klaus_boss_music"));
         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem())
             if (this.getMainHandStack().getItem() == Blocks.AIR.asItem()) {
-                if (!this.world.isClient()) {
+                if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 2));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 2));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 100, 2));
@@ -240,7 +243,7 @@ public class Klaus2Entity extends MonsterEntityBase {
             }
         if (this.getOffHandStack().getItem() == Items.EMERALD)
             if (this.getMainHandStack().getItem() == ModItems.SEIZING_SHADOW_HALBERD) {
-                if (!this.world.isClient()) {
+                if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 1));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 1));
@@ -250,7 +253,7 @@ public class Klaus2Entity extends MonsterEntityBase {
             }
         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem())
             if (this.getMainHandStack().getItem() == ModItems.SEIZING_SHADOW_HALBERD) {
-                if (!this.world.isClient()) {
+                if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0));

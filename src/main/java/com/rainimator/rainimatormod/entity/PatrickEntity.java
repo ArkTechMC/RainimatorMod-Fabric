@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -18,16 +19,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("patrick");
@@ -75,12 +73,12 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
     }
 
     @Override
@@ -89,28 +87,28 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
         double y = this.getY();
         double z = this.getZ();
         if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
-            if (!this.world.isClient()) {
+            if (!this.getWorld().isClient()) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
@@ -122,7 +120,7 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
         if (world instanceof ServerWorld _level) {
             HildaEntity hildaEntity = new HildaEntity(ModEntities.HILDA, _level);
-            hildaEntity.refreshPositionAndAngles(this.getX() + MathHelper.nextInt(new Random(), 1, 4), this.getY(), this.getZ() + MathHelper.nextInt(new Random(), 1, 4), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            hildaEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 4), this.getY(), this.getZ() + RandomHelper.nextInt(1, 4), world.getRandom().nextFloat() * 360.0F, 0.0F);
             hildaEntity.initialize(_level, world.getLocalDifficulty(hildaEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
             world.spawnEntity(hildaEntity);
         }
@@ -132,17 +130,17 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.world.isClient())
+        if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
     }
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        PatrickEntityProjectile entityarrow = new PatrickEntityProjectile(ModEntities.PATRICK_PROJECTILE, this, this.world);
+        PatrickEntityProjectile entityarrow = new PatrickEntityProjectile(ModEntities.PATRICK_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
         entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.world.spawnEntity(entityarrow);
+        this.getWorld().spawnEntity(entityarrow);
     }
 }

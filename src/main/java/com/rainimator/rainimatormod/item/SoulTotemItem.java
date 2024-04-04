@@ -2,7 +2,6 @@ package com.rainimator.rainimatormod.item;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.client.MinecraftClient;
@@ -31,7 +30,7 @@ import java.util.List;
 
 public class SoulTotemItem extends FoilItemBase {
     public SoulTotemItem() {
-        super(p -> p.group(ModCreativeTab.items).maxCount(1).rarity(Rarity.UNCOMMON));
+        super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -48,12 +47,12 @@ public class SoulTotemItem extends FoilItemBase {
             SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
-            if (!entity.world.isClient())
+            if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 140, 4));
             entity.getItemCooldownManager().set(itemstack.getItem(), 400);
 
             Timeout.create(100, () -> {
-                if (!entity.world.isClient())
+                if (!entity.getWorld().isClient())
                     entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 300, 1));
             });
         } else {
@@ -62,7 +61,7 @@ public class SoulTotemItem extends FoilItemBase {
             SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
-            if (!entity.world.isClient())
+            if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 400, 0));
             entity.getItemCooldownManager().set(itemstack.getItem(), 600);
         }
@@ -79,10 +78,10 @@ public class SoulTotemItem extends FoilItemBase {
                 if ((WorldAccess) world instanceof World _lvl) {
                     if (_lvl.isDay()) {
                         if (entity1 instanceof PlayerEntity _entity) {
-                            if (!_entity.world.isClient())
+                            if (!_entity.getWorld().isClient())
                                 _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0));
                         } else if (entity1 instanceof HostileEntity _entity2)
-                            if (!_entity2.world.isClient())
+                            if (!_entity2.getWorld().isClient())
                                 _entity2.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0));
                     }
                 }
@@ -91,7 +90,7 @@ public class SoulTotemItem extends FoilItemBase {
         if (entity instanceof PlayerEntity _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ModItems.SOUL_TOTEM))) {
             if (world.isDay()) {
                 LivingEntity _entity = (LivingEntity) entity;
-                if (!_entity.world.isClient())
+                if (!_entity.getWorld().isClient())
                     _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 100, 1));
                 if (Math.random() < 0.005)
                     if (!world.isClient())

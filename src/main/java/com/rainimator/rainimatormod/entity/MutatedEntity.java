@@ -14,9 +14,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class MutatedEntity extends MonsterEntityBase {
@@ -63,11 +63,11 @@ public class MutatedEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registry.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
     }
 }

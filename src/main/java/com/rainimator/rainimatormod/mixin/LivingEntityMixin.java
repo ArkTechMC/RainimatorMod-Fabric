@@ -28,7 +28,7 @@ public abstract class LivingEntityMixin extends Entity {
         ItemStack stack = this.getStackInHand(hand);
         Item item = stack.getItem();
         if (item instanceof SwordItemBase sword)
-            if (sword.onSwingHand(stack, world, getX(), getY(), getZ()))
+            if (sword.onSwingHand(stack, this.getWorld(), getX(), getY(), getZ()))
                 ci.cancel();
     }
 }

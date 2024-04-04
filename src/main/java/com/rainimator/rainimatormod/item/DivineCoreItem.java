@@ -1,21 +1,18 @@
 package com.rainimator.rainimatormod.item;
 
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.util.RandomHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class DivineCoreItem extends FoilItemBase {
     public DivineCoreItem() {
-        super(p -> p.group(ModCreativeTab.items).maxDamage(100).rarity(Rarity.UNCOMMON));
+        super(p -> p.maxDamage(100).rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -39,13 +36,13 @@ public class DivineCoreItem extends FoilItemBase {
         ItemStack itemstack = ar.getValue();
 
         if (entity.getHealth() == entity.getMaxHealth()) {
-            if (itemstack.damage(0, new Random(), null)) {
+            if (itemstack.damage(0, entity.getRandom(), null)) {
                 itemstack.decrement(1);
                 itemstack.setDamage(0);
             }
         } else {
-            entity.setHealth(entity.getHealth() + MathHelper.nextInt(new Random(), 1, 4));
-            if (itemstack.damage(1, new Random(), null)) {
+            entity.setHealth(entity.getHealth() + RandomHelper.nextInt(1, 4));
+            if (itemstack.damage(1, entity.getRandom(), null)) {
                 itemstack.decrement(1);
                 itemstack.setDamage(0);
             }

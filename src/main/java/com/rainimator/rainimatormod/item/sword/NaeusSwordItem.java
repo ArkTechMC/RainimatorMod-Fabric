@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.rainimator.rainimatormod.util.DamageUtil;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,13 +24,13 @@ import java.util.List;
 
 public class NaeusSwordItem extends SwordItemBase {
     public NaeusSwordItem() {
-        super(TierBase.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, ModCreativeTab.createProperty().fireproof());
+        super(ToolMaterialBase.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override
     public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceEntity) {
         boolean ret_val = super.postHit(itemstack, entity, sourceEntity);
-        if (!entity.world.isClient())
+        if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0));
         entity.setOnFireFor(5);
         return ret_val;
@@ -44,11 +44,11 @@ public class NaeusSwordItem extends SwordItemBase {
         for (Entity entityIterator : _entfound) {
             if (entity.isSneaking()) {
                 if (entityIterator instanceof PlayerEntity)
-                    entity.damage(DamageSource.GENERIC, 0.0F);
+                    entity.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
                 else {
-                    entityIterator.damage(DamageSource.MAGIC, 5.0F);
+                    entityIterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
                     if (entityIterator instanceof LivingEntity _entity)
-                        if (!_entity.world.isClient())
+                        if (!_entity.getWorld().isClient())
                             _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 300, 1));
                     entityIterator.setOnFireFor(10);
                     SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);

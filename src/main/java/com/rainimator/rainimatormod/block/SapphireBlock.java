@@ -2,9 +2,8 @@ package com.rainimator.rainimatormod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class SapphireBlock extends Block {
     public SapphireBlock() {
-        super(Settings.of(Material.STONE).sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F));
+        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F));
     }
 
     @Deprecated
@@ -25,7 +24,7 @@ public class SapphireBlock extends Block {
 
     @Deprecated
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
