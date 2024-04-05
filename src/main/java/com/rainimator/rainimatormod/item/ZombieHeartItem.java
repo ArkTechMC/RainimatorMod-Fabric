@@ -14,13 +14,13 @@ public class ZombieHeartItem extends ItemBase {
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack) {
+    public int getMaxUseTime(ItemStack itemtack) {
         return 36;
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack itemstack, World world, LivingEntity entity) {
-        ItemStack retval = super.finishUsing(itemstack, world, entity);
+    public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
+        ItemStack retval = super.finishUsing(itemtack, world, entity);
         if (entity instanceof LivingEntity)
             if (!entity.getWorld().isClient()) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1));

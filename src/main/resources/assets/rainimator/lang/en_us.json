@@ -301,7 +301,7 @@
   "item.rainimator.zombies_piglin_king_spawn_egg": "Zombiespligeking Spawn Egg",
   "item.rainimator.zombies_spawn_egg": "Zombies Spawn Egg",
   "itemGroup.rainimator.rainimator": "Rainimator",
-  "itemGroup.rainimator.rainimator_items": "Rainimatoritems",
+  "itemGroup.rainimator.rainimator_item": "Rainimatoritem",
   "itemGroup.rainimator.rainimator_mobs": "Rainimatormobs",
   "emi.category.rainimator.boss_spawn_recipe": "Boss Summon",
   "emi.tag.trinkets.chest.back": "Back Slot"

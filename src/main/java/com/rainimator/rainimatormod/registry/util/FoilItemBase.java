@@ -13,7 +13,7 @@ public class FoilItemBase extends ItemBase {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public boolean hasGlint(ItemStack itemstack) {
+    public boolean hasGlint(ItemStack itemtack) {
         return true;
     }
 }

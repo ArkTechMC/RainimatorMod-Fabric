@@ -12,8 +12,8 @@ public class HotGlovesItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.7D)
             entity.setOnFireFor(5);
         return ret_val;

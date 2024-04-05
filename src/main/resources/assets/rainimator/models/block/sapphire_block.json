@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "rainimator:blocks/sapphire_block",
-    "particle": "rainimator:blocks/sapphire_block"
+    "all": "rainimator:block/sapphire_block",
+    "particle": "rainimator:block/sapphire_block"
   }
 }

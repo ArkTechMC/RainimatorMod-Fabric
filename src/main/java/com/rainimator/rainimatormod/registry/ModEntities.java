@@ -7,7 +7,10 @@ import com.rainimator.rainimatormod.util.SpawnBiome;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.client.render.entity.EntityRenderers;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.registry.Registries;
@@ -17,6 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModEntities {
@@ -74,7 +78,7 @@ public class ModEntities {
     }
 
     private static <T extends Entity> FabricEntityTypeBuilder<T> build(EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, float sizeX, float sizeY) {
-        FabricEntityTypeBuilder<T> builder=FabricEntityTypeBuilder.create(category,constructor).trackRangeBlocks(trackingRange).trackedUpdateRate(updateInterval).dimensions(EntityDimensions.fixed(sizeX, sizeY));
+        FabricEntityTypeBuilder<T> builder = FabricEntityTypeBuilder.create(category, constructor).trackRangeBlocks(trackingRange).trackedUpdateRate(updateInterval).dimensions(EntityDimensions.fixed(sizeX, sizeY));
         if (fireImmune) return builder.fireImmune();
         return builder;
     }
@@ -85,34 +89,33 @@ public class ModEntities {
 
     public static void init() {
         SpawnRestriction.register(ZOMBIES, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(ZOMBIES, 180);
         SpawnRestriction.register(SOLDIERS, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL));
+                world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
         SpawnRestriction.register(HILDA, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL));
+                world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
         SpawnRestriction.register(WITHERED_SKELETONS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
         SpawnRestriction.register(DARK_ZOMBIE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
         SpawnRestriction.register(DARK_SHIELD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(DARK_SHIELD, 180);
         SpawnRestriction.register(WITHER_SHIELD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(WITHER_SHIELD, 180);
         SpawnRestriction.register(SKELETON_SNOW, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
         SpawnRestriction.register(TUSK, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(TUSK, 180);
         SpawnRestriction.register(BROTS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random)));
+                world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
         SpawnRestriction.register(AGETHA, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL));
+                world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
         SpawnRestriction.register(ARCHER, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL));
-
+                world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
     }
 
     public static void registerAttributes() {
@@ -171,5 +174,56 @@ public class ModEntities {
         BiomeModifications.addSpawn(context -> new Identifier("nether_wastes").equals(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.WITHERED_SKELETONS, 19, 2, 2);
         BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.WITHER_SHIELD, 3, 1, 1);
         BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.ZOMBIES, 10, 1, 1);
+    }
+
+    public static void registerEntityRenderers() {
+        EntityRenderers.register(HEROBRINE, HerobrineEntity.texture::createRenderer);
+        EntityRenderers.register(CERIS, CerisEntity.texture::createRenderer);
+        EntityRenderers.register(ZOMBIES, ZombiesEntity.texture::createRenderer);
+        EntityRenderers.register(NAEUS, NaeusEntity.texture::createRenderer);
+        EntityRenderers.register(RAIN, RainEntity.texture::createRenderer);
+        EntityRenderers.register(RAIN_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(ABIGAIL, AbigailEntity.texture::createRenderer);
+        EntityRenderers.register(ABIGAIL_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(PATRICK, PatrickEntity.texture::createRenderer);
+        EntityRenderers.register(PATRICK_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(BLACKBONE, BlackBoneEntity.texture::createRenderer);
+        EntityRenderers.register(HOGSWORTH, HogsworthEntity.texture::createRenderer);
+        EntityRenderers.register(SOLDIERS, SoldiersEntity.texture::createRenderer);
+        EntityRenderers.register(SOLDIERS_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(CIARA, CiaraEntity.texture::createRenderer);
+        EntityRenderers.register(CIARA_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(HILDA, HildaEntity.texture::createRenderer);
+        EntityRenderers.register(HILDA_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(WITHERED_SKELETONS, WitheredSkeletonsEntity.texture::createRenderer);
+        EntityRenderers.register(END_STAFF, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(VORDUS, VordusEntity.texture::createRenderer);
+        EntityRenderers.register(DARK_ZOMBIE, DarkZombieEntity.texture::createRenderer);
+        EntityRenderers.register(DARK_SHIELD, DarkShieldEntity.texture::createRenderer);
+        EntityRenderers.register(WITHER_SHIELD, WitherShieldEntity.texture::createRenderer);
+        EntityRenderers.register(SKELETON_SNOW, SkeletonSnowEntity.texture::createRenderer);
+        EntityRenderers.register(ARABELLA, ArabellaEntity.texture::createRenderer);
+        EntityRenderers.register(AZALEA, AzaleaEntity.texture::createRenderer);
+        EntityRenderers.register(NULL_LIKE, NullLikeEntity.texture::createRenderer);
+        EntityRenderers.register(ZOMBIE_PIGLIN_KING, ZombiesPiglinKingEntity.texture::createRenderer);
+        EntityRenderers.register(PIGLIN_KING_ZOMBIES, PiglinKingZombiesEntity.texture::createRenderer);
+        EntityRenderers.register(PIGLIN_KING_ZOMBIE, PiglinKingZombieEntity.texture::createRenderer);
+        EntityRenderers.register(PIGLIN_COMMANDER, PiglinCommanderEntity.texture::createRenderer);
+        EntityRenderers.register(DARYLL, DaryllEntity.texture::createRenderer);
+        EntityRenderers.register(DARYLL_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRenderers.register(NAEUS_KING, NaeusKingEntity.texture::createRenderer);
+        EntityRenderers.register(TUSK, TuskEntity.texture::createRenderer);
+        EntityRenderers.register(BROTS, BrotsEntity.texture::createRenderer);
+        EntityRenderers.register(ZOMBIE_PIGLIN_ART, ZombiePiglinArtEntity.texture::createRenderer);
+        EntityRenderers.register(MUTATED, MutatedEntity.texture::createRenderer);
+        EntityRenderers.register(NAMTAR, NamtarEntity.texture::createRenderer);
+        EntityRenderers.register(AGETHA, AgethaEntity.texture::createRenderer);
+        EntityRenderers.register(TRICER, TricerEntity.texture::createRenderer);
+        EntityRenderers.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity.texture::createRenderer);
+        EntityRenderers.register(ARCHER, ArcherEntity.texture::createRenderer);
+        EntityRenderers.register(GIGABONE, GigaBoneEntity.texture::createRenderer);
+        EntityRenderers.register(KLAUS, KlausEntity.texture::createRenderer);
+        EntityRenderers.register(KLAUS_2, Klaus2Entity.texture::createRenderer);
+        EntityRenderers.register(KRALOS, KralosEntity.texture::createRenderer);
     }
 }

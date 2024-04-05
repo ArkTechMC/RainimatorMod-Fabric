@@ -32,8 +32,8 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (entity instanceof MobEntity _entity)
             _entity.setTarget(sourceentity);
         if (Math.random() < 0.2D)
@@ -49,7 +49,7 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         if (entity.isSneaking())
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
         BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
@@ -88,22 +88,22 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
         Timeout.create(20, callback);
 
         if (entity instanceof PlayerEntity)
-            entity.getItemCooldownManager().set(itemstack.getItem(), 1200);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 1200);
 
         return ar;
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.FLAME, x, y, z, 4, 0, 50);
         return retval;
     }
 
     @Override
-    public void inventoryTick(ItemStack itemstack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(itemstack, world, entity, slot, selected);
+    public void inventoryTick(ItemStack itemtack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(itemtack, world, entity, slot, selected);
         if (selected && entity instanceof LivingEntity _livEnt && !_livEnt.getWorld().isClient()) {
             if (_livEnt.getArmor() <= 10)
                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 3));

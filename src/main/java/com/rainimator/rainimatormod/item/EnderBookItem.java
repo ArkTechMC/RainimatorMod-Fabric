@@ -20,8 +20,8 @@ public class EnderBookItem extends ItemBase {
     }
 
     @Override
-    public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
-        super.appendTooltip(itemstack, world, list, flag);
+    public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
+        super.appendTooltip(itemtack, world, list, flag);
         list.add(Text.translatable("item.rainimator.ender_book.tooltip"));
     }
 

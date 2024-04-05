@@ -51,8 +51,8 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D)
             if (entity instanceof LivingEntity)
                 if (!entity.getWorld().isClient()) {
@@ -100,8 +100,8 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean ret_val = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.ENCHANT, x, y, z, 3, 0, 50);
         return ret_val;
@@ -109,8 +109,8 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
 
 
     @Override
-    public void inventoryTick(ItemStack itemstack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(itemstack, world, entity, slot, selected);
+    public void inventoryTick(ItemStack itemtack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(itemtack, world, entity, slot, selected);
         if (selected) {
             entity.extinguish();
 
@@ -119,9 +119,9 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
             for (Entity entityIterator : _ent_found) {
                 if (!(entityIterator instanceof LivingEntity _livEnt)) continue;
                 if (_livEnt.getMainHandStack().getItem() == ModItems.RAIN_SWORD) {
-                    if (itemstack.damage(0, world.getRandom(), null)) {
-                        itemstack.decrement(1);
-                        itemstack.setDamage(0);
+                    if (itemtack.damage(0, world.getRandom(), null)) {
+                        itemtack.decrement(1);
+                        itemtack.setDamage(0);
                     }
                     continue;
                 }

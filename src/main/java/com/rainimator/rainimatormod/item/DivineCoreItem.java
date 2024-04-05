@@ -16,7 +16,7 @@ public class DivineCoreItem extends FoilItemBase {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
+    public UseAction getUseAction(ItemStack itemtack) {
         return UseAction.BLOCK;
     }
 
@@ -26,25 +26,25 @@ public class DivineCoreItem extends FoilItemBase {
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack) {
+    public int getMaxUseTime(ItemStack itemtack) {
         return 1;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
 
         if (entity.getHealth() == entity.getMaxHealth()) {
-            if (itemstack.damage(0, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(0, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
         } else {
             entity.setHealth(entity.getHealth() + RandomHelper.nextInt(1, 4));
-            if (itemstack.damage(1, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(1, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
         }
         return ar;

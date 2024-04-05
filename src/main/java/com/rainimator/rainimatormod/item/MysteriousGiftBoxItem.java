@@ -99,24 +99,24 @@ public class MysteriousGiftBoxItem extends ItemBase {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
+    public UseAction getUseAction(ItemStack itemtack) {
         return UseAction.BLOCK;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack) {
+    public int getMaxUseTime(ItemStack itemtack) {
         return 1;
     }
 
     @Override
-    public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
-        super.appendTooltip(itemstack, world, list, flag);
+    public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
+        super.appendTooltip(itemtack, world, list, flag);
         list.add(Text.translatable("item.rainimator.mysterious_gift_box.tooltip"));
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack itemstack, World world, LivingEntity entity) {
-        ItemStack retval = super.finishUsing(itemstack, world, entity);
+    public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
+        ItemStack retval = super.finishUsing(itemtack, world, entity);
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();

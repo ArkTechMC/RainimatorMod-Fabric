@@ -14,8 +14,8 @@ public class SuperDiamondAppleItem extends ItemBase {
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack itemstack, World world, LivingEntity entity) {
-        ItemStack retval = super.finishUsing(itemstack, world, entity);
+    public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
+        ItemStack retval = super.finishUsing(itemtack, world, entity);
         if (!entity.getWorld().isClient()) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 2400, 4));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 2400, 1));

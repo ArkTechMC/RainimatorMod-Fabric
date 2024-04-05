@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/general_patrick_long_knives",
   "textures": {
-    "texture": "rainimator:items/general_patrick_long_knives",
-    "particle": "rainimator:items/general_patrick_long_knives"
+    "texture": "rainimator:item/general_patrick_long_knives",
+    "particle": "rainimator:item/general_patrick_long_knives"
   }
 }

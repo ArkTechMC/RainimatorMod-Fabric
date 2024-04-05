@@ -34,9 +34,9 @@ public class BlueDiamondShieldItem extends ShieldItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World p_77659_1_, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getStackInHand(handIn);
+        ItemStack itemtack = playerIn.getStackInHand(handIn);
         playerIn.setCurrentHand(handIn);
-        return TypedActionResult.consume(itemstack);
+        return TypedActionResult.consume(itemtack);
     }
 
     @Override

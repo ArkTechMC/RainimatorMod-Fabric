@@ -20,19 +20,19 @@ public class BlackGunItem extends ItemBase {
     }
 
     @Override
-    public float getMiningSpeedMultiplier(ItemStack itemstack, BlockState blockstate) {
+    public float getMiningSpeedMultiplier(ItemStack itemtack, BlockState blockstate) {
         return 1.0F;
     }
 
     @Override
-    public boolean postMine(ItemStack itemstack, World world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-        itemstack.damage(1, entity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+    public boolean postMine(ItemStack itemtack, World world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
+        itemtack.damage(1, entity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         return true;
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        itemstack.damage(2, entity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        itemtack.damage(2, entity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         return true;
     }
 

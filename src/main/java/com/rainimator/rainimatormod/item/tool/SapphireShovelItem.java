@@ -13,8 +13,8 @@ public class SapphireShovelItem extends ShovelItem {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.5D) {
             if (!entity.getWorld().isClient()) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));

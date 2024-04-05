@@ -13,8 +13,8 @@ public class RubyAxeItem extends AxeItem {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.5D) {
             entity.setOnFireFor(5);
             entity.damage(DamageUtil.build(entity, DamageTypes.IN_FIRE), 2.0F);

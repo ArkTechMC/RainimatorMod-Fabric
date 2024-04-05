@@ -31,8 +31,8 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 0));
         return retval;
@@ -44,16 +44,16 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
         final double x = entity.getX();
         final double y = entity.getY();
         final double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(5.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entity.isSneaking()) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
                 if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.FALLEN_SOUL_AXE) {
-                    if (itemstack.damage(0, entity.getRandom(), null)) {
-                        itemstack.decrement(1);
-                        itemstack.setDamage(0);
+                    if (itemtack.damage(0, entity.getRandom(), null)) {
+                        itemtack.decrement(1);
+                        itemtack.setDamage(0);
                     }
                     continue;
                 }
@@ -80,7 +80,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                 SoundUtil.playSound(world, x, y, z, new Identifier("entity.wither.spawn"), 10.0F, 1.0F);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
-                entity.getItemCooldownManager().set(itemstack.getItem(), 600);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 600);
             }
         }
         return ar;

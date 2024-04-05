@@ -14,8 +14,8 @@ public class HerobrineTomahawkItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (entity.getWorld().isClient()) return ret_val;
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 0));
         if (Math.random() < 0.5D) {

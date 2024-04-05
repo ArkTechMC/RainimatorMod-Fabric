@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/patrick_leggings"
+    "layer0": "rainimator:item/patrick_leggings"
   }
 }

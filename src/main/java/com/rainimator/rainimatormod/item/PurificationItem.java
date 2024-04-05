@@ -24,33 +24,33 @@ public class PurificationItem extends ItemBase {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
+    public UseAction getUseAction(ItemStack itemtack) {
         return UseAction.DRINK;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public boolean hasGlint(ItemStack itemstack) {
+    public boolean hasGlint(ItemStack itemtack) {
         return true;
     }
 
     @Override
-    public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
-        super.appendTooltip(itemstack, world, list, flag);
+    public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
+        super.appendTooltip(itemtack, world, list, flag);
         list.add(Text.translatable("item.rainimator.purification.tooltip"));
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack itemstack, World world, LivingEntity entity) {
+    public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
-        super.finishUsing(itemstack, world, entity);
+        super.finishUsing(itemtack, world, entity);
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0));
-        if (itemstack.isEmpty())
+        if (itemtack.isEmpty())
             return retval;
         if (entity instanceof PlayerEntity player)
             if (!(player.getAbilities()).creativeMode && !player.getInventory().insertStack(retval))
                 player.dropItem(retval, false);
-        return itemstack;
+        return itemtack;
     }
 }

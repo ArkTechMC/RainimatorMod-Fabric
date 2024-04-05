@@ -28,8 +28,8 @@ public class NaeusSwordItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceEntity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceEntity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceEntity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceEntity);
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0));
         entity.setOnFireFor(5);

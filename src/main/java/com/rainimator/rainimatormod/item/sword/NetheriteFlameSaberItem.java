@@ -12,8 +12,8 @@ public class NetheriteFlameSaberItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         entity.setOnFireFor(10);
         return retval;
     }

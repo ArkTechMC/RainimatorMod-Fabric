@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.registry.util;
 
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.registry.ModBanners;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -12,15 +13,35 @@ import net.minecraft.util.Identifier;
 
 public class ModCreativeTab {
     public static final ItemGroup main = FabricItemGroup.builder().entries(((displayContext, entries) -> {
+        entries.add(ModItems.RUBY_HELMET);
+        entries.add(ModItems.RUBY_CHESTPLATE);
+        entries.add(ModItems.RUBY_LEGGINGS);
+        entries.add(ModItems.RUBY_BOOTS);
+        entries.add(ModItems.SAPPHIRE_HELMET);
+        entries.add(ModItems.SAPPHIRE_CHESTPLATE);
+        entries.add(ModItems.SAPPHIRE_LEGGINGS);
+        entries.add(ModItems.SAPPHIRE_BOOTS);
+        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET);
+        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE);
+        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS);
+        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_BOOTS);
+        entries.add(ModItems.SOLDIERS_ARMOR_HELMET);
+        entries.add(ModItems.SOLDIERS_ARMOR_CHESTPLATE);
+        entries.add(ModItems.SOLDIERS_ARMOR_LEGGINGS);
+        entries.add(ModItems.SOLDIERS_ARMOR_BOOTS);
+        entries.add(ModItems.PATRICK_HELMET);
+        entries.add(ModItems.PATRICK_CHESTPLATE);
+        entries.add(ModItems.PATRICK_LEGGINGS);
+        entries.add(ModItems.PATRICK_BOOTS);
+        entries.add(ModItems.BLUE_DIAMOND_HELMET);
+        entries.add(ModItems.BLUE_DIAMOND_CHESTPLATE);
+        entries.add(ModItems.BLUE_DIAMOND_LEGGINGS);
+        entries.add(ModItems.BLUE_DIAMOND_BOOTS);
         entries.add(ModItems.ABIGAIL_SPEAR);
         entries.add(ModItems.GLUTTON_SLEDGEHAMMER);
         entries.add(ModItems.RED_GOLD_DAGGER);
         entries.add(ModItems.BLACKBONE_THE_BLADE);
         entries.add(ModItems.BLACKBONE_THE_BLADE_SINGLE_HAND);
-        entries.add(ModItems.PATRICK_HELMET);
-        entries.add(ModItems.PATRICK_CHESTPLATE);
-        entries.add(ModItems.PATRICK_LEGGINGS);
-        entries.add(ModItems.PATRICK_BOOTS);
         entries.add(ModItems.RAIN_SWORD);
         entries.add(ModItems.HEROBRINE_TOMAHAWK);
         entries.add(ModItems.ZECANIRN_THE_BLADE);
@@ -33,30 +54,10 @@ public class ModCreativeTab {
         entries.add(ModItems.SOLDIERS_WAR_HAMMER);
         entries.add(ModItems.THE_BLUE_DAGGER);
         entries.add(ModItems.HOT_GLOVES);
-        entries.add(ModItems.BLUE_DIAMOND_HELMET);
-        entries.add(ModItems.BLUE_DIAMOND_CHESTPLATE);
-        entries.add(ModItems.BLUE_DIAMOND_LEGGINGS);
-        entries.add(ModItems.BLUE_DIAMOND_BOOTS);
         entries.add(ModItems.DIAMOND_LANCE);
         entries.add(ModItems.BLUE_DIAMOND_SWORD);
         entries.add(ModItems.WINGS_OF_SALVATION);
         entries.add(ModItems.DIAMOND_HATCHET);
-        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET);
-        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE);
-        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS);
-        entries.add(ModItems.CHIEF_OF_THE_PIG_PEOPLE_BOOTS);
-        entries.add(ModItems.SOLDIERS_ARMOR_HELMET);
-        entries.add(ModItems.SOLDIERS_ARMOR_CHESTPLATE);
-        entries.add(ModItems.SOLDIERS_ARMOR_LEGGINGS);
-        entries.add(ModItems.SOLDIERS_ARMOR_BOOTS);
-        entries.add(ModItems.RUBY_HELMET);
-        entries.add(ModItems.RUBY_CHESTPLATE);
-        entries.add(ModItems.RUBY_LEGGINGS);
-        entries.add(ModItems.RUBY_BOOTS);
-        entries.add(ModItems.SAPPHIRE_HELMET);
-        entries.add(ModItems.SAPPHIRE_CHESTPLATE);
-        entries.add(ModItems.SAPPHIRE_LEGGINGS);
-        entries.add(ModItems.SAPPHIRE_BOOTS);
         entries.add(ModItems.MAGIC_HAT_HELMET);
         entries.add(ModItems.NETHER_THE_CROWN_HELMET);
         entries.add(ModItems.GLUTTON_HELMET);
@@ -150,19 +151,19 @@ public class ModCreativeTab {
         entries.add(ModItems.ARABELLA_SPAWN_EGG);
         entries.add(ModItems.AZALEA_SPAWN_EGG);
     })).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs")).icon(() -> new ItemStack(ModItems.ICE_HEART)).build();
-    public static final ItemGroup items = FabricItemGroup.builder().entries(((displayContext, entries) -> {
-        entries.add(ModItems.SUPER_RUBY);
-        entries.add(ModItems.RUBY);
+    public static final ItemGroup item = FabricItemGroup.builder().entries(((displayContext, entries) -> {
         entries.add(ModItems.RUBY_ORE);
         entries.add(ModItems.DEEPSLATE_RUBY_ORE);
-        entries.add(ModItems.RUBY_BLOCK);
         entries.add(ModItems.RAW_RUBY);
-        entries.add(ModItems.SUPER_SAPPHIRE);
-        entries.add(ModItems.SAPPHIRE);
+        entries.add(ModItems.RUBY);
+        entries.add(ModItems.RUBY_BLOCK);
+        entries.add(ModItems.SUPER_RUBY);
         entries.add(ModItems.SAPPHIRE_ORE);
         entries.add(ModItems.DEEPSLATE_SAPPHIRE_ORE);
-        entries.add(ModItems.SAPPHIRE_BLOCK);
         entries.add(ModItems.RAW_SAPPHIRE);
+        entries.add(ModItems.SAPPHIRE_BLOCK);
+        entries.add(ModItems.SAPPHIRE);
+        entries.add(ModItems.SUPER_SAPPHIRE);
         entries.add(ModItems.HOT_IRON);
         entries.add(ModItems.BLUE_DIAMOND);
         entries.add(ModItems.BLUE_DIAMOND_BLOCK);
@@ -205,11 +206,16 @@ public class ModCreativeTab {
         entries.add(ModItems.HIM_ONE_LIVES);
         entries.add(ModItems.KRALOS_MUSIC);
         entries.add(ModItems.KLAUS_MUSIC);
-    })).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_items")).icon(() -> new ItemStack(ModItems.ENDER_HEART)).build();
+
+        entries.add(ModBanners.FROST);
+        entries.add(ModBanners.UNDEAD);
+        entries.add(ModBanners.NETHER);
+        entries.add(ModBanners.ENDER_WATCHER);
+    })).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item")).icon(() -> new ItemStack(ModItems.ENDER_HEART)).build();
 
     public static void load() {
         Registry.register(Registries.ITEM_GROUP, new Identifier(RainimatorMod.MOD_ID, "main"), main);
         Registry.register(Registries.ITEM_GROUP, new Identifier(RainimatorMod.MOD_ID, "mobs"), mobs);
-        Registry.register(Registries.ITEM_GROUP, new Identifier(RainimatorMod.MOD_ID, "items"), items);
+        Registry.register(Registries.ITEM_GROUP, new Identifier(RainimatorMod.MOD_ID, "item"), item);
     }
 }

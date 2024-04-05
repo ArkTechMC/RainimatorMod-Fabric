@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/magic_stard"
+    "layer0": "rainimator:item/magic_stard"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "rainimator:blocks/deepslaterubyore",
-    "particle": "rainimator:blocks/deepslaterubyore"
+    "all": "rainimator:block/deepslaterubyore",
+    "particle": "rainimator:block/deepslaterubyore"
   }
 }

@@ -19,13 +19,13 @@ public class MusicItemBase extends MusicDiscItem {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public boolean hasGlint(ItemStack itemstack) {
+    public boolean hasGlint(ItemStack itemtack) {
         return true;
     }
 
     @Override
-    public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
-        super.appendTooltip(itemstack, world, list, flag);
+    public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
+        super.appendTooltip(itemtack, world, list, flag);
         if (this instanceof IRainimatorInfo)
             list.add(Text.literal(RainimatorInfoManager.getHoverText()));
     }

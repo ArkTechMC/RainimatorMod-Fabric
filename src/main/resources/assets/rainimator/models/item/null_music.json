@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/null_music"
+    "layer0": "rainimator:item/null_music"
   }
 }

@@ -5,12 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingRecipeRegistryMixin",
+    "DefaultAttributeRegistryMixin",
     "LivingEntityMixin",
     "PlayerInventoryMixin"
   ],
   "client": [
-    "PlayerRendererMixin",
-    "DrawContextMixin"
+    "DrawContextMixin",
+    "PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

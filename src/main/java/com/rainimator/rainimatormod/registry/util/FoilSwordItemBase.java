@@ -13,7 +13,7 @@ public class FoilSwordItemBase extends SwordItemBase {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public boolean hasGlint(ItemStack itemstack) {
+    public boolean hasGlint(ItemStack itemtack) {
         return true;
     }
 }

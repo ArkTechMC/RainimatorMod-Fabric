@@ -24,8 +24,8 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     }
 
     @Override
-    public boolean postMine(ItemStack itemstack, World world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-        boolean retval = super.postMine(itemstack, world, blockstate, pos, entity);
+    public boolean postMine(ItemStack itemtack, World world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
+        boolean retval = super.postMine(itemtack, world, blockstate, pos, entity);
         double x = pos.getX();
         double y = pos.getY();
         double z = pos.getZ();
@@ -63,7 +63,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public boolean hasGlint(ItemStack itemstack) {
+    public boolean hasGlint(ItemStack itemtack) {
         return true;
     }
 }

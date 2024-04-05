@@ -27,7 +27,7 @@ public class UnderFlowerItem extends FoilItemBase {
         double y = context.getBlockPos().getY();
         double z = context.getBlockPos().getZ();
         PlayerEntity entity = context.getPlayer();
-        ItemStack itemstack = context.getStack();
+        ItemStack itemtack = context.getStack();
         if (entity != null) {
             BlockState _bs;
             if (entity.isSneaking())
@@ -37,7 +37,7 @@ public class UnderFlowerItem extends FoilItemBase {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "under_flower"), 1.0F, 1.0F);
             BlockPos _bp = new BlockPos((int) x, (int) (y + 1.0D), (int) z);
             world.setBlockState(_bp, _bs, 3);
-            entity.getItemCooldownManager().set(itemstack.getItem(), 400);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 400);
         }
         return ActionResult.SUCCESS;
     }

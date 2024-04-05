@@ -36,20 +36,20 @@ public class SoulTotemItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
 
         if (entity.isOnGround()) {
             if (world.isClient())
-                (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemstack);
+                (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
             SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 140, 4));
-            entity.getItemCooldownManager().set(itemstack.getItem(), 400);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 400);
 
             Timeout.create(100, () -> {
                 if (!entity.getWorld().isClient())
@@ -57,20 +57,20 @@ public class SoulTotemItem extends FoilItemBase {
             });
         } else {
             if (((WorldAccess) world).isClient())
-                (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemstack);
+                (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
             SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 400, 0));
-            entity.getItemCooldownManager().set(itemstack.getItem(), 600);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 600);
         }
         return ar;
     }
 
     @Override
-    public void inventoryTick(ItemStack itemstack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(itemstack, world, entity, slot, selected);
+    public void inventoryTick(ItemStack itemtack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(itemtack, world, entity, slot, selected);
         if (selected) {
             Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(5.0d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();

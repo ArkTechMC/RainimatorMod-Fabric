@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/end_staff",
   "textures": {
-    "texture": "rainimator:items/end_staff",
-    "particle": "rainimator:items/end_staff"
+    "texture": "rainimator:item/end_staff",
+    "particle": "rainimator:item/end_staff"
   }
 }

@@ -29,13 +29,13 @@ public class WingsOfSalvationLayer<T extends LivingEntity, M extends EntityModel
 
     @Override
     public void render(MatrixStack poseStack, VertexConsumerProvider bufferSource, int packedLight, T entity, float limbAngle, float limbDistance, float p_116957_, float animationProgress, float headYaw, float headPitch) {
-        ItemStack itemstack = entity.getEquippedStack(EquipmentSlot.CHEST);
-        if (itemstack.getItem() == ModItems.WINGS_OF_SALVATION) {
+        ItemStack itemtack = entity.getEquippedStack(EquipmentSlot.CHEST);
+        if (itemtack.getItem() == ModItems.WINGS_OF_SALVATION) {
             poseStack.push();
             poseStack.translate(0.0D, 0.0D, 0.125D);
             this.getContextModel().copyStateTo(this.wingModel);
             this.wingModel.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorGlintConsumer(bufferSource, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION), false, itemstack.hasGlint());
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorGlintConsumer(bufferSource, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION), false, itemtack.hasGlint());
             this.wingModel.render(poseStack, vertexconsumer, packedLight, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             poseStack.pop();
         }

@@ -11,10 +11,10 @@ public class ToolMaterialBase {
     }
 
     public static ToolMaterial of(int uses, float speed, float attackDamageBonus, int level, int enchantmentLevel, Block... repairIngredient) {
-        Item[] items = new Item[repairIngredient.length];
+        Item[] item = new Item[repairIngredient.length];
         for (int i = 0; i < repairIngredient.length; i++)
-            items[i] = repairIngredient[i].asItem();
-        return of(uses, speed, attackDamageBonus, level, enchantmentLevel, items);
+            item[i] = repairIngredient[i].asItem();
+        return of(uses, speed, attackDamageBonus, level, enchantmentLevel, item);
     }
 
     public static ToolMaterial of(int uses, float speed, float attackDamageBonus, int level, int enchantmentLevel, Item... repairIngredients) {

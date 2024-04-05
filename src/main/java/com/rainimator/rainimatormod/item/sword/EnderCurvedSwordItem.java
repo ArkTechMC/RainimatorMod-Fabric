@@ -18,8 +18,8 @@ public class EnderCurvedSwordItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
@@ -37,9 +37,9 @@ public class EnderCurvedSwordItem extends SwordItemBase {
         else hurted = false;
         if (hurted) {
             SoundUtil.playSound(entity.getWorld(), x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
-            if (itemstack.damage(1, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(1, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
         }
         if (Math.random() < 0.25D && sourceentity instanceof PlayerEntity _player)

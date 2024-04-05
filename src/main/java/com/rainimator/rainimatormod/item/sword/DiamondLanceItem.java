@@ -18,8 +18,8 @@ public class DiamondLanceItem extends SwordItemBase {
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D) {
             if (entity.getWorld() instanceof ServerWorld _level) {
                 LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);

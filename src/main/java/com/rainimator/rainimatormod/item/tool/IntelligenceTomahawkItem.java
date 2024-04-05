@@ -28,14 +28,14 @@ public class IntelligenceTomahawkItem extends AxeItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(2.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity) {
-                if (itemstack.damage(0, entity.getRandom(), null)) {
-                    itemstack.decrement(1);
-                    itemstack.setDamage(0);
+                if (itemtack.damage(0, entity.getRandom(), null)) {
+                    itemtack.decrement(1);
+                    itemtack.setDamage(0);
                 }
                 continue;
             }
@@ -48,7 +48,7 @@ public class IntelligenceTomahawkItem extends AxeItem {
                 }
             }
             world.setBlockState(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
-            entity.getItemCooldownManager().set(itemstack.getItem(), 600);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 600);
         }
         return ar;
     }

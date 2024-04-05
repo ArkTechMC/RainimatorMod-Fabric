@@ -16,8 +16,8 @@ public class CottonCandyItem extends ItemBase {
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack itemstack, World world, LivingEntity entity) {
-        ItemStack ret_val = super.finishUsing(itemstack, world, entity);
+    public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
+        ItemStack ret_val = super.finishUsing(itemtack, world, entity);
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 200, 0));
         if (entity instanceof PlayerEntity player) {

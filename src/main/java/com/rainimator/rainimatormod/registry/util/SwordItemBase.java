@@ -16,13 +16,13 @@ public class SwordItemBase extends SwordItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack itemstack, World world, List<Text> list, TooltipContext flag) {
-        super.appendTooltip(itemstack, world, list, flag);
+    public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
+        super.appendTooltip(itemtack, world, list, flag);
         if (this instanceof IRainimatorInfo)
             list.add(Text.literal(RainimatorInfoManager.getHoverText()));
     }
 
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
         return false;
     }
 }

@@ -3,11 +3,10 @@ package com.rainimator.rainimatormod.util;
 import io.netty.util.internal.UnstableApi;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Timeout {
-    private static final List<Timeout> timeouts = new ArrayList<>();
+    private static final CopyOnWriteArrayList<Timeout> timeouts = new CopyOnWriteArrayList<>();
     private final int waitTicks;
     private final int maxTimes;
     private final Runnable callback;
@@ -34,13 +33,8 @@ public class Timeout {
 
     public static void startTimeout() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            List<Timeout> removed = new ArrayList<>();
-            for (Timeout timeout : timeouts) {
-                timeout.tick();
-                if (timeout.shouldRemove)
-                    removed.add(timeout);
-            }
-            timeouts.removeAll(removed);
+            timeouts.forEach(Timeout::tick);
+            timeouts.removeAll(timeouts.stream().filter(timeout -> timeout.shouldRemove).toList());
         });
     }
 

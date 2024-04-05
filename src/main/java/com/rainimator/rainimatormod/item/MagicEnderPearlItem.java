@@ -27,7 +27,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
@@ -46,11 +46,11 @@ public class MagicEnderPearlItem extends FoilItemBase {
                 projectileLevel.spawnEntity(_entityToSpawn);
             }
 
-            entity.getItemCooldownManager().set(itemstack.getItem(), 100);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 100);
 
-            if (itemstack.damage(1, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(1, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
 
         } else {
@@ -64,11 +64,11 @@ public class MagicEnderPearlItem extends FoilItemBase {
             }
 
             if (entity instanceof PlayerEntity)
-                entity.getItemCooldownManager().set(itemstack.getItem(), 80);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 80);
 
-            if (itemstack.damage(1, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(1, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
         }
         if (entity.isSneaking()) {
@@ -82,11 +82,11 @@ public class MagicEnderPearlItem extends FoilItemBase {
                 projectileLevel.spawnEntity(_entityToSpawn);
             }
 
-            entity.getItemCooldownManager().set(itemstack.getItem(), 300);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 300);
 
-            if (itemstack.damage(1, entity.getRandom(), null)) {
-                itemstack.decrement(1);
-                itemstack.setDamage(0);
+            if (itemtack.damage(1, entity.getRandom(), null)) {
+                itemtack.decrement(1);
+                itemtack.setDamage(0);
             }
 
             Timeout.create(200, () -> {

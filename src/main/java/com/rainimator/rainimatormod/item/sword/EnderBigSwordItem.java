@@ -31,7 +31,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
         if (entity.isSneaking()) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
@@ -42,7 +42,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
             SoundUtil.playSound(world, x, y, z, new Identifier("entity.enderman.teleport"), 1.0F, 1.0F);
             if (world instanceof ServerWorld _level) {
                 _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
-                entity.getItemCooldownManager().set(itemstack.getItem(), 300);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 300);
             }
         }
         return ar;

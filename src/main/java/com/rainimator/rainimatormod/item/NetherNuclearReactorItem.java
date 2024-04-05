@@ -17,10 +17,10 @@ public class NetherNuclearReactorItem extends ItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 400, 0));
-        entity.getItemCooldownManager().set(itemstack.getItem(), 800);
+        entity.getItemCooldownManager().set(itemtack.getItem(), 800);
         return ar;
     }
 }

@@ -42,8 +42,8 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D)
             if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(ModEffects.SHADOW_EROSION, 200, 0));
@@ -56,14 +56,14 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         {
             final Vec3d _center = new Vec3d(x, y, z);
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.SHADOW_EROSION))) {
                     if ((Entity) entity instanceof PlayerEntity _player)
-                        _player.getItemCooldownManager().set(itemstack.getItem(), 300);
+                        _player.getItemCooldownManager().set(itemtack.getItem(), 300);
 
                     BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(3)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
                     BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(1)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
@@ -104,7 +104,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
                 }
                 if (entity.isSneaking()) {
                     if ((Entity) entity instanceof PlayerEntity _player)
-                        _player.getItemCooldownManager().set(itemstack.getItem(), 300);
+                        _player.getItemCooldownManager().set(itemtack.getItem(), 300);
                     SoundUtil.playSound(world, x, y, z, new Identifier("entity.evoker.cast_spell"), 1, 1);
                     Runnable callback = () -> {
                         if (world instanceof ServerWorld _level)
@@ -135,13 +135,13 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         double y = context.getBlockPos().getY();
         double z = context.getBlockPos().getZ();
         PlayerEntity entity = context.getPlayer();
-        ItemStack itemstack = context.getStack();
+        ItemStack itemtack = context.getStack();
         if (entity != null) {
             if (entity.isSneaking()) {
                 SoundUtil.playSound((World) world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "fire_soul"), 1, 1);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles(ParticleTypes.DRAGON_BREATH, x, y, z, 500, 0, 20, 0, 0.0001);
-                entity.getItemCooldownManager().set(itemstack.getItem(), 300);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 300);
                 Timeout.create(60, () -> {
                     SoundUtil.playSound((World) world, x, y, z, new Identifier("entity.ender_dragon.shoot"), 1, 1);
                     if (world instanceof ServerWorld _level)
@@ -162,15 +162,15 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
                     entityToSpawn.refreshPositionAndAngles(x, (y + 1), z, world.getRandom().nextFloat() * 360F, 0);
                     world.spawnEntity(entityToSpawn);
                 }
-                entity.getItemCooldownManager().set(itemstack.getItem(), 20);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 20);
             }
         }
         return ActionResult.SUCCESS;
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.END_ROD, x, y, z, 4, 0, 50);
         return retval;

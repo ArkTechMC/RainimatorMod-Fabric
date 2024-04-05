@@ -33,9 +33,9 @@ public class NetheriteShieldItem extends ShieldItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World level, PlayerEntity playerIn, Hand hand) {
-        ItemStack itemstack = playerIn.getStackInHand(hand);
+        ItemStack itemtack = playerIn.getStackInHand(hand);
         playerIn.setCurrentHand(hand);
-        return TypedActionResult.consume(itemstack);
+        return TypedActionResult.consume(itemtack);
     }
 
     @Override

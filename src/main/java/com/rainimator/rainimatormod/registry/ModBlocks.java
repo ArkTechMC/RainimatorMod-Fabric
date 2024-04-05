@@ -15,8 +15,8 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final Block RUBY_ORE = register("ruby_ore", RubyOreBlock::new);
     public static final Block SAPPHIRE_ORE = register("sapphire_ore", SapphireOreBlock::new);
-    public static final Block DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore", DeepslateSapphireOreBlock::new);
     public static final Block DEEPSLATE_RUBY_ORE = register("deepslate_ruby_ore", DeepslateRubyOreBlock::new);
+    public static final Block DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore", DeepslateSapphireOreBlock::new);
     public static final Block DARK_OBSIDIAN_BLOCK = register("dark_obsidian_block", DarkObsidianBlock::new);
     public static final Block RUBY_BLOCK = register("ruby_block", RubyBlock::new);
     public static final Block SAPPHIRE_BLOCK = register("sapphire_block", SapphireBlock::new);

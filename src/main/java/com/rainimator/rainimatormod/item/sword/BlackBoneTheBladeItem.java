@@ -26,8 +26,8 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (entity instanceof MobEntity _entity)
             if (sourceentity instanceof LivingEntity)
                 _entity.setTarget(sourceentity);
@@ -45,7 +45,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         if (entity.isSneaking()) {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
             if (world instanceof ServerWorld _level)
@@ -54,7 +54,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
                 world.createExplosion(null, entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getX(), y + 1.0D,
                         entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos().getZ(), 1.0F, World.ExplosionSourceType.NONE);
 
-            entity.getItemCooldownManager().set(itemstack.getItem(), 700);
+            entity.getItemCooldownManager().set(itemtack.getItem(), 700);
 
             Runnable callback = () -> {
                 if (world instanceof World) {
@@ -76,8 +76,8 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.LAVA, x, y, z, 4, 0, 50);
         return retval;

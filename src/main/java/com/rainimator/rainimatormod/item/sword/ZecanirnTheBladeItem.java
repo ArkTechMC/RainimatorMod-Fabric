@@ -38,8 +38,8 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (entity instanceof MobEntity _entity)
             _entity.setTarget(sourceentity);
         if (sourceentity.getMainHandStack().getItem() == ModItems.ZECANIRN_THE_BLADE)
@@ -65,9 +65,9 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                 entity.getWorld().breakBlock(new BlockPos((int) sourceentity.getX(), (int) (entity.getY() + 1.0D), (int) sourceentity.getZ()), false);
                 entity.getWorld().breakBlock(new BlockPos((int) sourceentity.getX(), (int) (entity.getY() + 2.0D), (int) sourceentity.getZ()), false);
 
-                if (itemstack.damage(RandomHelper.nextInt(1, 5), entity.getRandom(), null)) {
-                    itemstack.decrement(1);
-                    itemstack.setDamage(0);
+                if (itemtack.damage(RandomHelper.nextInt(1, 5), entity.getRandom(), null)) {
+                    itemtack.decrement(1);
+                    itemtack.setDamage(0);
                 }
             } else {
                 entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
@@ -76,9 +76,9 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
                 }
 
-                if (itemstack.damage(RandomHelper.nextInt(1, 5), entity.getRandom(), null)) {
-                    itemstack.decrement(1);
-                    itemstack.setDamage(0);
+                if (itemtack.damage(RandomHelper.nextInt(1, 5), entity.getRandom(), null)) {
+                    itemtack.decrement(1);
+                    itemtack.setDamage(0);
                 }
                 Timeout.create(100, () -> {
                     if (!entity.getWorld().isClient())
@@ -148,8 +148,8 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean ret_val = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, (ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
         return ret_val;

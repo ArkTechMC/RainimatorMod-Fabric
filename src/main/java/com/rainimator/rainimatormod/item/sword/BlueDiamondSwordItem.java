@@ -39,8 +39,8 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
     }
 
     @Override
-    public boolean postHit(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.postHit(itemstack, entity, sourceentity);
+    public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.postHit(itemtack, entity, sourceentity);
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
@@ -68,15 +68,15 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        ItemStack itemstack = ar.getValue();
+        ItemStack itemtack = ar.getValue();
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entity.isSneaking()) {
                 if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.BLUE_DIAMOND_SWORD) {
-                    if (itemstack.damage(0, entity.getRandom(), null)) {
-                        itemstack.decrement(1);
-                        itemstack.setDamage(0);
+                    if (itemtack.damage(0, entity.getRandom(), null)) {
+                        itemtack.decrement(1);
+                        itemtack.setDamage(0);
                     }
                 } else {
                     if (entityiterator instanceof LivingEntity _livEnt && _livEnt.getGroup() == EntityGroup.ARTHROPOD) {
@@ -86,11 +86,11 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
-                        entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
+                        entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
                         if (!entity.getWorld().isClient())
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill1"), true);
                         if (world.isClient())
-                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
+                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback = () -> {
                             if (entityiterator.isAlive()) {
                                 if (world instanceof ServerWorld _level) {
@@ -117,11 +117,11 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
-                        entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
+                        entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
                         if (!entity.getWorld().isClient())
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill2"), true);
                         if (((WorldAccess) world).isClient())
-                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
+                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
 
                         Runnable callback1 = () -> {
                             if (entityiterator.isAlive()) {
@@ -145,11 +145,11 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                         SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_3"), 5, 1);
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
-                        entity.getItemCooldownManager().set(itemstack.getItem(), 1000);
+                        entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
                         if (!entity.getWorld().isClient())
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill3"), true);
                         if (world.isClient())
-                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemstack);
+                            MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback1 = () -> {
                             if (world instanceof ServerWorld _level)
                                 _level.spawnParticles((DefaultParticleType) ModParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
@@ -198,8 +198,8 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
     }
 
     @Override
-    public boolean onSwingHand(ItemStack itemstack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemstack, world, x, y, z);
+    public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
+        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 2, 0, 50);
         return retval;

@@ -35,12 +35,12 @@ public class EndStaffItem extends ItemBase {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack itemstack) {
+    public UseAction getUseAction(ItemStack itemtack) {
         return UseAction.BOW;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack itemstack) {
+    public int getMaxUseTime(ItemStack itemtack) {
         return 72000;
     }
 
@@ -58,7 +58,7 @@ public class EndStaffItem extends ItemBase {
     }
 
     @Override
-    public void onStoppedUsing(ItemStack itemstack, World world, LivingEntity entityLiving, int timeLeft) {
+    public void onStoppedUsing(ItemStack itemtack, World world, LivingEntity entityLiving, int timeLeft) {
         if (!world.isClient() && entityLiving instanceof ServerPlayerEntity entity) {
             ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == ModItems.MAGIC_STARD));
             if (stack == ItemStack.EMPTY)
@@ -71,7 +71,7 @@ public class EndStaffItem extends ItemBase {
                 }
             if ((entity.getAbilities()).creativeMode || stack != ItemStack.EMPTY) {
                 EndStaffEntity entityarrow = EndStaffEntity.shoot(world, entity, new Random(), 1.2F, 7.0D, 0);
-                itemstack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
+                itemtack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
                 if ((entity.getAbilities()).creativeMode) {
                     entityarrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                 } else if ((new ItemStack(ModItems.MAGIC_STARD)).isDamageable()) {
@@ -86,7 +86,7 @@ public class EndStaffItem extends ItemBase {
                     if (stack.isEmpty())
                         entity.getInventory().removeOne(stack);
                 }
-                entity.getItemCooldownManager().set(itemstack.getItem(), 100);
+                entity.getItemCooldownManager().set(itemtack.getItem(), 100);
             }
         }
     }
