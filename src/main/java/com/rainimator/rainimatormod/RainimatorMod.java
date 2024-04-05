@@ -2,6 +2,7 @@ package com.rainimator.rainimatormod;
 
 import com.mojang.logging.LogUtils;
 import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
+import com.rainimator.rainimatormod.network.ServerNetworkHandler;
 import com.rainimator.rainimatormod.registry.*;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.Timeout;
@@ -35,6 +36,7 @@ public class RainimatorMod implements ModInitializer {
         ModSounds.registerSounds();
         ModTrades.registerTrades();
         ModCreativeTab.load();
+        ServerNetworkHandler.register();
         TrinketsRegistry.register();
     }
 }

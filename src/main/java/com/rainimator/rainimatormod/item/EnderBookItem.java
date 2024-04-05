@@ -28,7 +28,8 @@ public class EnderBookItem extends ItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        MinecraftClient.getInstance().setScreen(new EnderBookSkillScreen(entity.getPos(), Text.literal("EnderBookSkill")));
+        if(world.isClient())
+            MinecraftClient.getInstance().setScreen(new EnderBookSkillScreen(entity.getPos(), Text.literal("EnderBookSkill")));
         return ar;
     }
 }

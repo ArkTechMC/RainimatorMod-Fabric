@@ -2,8 +2,12 @@ package com.rainimator.rainimatormod.gui;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.network.EnderBookSkillC2SPacket;
+import com.rainimator.rainimatormod.util.ModConstants;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -39,16 +43,13 @@ public class EnderBookSkillScreen extends Screen {
         int topPos = (this.height - 100) / 2;
 
         this.addDrawableChild(new TexturedButtonWidget(leftPos + 32, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/overworld.png"), 64, 128, e -> {
-            if (this.client.getNetworkHandler() != null)
-                this.client.getNetworkHandler().sendPacket(new EnderBookSkillC2SPacket(World.OVERWORLD));
+            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.OVERWORLD.getValue().toString()));
         }));
         this.addDrawableChild(new TexturedButtonWidget(leftPos + 118, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/nether.png"), 64, 128, e -> {
-            if (this.client.getNetworkHandler() != null)
-                this.client.getNetworkHandler().sendPacket(new EnderBookSkillC2SPacket(World.NETHER));
+            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.NETHER.getValue().toString()));
         }));
         this.addDrawableChild(new TexturedButtonWidget(leftPos + 203, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/end.png"), 64, 128, e -> {
-            if (this.client.getNetworkHandler() != null)
-                this.client.getNetworkHandler().sendPacket(new EnderBookSkillC2SPacket(World.END));
+            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.END.getValue().toString()));
         }));
     }
 }
