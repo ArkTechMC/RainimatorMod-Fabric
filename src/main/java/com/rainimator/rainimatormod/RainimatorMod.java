@@ -27,6 +27,7 @@ public class RainimatorMod implements ModInitializer {
             System.exit(1);
         }
         Timeout.startTimeout();
+        ModBlocks.init();
         ModEntities.init();
         ModEntities.addLivingEntityToBiomes();
         ModFeatures.addFeatures();

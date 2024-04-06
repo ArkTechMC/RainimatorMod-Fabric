@@ -2,10 +2,7 @@ package com.rainimator.rainimatormod.registry;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.block.*;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SkullBlock;
-import net.minecraft.block.WallSkullBlock;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -30,5 +27,8 @@ public class ModBlocks {
     private static Block register(String name, Block obj) {
         Registry.register(Registries.BLOCK, new Identifier(RainimatorMod.MOD_ID, name), obj);
         return obj;
+    }
+
+    public static void init() {
     }
 }

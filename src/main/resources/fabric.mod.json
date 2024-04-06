@@ -4,7 +4,10 @@
   "version": "0.1",
   "name": "Rainimator",
   "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
-  "authors": [],
+  "authors": [
+    "Triceratops",
+    "IAFEnvoy"
+  ],
   "contact": {
     "repo": "https://github.com/IAFEnvoy/Rainimator-fabric"
   },
