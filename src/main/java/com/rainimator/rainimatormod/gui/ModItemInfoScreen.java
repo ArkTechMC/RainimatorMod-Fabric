@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.gui;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.util.ComponentUtil;
 import com.rainimator.rainimatormod.util.Episode;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -16,6 +18,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ModItemInfoScreen extends Screen {
     private final ItemInfo info;
     private final Screen parent;

@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.renderer;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.renderer.model.wing.WingsOfSalvationModel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -18,6 +20,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class WingsOfSalvationLayer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
     private static final Identifier WINGS_LOCATION = new Identifier(RainimatorMod.MOD_ID, "textures/entities/wings_of_salvation.png");
     private final WingsOfSalvationModel<T> wingModel;

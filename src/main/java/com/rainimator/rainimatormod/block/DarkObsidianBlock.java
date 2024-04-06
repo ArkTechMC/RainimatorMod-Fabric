@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.block;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.util.*;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +36,7 @@ public class DarkObsidianBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public DarkObsidianBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(-1.0F, 3600000.0F).luminance(s -> 5).jumpVelocityMultiplier(0.8F).nonOpaque().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true).solidBlock((bs, br, bp) -> false));
+        super(FabricBlockSettings.create().strength(4.0f));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 

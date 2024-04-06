@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.block;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class RubyBlock extends Block {
     public RubyBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F));
+        super(FabricBlockSettings.create().strength(4.0f));
     }
 
     @Deprecated

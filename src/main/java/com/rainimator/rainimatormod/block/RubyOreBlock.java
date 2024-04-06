@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class RubyOreBlock extends Block {
     public RubyOreBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(2.0F, 10.0F).requiresTool());
+        super(FabricBlockSettings.create().strength(4.0f));
     }
 
     @Deprecated

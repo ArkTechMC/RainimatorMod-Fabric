@@ -2,6 +2,8 @@ package com.rainimator.rainimatormod.renderer;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.util.Stage;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -12,6 +14,7 @@ import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class EntityRendererBase<T extends MobEntity> extends BipedEntityRenderer<T, BipedEntityModel<T>> {
     private final Stage.StagedEntityTextureProvider textureId;
 

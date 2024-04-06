@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.renderer;
 import com.rainimator.rainimatormod.registry.ModItems;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.RotationAxis;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class BackItemLayer implements TrinketRenderer {
     private static final HashMap<Item, Consumer<MatrixStack>> specialItemPose = new HashMap<>();
 

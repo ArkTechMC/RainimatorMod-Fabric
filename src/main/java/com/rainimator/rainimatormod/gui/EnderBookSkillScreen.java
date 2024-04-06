@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.gui;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.network.EnderBookSkillC2SPacket;
 import com.rainimator.rainimatormod.util.ModConstants;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.Screen;
@@ -13,6 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+@Environment(EnvType.CLIENT)
 public class EnderBookSkillScreen extends Screen {
     private final Vec3d pos;
 

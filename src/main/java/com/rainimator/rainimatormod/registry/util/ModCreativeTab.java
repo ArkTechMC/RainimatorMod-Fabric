@@ -58,7 +58,7 @@ public class ModCreativeTab {
         entries.add(ModItems.BLUE_DIAMOND_SWORD);
         entries.add(ModItems.WINGS_OF_SALVATION);
         entries.add(ModItems.DIAMOND_HATCHET);
-        entries.add(ModItems.MAGIC_HAT_HELMET);
+//        entries.add(ModItems.MAGIC_HAT_HELMET);
         entries.add(ModItems.NETHER_THE_CROWN_HELMET);
         entries.add(ModItems.GLUTTON_HELMET);
         entries.add(ModItems.PIGLIN_KING_CROWN);

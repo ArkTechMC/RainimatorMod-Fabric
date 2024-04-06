@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,7 +35,7 @@ public class MysticoreBlock extends Block {
     private static final List<Pair<ItemConvertible, Double>> lootTable = new ArrayList<>();
 
     public MysticoreBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(25.0F, 50.0F).requiresTool().postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
+        super(FabricBlockSettings.create().strength(4.0f));
         this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
     }
 

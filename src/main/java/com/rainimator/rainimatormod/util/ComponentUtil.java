@@ -1,12 +1,15 @@
 package com.rainimator.rainimatormod.util;
 
 import com.google.common.collect.Lists;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class ComponentUtil {
     public static List<MutableText> splitText(MutableText arg_chatText, int chatWidth, TextRenderer fontRenderer) {
         int i = 0;

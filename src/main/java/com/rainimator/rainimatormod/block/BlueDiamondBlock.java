@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.block;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -22,7 +23,7 @@ public class BlueDiamondBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public BlueDiamondBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(5.0F, 10.0F).luminance(s -> 2).postProcess((bs, br, bp) -> true).emissiveLighting((bs, br, bp) -> true));
+        super(FabricBlockSettings.create().strength(4.0f));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 

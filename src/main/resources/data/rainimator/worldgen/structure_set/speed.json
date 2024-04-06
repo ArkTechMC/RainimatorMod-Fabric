@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "rainimator:piglin_team",
+      "structure": "rainimator:dark_wery",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
-    "spacing": 5,
-    "separation": 2,
-    "salt": 57368262
+    "spacing": 100,
+    "separation": 50,
+    "salt": 84148148
   }
 }

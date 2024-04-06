@@ -25,8 +25,7 @@ public class ModBlocks {
     }
 
     private static Block register(String name, Block obj) {
-        Registry.register(Registries.BLOCK, new Identifier(RainimatorMod.MOD_ID, name), obj);
-        return obj;
+        return Registry.register(Registries.BLOCK, new Identifier(RainimatorMod.MOD_ID, name), obj);
     }
 
     public static void init() {

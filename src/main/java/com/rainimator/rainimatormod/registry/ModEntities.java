@@ -4,6 +4,8 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.entity.*;
 import com.rainimator.rainimatormod.util.ModConstants;
 import com.rainimator.rainimatormod.util.SpawnBiome;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -174,6 +176,7 @@ public class ModEntities {
         BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.ZOMBIES, 10, 1, 1);
     }
 
+    @Environment(EnvType.CLIENT)
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(HEROBRINE, HerobrineEntity.texture::createRenderer);
         EntityRendererRegistry.register(CERIS, CerisEntity.texture::createRenderer);
