@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.item.tool;
 
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class SapphireAxeItem extends AxeItem {
     public SapphireAxeItem() {
-        super(ToolMaterialBase.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
     }
 
     @Override

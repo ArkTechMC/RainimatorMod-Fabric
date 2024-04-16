@@ -1,5 +1,9 @@
 package com.rainimator.rainimatormod.registry;
 
+import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
+import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.item.*;
 import com.rainimator.rainimatormod.item.armor.*;
@@ -8,7 +12,8 @@ import com.rainimator.rainimatormod.item.shield.NetheriteShieldItem;
 import com.rainimator.rainimatormod.item.shield.SnowShieldItem;
 import com.rainimator.rainimatormod.item.sword.*;
 import com.rainimator.rainimatormod.item.tool.*;
-import com.rainimator.rainimatormod.registry.util.*;
+import com.rainimator.rainimatormod.registry.util.MusicItemBase;
+import com.rainimator.rainimatormod.registry.util.SpawnEggBase;
 import com.rainimator.rainimatormod.util.Episode;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
@@ -26,7 +31,7 @@ public class ModItems {
     //resources
     public static final Item SUPER_RUBY = register("super_ruby", new ItemBase(Item.Settings::fireproof));
     public static final Item ABIGAIL_SPEAR = register("abigail_spear", AbigailSpearItem::new);
-    public static final Item GLUTTON_SLEDGEHAMMER = register("glutton_sledge_hammer", new SwordItem(ToolMaterialBase.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item GLUTTON_SLEDGEHAMMER = register("glutton_sledge_hammer", new SwordItem(ToolMaterialUtil.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, new Item.Settings().fireproof()));
     public static final Item RUBY = register("ruby", new ItemBase(p -> p));
     public static final Item RED_GOLD_DAGGER = register("red_gold_dagger", RedGoldDaggerItem::new);
     public static final Item BLACKBONE_THE_BLADE = register("blackbone_the_blade", BlackBoneTheBladeItem::new);
@@ -44,21 +49,22 @@ public class ModItems {
     public static final Item HEROBRINE_TOMAHAWK = register("herobrine_tomahawk", HerobrineTomahawkItem::new);
     public static final Item ZECANIRN_THE_BLADE = register("zecanirn_the_blade", ZecanirnTheBladeItem::new);
     public static final Item ENDER_BIG_SWORD = register("ender_big_sword", EnderBigSwordItem::new);
-    public static final Item LASER_SWORD = register("laser_sword", new FoilSwordItemBase(ToolMaterialBase.of(3000, 4.0F, 13.0F, 1, 18, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings()));
-    public static final Item MACE = register("mace", new SwordItem(ToolMaterialBase.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof()));
+    public static final Item LASER_SWORD = register("laser_sword", new FoilSwordItemBase(ToolMaterialUtil.of(3000, 4.0F, 13.0F, 1, 18, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings()));
+    public static final Item MACE = register("mace", new SwordItem(ToolMaterialUtil.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof()));
     public static final Item SAPPHIRE = register("sapphire", new ItemBase(p -> p));
     public static final Item INTELLIGENCE_TOMAHAWK = register("intelligence_tomahawk", IntelligenceTomahawkItem::new);
     //sword
-    public static final Item GENERAL_PATRICK_LONG_KNIVES = register("general_patrick_long_knives", new SwordItem(ToolMaterialBase.of(2500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings().fireproof()));
-    public static final Item SOLDIERS_HALBERD = register("soldiers_halberd", new SwordItem(ToolMaterialBase.of(1500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings()));
-    public static final Item SOLDIERS_WAR_HAMMER = register("soldiers_war_hammer", new SwordItem(ToolMaterialBase.of(2000, 4.0F, 6.0F, 0, 5, SAPPHIRE), 3, -2.2F, new Item.Settings()));
-    public static final Item THE_BLUE_DAGGER = register("the_blue_dagger", new SwordItem(ToolMaterialBase.of(2000, 4.0F, 5.0F, 1, 10, ModItems.SAPPHIRE), 3, -2.0F, new Item.Settings()));
+    public static final Item GENERAL_PATRICK_LONG_KNIVES = register("general_patrick_long_knives", new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings().fireproof()));
+    public static final Item SOLDIERS_HALBERD = register("soldiers_halberd", new SwordItem(ToolMaterialUtil.of(1500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings()));
+    public static final Item SOLDIERS_WAR_HAMMER = register("soldiers_war_hammer", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 6.0F, 0, 5, SAPPHIRE), 3, -2.2F, new Item.Settings()));
+    public static final Item THE_BLUE_DAGGER = register("the_blue_dagger", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 5.0F, 1, 10, ModItems.SAPPHIRE), 3, -2.0F, new Item.Settings()));
     public static final Item SAPPHIRE_ORE = block("sapphire_ore", ModBlocks.SAPPHIRE_ORE);
     public static final Item DEEPSLATE_SAPPHIRE_ORE = block("deepslate_sapphire_ore", ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
     public static final Item SAPPHIRE_BLOCK = block("sapphire_block", ModBlocks.SAPPHIRE_BLOCK);
     public static final Item RAW_SAPPHIRE = register("raw_sapphire", new ItemBase(p -> p.maxCount(32)));    //armor
     public static final Item HOT_IRON = register("hot_iron", new ItemBase(p -> p));
-    public static final Item HOT_GLOVES = register("hot_gloves", HotGlovesItem::new);    public static final Item HEROBRINE_CHESTPLATE = register("herobrine_chestplate", HerobrineArmorItem.Chestplate::new);
+    public static final Item HOT_GLOVES = register("hot_gloves", HotGlovesItem::new);
+    public static final Item HEROBRINE_CHESTPLATE = register("herobrine_chestplate", HerobrineArmorItem.Chestplate::new);
     public static final Item BLUE_DIAMOND = register("blue_diamond", BlueDiamondItem::new);
     public static final Item BLUE_DIAMOND_HELMET = register("blue_diamond_helmet", BlueDiamondArmorsItem.Helmet::new);
     public static final Item BLUE_DIAMOND_CHESTPLATE = register("blue_diamond_chestplate", BlueDiamondArmorsItem.Chestplate::new);
@@ -66,9 +72,9 @@ public class ModItems {
     public static final Item BLUE_DIAMOND_BOOTS = register("blue_diamond_boots", BlueDiamondArmorsItem.Boots::new);
     public static final Item DIAMOND_LANCE = register("diamond_lance", DiamondLanceItem::new);
     public static final Item BLUE_DIAMOND_SWORD = register("blue_diamond_sword", BlueDiamondSwordItem::new);
-    public static final Item WINGS_OF_SALVATION = register("wings_of_salvation", WingsOfSalvationItem.Chestplate::new);
+    public static final Item WINGS_OF_SALVATION = register("wings_of_salvation", new ElytraItem(new Item.Settings().maxDamage(3000)));
     //axe
-    public static final Item DIAMOND_HATCHET = register("diamond_hatchet", new AxeItem(ToolMaterialBase.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings()));
+    public static final Item DIAMOND_HATCHET = register("diamond_hatchet", new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings()));
     public static final Item BLUE_DIAMOND_BLOCK = block("blue_diamond_block", ModBlocks.BLUE_DIAMOND_BLOCK);
     public static final Item DARK_OBSIDIAN_BLOCK = block("dark_obsidian_block", ModBlocks.DARK_OBSIDIAN_BLOCK);
     public static final Item ZOMBIE_HEART = register("zombie_heart", ZombieHeartItem::new);
@@ -76,7 +82,7 @@ public class ModItems {
     public static final Item NETHERITE_WITHER_BONE = register("netherite_wither_bone", new FoilItemBase(p -> p.maxCount(16).fireproof()));
     public static final Item ICE_HEART = register("ice_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
     public static final Item WARRIOR_HEART = register("warrior_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
-    public static final Item ENDER_HEART = register("ender_heart", new FoilItemBase(p -> p.maxDamage(15).fireproof().rarity(Rarity.EPIC)));
+    public static final Item ENDER_HEART = register("ender_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
     public static final Item LIGHT_HEART = register("light_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
     public static final Item DIAMOND_PIECE = register("diamond_piece", new ItemBase(p -> p));
     public static final Item BAO_ZHU = register("bao_zhu", new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON)));
@@ -90,7 +96,8 @@ public class ModItems {
     public static final Item CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS = register("chief_of_the_pig_people_leggings", ChiefOfThePigPeopleArmorItem.Leggings::new);
     public static final Item CHIEF_OF_THE_PIG_PEOPLE_BOOTS = register("chief_of_the_pig_people_boots", ChiefOfThePigPeopleArmorItem.Boots::new);
     public static final Item SOLDIERS_ARMOR_HELMET = register("soldiers_armor_helmet", SoldiersArmorItem.Helmet::new);
-    public static final Item SOLDIERS_ARMOR_CHESTPLATE = register("soldiers_armor_chestplate", SoldiersArmorItem.Chestplate::new);    public static final Item RAIN_CHESTPLATE = register("rain_chestplate", RainArmorItem.Chestplate::new);
+    public static final Item SOLDIERS_ARMOR_CHESTPLATE = register("soldiers_armor_chestplate", SoldiersArmorItem.Chestplate::new);
+    public static final Item RAIN_CHESTPLATE = register("rain_chestplate", RainArmorItem.Chestplate::new);
     public static final Item SOLDIERS_ARMOR_LEGGINGS = register("soldiers_armor_leggings", SoldiersArmorItem.Leggings::new);
     public static final Item SOLDIERS_ARMOR_BOOTS = register("soldiers_armor_boots", SoldiersArmorItem.Boots::new);
     public static final Item RUBY_HELMET = register("ruby_helmet", RubyArmorItem.Helmet::new);
@@ -118,7 +125,7 @@ public class ModItems {
     public static final Item NIGHTMARES = register("nightmares", NightmaresItem::new);
     public static final Item END_STAFF = register("end_staff", EndStaffItem::new);
     public static final Item MAGIC_STARD = register("magic_stard", new ItemBase(p -> p.maxDamage(5)));
-    public static final Item LIGHT_SWORD = register("light_sword", new FoilSwordItemBase(ToolMaterialBase.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item LIGHT_SWORD = register("light_sword", new FoilSwordItemBase(ToolMaterialUtil.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof()));
     public static final Item SHIELD_EVER = register("netherite_shield", NetheriteShieldItem::new);
     public static final Item DIVINE_CORE = register("divine_core", DivineCoreItem::new);
     public static final Item SNOW_SHIELD = register("snow_shield", SnowShieldItem::new);
@@ -144,28 +151,28 @@ public class ModItems {
     public static final Item BLACK_DEATH_SWORD = register("black_death_sword", BlackDeathSwordItem::new);
     public static final Item PURIFICATION = register("purification", PurificationItem::new);
     public static final Item MYSTERIOUS_GIFT_BOX = register("mysterious_gift_box", MysteriousGiftBoxItem::new);
-    public static final Item RAIN_LAZYED_SWORD = register("rain_lazyed_sword", new FoilSwordItemBase(ToolMaterialBase.of(1500, 0.0F, 8.0F, 0, 15), 3, -2.0F, new Item.Settings()));
+    public static final Item RAIN_LAZYED_SWORD = register("rain_lazyed_sword", new FoilSwordItemBase(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 15), 3, -2.0F, new Item.Settings()));
     public static final Item MAGIC_ENDER_PEARL = register("magic_ender_pearl", MagicEnderPearlItem::new);
     public static final Item SOUL_TOTEM = register("soul_totem", SoulTotemItem::new);
-    public static final Item KING_ZOMBIE_PIG_MAN_SWORD = register("king_zombie_pig_man_sword", new SwordItem(ToolMaterialBase.of(500, 0.0F, 6.0F, 0, 25, Items.GOLD_INGOT), 3, -2.3F, new Item.Settings()));
-    public static final Item EMERALD_BLADE = register("emerald_blade", new SwordItem(ToolMaterialBase.of(1200, 4.0F, 5.0F, 0, 3, Blocks.EMERALD_BLOCK), 3, -2.2F, new Item.Settings().fireproof()));
-    public static final Item BLADE_OF_THE_WHIRLWIND = register("blade_of_the_whirlwind", new SwordItem(ToolMaterialBase.of(2500, 4.0F, 6.0F, 0, 2, Blocks.OAK_LEAVES), 3, -2.8F, new Item.Settings()));
-    public static final Item SNOW_DIAMOND_SWORD = register("snow_diamond_sword", new SwordItem(ToolMaterialBase.of(3000, 4.0F, 6.0F, 0, 2, Blocks.SNOW_BLOCK), 3, -2.0F, new Item.Settings()));
-    public static final Item NETHER_SICKLE = register("nether_sickle", new SwordItem(ToolMaterialBase.of(2000, 4.0F, 3.0F, 1, 2, Blocks.STRIPPED_WARPED_STEM), 3, -2.0F, new Item.Settings()));
-    public static final Item THE_GOLDEN_SWORD = register("the_golden_sword", new SwordItem(ToolMaterialBase.of(3000, 4.0F, 6.0F, 1, 5, Blocks.GOLD_BLOCK), 3, -2.0F, new Item.Settings().fireproof()));
-    public static final Item DEEP_SICKLE = register("deep_sickle", new SwordItem(ToolMaterialBase.of(1000, 4.0F, 6.0F, 1, 2, Blocks.MOSS_BLOCK), 3, -2.4F, new Item.Settings()));
-    public static final Item IRON_DAGGER = register("iron_dagger", new SwordItem(ToolMaterialBase.of(1400, 4.0F, 7.0F, 1, 8, Blocks.IRON_BLOCK.asItem(), Items.IRON_INGOT), 3, -2.0F, new Item.Settings()));
-    public static final Item DEEP_WAR_HAMMER = register("deep_war_hammer", new SwordItem(ToolMaterialBase.of(1500, 0.0F, 8.0F, 0, 5), 3, -2.3F, new Item.Settings()));
-    public static final Item SKULL_CRUSHER = register("skull_crusher", new SwordItem(ToolMaterialBase.of(1500, 0.0F, 7.0F, 0, 15), 3, -2.2F, new Item.Settings().fireproof()));
-    public static final Item IRON_LONG_SPEAR = register("iron_long_spear", new SwordItem(ToolMaterialBase.of(500, 0.0F, 3.0F, 0, 1), 3, -2.2F, new Item.Settings()));
-    public static final Item GOLDEN_PLUNDERING_AXE = register("golden_plundering_axe", new SwordItem(ToolMaterialBase.of(1200, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
-    public static final Item PLUNDERING_THE_GIANT_AXE = register("plundering_the_giant_axe", new SwordItem(ToolMaterialBase.of(1300, 0.0F, 7.0F, 0, 8), 3, -2.2F, new Item.Settings()));
-    public static final Item LIGHT_SWORD_EVER = register("light_sword_ever", new SwordItem(ToolMaterialBase.of(1000, 0.0F, 8.0F, 0, 30), 3, -2.0F, new Item.Settings()));
-    public static final Item DIAMOND_BIG_SWORD = register("diamond_big_sword", new SwordItem(ToolMaterialBase.of(2000, 0.0F, 9.0F, 0, 15), 3, -2.3F, new Item.Settings()));
-    public static final Item SOLDIER_SPEAR = register("soldier_spear", new SwordItem(ToolMaterialBase.of(1000, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
-    public static final Item SOUL_RAIDING_HAMMER = register("soul_raiding_hammer", new SwordItem(ToolMaterialBase.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, new Item.Settings()));
-    public static final Item KATANA = register("katana", new SwordItem(ToolMaterialBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, new Item.Settings()));
-    public static final Item AMETHYST_WAR_HAMMER = register("amethyst_war_hammer", new SwordItem(ToolMaterialBase.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings()));
+    public static final Item KING_ZOMBIE_PIG_MAN_SWORD = register("king_zombie_pig_man_sword", new SwordItem(ToolMaterialUtil.of(500, 0.0F, 6.0F, 0, 25, Items.GOLD_INGOT), 3, -2.3F, new Item.Settings()));
+    public static final Item EMERALD_BLADE = register("emerald_blade", new SwordItem(ToolMaterialUtil.of(1200, 4.0F, 5.0F, 0, 3, Blocks.EMERALD_BLOCK), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item BLADE_OF_THE_WHIRLWIND = register("blade_of_the_whirlwind", new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 6.0F, 0, 2, Blocks.OAK_LEAVES), 3, -2.8F, new Item.Settings()));
+    public static final Item SNOW_DIAMOND_SWORD = register("snow_diamond_sword", new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 0, 2, Blocks.SNOW_BLOCK), 3, -2.0F, new Item.Settings()));
+    public static final Item NETHER_SICKLE = register("nether_sickle", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 3.0F, 1, 2, Blocks.STRIPPED_WARPED_STEM), 3, -2.0F, new Item.Settings()));
+    public static final Item THE_GOLDEN_SWORD = register("the_golden_sword", new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 1, 5, Blocks.GOLD_BLOCK), 3, -2.0F, new Item.Settings().fireproof()));
+    public static final Item DEEP_SICKLE = register("deep_sickle", new SwordItem(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 1, 2, Blocks.MOSS_BLOCK), 3, -2.4F, new Item.Settings()));
+    public static final Item IRON_DAGGER = register("iron_dagger", new SwordItem(ToolMaterialUtil.of(1400, 4.0F, 7.0F, 1, 8, Blocks.IRON_BLOCK.asItem(), Items.IRON_INGOT), 3, -2.0F, new Item.Settings()));
+    public static final Item DEEP_WAR_HAMMER = register("deep_war_hammer", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 5), 3, -2.3F, new Item.Settings()));
+    public static final Item SKULL_CRUSHER = register("skull_crusher", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 15), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item IRON_LONG_SPEAR = register("iron_long_spear", new SwordItem(ToolMaterialUtil.of(500, 0.0F, 3.0F, 0, 1), 3, -2.2F, new Item.Settings()));
+    public static final Item GOLDEN_PLUNDERING_AXE = register("golden_plundering_axe", new SwordItem(ToolMaterialUtil.of(1200, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
+    public static final Item PLUNDERING_THE_GIANT_AXE = register("plundering_the_giant_axe", new SwordItem(ToolMaterialUtil.of(1300, 0.0F, 7.0F, 0, 8), 3, -2.2F, new Item.Settings()));
+    public static final Item LIGHT_SWORD_EVER = register("light_sword_ever", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 8.0F, 0, 30), 3, -2.0F, new Item.Settings()));
+    public static final Item DIAMOND_BIG_SWORD = register("diamond_big_sword", new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 9.0F, 0, 15), 3, -2.3F, new Item.Settings()));
+    public static final Item SOLDIER_SPEAR = register("soldier_spear", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
+    public static final Item SOUL_RAIDING_HAMMER = register("soul_raiding_hammer", new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, new Item.Settings()));
+    public static final Item KATANA = register("katana", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, new Item.Settings()));
+    public static final Item AMETHYST_WAR_HAMMER = register("amethyst_war_hammer", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings()));
     //spawn egg
     public static final Item HEROBRINE_SPAWN_EGG = register("herobrine_spawn_egg", new SpawnEggBase(Episode.TheStruggle, ModEntities.HEROBRINE, -10092544, -65536, new Item.Settings()));
     public static final Item CERIS_SPAWN_EGG = register("ceris_spawn_egg", new SpawnEggBase(Episode.ColdAsIce, ModEntities.CERIS, -10092442, -65281, new Item.Settings()));
@@ -218,6 +225,8 @@ public class ModItems {
     public static final Item HIM_ONE_LIVES = register("him_one_lives", new MusicItemBase("him_one_lives"));
     public static final Item KRALOS_MUSIC = register("kralos_music", new MusicItemBase("kralos_boss_music"));
     public static final Item KLAUS_MUSIC = register("klaus_music", new MusicItemBase("klaus_boss_music"));
+    //skull
+    public static final Item HEROBRINE_HEAD = skull("herobrine_head", ModBlocks.HEROBRINE_HEAD, ModBlocks.HEROBRINE_WALL_HEAD);
 
     private static Item register(String name, Supplier<Item> provider) {
         return register(name, provider.get());

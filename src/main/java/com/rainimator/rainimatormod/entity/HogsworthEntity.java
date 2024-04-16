@@ -1,8 +1,9 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,7 +22,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class HogsworthEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("hogsworth");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
 
     public HogsworthEntity(EntityType<HogsworthEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

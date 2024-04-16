@@ -1,10 +1,10 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class NaeusSwordItem extends SwordItemBase {
     public NaeusSwordItem() {
-        super(ToolMaterialBase.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override

@@ -1,11 +1,8 @@
 package com.rainimator.rainimatormod;
 
 import com.mojang.logging.LogUtils;
-import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
 import com.rainimator.rainimatormod.network.ServerNetworkHandler;
 import com.rainimator.rainimatormod.registry.*;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
@@ -26,7 +23,6 @@ public class RainimatorMod implements ModInitializer {
             LOGGER.error("[annoying_villagersbychentu] failed to load");
             System.exit(1);
         }
-        ModBlocks.init();
         ModEntities.init();
         ModEntities.addLivingEntityToBiomes();
         ModItems.init();
@@ -34,10 +30,8 @@ public class RainimatorMod implements ModInitializer {
         ModParticles.registerParticles();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
-        ModCreativeTab.load();
+        ModCreativeTabs.load();
         ServerNetworkHandler.register();
-        TrinketsRegistry.register();
-        Timeout.startTimeout();
         FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0)));
     }
 }

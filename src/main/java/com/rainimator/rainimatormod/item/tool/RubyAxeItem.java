@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item.tool;
 
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.AxeItem;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class RubyAxeItem extends AxeItem {
     public RubyAxeItem() {
-        super(ToolMaterialBase.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
     }
 
     @Override

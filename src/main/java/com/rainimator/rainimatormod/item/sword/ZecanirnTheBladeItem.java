@@ -1,12 +1,17 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.*;
+import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +39,7 @@ import java.util.List;
 
 public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
     public ZecanirnTheBladeItem() {
-        super(ToolMaterialBase.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE, ModItems.SUPER_RUBY), 3, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE, ModItems.SUPER_RUBY), 3, -2.2F, new Settings());
     }
 
     @Override

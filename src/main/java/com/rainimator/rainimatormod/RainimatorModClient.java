@@ -1,7 +1,9 @@
 package com.rainimator.rainimatormod;
 
+import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModModels;
+import com.rainimator.rainimatormod.registry.ModRenderers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,5 +14,7 @@ public class RainimatorModClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModModels.registerLayerDefinitions();
         ModEntities.registerEntityRenderers();
+        ModRenderers.registerRenderers();
+        TrinketsRegistry.register();
     }
 }

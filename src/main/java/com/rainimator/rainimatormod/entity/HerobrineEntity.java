@@ -1,14 +1,16 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -48,7 +50,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEntity {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("him_1", "him_2").setEyeTextureId("him_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"him_1", "him_2").setEyeTextureId("him_eye");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private final Stage stage;
     private boolean hasSpawnBlackBone = false;
@@ -132,17 +134,9 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
             }
             if (Math.random() < 0.1D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
-
-                if (this.getWorld() instanceof ServerWorld _level) {
-                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                    if (entityToSpawn != null) {
-                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ())));
-                        entityToSpawn.setCosmetic(true);
-                        _level.spawnEntity(entityToSpawn);
-                    }
-                }
-
-                this.getWorld().setBlockState(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                if (this.getWorld() instanceof ServerWorld _level)
+                    EntityUtil.lightening(_level, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ());
+                this.getWorld().setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
                 if (entityiterator instanceof LivingEntity _entity)
                     if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 1200, 2));
@@ -186,14 +180,8 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (world instanceof ServerWorld _level) {
-            LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-            if (entityToSpawn != null) {
-                entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ())));
-                entityToSpawn.setCosmetic(true);
-                _level.spawnEntity(entityToSpawn);
-            }
-        }
+        if (world instanceof ServerWorld _level)
+            EntityUtil.lightening(_level, this.getX(), this.getY(), this.getZ());
         if (!world.isClient() && world.getServer() != null && this.stage == Stage.First)
             world.getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.stage1"), false);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {

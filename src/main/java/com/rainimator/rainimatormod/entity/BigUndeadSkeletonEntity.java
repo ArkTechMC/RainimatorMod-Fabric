@@ -1,20 +1,20 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class BigUndeadSkeletonEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("big_blackbone");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"big_blackbone");
 
     public BigUndeadSkeletonEntity(EntityType<BigUndeadSkeletonEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -64,17 +64,10 @@ public class BigUndeadSkeletonEntity extends MonsterEntityBase {
         LivingEntity _livEnt = this;
         if (_livEnt.getHealth() < 200.0F)
             if (this.getWorld() instanceof ServerWorld _level)
-                if (Math.random() < 0.2D) {
-                    WitherSkeletonEntity witherSkeleton = new WitherSkeletonEntity(EntityType.WITHER_SKELETON, _level);
-                    witherSkeleton.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ(), this.getWorld().getRandom().nextFloat() * 360.0F, 0.0F);
-                    ((MobEntity) witherSkeleton).initialize(_level, this.getWorld().getLocalDifficulty(witherSkeleton.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                    this.getWorld().spawnEntity(witherSkeleton);
-                } else if (Math.random() < 0.2D) {
-                    WitheredSkeletonsEntity witheredSkeletonsEntity = new WitheredSkeletonsEntity(ModEntities.WITHERED_SKELETONS, _level);
-                    witheredSkeletonsEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ(), this.getWorld().getRandom().nextFloat() * 360.0F, 0.0F);
-                    witheredSkeletonsEntity.initialize(_level, this.getWorld().getLocalDifficulty(witheredSkeletonsEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                    this.getWorld().spawnEntity(witheredSkeletonsEntity);
-                }
+                if (Math.random() < 0.2D)
+                    EntityUtil.summon(EntityType.WITHER_SKELETON, _level, this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ());
+                else if (Math.random() < 0.2D)
+                    EntityUtil.summon(ModEntities.WITHERED_SKELETONS, _level, this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ());
         return super.damage(source, amount);
     }
 

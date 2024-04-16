@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.network;
 
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.rainimator.rainimatormod.util.ModConstants;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKey;

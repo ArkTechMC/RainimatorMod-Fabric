@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item;
 
-import com.rainimator.rainimatormod.registry.util.FoilItemBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
+import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;

@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -23,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class WitheredSkeletonsEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("withered_skeletons");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "withered_skeletons");
 
     public WitheredSkeletonsEntity(EntityType<WitheredSkeletonsEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

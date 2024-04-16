@@ -304,5 +304,6 @@
   "itemGroup.rainimator.rainimator_item": "Rainimatoritem",
   "itemGroup.rainimator.rainimator_mobs": "Rainimatormobs",
   "emi.category.rainimator.boss_spawn_recipe": "Boss Summon",
-  "emi.tag.trinkets.chest.back": "Back Slot"
+  "patchouli.rainimator.book_name": "RainimatorMod游玩指南",
+  "patchouli.rainimator.book_landing_text": "这里是一段介绍文本"
 }

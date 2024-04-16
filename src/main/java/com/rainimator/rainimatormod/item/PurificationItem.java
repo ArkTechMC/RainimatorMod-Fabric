@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item;
 
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import com.rainimator.rainimatormod.registry.ModEffects;
-import com.rainimator.rainimatormod.registry.util.ItemBase;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;

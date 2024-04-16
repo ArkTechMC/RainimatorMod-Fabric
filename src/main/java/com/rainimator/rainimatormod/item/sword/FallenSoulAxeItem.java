@@ -1,10 +1,10 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class FallenSoulAxeItem extends FoilSwordItemBase {
     public FallenSoulAxeItem() {
-        super(ToolMaterialBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, new Settings().fireproof());
     }
 
     @Override

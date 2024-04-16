@@ -1,11 +1,9 @@
 package com.rainimator.rainimatormod.registry;
 
 import com.rainimator.rainimatormod.renderer.model.*;
-import com.rainimator.rainimatormod.renderer.model.wing.WingsOfSalvationModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.impl.client.rendering.EntityModelLayerImpl;
 
 @Environment(EnvType.CLIENT)
 public class ModModels {
@@ -17,6 +15,5 @@ public class ModModels {
         EntityModelLayerRegistry.registerModelLayer(ModelNetherCrown.LAYER_LOCATION, ModelNetherCrown::createBodyLayer);
         EntityModelLayerRegistry.registerModelLayer(ModelEnderman.LAYER_LOCATION, ModelEnderman::createBodyLayer);
         EntityModelLayerRegistry.registerModelLayer(ModelNetherKing2.LAYER_LOCATION, ModelNetherKing2::createBodyLayer);
-        EntityModelLayerRegistry.registerModelLayer(WingsOfSalvationModel.LAYER_LOCATION, WingsOfSalvationModel::createLayer);
     }
 }

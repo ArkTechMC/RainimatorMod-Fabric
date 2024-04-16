@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item.tool;
 
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class IntelligenceTomahawkItem extends AxeItem {
     public IntelligenceTomahawkItem() {
-        super(ToolMaterialBase.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPHIRE), 1.0F, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPHIRE), 1.0F, -2.2F, new Settings());
     }
 
     @Override

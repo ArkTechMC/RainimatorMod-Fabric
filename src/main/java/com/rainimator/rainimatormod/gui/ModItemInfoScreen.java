@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.gui;
 
+import com.iafenvoy.mcrconvertlib.misc.ComponentUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.util.ComponentUtil;
 import com.rainimator.rainimatormod.util.Episode;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

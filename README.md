@@ -16,6 +16,10 @@ And this mod adds the elements appear in them.
 ## Dependencies
 `Trinkets`(**Required**): Used for more item slots. (Such as back / belt)
 
+`Patchouli`(**Required**): Guide book.
+
+`McrConvertLib`(**Required**): My library to convert more easily.
+
 `EMI`(**Optional**): Boss summon recipes view.
 
 ## Features
@@ -31,7 +35,7 @@ Add part of them firstly since the skins are hard to find.
 Summon them by using the `Dark Obsidian Block`.
 See summon recipes with `JEI`.
 
-### Item Description
+### Item Description (Not Work **NOW**)
 Some items with `Press [LALT] for more info` in tooltip have an in-game description.
 Press Left ALT button when hover it to open.
 

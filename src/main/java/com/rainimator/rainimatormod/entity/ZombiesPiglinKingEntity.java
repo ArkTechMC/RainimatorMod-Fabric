@@ -1,11 +1,11 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -33,7 +33,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class ZombiesPiglinKingEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("zombies_piglin_king");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"zombies_piglin_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public ZombiesPiglinKingEntity(EntityType<ZombiesPiglinKingEntity> type, World world) {

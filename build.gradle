@@ -27,6 +27,13 @@ repositories {
         name = "Ladysnake Libs"
         url = 'https://maven.ladysnake.org/releases'
     }
+    repositories {
+        maven { url 'https://maven.blamejared.com' }
+    }
+    maven {
+        name = "IAFEnvoy Libs"
+        url = 'https://maven.iafenvoy.com/'
+    }
 }
 
 dependencies {
@@ -38,12 +45,18 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    //McrConvertLib
+    modImplementation "com.iafenvoy:mcrconvertlib:${mcrconvertlib_version}"
+
     // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+    //Patchouli
+    modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 
 processResources {

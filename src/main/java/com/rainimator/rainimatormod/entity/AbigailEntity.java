@@ -1,11 +1,12 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -27,7 +28,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("abigail");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"abigail");
 
     public AbigailEntity(EntityType<AbigailEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

@@ -1,12 +1,14 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -33,15 +35,13 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class KralosEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("kralos");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"kralos");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
 
     public KralosEntity(EntityType<KralosEntity> type, World world) {
@@ -111,17 +111,9 @@ public class KralosEntity extends MonsterEntityBase {
                     if (!this.getWorld().isClient())
                         this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 9999, 0));
                     this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
-                    if (this.getWorld() instanceof ServerWorld) {
-                        ServerWorld _level = (ServerWorld) this.getWorld();
-                        LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                        if (entityToSpawn != null) {
-                            entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) x, (int) y, (int) z)));
-                            entityToSpawn.setCosmetic(true);
-                            _level.spawnEntity(entityToSpawn);
-                        }
-                    }
-
-                    this.getWorld().setBlockState(new BlockPos((int) x, (int) y, (int) z), Blocks.FIRE.getDefaultState(), 3);
+                    if (this.getWorld() instanceof ServerWorld _level)
+                        EntityUtil.lightening(_level, x, y, z);
+                    this.getWorld().setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
                     SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.scream"), 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);

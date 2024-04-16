@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -32,7 +32,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("rain");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "rain");
 
     public RainEntity(EntityType<RainEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
@@ -97,7 +97,7 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (Math.random() < 0.2D) {
+        if (Math.random() < 0.2D) {//TODO: Optimize
             this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);

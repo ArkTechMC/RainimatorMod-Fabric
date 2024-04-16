@@ -1,11 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -26,9 +28,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-
 public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("patrick");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"patrick");
 
     public PatrickEntity(EntityType<PatrickEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
@@ -86,7 +87,7 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (Math.random() < 0.2D) {
+        if (Math.random() < 0.2D) {//TODO: Optimize
             this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
@@ -118,12 +119,8 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (world instanceof ServerWorld _level) {
-            HildaEntity hildaEntity = new HildaEntity(ModEntities.HILDA, _level);
-            hildaEntity.refreshPositionAndAngles(this.getX() + RandomHelper.nextInt(1, 4), this.getY(), this.getZ() + RandomHelper.nextInt(1, 4), world.getRandom().nextFloat() * 360.0F, 0.0F);
-            hildaEntity.initialize(_level, world.getLocalDifficulty(hildaEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-            world.spawnEntity(hildaEntity);
-        }
+        if (world instanceof ServerWorld _level)
+            EntityUtil.summon(ModEntities.HILDA, _level, this.getX() + RandomHelper.nextInt(1, 4), this.getY(), this.getZ() + RandomHelper.nextInt(1, 4));
         return retval;
     }
 

@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -42,7 +42,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class Klaus2Entity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("klaus_2");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"klaus_2");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public Klaus2Entity(EntityType<Klaus2Entity> type, World world) {
@@ -117,7 +117,7 @@ public class Klaus2Entity extends MonsterEntityBase {
                     this.setStackInHand(Hand.MAIN_HAND, _setstack);
                 }
             }
-            if ((EnchantmentHelper.getLevel(Enchantments.PROTECTION, this.getEquippedStack(EquipmentSlot.HEAD)) != 0)) {
+            if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, this.getEquippedStack(EquipmentSlot.HEAD)) != 0) {
                 if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
@@ -130,7 +130,7 @@ public class Klaus2Entity extends MonsterEntityBase {
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
                 }
             }
-            if ((EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) != 0)) {
+            if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) != 0) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
                 if (Math.random() < 0.1) {
@@ -202,7 +202,7 @@ public class Klaus2Entity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) == 0) {
-            if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, ((LivingEntity) this).getEquippedStack(EquipmentSlot.HEAD)) == 0) {
+            if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, this.getEquippedStack(EquipmentSlot.HEAD)) == 0) {
                 if (world instanceof World _level)
                     SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "block.beacon.activate"), 5.0F, 1.0F);
                 if (world instanceof ServerWorld _level)

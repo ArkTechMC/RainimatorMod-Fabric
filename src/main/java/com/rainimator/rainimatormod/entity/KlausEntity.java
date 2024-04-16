@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -36,7 +36,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.*;
 
 public class KlausEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("klaus");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "klaus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public KlausEntity(EntityType<KlausEntity> type, World world) {
@@ -111,7 +111,7 @@ public class KlausEntity extends MonsterEntityBase {
                     this.setStackInHand(Hand.MAIN_HAND, _setstack);
                 }
             }
-            if ((EnchantmentHelper.getLevel(Enchantments.PROTECTION, ((LivingEntity) this).getEquippedStack(EquipmentSlot.HEAD)) != 0)) {
+            if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, ((LivingEntity) this).getEquippedStack(EquipmentSlot.HEAD)) != 0) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
                 if (!this.getWorld().isClient())
@@ -124,7 +124,7 @@ public class KlausEntity extends MonsterEntityBase {
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
                 }
             }
-            if ((EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) != 0)) {
+            if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) != 0) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
                 if (Math.random() < 0.1) {

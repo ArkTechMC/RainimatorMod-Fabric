@@ -1,14 +1,14 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -30,11 +30,12 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class CerisEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("ceris").setEyeTextureId("ceris_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"ceris").setEyeTextureId("ceris_eye");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS);
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
@@ -87,18 +88,13 @@ public class CerisEntity extends MonsterEntityBase {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3));
             }
         } else {
-
-            LivingEntity _entity = this;
-            if (!_entity.getWorld().isClient())
-                _entity.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 100, 0));
+            if (!this.getWorld().isClient())
+                this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 100, 0));
 
             if (Math.random() < 0.3D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.teleport"), 4.0F, 1.0F);
-
-                if (this.getWorld() instanceof ServerWorld) {
-                    ServerWorld _level = (ServerWorld) this.getWorld();
+                if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
-                }
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(3, 9), this.getY(), this.getZ() + RandomHelper.nextInt(3, 9), 20.0D);
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
@@ -117,21 +113,12 @@ public class CerisEntity extends MonsterEntityBase {
                             livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));
                         }
                         Timeout.create(60, () -> {
-                            sourceentity.requestTeleport(this.getWorld()
-                                    .raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos().getX(), this
-                                    .getY(), this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this))
-                                    .getBlockPos().getZ());
-                            if (sourceentity instanceof ServerPlayerEntity _serverPlayer) {
-                                _serverPlayer.networkHandler.requestTeleport(this.getWorld()
-                                        .raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos()
-                                        .getX(), this
-                                        .getY(), this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this))
-                                        .getBlockPos().getZ(), sourceentity
-                                        .getYaw(), sourceentity.getPitch());
-                            }
-                            World levelAccessor = this.getWorld();
+                            BlockPos blockPos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos();
+                            sourceentity.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ());
+                            if (sourceentity instanceof ServerPlayerEntity _serverPlayer)
+                                _serverPlayer.networkHandler.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
                             SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
-                            if (levelAccessor instanceof ServerWorld _level)
+                            if (this.getWorld() instanceof ServerWorld _level)
                                 _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                         });
                     }
@@ -186,14 +173,13 @@ public class CerisEntity extends MonsterEntityBase {
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
-        Entity entity = this;
         SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_live"), 1.0F, 1.0F);
 
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
-                if (entity.isAlive())
+                if (this.isAlive())
                     SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);

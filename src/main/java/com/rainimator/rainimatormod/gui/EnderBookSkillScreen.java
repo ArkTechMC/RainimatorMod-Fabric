@@ -1,7 +1,6 @@
 package com.rainimator.rainimatormod.gui;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.network.EnderBookSkillC2SPacket;
 import com.rainimator.rainimatormod.util.ModConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,7 +8,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -17,11 +15,9 @@ import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class EnderBookSkillScreen extends Screen {
-    private final Vec3d pos;
 
     public EnderBookSkillScreen(Vec3d pos, Text text) {
         super(text);
-        this.pos = pos;
     }
 
     @Override
@@ -32,11 +28,6 @@ public class EnderBookSkillScreen extends Screen {
             return true;
         }
         return super.keyPressed(key, b, c);
-    }
-
-    @Override
-    public void close() {
-        super.close();
     }
 
     @Override

@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -34,7 +34,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class NullLikeEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("null_like").setEyeTextureId("null_like_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "null_like").setEyeTextureId("null_like_eye");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public NullLikeEntity(EntityType<NullLikeEntity> type, World world) {
@@ -99,7 +99,7 @@ public class NullLikeEntity extends MonsterEntityBase {
             this.clearStatusEffects();
         else if (this.hasStatusEffect(StatusEffects.WEAKNESS))
             this.clearStatusEffects();
-        else if (Math.random() < 0.3D) {
+        else if (Math.random() < 0.3D) {//TODO: Optimize
             this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);

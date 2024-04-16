@@ -1,10 +1,12 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -24,7 +26,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class PiglinCommanderEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("piglin_commander");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_commander");
 
     public PiglinCommanderEntity(EntityType<PiglinCommanderEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -92,16 +94,9 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof ServerWorld _level) {
-            MutatedEntity mutatedEntity = new MutatedEntity(ModEntities.MUTATED, _level);
-            mutatedEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
-            mutatedEntity.initialize(_level, world.getLocalDifficulty(mutatedEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-            world.spawnEntity(mutatedEntity);
-            if (Math.random() < 0.4D) {
-                ZombiePiglinArtEntity zombiepiglinartEntity = new ZombiePiglinArtEntity(ModEntities.ZOMBIE_PIGLIN_ART, _level);
-                zombiepiglinartEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
-                zombiepiglinartEntity.initialize(_level, world.getLocalDifficulty(zombiepiglinartEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                world.spawnEntity(zombiepiglinartEntity);
-            }
+            EntityUtil.summon(ModEntities.MUTATED,_level,x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
+            if (Math.random() < 0.4D)
+                EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART,_level,x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
         }
         return retval;
     }

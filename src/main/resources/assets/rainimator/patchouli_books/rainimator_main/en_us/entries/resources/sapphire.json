@@ -1,0 +1,26 @@
+{
+  "name": "蓝宝石系列",
+  "icon": "rainimator:sapphire",
+  "category": "rainimator:resources",
+  "pages": [
+    "所有蓝宝石工具都具有致残打击的能力，击中目标有概率使目标致残$(br)可用于制作拥有特殊能力的武器",
+    {
+      "type": "patchouli:smelting",
+      "recipe": "rainimator:sapphire_smelting",
+      "text": "蓝宝石为两大矿石之一，与铁和金一样，需要挖下粗矿之后烧制"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "超级蓝宝石",
+      "recipe": "rainimator:super_sapphire",
+      "text": "将蓝宝石合成为超级蓝宝石之后，可以合成更加强大的武器和装备"
+    },
+    {
+      "type": "patchouli:relations",
+      "entries": [
+        "rainimator:resources/blue_diamond"
+      ]
+    }
+  ],
+  "sortnum": 1
+}

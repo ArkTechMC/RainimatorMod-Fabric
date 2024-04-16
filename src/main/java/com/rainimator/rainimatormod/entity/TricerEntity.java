@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,7 +24,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class TricerEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("tricer");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "tricer");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.NOTCHED_6);
 
     public TricerEntity(EntityType<TricerEntity> type, World world) {

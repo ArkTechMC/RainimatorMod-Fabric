@@ -4,13 +4,12 @@
   "package": "com.rainimator.rainimatormod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "DefaultAttributeRegistryMixin",
-    "LivingEntityMixin",
-    "PlayerInventoryMixin"
+    "DefaultAttributeRegistryMixin"
   ],
   "client": [
     "DrawContextMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "SkullBlockEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

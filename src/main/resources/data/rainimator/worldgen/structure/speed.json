@@ -3,7 +3,7 @@
   "biomes": "#minecraft:has_structure/mineshaft",
   "step": "surface_structures",
   "spawn_overrides": {},
-  "terrain_adaptation": "none",
+  "terrain_adaptation": "beard_thin",
   "start_pool": "rainimator:speed",
   "size": 1,
   "start_height": {

@@ -1,10 +1,10 @@
 package com.rainimator.rainimatormod.item.sword;
 
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.SoundUtil;
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 
 public class EnderCurvedSwordItem extends SwordItemBase {
     public EnderCurvedSwordItem() {
-        super(ToolMaterialBase.of(2000, 0.0F, 6.0F, 0, 25), 3, -2.0F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(2000, 0.0F, 6.0F, 0, 25), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override

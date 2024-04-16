@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class DiamondLanceItem extends SwordItemBase {
     public DiamondLanceItem() {
-        super(ToolMaterialBase.of(2000, 4.0F, 7.0F, 0, 3, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 7.0F, 0, 3, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings());
     }
 
     @Override

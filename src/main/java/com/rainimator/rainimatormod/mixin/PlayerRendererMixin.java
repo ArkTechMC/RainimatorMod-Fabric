@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.mixin;
 
-import com.rainimator.rainimatormod.renderer.WingsOfSalvationLayer;
+import com.rainimator.rainimatormod.renderer.WingsOfSalvationRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -24,6 +24,6 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
 
     @Inject(method = "<init>", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILHARD)
     public void postConstructor(EntityRendererFactory.Context p_174557_, boolean p_174558_, CallbackInfo ci) {
-        this.addFeature(new WingsOfSalvationLayer<>(this, p_174557_.getModelLoader()));
+        this.addFeature(new WingsOfSalvationRenderer<>(this, p_174557_.getModelLoader()));
     }
 }

@@ -1,9 +1,10 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("ciara");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ciara");
 
     public CiaraEntity(EntityType<CiaraEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
@@ -72,10 +73,9 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (Math.random() < 0.2D) {
-            LivingEntity _entity = this;
             ItemStack _setstack = new ItemStack(Blocks.AIR);
             _setstack.setCount(1);
-            _entity.setStackInHand(Hand.OFF_HAND, _setstack);
+            this.setStackInHand(Hand.OFF_HAND, _setstack);
 
         } else if (Math.random() < 0.2D) {
             ItemStack _setstack = new ItemStack(ModItems.THE_BLUE_DAGGER);

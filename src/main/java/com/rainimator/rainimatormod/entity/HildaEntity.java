@@ -1,10 +1,12 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -25,7 +27,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("hilda");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hilda");
 
     public HildaEntity(EntityType<HildaEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
@@ -70,31 +72,15 @@ public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-        if (Math.random() < 0.1D) {
-            if (world instanceof ServerWorld _level) {
-                SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS, _level);
-                soldiersEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y + 2.0D, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
-                soldiersEntity.initialize(_level, world.getLocalDifficulty(soldiersEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                world.spawnEntity(soldiersEntity);
-            }
-        } else if (Math.random() < 0.1D) {
-            if (world instanceof ServerWorld _level) {
-                AgethaEntity agethaEntity = new AgethaEntity(ModEntities.AGETHA, _level);
-                agethaEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y + 2.0D, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
-                agethaEntity.initialize(_level, world.getLocalDifficulty(agethaEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                world.spawnEntity(agethaEntity);
-            }
-        } else if (Math.random() < 0.1D && world instanceof ServerWorld _level) {
-            ArcherEntity archerEntity = new ArcherEntity(ModEntities.ARCHER, _level);
-            archerEntity.refreshPositionAndAngles(x + RandomHelper.nextInt(-2, 2), y + 2.0D, z + RandomHelper.nextInt(-2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
-            archerEntity.initialize(_level, world.getLocalDifficulty(archerEntity.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-            world.spawnEntity(archerEntity);
-        }
-        return retval;
+        EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
+        if (!(world instanceof ServerWorld _level)) return ret_val;
+        if (Math.random() < 0.1D)
+            EntityUtil.summon(ModEntities.SOLDIERS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+        else if (Math.random() < 0.1D)
+            EntityUtil.summon(ModEntities.AGETHA, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+        else if (Math.random() < 0.1D)
+            EntityUtil.summon(ModEntities.ARCHER, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+        return ret_val;
     }
 
     @Override

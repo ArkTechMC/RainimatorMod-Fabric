@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -35,7 +35,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class BlackBoneEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("blackbone");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"blackbone");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public BlackBoneEntity(EntityType<BlackBoneEntity> type, World world) {
@@ -90,7 +90,7 @@ public class BlackBoneEntity extends MonsterEntityBase {
                 this.clearStatusEffects();
             else {
                 if (Math.random() < 0.2) {
-                    if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.FEAR_DARK))) {
+                    if (sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.FEAR_DARK)) {
                         sourceentity.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 12);
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 500, 1));

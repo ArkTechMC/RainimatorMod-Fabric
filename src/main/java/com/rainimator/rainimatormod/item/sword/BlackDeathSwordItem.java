@@ -1,13 +1,13 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.ParticleUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlackDeathSwordItem() {
-        super(ToolMaterialBase.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, new Settings().fireproof());
     }
 
     @Override

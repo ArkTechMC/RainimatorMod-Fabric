@@ -1,13 +1,17 @@
 package com.rainimator.rainimatormod.item.sword;
 
 import com.google.common.collect.Lists;
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.*;
+import com.rainimator.rainimatormod.util.Episode;
 import dev.emi.trinkets.api.Trinket;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -47,7 +51,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     );
 
     public RainSwordItem() {
-        super(ToolMaterialBase.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE), 3, -2.0F, new Settings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE), 3, -2.0F, new Settings());
     }
 
     @Override

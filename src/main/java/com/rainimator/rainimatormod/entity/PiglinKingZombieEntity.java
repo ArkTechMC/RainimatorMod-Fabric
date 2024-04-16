@@ -1,12 +1,12 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,10 +26,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 
 public class PiglinKingZombieEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("piglin_king_zombie");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"piglin_king_zombie");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public PiglinKingZombieEntity(EntityType<PiglinKingZombieEntity> type, World world) {
@@ -105,9 +108,9 @@ public class PiglinKingZombieEntity extends MonsterEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if ((WorldAccess) world instanceof World _level)
+        if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
-        if ((WorldAccess) world instanceof ServerWorld _level)
+        if (world instanceof ServerWorld _level)
             _level.spawnParticles((DefaultParticleType) (ModParticles.YELLOW_STARS), x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {

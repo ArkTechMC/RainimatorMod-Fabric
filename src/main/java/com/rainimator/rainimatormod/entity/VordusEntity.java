@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -25,7 +26,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class VordusEntity extends EndermanEntity {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("vordus");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "vordus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public VordusEntity(EntityType<VordusEntity> type, World world) {

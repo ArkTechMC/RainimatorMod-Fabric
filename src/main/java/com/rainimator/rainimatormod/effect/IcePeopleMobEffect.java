@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.effect;
 
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.util.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;

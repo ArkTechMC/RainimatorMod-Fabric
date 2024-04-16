@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class HerobrineTomahawkItem extends SwordItemBase {
     public HerobrineTomahawkItem() {
-        super(ToolMaterialBase.of(2500, 12.0F, 11.0F, 0, 20, ModItems.SUPER_RUBY, ModItems.SUPER_SAPPHIRE), 3, -2.2F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(2500, 12.0F, 11.0F, 0, 20, ModItems.SUPER_RUBY, ModItems.SUPER_SAPPHIRE), 3, -2.2F, new Settings().fireproof());
     }
 
     @Override

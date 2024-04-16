@@ -1,14 +1,14 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.ParticleUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -38,7 +38,7 @@ import java.util.List;
 
 public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo {
     public SeizingShadowHalberdItem() {
-        super(ToolMaterialBase.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof());
     }
 
     @Override

@@ -1,14 +1,16 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -34,11 +36,10 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 
 public class NaeusKingEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("naeus_king");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"naeus_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
 
     public NaeusKingEntity(EntityType<NaeusKingEntity> type, World world) {
@@ -135,39 +136,18 @@ public class NaeusKingEntity extends MonsterEntityBase {
 
                     BlockPos pos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusKingEntity.this)).getBlockPos();
                     Runnable callback = () -> {
-                        WorldAccess levelAccessor = this.getWorld();
                         BlockPos pos1 = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(0.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusKingEntity.this)).getBlockPos();
-                        if (levelAccessor instanceof ServerWorld _level) {
-                            LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                            if (entityToSpawn != null) {
-                                entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos1.getZ())));
-                                entityToSpawn.setCosmetic(true);
-                                _level.spawnEntity(entityToSpawn);
-                            }
+                        if (this.getWorld() instanceof ServerWorld _level) {
+                            EntityUtil.lightening(_level, pos.getX(), y, pos1.getZ());
+                            EntityUtil.lightening(_level, pos1.getX(), y, pos.getZ());
                         }
-                        this.getWorld().setBlockState(new BlockPos(pos.getX(), (int) y, pos1.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                        if (levelAccessor instanceof ServerWorld _level) {
-                            LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                            if (entityToSpawn != null) {
-                                entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos1.getX(), (int) y, pos.getZ())));
-                                entityToSpawn.setCosmetic(true);
-                                _level.spawnEntity(entityToSpawn);
-                            }
-                        }
-                        this.getWorld().setBlockState(new BlockPos(pos1.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                        this.getWorld().setBlockState(VecUtil.createBlockPos(pos.getX(), y, pos1.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                        this.getWorld().setBlockState(VecUtil.createBlockPos(pos1.getX(), y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
                     };
                     Timeout.create(50, () -> {
-                        WorldAccess levelAccessor = this.getWorld();
-                        if (levelAccessor instanceof ServerWorld _level) {
-                            LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                            if (entityToSpawn != null) {
-                                entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos.getZ())));
-                                entityToSpawn.setCosmetic(true);
-                                _level.spawnEntity(entityToSpawn);
-                            }
-                        }
-
-                        this.getWorld().setBlockState(new BlockPos(pos.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                        if (this.getWorld() instanceof ServerWorld _level)
+                            EntityUtil.lightening(_level, pos.getX(), y, pos.getZ());
+                        this.getWorld().setBlockState(VecUtil.createBlockPos(pos.getX(), y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
                         Timeout.create(2, callback);
                         Timeout.create(4, callback);
                         Timeout.create(6, callback);

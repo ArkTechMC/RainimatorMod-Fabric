@@ -1,0 +1,26 @@
+{
+  "name": "红宝石系列",
+  "icon": "rainimator:ruby",
+  "category": "rainimator:resources",
+  "pages": [
+    "散发着红色光芒的神奇红色宝石，它的硬度与能力非常优秀$(br)红宝石拥有炽焰之力，红宝石工具击中目标会有概率向目标释放炽焰之力，并造成额外的炽焰伤害！快制作拥有特殊能力的武器吧",
+    {
+      "type": "patchouli:smelting",
+      "recipe": "rainimator:ruby_smelting",
+      "text": "红宝石为两大矿石之一，与铁和金一样，需要挖下粗矿之后烧制"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "超级红宝石",
+      "recipe": "rainimator:super_ruby",
+      "text": "将红宝石合成为超级红宝石之后，可以合成更加强大的武器和装备"
+    },
+    {
+      "type": "patchouli:relations",
+      "entries": [
+        "rainimator:resources/blue_diamond"
+      ]
+    }
+  ],
+  "sortnum": 0
+}

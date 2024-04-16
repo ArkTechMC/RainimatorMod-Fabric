@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.item;
 
-import com.rainimator.rainimatormod.registry.util.ItemBase;
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;

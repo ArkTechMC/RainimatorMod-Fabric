@@ -1,62 +1,18 @@
 package com.rainimator.rainimatormod.item.armor;
 
-import com.rainimator.rainimatormod.RainimatorMod;
+import com.iafenvoy.mcrconvertlib.item.ArmorMaterialUtil;
+import com.iafenvoy.mcrconvertlib.item.ArmorWithTickItem;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.ArmorWithTickItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 
 public class BlueDiamondArmorsItem extends ArmorWithTickItem {
     public BlueDiamondArmorsItem(Type slot, Item.Settings properties) {
-        super(new ArmorMaterial() {
-            @Override
-            public int getDurability(Type slot) {
-                return new int[]{13, 15, 16, 11}[slot.getEquipmentSlot().getEntitySlotId()] * 70;
-            }
-
-            @Override
-            public int getProtection(Type slot) {
-                return new int[]{9, 13, 18, 10}[slot.getEquipmentSlot().getEntitySlotId()];
-            }
-
-            @Override
-            public int getEnchantability() {
-                return 40;
-            }
-
-            @Override
-            public SoundEvent getEquipSound() {
-                return null;
-            }
-
-            @Override
-            public Ingredient getRepairIngredient() {
-                return Ingredient.ofStacks(new ItemStack(ModItems.BLUE_DIAMOND));
-            }
-
-            @Override
-            public String getName() {
-                return RainimatorMod.MOD_ID + ":blue_diamond_armors";
-            }
-
-            @Override
-            public float getToughness() {
-                return 5.0F;
-            }
-
-            @Override
-            public float getKnockbackResistance() {
-                return 0.3F;
-            }
-        }, slot, properties);
+        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, null, 5.0F, 0.3F, ModItems.BLUE_DIAMOND), slot, properties);
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class BrotsEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("brots");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "brots");
 
     public BrotsEntity(EntityType<BrotsEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

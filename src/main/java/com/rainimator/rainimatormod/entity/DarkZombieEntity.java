@@ -1,8 +1,9 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class DarkZombieEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("dark_zombie").setEyeTextureId("dark_zombie_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("dark_zombie_eye");
 
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

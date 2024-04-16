@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.item.tool;
 
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -9,7 +9,7 @@ import net.minecraft.item.SwordItem;
 
 public class SapphireSwordItem extends SwordItem {
     public SapphireSwordItem() {
-        super(ToolMaterialBase.of(1000, 0.0F, 6.0F, 0, 20), 3, -2.0F, new Settings());
+        super(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 20), 3, -2.0F, new Settings());
     }
 
     @Override

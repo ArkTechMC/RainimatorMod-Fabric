@@ -40,7 +40,7 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
             new BossSpawnRecipe("null_like", ModItems.BAO_ZHU, ModItems.NULL_LIKE_SPAWN_EGG),
             new BossSpawnRecipe("naeus", ModItems.WARRIOR_HEART, ModItems.NAEUS_SPAWN_EGG),
             new BossSpawnRecipe("ciara", ModItems.ICE_HEART, ModItems.CIARA_SPAWN_EGG),
-            new BossSpawnRecipe("dark_shield", ModItems.ENDER_HEART, ModItems.DARK_SHIELD_SPAWN_EGG),
+            new BossSpawnRecipe("ceris", ModItems.ENDER_HEART, ModItems.CERIS_SPAWN_EGG),
             new BossSpawnRecipe("patrick", ModItems.MAGIC_STARD, ModItems.PATRICK_SPAWN_EGG),
             new BossSpawnRecipe("blackbone", ModItems.NETHERITE_WITHER_BONE, ModItems.BLACKBONE_SPAWN_EGG),
             new BossSpawnRecipe("abigail", ModItems.UNDER_FLOWER, ModItems.ABIGAIL_SPAWN_EGG)

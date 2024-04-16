@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.item.tool;
 
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -20,7 +20,7 @@ import net.minecraft.world.WorldAccess;
 
 public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     public HerobrineDiamondPickaxeItem() {
-        super(ToolMaterialBase.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, new Settings().fireproof());
     }
 
     @Override

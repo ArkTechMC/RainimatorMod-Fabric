@@ -1,10 +1,10 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class EnderBigSwordItem extends SwordItemBase implements Trinket {
     public EnderBigSwordItem() {
-        super(ToolMaterialBase.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
     }
 
     @Override

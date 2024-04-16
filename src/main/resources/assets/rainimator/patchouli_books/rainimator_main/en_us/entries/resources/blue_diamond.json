@@ -1,0 +1,14 @@
+{
+  "name": "蓝钻石",
+  "icon": "rainimator:blue_diamond",
+  "category": "rainimator:resources",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "title": "蓝钻石",
+      "recipe": "rainimator:super_ruby",
+      "text": "一种将红宝石和蓝宝石结合的材料，拥有更加强大的属性"
+    }
+  ],
+  "sortnum": 2
+}

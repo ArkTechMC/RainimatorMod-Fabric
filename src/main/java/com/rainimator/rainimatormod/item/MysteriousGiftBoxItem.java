@@ -1,9 +1,9 @@
 package com.rainimator.rainimatormod.item;
 
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.ItemBase;
-import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;

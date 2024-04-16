@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item;
 
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import com.rainimator.rainimatormod.gui.EnderBookSkillScreen;
-import com.rainimator.rainimatormod.registry.util.ItemBase;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;

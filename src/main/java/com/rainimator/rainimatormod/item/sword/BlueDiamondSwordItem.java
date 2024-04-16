@@ -1,13 +1,16 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.*;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.SwordItemBase;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.DamageUtil;
-import com.rainimator.rainimatormod.util.*;
+import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.*;
@@ -35,7 +38,7 @@ import java.util.List;
 
 public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlueDiamondSwordItem() {
-        super(ToolMaterialBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override
@@ -93,15 +96,9 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback = () -> {
                             if (entityiterator.isAlive()) {
-                                if (world instanceof ServerWorld _level) {
-                                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                    if (entityToSpawn != null) {
-                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ())));
-                                        entityToSpawn.setCosmetic(true);
-                                        _level.spawnEntity(entityToSpawn);
-                                    }
-                                }
-                                world.setBlockState(new BlockPos((int) entityiterator.getX(), (int) entityiterator.getY(), (int) entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                                if (world instanceof ServerWorld _level)
+                                    EntityUtil.lightening(_level, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ());
+                                world.setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
                                 entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5);
                             }
                         };

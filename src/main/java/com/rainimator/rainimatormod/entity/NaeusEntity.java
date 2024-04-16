@@ -1,14 +1,16 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.render.Stage;
+import com.iafenvoy.mcrconvertlib.world.EntityUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
-import com.rainimator.rainimatormod.util.RandomHelper;
-import com.rainimator.rainimatormod.util.SoundUtil;
-import com.rainimator.rainimatormod.util.Stage;
-import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -33,11 +35,10 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 
 public class NaeusEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider("naeus");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"naeus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS);
 
     public NaeusEntity(EntityType<NaeusEntity> type, World world) {
@@ -147,29 +148,15 @@ public class NaeusEntity extends MonsterEntityBase {
 
                 Runnable callback = () -> {
                     BlockPos pos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusEntity.this)).getBlockPos();
-                    if (this.getWorld() instanceof ServerWorld _level) {
-                        LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                        if (entityToSpawn != null) {
-                            entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos.getZ())));
-                            entityToSpawn.setCosmetic(true);
-                            _level.spawnEntity(entityToSpawn);
-                        }
-                    }
-
-                    this.getWorld().setBlockState(new BlockPos(pos.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                    if (this.getWorld() instanceof ServerWorld _level)
+                        EntityUtil.lightening(_level, pos.getX(), y, pos.getZ());
+                    this.getWorld().setBlockState(VecUtil.createBlockPos(pos.getX(), y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
                 };
                 Timeout.create(50, () -> {
                     BlockPos pos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusEntity.this)).getBlockPos();
-                    if (this.getWorld() instanceof ServerWorld _level) {
-                        LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                        if (entityToSpawn != null) {
-                            entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos.getZ())));
-                            entityToSpawn.setCosmetic(true);
-                            _level.spawnEntity(entityToSpawn);
-                        }
-                    }
-
-                    this.getWorld().setBlockState(new BlockPos(pos.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                    if (this.getWorld() instanceof ServerWorld _level)
+                        EntityUtil.lightening(_level, pos.getX(), y, pos.getZ());
+                    this.getWorld().setBlockState(VecUtil.createBlockPos(pos.getX(), y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
                     Timeout.create(2, callback);
                     Timeout.create(4, callback);
                     Timeout.create(6, callback);
@@ -233,10 +220,10 @@ public class NaeusEntity extends MonsterEntityBase {
     public void baseTick() {
         super.baseTick();
         double y = this.getY();
-        if (this.getWorld() instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, this.getWorld()
-                    .raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(-1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos().getX(), y + 1.4D, this.getWorld()
-                    .raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(-1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos().getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
+        if (this.getWorld() instanceof ServerWorld _level) {
+            BlockPos blockPos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(-1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos();
+            _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, blockPos.getX(), y + 1.4D, blockPos.getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
+        }
         if (this.getHealth() <= 75.0F) {
             if (!this.getWorld().isClient())
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));

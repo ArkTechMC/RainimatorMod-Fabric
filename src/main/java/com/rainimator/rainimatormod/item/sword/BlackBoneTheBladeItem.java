@@ -1,11 +1,16 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
+import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
+import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
-import com.rainimator.rainimatormod.registry.util.ToolMaterialBase;
-import com.rainimator.rainimatormod.util.*;
+import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
@@ -22,7 +27,7 @@ import net.minecraft.world.World;
 
 public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
     public BlackBoneTheBladeItem() {
-        super(ToolMaterialBase.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, new Settings().fireproof());
     }
 
     @Override
