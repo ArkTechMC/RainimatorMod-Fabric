@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
@@ -48,9 +49,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
-
 public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEntity {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"him_1", "him_2").setEyeTextureId("him_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"him_1", "him_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private final Stage stage;
     private boolean hasSpawnBlackBone = false;
@@ -76,6 +76,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
         }
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

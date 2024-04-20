@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.render.Stage;
@@ -25,7 +26,6 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-
 public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hilda");
 
@@ -36,6 +36,7 @@ public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SHIELD));
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

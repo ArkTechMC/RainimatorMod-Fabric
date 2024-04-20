@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
@@ -35,7 +36,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class CerisEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"ceris").setEyeTextureId("ceris_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"ceris").setEyeTextureId("textures/entities/ceris_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS);
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
@@ -45,6 +46,7 @@ public class CerisEntity extends MonsterEntityBase {
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDER_BIG_SWORD));
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);

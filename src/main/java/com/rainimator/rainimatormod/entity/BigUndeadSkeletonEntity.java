@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.render.Stage;
@@ -32,6 +33,7 @@ public class BigUndeadSkeletonEntity extends MonsterEntityBase {
         this.setPersistent();
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

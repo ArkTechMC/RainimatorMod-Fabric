@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
@@ -25,7 +26,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class DarkZombieEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("dark_zombie_eye");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("textures/entities/dark_zombie_eye.png");
 
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -35,6 +36,7 @@ public class DarkZombieEntity extends MonsterEntityBase {
         this.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

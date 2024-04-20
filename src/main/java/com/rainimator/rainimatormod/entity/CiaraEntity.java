@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
@@ -36,6 +37,7 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.THE_BLUE_DAGGER));
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

@@ -45,6 +45,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    //AnnotationLib
+    modImplementation "com.iafenvoy:annotationlib:${annotationlib_version}"
+
     //McrConvertLib
     modImplementation "com.iafenvoy:mcrconvertlib:${mcrconvertlib_version}"
 

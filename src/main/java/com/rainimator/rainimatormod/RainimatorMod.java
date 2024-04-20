@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 
 public class RainimatorMod implements ModInitializer {
     public static final String MOD_ID = "rainimator";
-    public static final String MOD_NAME = "Rainimator";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     @Override
@@ -30,7 +29,6 @@ public class RainimatorMod implements ModInitializer {
         ModParticles.registerParticles();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
-        ModCreativeTabs.load();
         ServerNetworkHandler.register();
         FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0)));
     }

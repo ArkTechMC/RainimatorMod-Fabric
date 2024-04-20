@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.render.Stage;
@@ -39,12 +40,13 @@ public class PiglinKingZombieEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GLUTTON_SLEDGEHAMMER));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GLUTTON_SLEDGE_HAMMER));
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.GLUTTON_HELMET));
         this.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.GOLDEN_LEGGINGS));
         this.equipStack(EquipmentSlot.FEET, new ItemStack(Items.GOLDEN_BOOTS));
     }
 
+    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
