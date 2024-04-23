@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.util;
 
+@SuppressWarnings("unused")
 public enum Episode {
     None("None", Type.None),
     Unknown("Unknown", Type.None),

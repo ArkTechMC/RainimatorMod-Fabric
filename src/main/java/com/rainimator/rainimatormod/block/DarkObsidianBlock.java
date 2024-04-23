@@ -43,12 +43,6 @@ public class DarkObsidianBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
-//TODO
-//    @Environment(EnvType.CLIENT)
-//    public static void registerRenderLayer() {
-//        RenderLayers.setRenderLayer(ModBlocks.DARK_OBSIDIAN_BLOCK, renderType -> (renderType == RenderType.cutout()));
-//    }
-
     public static synchronized void initConsumers() {
         consumers.put(ModItems.LIGHT_HEART, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.HEROBRINE, world, x, y, z);

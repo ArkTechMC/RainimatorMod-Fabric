@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.entity;
 
-import com.iafenvoy.annotationlib.annotation.AttributeBuilder;
+import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.render.Stage;

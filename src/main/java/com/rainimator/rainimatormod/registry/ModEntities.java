@@ -1,8 +1,9 @@
 package com.rainimator.rainimatormod.registry;
 
+import com.iafenvoy.annotationlib.annotation.CallbackHandler;
 import com.iafenvoy.annotationlib.annotation.ModId;
-import com.iafenvoy.annotationlib.annotation.ObjectReg;
-import com.iafenvoy.annotationlib.api.IAnnotationLibEntryPoint;
+import com.iafenvoy.annotationlib.annotation.registration.RegisterAll;
+import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.annotationlib.util.EntityHelper;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.entity.*;
@@ -24,102 +25,55 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
 
 @ModId(RainimatorMod.MOD_ID)
-public class ModEntities implements IAnnotationLibEntryPoint {
-    @ObjectReg
+@RegisterAll
+public class ModEntities implements IAnnotatedRegistryEntry {
     public static final EntityType<HerobrineEntity> HEROBRINE = EntityHelper.build(HerobrineEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<CerisEntity> CERIS = EntityHelper.build(CerisEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<ZombiesEntity> ZOMBIES = EntityHelper.build(ZombiesEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<NaeusEntity> NAEUS = EntityHelper.build(NaeusEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<RainEntity> RAIN = EntityHelper.build(RainEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<RainEntityProjectile> RAIN_PROJECTILE = EntityHelper.build(RainEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<AbigailEntity> ABIGAIL = EntityHelper.build(AbigailEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<AbigailEntityProjectile> ABIGAIL_PROJECTILE = EntityHelper.build(AbigailEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<PatrickEntity> PATRICK = EntityHelper.build(PatrickEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<PatrickEntityProjectile> PATRICK_PROJECTILE = EntityHelper.build(PatrickEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<BlackBoneEntity> BLACKBONE = EntityHelper.build(BlackBoneEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<HogsworthEntity> HOGSWORTH = EntityHelper.build(HogsworthEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<SoldiersEntity> SOLDIERS = EntityHelper.build(SoldiersEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<SoldiersEntityProjectile> SOLDIERS_PROJECTILE = EntityHelper.build(SoldiersEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<CiaraEntity> CIARA = EntityHelper.build(CiaraEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<CiaraEntityProjectile> CIARA_PROJECTILE = EntityHelper.build(CiaraEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<HildaEntity> HILDA = EntityHelper.build(HildaEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<HildaEntityProjectile> HILDA_PROJECTILE = EntityHelper.build(HildaEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<WitheredSkeletonsEntity> WITHERED_SKELETONS = EntityHelper.build(WitheredSkeletonsEntity::new, SpawnGroup.MONSTER, 32, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<EndStaffEntity> END_STAFF = EntityHelper.build(EndStaffEntity::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<VordusEntity> VORDUS = EntityHelper.build(VordusEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<DarkZombieEntity> DARK_ZOMBIE = EntityHelper.build(DarkZombieEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<DarkShieldEntity> DARK_SHIELD = EntityHelper.build(DarkShieldEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<WitherShieldEntity> WITHER_SHIELD = EntityHelper.build(WitherShieldEntity::new, SpawnGroup.MONSTER, 32, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<SkeletonSnowEntity> SKELETON_SNOW = EntityHelper.build(SkeletonSnowEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<ArabellaEntity> ARABELLA = EntityHelper.build(ArabellaEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<AzaleaEntity> AZALEA = EntityHelper.build(AzaleaEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<NullLikeEntity> NULL_LIKE = EntityHelper.build(NullLikeEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<ZombiesPiglinKingEntity> ZOMBIE_PIGLIN_KING = EntityHelper.build(ZombiesPiglinKingEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<PiglinKingZombiesEntity> PIGLIN_KING_ZOMBIES = EntityHelper.build(PiglinKingZombiesEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<PiglinKingZombieEntity> PIGLIN_KING_ZOMBIE = EntityHelper.build(PiglinKingZombieEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<PiglinCommanderEntity> PIGLIN_COMMANDER = EntityHelper.build(PiglinCommanderEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<DaryllEntity> DARYLL = EntityHelper.build(DaryllEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<DaryllEntityProjectile> DARYLL_PROJECTILE = EntityHelper.build(DaryllEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    @ObjectReg
     public static final EntityType<NaeusKingEntity> NAEUS_KING = EntityHelper.build(NaeusKingEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<TuskEntity> TUSK = EntityHelper.build(TuskEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<BrotsEntity> BROTS = EntityHelper.build(BrotsEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<ZombiePiglinArtEntity> ZOMBIE_PIGLIN_ART = EntityHelper.build(ZombiePiglinArtEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<MutatedEntity> MUTATED = EntityHelper.build(MutatedEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<NamtarEntity> NAMTAR = EntityHelper.build(NamtarEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<AgethaEntity> AGETHA = EntityHelper.build(AgethaEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<TricerEntity> TRICER = EntityHelper.build(TricerEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<BigUndeadSkeletonEntity> BIG_UNDEAD_SKELETON = EntityHelper.build(BigUndeadSkeletonEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<ArcherEntity> ARCHER = EntityHelper.build(ArcherEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<GigaBoneEntity> GIGABONE = EntityHelper.build(GigaBoneEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<KlausEntity> KLAUS = EntityHelper.build(KlausEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<Klaus2Entity> KLAUS_2 = EntityHelper.build(Klaus2Entity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
-    @ObjectReg
     public static final EntityType<KralosEntity> KRALOS = EntityHelper.build(KralosEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
 
     public static void init() {
@@ -153,6 +107,7 @@ public class ModEntities implements IAnnotationLibEntryPoint {
                 world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
     }
 
+    @CallbackHandler
     public static void addLivingEntityToBiomes() {
         BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.AGETHA, 10, 1, 1);
         BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.ARCHER, 10, 1, 1);

@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
@@ -154,7 +155,7 @@ public class ModTrades {
 
         @Nullable
         @Override
-        public TradeOffer create(Entity entity, net.minecraft.util.math.random.Random random) {
+        public TradeOffer create(Entity entity, Random random) {
             if (this.input2 == null)
                 return new TradeOffer(this.input1, this.output, this.maxUses, this.experience, this.multiplier);
             return new TradeOffer(this.input1, this.input2, this.output, this.maxUses, this.experience, this.multiplier);

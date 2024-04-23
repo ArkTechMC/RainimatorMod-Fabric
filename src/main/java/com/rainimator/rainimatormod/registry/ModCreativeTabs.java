@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.registry;
 
 import com.iafenvoy.annotationlib.annotation.ModId;
-import com.iafenvoy.annotationlib.annotation.ObjectReg;
-import com.iafenvoy.annotationlib.api.IAnnotationLibEntryPoint;
+import com.iafenvoy.annotationlib.annotation.registration.ObjectReg;
+import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.annotationlib.api.ItemGroupApi;
 import com.rainimator.rainimatormod.RainimatorMod;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @ModId(RainimatorMod.MOD_ID)
 @SuppressWarnings("unused")
-public class ModCreativeTabs implements IAnnotationLibEntryPoint {
+public class ModCreativeTabs implements IAnnotatedRegistryEntry {
     @ObjectReg
     public static final ItemGroup main = FabricItemGroup.builder().entries(((displayContext, entries) -> ItemGroupApi.addItemToGroup(new Identifier(RainimatorMod.MOD_ID, "main"), entries))).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator")).icon(() -> new ItemStack(ModItems.WARRIOR_HEART)).build();
     @ObjectReg

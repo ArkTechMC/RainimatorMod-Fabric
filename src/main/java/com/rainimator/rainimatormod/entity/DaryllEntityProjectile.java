@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-@Environment(EnvType.CLIENT)
 public class DaryllEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
 
     public DaryllEntityProjectile(EntityType<? extends DaryllEntityProjectile> type, World world) {

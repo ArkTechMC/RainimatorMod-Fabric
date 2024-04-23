@@ -1,7 +1,6 @@
 package com.rainimator.rainimatormod;
 
 import com.mojang.logging.LogUtils;
-import com.rainimator.rainimatormod.network.ServerNetworkHandler;
 import com.rainimator.rainimatormod.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
@@ -23,13 +22,10 @@ public class RainimatorMod implements ModInitializer {
             System.exit(1);
         }
         ModEntities.init();
-        ModEntities.addLivingEntityToBiomes();
         ModItems.init();
         ModFeatures.addFeatures();
-        ModParticles.registerParticles();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
-        ServerNetworkHandler.register();
         FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0)));
     }
 }

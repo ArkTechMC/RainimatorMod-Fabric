@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-@Environment(EnvType.CLIENT)
 public class RainEntityProjectile
         extends PersistentProjectileEntity implements FlyingItemEntity {
 

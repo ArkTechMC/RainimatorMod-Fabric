@@ -1,11 +1,13 @@
 package com.rainimator.rainimatormod.item;
 
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
-import com.rainimator.rainimatormod.gui.EnderBookSkillScreen;
-import net.minecraft.client.MinecraftClient;
+import com.rainimator.rainimatormod.util.ModConstants;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
@@ -28,8 +30,8 @@ public class EnderBookItem extends ItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if(world.isClient())
-            MinecraftClient.getInstance().setScreen(new EnderBookSkillScreen(entity.getPos(), Text.literal("EnderBookSkill")));
+        if (!world.isClient() && entity instanceof ServerPlayerEntity serverPlayer)
+            ServerPlayNetworking.send(serverPlayer, ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create());
         return ar;
     }
 }

@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-@Environment(EnvType.CLIENT)
 public class HildaEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
 
     public HildaEntityProjectile(EntityType<? extends HildaEntityProjectile> type, World world) {

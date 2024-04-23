@@ -15,8 +15,7 @@ import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class EnderBookSkillScreen extends Screen {
-
-    public EnderBookSkillScreen(Vec3d pos, Text text) {
+    public EnderBookSkillScreen(Text text) {
         super(text);
     }
 
@@ -36,14 +35,8 @@ public class EnderBookSkillScreen extends Screen {
         int leftPos = (this.width - 300) / 2;
         int topPos = (this.height - 100) / 2;
 
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 32, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/overworld.png"), 64, 128, e -> {
-            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.OVERWORLD.getValue().toString()));
-        }));
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 118, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/nether.png"), 64, 128, e -> {
-            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.NETHER.getValue().toString()));
-        }));
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 203, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/end.png"), 64, 128, e -> {
-            ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.END.getValue().toString()));
-        }));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 32, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/overworld.png"), 64, 128, e -> ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.OVERWORLD.getValue().toString()))));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 118, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/nether.png"), 64, 128, e -> ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.NETHER.getValue().toString()))));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 203, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/end.png"), 64, 128, e -> ClientPlayNetworking.send(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create().writeString(World.END.getValue().toString()))));
     }
 }

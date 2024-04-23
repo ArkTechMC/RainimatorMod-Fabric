@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-@Environment(EnvType.CLIENT)
 public class CiaraEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
 
     public CiaraEntityProjectile(EntityType<? extends CiaraEntityProjectile> type, World world) {

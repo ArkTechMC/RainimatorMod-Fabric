@@ -1,7 +1,11 @@
 package com.rainimator.rainimatormod.registry;
 
-import com.iafenvoy.annotationlib.annotation.*;
-import com.iafenvoy.annotationlib.api.IAnnotationLibEntryPoint;
+import com.iafenvoy.annotationlib.annotation.ModId;
+import com.iafenvoy.annotationlib.annotation.TargetId;
+import com.iafenvoy.annotationlib.annotation.registration.Group;
+import com.iafenvoy.annotationlib.annotation.registration.ItemReg;
+import com.iafenvoy.annotationlib.annotation.registration.Link;
+import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.annotationlib.util.TargetType;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
@@ -25,7 +29,7 @@ import net.minecraft.util.Rarity;
 
 @ModId(RainimatorMod.MOD_ID)
 @SuppressWarnings("unused")
-public class ModItems implements IAnnotationLibEntryPoint {
+public class ModItems implements IAnnotatedRegistryEntry {
     //resources
     @ItemReg(group = @TargetId("item"))
     public static final Item SUPER_RUBY = new ItemBase(Item.Settings::fireproof);
@@ -193,7 +197,7 @@ public class ModItems implements IAnnotationLibEntryPoint {
     public static final Item SAPPHIRE_LEGGINGS = new SapphireArmorItem.Leggings();
     @ItemReg(group = @TargetId("main"))
     public static final Item SAPPHIRE_BOOTS = new SapphireArmorItem.Boots();
-    @ItemReg(group = @TargetId("main"))
+    @ItemReg(group = @TargetId("main"), value = "magic_hat")
     public static final Item MAGIC_HAT_HELMET = new MagicHatItem.Helmet();
     @ItemReg(group = @TargetId("main"))
     public static final Item NETHER_THE_CROWN_HELMET = new NetherTheCrownItem.Helmet();
