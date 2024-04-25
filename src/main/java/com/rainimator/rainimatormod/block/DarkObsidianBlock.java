@@ -125,13 +125,11 @@ public class DarkObsidianBlock extends Block {
         return true;
     }
 
-    @Deprecated
     @Override
     public int getOpacity(BlockState state, BlockView worldIn, BlockPos pos) {
         return 0;
     }
 
-    @Deprecated
     @Override
     public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
@@ -147,19 +145,16 @@ public class DarkObsidianBlock extends Block {
         return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
-    @Deprecated
     @Override
     public BlockState rotate(BlockState state, BlockRotation rot) {
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
-    @Deprecated
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.get(FACING)));
     }
 
-    @Deprecated
     @Override
     public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
@@ -168,7 +163,6 @@ public class DarkObsidianBlock extends Block {
         return Collections.singletonList(new ItemStack(this, 1));
     }
 
-    @Deprecated
     @Override
     public ActionResult onUse(BlockState blockstate, World world, BlockPos pos, PlayerEntity entity, Hand hand, BlockHitResult hit) {
         super.onUse(blockstate, world, pos, entity, hand, hit);

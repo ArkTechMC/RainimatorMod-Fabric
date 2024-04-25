@@ -1,14 +1,11 @@
 package com.rainimator.rainimatormod;
 
 import com.mojang.logging.LogUtils;
+import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
+import com.rainimator.rainimatormod.config.ModConfig;
 import com.rainimator.rainimatormod.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
-import net.minecraft.recipe.Ingredient;
 import org.slf4j.Logger;
 
 public class RainimatorMod implements ModInitializer {
@@ -26,6 +23,8 @@ public class RainimatorMod implements ModInitializer {
         ModFeatures.addFeatures();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
-        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0)));
+        ModConfig.load();
+        FabricApiCall.run();
+        TrinketsRegistry.registerCommon();
     }
 }

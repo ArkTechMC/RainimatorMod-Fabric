@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.renderer.armor;
 
-import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.renderer.model.ModelMagic;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,7 +31,7 @@ public class MagicHatRenderer implements ArmorRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier(RainimatorMod.MOD_ID, "magic_hat");
+        return new Identifier("textures/models/armor/magic_hat.png");
     }
 
     @Override

@@ -51,6 +51,5 @@ public class EnderBookActionHandler implements IAnnotatedNetworkEntry, ServerPla
                 player.sendMessage(Text.translatable("item.rainimator.ender_book.success"), false);
             }
         }
-
     }
 }

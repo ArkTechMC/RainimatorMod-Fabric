@@ -36,7 +36,6 @@ public class BlackGunItem extends ItemBase {
         return true;
     }
 
-    @Deprecated
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot) {
         if (equipmentSlot == EquipmentSlot.MAINHAND) {

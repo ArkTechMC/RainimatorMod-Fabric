@@ -44,7 +44,6 @@ public class EndStaffItem extends ItemBase {
         return 72000;
     }
 
-    @Deprecated
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
         if (slot == EquipmentSlot.MAINHAND) {

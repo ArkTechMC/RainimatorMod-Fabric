@@ -9,6 +9,7 @@ import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
@@ -67,7 +68,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
+        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

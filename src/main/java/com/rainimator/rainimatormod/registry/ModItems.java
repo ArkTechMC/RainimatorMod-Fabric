@@ -19,6 +19,7 @@ import com.rainimator.rainimatormod.item.shield.NetheriteShieldItem;
 import com.rainimator.rainimatormod.item.shield.SnowShieldItem;
 import com.rainimator.rainimatormod.item.sword.*;
 import com.rainimator.rainimatormod.item.tool.*;
+import com.rainimator.rainimatormod.item.trinket.WingsOfSalvationItem;
 import com.rainimator.rainimatormod.registry.util.MusicItemBase;
 import com.rainimator.rainimatormod.registry.util.SpawnEggBase;
 import com.rainimator.rainimatormod.util.Episode;
@@ -124,7 +125,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item BLUE_DIAMOND_SWORD = new BlueDiamondSwordItem();
     @ItemReg(group = @TargetId("main"))
-    public static final Item WINGS_OF_SALVATION = new ElytraItem(new Item.Settings().maxDamage(3000));
+    public static final WingsOfSalvationItem WINGS_OF_SALVATION = new WingsOfSalvationItem();
     //axe
     @ItemReg(group = @TargetId("main"))
     public static final Item DIAMOND_HATCHET = new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings());

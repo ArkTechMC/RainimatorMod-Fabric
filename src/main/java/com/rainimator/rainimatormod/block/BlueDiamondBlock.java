@@ -26,7 +26,6 @@ public class BlueDiamondBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
-    @Deprecated
     @Override
     public int getOpacity(BlockState state, BlockView worldIn, BlockPos pos) {
         return 15;
@@ -42,19 +41,16 @@ public class BlueDiamondBlock extends Block {
         return this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
-    @Deprecated
     @Override
     public BlockState rotate(BlockState state, BlockRotation rot) {
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
-    @Deprecated
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.get(FACING)));
     }
 
-    @Deprecated
     @Override
     public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);

@@ -17,6 +17,6 @@ public class RainimatorModClient implements ClientModInitializer {
         ModEntities.registerEntityRenderers();
         ModParticles.registerParticles();
         ModRenderers.registerRenderers();
-        TrinketsRegistry.register();
+        TrinketsRegistry.registerClient();
     }
 }

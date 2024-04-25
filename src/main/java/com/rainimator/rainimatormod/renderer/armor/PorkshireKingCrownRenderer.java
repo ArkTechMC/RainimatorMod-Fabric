@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.renderer.armor;
 
-import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.renderer.model.ModelPorkshireKingCrown;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -33,7 +32,7 @@ public class PorkshireKingCrownRenderer implements ArmorRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier(RainimatorMod.MOD_ID, "porkshire_king_crown");
+        return new Identifier("textures/models/armor/porkshire_king_crown.png");
     }
 
     @Override

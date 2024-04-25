@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.renderer.armor;
 
-import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.renderer.model.ModelNetherKing2;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,7 +31,7 @@ public class PiglinKingCrownRenderer implements ArmorRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier(RainimatorMod.MOD_ID, "piglin_king_crown");
+        return new Identifier("textures/models/armor/piglin_king_crown.png");
     }
 
     @Override

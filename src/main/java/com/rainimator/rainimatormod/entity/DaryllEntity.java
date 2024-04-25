@@ -4,6 +4,7 @@ import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -51,12 +52,12 @@ public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2D, false) {
+        Fraction.findAndAddTarget(this);
+        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
         });
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
         this.goalSelector.add(3, new WanderAroundGoal(this, 1.0D));
         this.targetSelector.add(4, new RevengeGoal(this));
         this.goalSelector.add(5, new LongDoorInteractGoal(this, true));

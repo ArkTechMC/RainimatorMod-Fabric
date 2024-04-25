@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.renderer.armor;
 
-import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.renderer.model.ModelCustomModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,7 +31,7 @@ public class GluttonArmorHelmetRenderer implements ArmorRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier(RainimatorMod.MOD_ID, "textures/models/armor/glutton_armors_layer_1.png");
+        return new Identifier("textures/models/armor/glutton_armors_layer_1.png");
     }
 
     @Override

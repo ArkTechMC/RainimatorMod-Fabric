@@ -41,7 +41,6 @@ public class RubyPickaxeItem extends ItemBase {
         return 10;
     }
 
-    @Deprecated
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot) {
         if (equipmentSlot == EquipmentSlot.MAINHAND) {

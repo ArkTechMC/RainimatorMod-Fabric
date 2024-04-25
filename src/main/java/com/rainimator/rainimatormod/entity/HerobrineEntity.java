@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.entity;
 
 import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
-import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
+import com.iafenvoy.mcrconvertlib.item.StagedMonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.render.Stage;
@@ -9,6 +9,7 @@ import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
@@ -25,7 +26,6 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -50,10 +50,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEntity {
+public class HerobrineEntity extends StagedMonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "him_1", "him_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
-    private final Stage stage;
     private boolean hasSpawnBlackBone = false;
 
     public HerobrineEntity(EntityType<HerobrineEntity> herobrineEntityEntityType, World level) {
@@ -61,8 +60,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, World world, Stage stage) {
-        super(type, world, EntityGroup.UNDEAD);
-        this.stage = stage;
+        super(type, world, EntityGroup.UNDEAD, stage);
         this.experiencePoints = 0;
         this.setPersistent();
         switch (stage) {
@@ -93,7 +91,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
+        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, true) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
@@ -184,7 +182,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
         if (world instanceof ServerWorld _level)
             EntityUtil.lightening(_level, this.getX(), this.getY(), this.getZ());
-        if (!world.isClient() && world.getServer() != null && this.stage == Stage.First)
+        if (!world.isClient() && world.getServer() != null && this.getStage() == Stage.First)
             world.getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.stage1"), false);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
@@ -211,7 +209,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
             if (!this.isAlive()) {
                 SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "him_music_boss"));
-                if (this.stage == Stage.First) {
+                if (this.getStage() == Stage.First) {
                     if (this.getHealth() < 50) {
                         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem()) {
                             this.getNavigation().stop();
@@ -293,7 +291,7 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
                         }
                     }
                 }
-            } else if (this.stage == Stage.Second && this.getHealth() <= this.getMaxHealth() / 4 && !this.hasSpawnBlackBone) {
+            } else if (this.getStage() == Stage.Second && this.getHealth() <= this.getMaxHealth() / 4 && !this.hasSpawnBlackBone) {
                 this.hasSpawnBlackBone = true;
                 this.getNavigation().stop();
                 this.requestTeleport(this.getX(), this.getY(), this.getZ());
@@ -351,11 +349,6 @@ public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEn
     public void mobTick() {
         super.mobTick();
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
-    public Stage getStage() {
-        return this.stage;
     }
 
     @Override

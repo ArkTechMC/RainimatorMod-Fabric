@@ -22,13 +22,11 @@ public class DeepslateRubyOreBlock extends Block {
         super(FabricBlockSettings.create().strength(4.0f));
     }
 
-    @Deprecated
     @Override
     public int getOpacity(BlockState state, BlockView worldIn, BlockPos pos) {
         return 15;
     }
 
-    @Deprecated
     @Override
     public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);

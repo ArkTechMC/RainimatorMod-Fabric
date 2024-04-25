@@ -6,6 +6,7 @@ import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.entity.*;
@@ -52,7 +53,7 @@ public class SoldiersEntity extends MonsterEntityBase implements RangedAttackMob
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
+        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

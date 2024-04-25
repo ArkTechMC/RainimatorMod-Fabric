@@ -2,6 +2,8 @@ package com.rainimator.rainimatormod.compat.trinkets;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.renderer.BackItemRenderer;
+import com.rainimator.rainimatormod.renderer.WingsOfSalvationRenderer;
+import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,7 +11,7 @@ import net.minecraft.item.Items;
 
 @Environment(EnvType.CLIENT)
 public class TrinketsRegistry {
-    public static void register() {
+    public static void registerClient() {
         TrinketRendererRegistry.registerRenderer(Items.WOODEN_SWORD, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(Items.STONE_SWORD, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(Items.IRON_SWORD, new BackItemRenderer());
@@ -20,5 +22,10 @@ public class TrinketsRegistry {
         TrinketRendererRegistry.registerRenderer(ModItems.NETHER_SPEAR, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.RAIN_SWORD, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.ABIGAIL_SPEAR, new BackItemRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.WINGS_OF_SALVATION, new WingsOfSalvationRenderer());
+    }
+
+    public static void registerCommon() {
+        TrinketsApi.registerTrinket(ModItems.WINGS_OF_SALVATION, ModItems.WINGS_OF_SALVATION);
     }
 }

@@ -4,6 +4,7 @@ import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -50,21 +51,19 @@ public class TricerEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(1, new PounceAtTargetGoal(this, 0.5F));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, MobEntity.class, false, false));
+        Fraction.findAndAddTarget(this);
+        this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.5F));
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
         });
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
-        this.targetSelector.add(5, new ActiveTargetGoal<>(this, HostileEntity.class, false, false));
-        this.goalSelector.add(6, new WanderAroundGoal(this, 1.0D));
-        this.targetSelector.add(7, new RevengeGoal(this));
-        this.goalSelector.add(8, new LongDoorInteractGoal(this, false));
-        this.goalSelector.add(9, new LongDoorInteractGoal(this, true));
-        this.goalSelector.add(10, new LookAroundGoal(this));
-        this.goalSelector.add(11, new SwimGoal(this));
+        this.goalSelector.add(4, new WanderAroundGoal(this, 1.0D));
+        this.targetSelector.add(5, new RevengeGoal(this));
+        this.goalSelector.add(6, new LongDoorInteractGoal(this, false));
+        this.goalSelector.add(7, new LongDoorInteractGoal(this, true));
+        this.goalSelector.add(8, new LookAroundGoal(this));
+        this.goalSelector.add(9, new SwimGoal(this));
     }
 
     @Override

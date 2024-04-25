@@ -7,6 +7,7 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import net.minecraft.entity.*;
@@ -55,14 +56,14 @@ public class ArabellaEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2D, false) {
+        Fraction.findAndAddTarget(this);
+        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
         });
-        this.goalSelector.add(2, new WanderAroundGoal(this, 1.0D));
-        this.targetSelector.add(3, new RevengeGoal(this));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, false, false));
+        this.goalSelector.add(3, new WanderAroundGoal(this, 1.0D));
+        this.targetSelector.add(4, new RevengeGoal(this));
         this.goalSelector.add(5, new LookAroundGoal(this));
         this.goalSelector.add(6, new SwimGoal(this));
     }

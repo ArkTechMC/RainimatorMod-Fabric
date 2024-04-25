@@ -7,7 +7,6 @@
   ],
   "client": [
     "DrawContextMixin",
-    "PlayerRendererMixin",
     "SkullBlockEntityRendererMixin"
   ],
   "injectors": {
