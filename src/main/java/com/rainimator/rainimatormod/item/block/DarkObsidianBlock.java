@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.block;
+package com.rainimator.rainimatormod.item.block;
 
 import com.iafenvoy.mcrconvertlib.misc.Consumer5;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;

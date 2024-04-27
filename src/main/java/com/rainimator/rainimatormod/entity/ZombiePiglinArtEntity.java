@@ -4,7 +4,7 @@ import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
 import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.fraction.Fraction;
+import com.rainimator.rainimatormod.data.fraction.Fraction;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;

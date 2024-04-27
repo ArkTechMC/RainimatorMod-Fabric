@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.block;
+package com.rainimator.rainimatormod.item.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;

@@ -6,7 +6,7 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.fraction.Fraction;
+import com.rainimator.rainimatormod.data.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import net.minecraft.entity.*;

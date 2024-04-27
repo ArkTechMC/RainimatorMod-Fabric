@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.compat.cca;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.config.ModConfig;
+import com.rainimator.rainimatormod.data.config.ModConfig;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3;
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;

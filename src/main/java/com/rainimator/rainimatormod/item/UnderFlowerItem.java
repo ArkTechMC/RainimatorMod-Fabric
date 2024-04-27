@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

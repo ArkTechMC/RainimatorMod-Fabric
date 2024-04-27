@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.gui;
+package com.rainimator.rainimatormod.renderer.gui;
 
 import com.iafenvoy.mcrconvertlib.misc.ComponentUtil;
 import com.rainimator.rainimatormod.RainimatorMod;

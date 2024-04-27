@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.block;
+package com.rainimator.rainimatormod.item.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 import java.util.Collections;
 import java.util.List;
 
-public class DeepslateRubyOreBlock extends Block {
-    public DeepslateRubyOreBlock() {
+public class DeepslateSapphireOreBlock extends Block {
+    public DeepslateSapphireOreBlock() {
         super(FabricBlockSettings.create().strength(4.0f));
     }
 
@@ -32,7 +32,7 @@ public class DeepslateRubyOreBlock extends Block {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(ModItems.RAW_SAPPHIRE));
+        return Collections.singletonList(new ItemStack(ModItems.RAW_RUBY));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DeepslateRubyOreBlock extends Block {
             for (int i = 1; i <= EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.getMainHandStack()); i++)
                 if (Math.random() < p[i - 1]) {
                     for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_SAPPHIRE));
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_RUBY));
                         entityToSpawn.setPickupDelay(50);
                         world.spawnEntity(entityToSpawn);
                     }
@@ -55,7 +55,7 @@ public class DeepslateRubyOreBlock extends Block {
             for (int i = 1; i <= EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.getOffHandStack()); i++)
                 if (Math.random() < p[i - 1]) {
                     for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_SAPPHIRE));
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_RUBY));
                         entityToSpawn.setPickupDelay(50);
                         world.spawnEntity(entityToSpawn);
                     }

@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.block;
+package com.rainimator.rainimatormod.item.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

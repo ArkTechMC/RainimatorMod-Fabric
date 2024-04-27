@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item.trinket;
 
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
-import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;

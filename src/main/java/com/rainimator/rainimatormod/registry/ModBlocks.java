@@ -4,7 +4,7 @@ import com.iafenvoy.annotationlib.annotation.ModId;
 import com.iafenvoy.annotationlib.annotation.registration.RegisterAll;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.block.*;
+import com.rainimator.rainimatormod.item.block.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SkullBlock;

@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.config;
+package com.rainimator.rainimatormod.data.config;
 
 import com.iafenvoy.annotationlib.annotation.config.ConfigFile;
 import com.iafenvoy.annotationlib.api.AnnotationApi;

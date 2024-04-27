@@ -4,7 +4,7 @@ import com.iafenvoy.annotationlib.annotation.TargetId;
 import com.iafenvoy.annotationlib.annotation.network.NetworkHandler;
 import com.iafenvoy.annotationlib.api.IAnnotatedNetworkEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.gui.EnderBookSkillScreen;
+import com.rainimator.rainimatormod.renderer.gui.EnderBookSkillScreen;
 import com.rainimator.rainimatormod.util.ModConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

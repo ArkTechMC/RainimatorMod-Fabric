@@ -6,8 +6,8 @@ import com.iafenvoy.annotationlib.annotation.command.Permission;
 import com.iafenvoy.annotationlib.api.IAnnotatedCommandEntry;
 import com.mojang.brigadier.context.CommandContext;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.config.ManaConfig;
-import com.rainimator.rainimatormod.config.ModConfig;
+import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.data.config.ModConfig;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 

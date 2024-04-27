@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.item.tool;
 
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.block.Blocks;

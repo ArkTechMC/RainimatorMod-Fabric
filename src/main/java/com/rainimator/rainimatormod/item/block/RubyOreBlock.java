@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.block;
+package com.rainimator.rainimatormod.item.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 import java.util.Collections;
 import java.util.List;
 
-public class DeepslateSapphireOreBlock extends Block {
-    public DeepslateSapphireOreBlock() {
+public class RubyOreBlock extends Block {
+    public RubyOreBlock() {
         super(FabricBlockSettings.create().strength(4.0f));
     }
 

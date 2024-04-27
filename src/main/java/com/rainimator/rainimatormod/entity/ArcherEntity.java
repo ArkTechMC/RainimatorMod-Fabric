@@ -6,7 +6,7 @@ import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.fraction.Fraction;
+import com.rainimator.rainimatormod.data.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;

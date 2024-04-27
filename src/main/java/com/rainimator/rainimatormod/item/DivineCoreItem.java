@@ -2,7 +2,7 @@ package com.rainimator.rainimatormod.item;
 
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

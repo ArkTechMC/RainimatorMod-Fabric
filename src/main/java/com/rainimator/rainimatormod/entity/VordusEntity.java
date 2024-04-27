@@ -2,7 +2,7 @@ package com.rainimator.rainimatormod.entity;
 
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.fraction.Fraction;
+import com.rainimator.rainimatormod.data.fraction.Fraction;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;

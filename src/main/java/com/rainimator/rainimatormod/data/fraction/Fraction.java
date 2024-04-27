@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.fraction;
+package com.rainimator.rainimatormod.data.fraction;
 
 import com.rainimator.rainimatormod.entity.*;
 import com.rainimator.rainimatormod.registry.ModBanners;
