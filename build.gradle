@@ -31,8 +31,8 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
     maven {
-        name "iAFEnvoy Maven RepositoriesReleases"
-        url "https://maven.iafenvoy.com"
+        name "iAFEnvoy Maven Repositories Releases"
+        url "https://maven.iafenvoy.com/releases"
     }
 }
 
@@ -45,10 +45,10 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    //AnnotationLib
+    // AnnotationLib
     modImplementation "com.iafenvoy:annotationlib:${annotationlib_version}"
 
-    //McrConvertLib
+    // McrConvertLib
     modImplementation "com.iafenvoy:mcrconvertlib:${mcrconvertlib_version}"
 
     // Trinkets
@@ -58,8 +58,11 @@ dependencies {
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 
-    //Patchouli
+    // Patchouli
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
+
+    // Cardinal-Components-API
+    // Don't need this. Trinkets has embedded version 5.2.0.
 }
 
 processResources {

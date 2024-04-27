@@ -1,14 +1,11 @@
 package com.rainimator.rainimatormod.fraction;
 
-import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.rainimator.rainimatormod.entity.*;
 import com.rainimator.rainimatormod.registry.ModBanners;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
 import java.util.List;

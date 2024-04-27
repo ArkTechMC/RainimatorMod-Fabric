@@ -18,8 +18,6 @@ public class RainimatorMod implements ModInitializer {
             LOGGER.error("[annoying_villagersbychentu] failed to load");
             System.exit(1);
         }
-        ModEntities.init();
-        ModItems.init();
         ModFeatures.addFeatures();
         ModSounds.registerSounds();
         ModTrades.registerTrades();

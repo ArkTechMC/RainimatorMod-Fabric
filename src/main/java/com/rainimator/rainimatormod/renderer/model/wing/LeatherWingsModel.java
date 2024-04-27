@@ -160,10 +160,10 @@ public class LeatherWingsModel<T extends LivingEntity> extends WingEntityModel<T
     @Override
     public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         super.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-        if(state == State.IDLE || state == State.CROUCHING)
-            leftWing03.pitch = (float) Math.toRadians(-60);
-        if(state == State.FLYING)
-            leftWing03.pitch = (float) Math.toRadians(-32.5);
-        rightWing03.pitch = leftWing03.pitch;
+        if(this.state == State.IDLE || this.state == State.CROUCHING)
+            this.leftWing03.pitch = (float) Math.toRadians(-60);
+        if(this.state == State.FLYING)
+            this.leftWing03.pitch = (float) Math.toRadians(-32.5);
+        this.rightWing03.pitch = this.leftWing03.pitch;
     }
 }

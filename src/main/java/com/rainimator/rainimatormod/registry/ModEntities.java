@@ -76,6 +76,7 @@ public class ModEntities implements IAnnotatedRegistryEntry {
     public static final EntityType<Klaus2Entity> KLAUS_2 = EntityHelper.build(Klaus2Entity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final EntityType<KralosEntity> KRALOS = EntityHelper.build(KralosEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
 
+    @CallbackHandler
     public static void init() {
         SpawnRestriction.register(ZOMBIES, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));

@@ -10,6 +10,8 @@ public class ModConfig {
     private static ModConfig INSTANCE = new ModConfig();
     private static final String CONFIG_PATH = "./config/" + RainimatorMod.MOD_ID + "/";
     public FractionType fraction = FractionType.OFF;
+    public int manaHudX = 0;
+    public int manaHudY = 0;
 
     public ModConfig() {
     }

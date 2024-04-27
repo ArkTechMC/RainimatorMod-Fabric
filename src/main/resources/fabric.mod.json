@@ -22,6 +22,9 @@
     "client": [
       "com.rainimator.rainimatormod.RainimatorModClient"
     ],
+    "cardinal-components-entity": [
+      "com.rainimator.rainimatormod.compat.cca.ManaComponentEntry"
+    ],
     "emi": [
       "com.rainimator.rainimatormod.compat.emi.BossSpawnRecipePlugin"
     ],
@@ -38,6 +41,11 @@
     ],
     "annotation_lib_server": [
       "com.rainimator.rainimatormod.network.EnderBookActionHandler"
+    ]
+  },
+  "custom": {
+    "cardinal-components": [
+      "rainimator:mana"
     ]
   },
   "accessWidener": "rainimator.accesswidener",

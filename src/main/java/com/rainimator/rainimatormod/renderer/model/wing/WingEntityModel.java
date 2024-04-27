@@ -30,7 +30,7 @@ public class WingEntityModel<T extends LivingEntity> extends AnimalModel<T> {
 
     @Override
     public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        state = State.IDLE;
+        this.state = State.IDLE;
         float a = 0.125F;
         float b = 0.1F;
         float k = 0.4F;
@@ -39,7 +39,7 @@ public class WingEntityModel<T extends LivingEntity> extends AnimalModel<T> {
         float n = 0.0F;
 
         if (entity.isFallFlying()) {
-            state = State.FLYING;
+            this.state = State.FLYING;
             float o = 1.0F;
             Vec3d vec3d = entity.getVelocity();
 
@@ -56,7 +56,7 @@ public class WingEntityModel<T extends LivingEntity> extends AnimalModel<T> {
                 b = 1.0F;
             }
         } else if (entity.isInSneakingPose()) {
-            state = State.CROUCHING;
+            this.state = State.CROUCHING;
             k = 0.7F;
             m = 0.0F;
             n = 0.09F;

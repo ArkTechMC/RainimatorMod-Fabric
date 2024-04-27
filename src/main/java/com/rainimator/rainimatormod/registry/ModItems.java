@@ -1,10 +1,12 @@
 package com.rainimator.rainimatormod.registry;
 
+import com.iafenvoy.annotationlib.annotation.CallbackHandler;
 import com.iafenvoy.annotationlib.annotation.ModId;
 import com.iafenvoy.annotationlib.annotation.TargetId;
 import com.iafenvoy.annotationlib.annotation.registration.Group;
 import com.iafenvoy.annotationlib.annotation.registration.ItemReg;
 import com.iafenvoy.annotationlib.annotation.registration.Link;
+import com.iafenvoy.annotationlib.annotation.registration.ObjectReg;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.annotationlib.util.TargetType;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
@@ -25,7 +27,10 @@ import com.rainimator.rainimatormod.registry.util.SpawnEggBase;
 import com.rainimator.rainimatormod.util.Episode;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.*;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.Rarity;
 
 @ModId(RainimatorMod.MOD_ID)
@@ -433,7 +438,8 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @Link(type = TargetType.SKULL, targets = {@TargetId("herobrine_head"), @TargetId("herobrine_wall_head")})
     public static Item HEROBRINE_HEAD = null;
 
-    public static void init() {
+    @CallbackHandler
+    public static void init(){
         FuelRegistry.INSTANCE.add(ModItems.HOT_IRON, 2000);
     }
 }
