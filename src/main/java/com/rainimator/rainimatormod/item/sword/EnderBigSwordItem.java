@@ -3,8 +3,10 @@ package com.rainimator.rainimatormod.item.sword;
 import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import dev.emi.trinkets.api.Trinket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class EnderBigSwordItem extends SwordItemBase implements Trinket {
+public class EnderBigSwordItem extends SwordItemBase implements Trinket, IManaRequire {
     public EnderBigSwordItem() {
         super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
     }
@@ -28,6 +30,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
@@ -46,6 +49,11 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
             }
         }
         return ar;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().ender_big_sword;
     }
 }
 

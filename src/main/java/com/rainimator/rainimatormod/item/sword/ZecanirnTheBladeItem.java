@@ -8,8 +8,10 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -37,7 +39,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
+public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo, IManaRequire {
     public ZecanirnTheBladeItem() {
         super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE, ModItems.SUPER_RUBY), 3, -2.2F, new Settings());
     }
@@ -96,6 +98,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
 
         Vec3d _center = entity.getPos();
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
@@ -107,46 +110,41 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                 continue;
             }
             if (entity.isSneaking()) {
-                if (entity.getOffHandStack().getItem() == ModItems.ENDER_STONE) {
-                    if (entity.getHealth() > 5.0F) {
-                        entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
-                        ItemStack _setstack = new ItemStack(Blocks.AIR);
-                        _setstack.setCount(1);
-                        entity.setStackInHand(Hand.OFF_HAND, _setstack);
-                        entity.getInventory().markDirty();
-                        entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
-                        if (world instanceof ServerWorld _level)
-                            _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
+                if (entity.getHealth() > 5.0F) {
+                    entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
+                    ItemStack _setstack = new ItemStack(Blocks.AIR);
+                    _setstack.setCount(1);
+                    entity.setStackInHand(Hand.OFF_HAND, _setstack);
+                    entity.getInventory().markDirty();
+                    entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
+                    if (world instanceof ServerWorld _level)
+                        _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
+                    SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+
+                    Runnable callback = () -> {
+                        entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
+                        if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
+                            _serverPlayer.networkHandler.requestTeleport(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
+
+                        entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 15.0F);
+                        if (world instanceof ServerWorld _level) {
+                            for (double z = -7; z <= 7; z++)
+                                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                            for (double x = -7; x <= 7; x++)
+                                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                        }
                         SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
-
-                        Runnable callback = () -> {
-                            entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
-                            if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
-                                _serverPlayer.networkHandler.requestTeleport(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
-
-                            entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 15.0F);
-                            if (world instanceof ServerWorld _level) {
-                                for (double z = -7; z <= 7; z++)
-                                    _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
-                                for (double x = -7; x <= 7; x++)
-                                    _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
-                            }
-                            SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
-                        };
-                        Timeout.create(5, callback);
-                        Timeout.create(10, callback);
-                        Timeout.create(15, callback);
-                        Timeout.create(20, callback);
-                        Timeout.create(25, callback);
-                        entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
-                        continue;
-                    }
-                    if (!entity.getWorld().isClient())
-                        entity.sendMessage(Text.translatable("item.rainimator.zecanirn_the_blade.error.health"), true);
+                    };
+                    Timeout.create(5, callback);
+                    Timeout.create(10, callback);
+                    Timeout.create(15, callback);
+                    Timeout.create(20, callback);
+                    Timeout.create(25, callback);
+                    entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
                     continue;
                 }
                 if (!entity.getWorld().isClient())
-                    entity.sendMessage(Text.translatable("item.rainimator.zecanirn_the_blade.error.magic"), true);
+                    entity.sendMessage(Text.translatable("item.rainimator.zecanirn_the_blade.error.health"), true);
             }
         }
         return ar;
@@ -163,5 +161,10 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     @Override
     public Episode getEpisode() {
         return Episode.Goodbye;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().zecanirn_the_blade;
     }
 }

@@ -6,7 +6,9 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModEffects;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.Entity;
@@ -36,7 +38,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo {
+public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo, IManaRequire {
     public SeizingShadowHalberdItem() {
         super(ToolMaterialUtil.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof());
     }
@@ -53,75 +55,75 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
-        {
-            final Vec3d _center = new Vec3d(x, y, z);
-            List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-            for (Entity entityiterator : _entfound) {
-                if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.SHADOW_EROSION))) {
-                    if ((Entity) entity instanceof PlayerEntity _player)
-                        _player.getItemCooldownManager().set(itemtack.getItem(), 300);
 
-                    BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(3)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
-                    BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(1)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
-                    BlockPos pos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(2)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+        final Vec3d _center = new Vec3d(x, y, z);
+        List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        for (Entity entityiterator : _entfound) {
+            if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.SHADOW_EROSION))) {
+                if ((Entity) entity instanceof PlayerEntity _player)
+                    _player.getItemCooldownManager().set(itemtack.getItem(), 300);
 
-                    entityiterator.requestTeleport(pos.getX(), y, pos.getZ());
-                    if (entityiterator instanceof ServerPlayerEntity _serverPlayer)
-                        _serverPlayer.networkHandler.requestTeleport(pos.getX(), y, pos.getZ(), entityiterator.getYaw(), entityiterator.getPitch());
+                BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(3)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(1)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                BlockPos pos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1f), entity.getCameraPosVec(1f).add(entity.getRotationVec(1f).multiply(2)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
 
-                    if ((WorldAccess) world instanceof ServerWorld _level) {
+                entityiterator.requestTeleport(pos.getX(), y, pos.getZ());
+                if (entityiterator instanceof ServerPlayerEntity _serverPlayer)
+                    _serverPlayer.networkHandler.requestTeleport(pos.getX(), y, pos.getZ(), entityiterator.getYaw(), entityiterator.getPitch());
+
+                if ((WorldAccess) world instanceof ServerWorld _level) {
+                    Entity entityToSpawn = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
+                    entityToSpawn.refreshPositionAndAngles(pos1.getX(), y, pos1.getZ(), ((WorldAccess) world).getRandom().nextFloat() * 360F, 0);
+                    world.spawnEntity(entityToSpawn);
+                }
+                Runnable callback = () -> {
+                    if (world instanceof ServerWorld _level) {
                         Entity entityToSpawn = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
-                        entityToSpawn.refreshPositionAndAngles(pos1.getX(), y, pos1.getZ(), ((WorldAccess) world).getRandom().nextFloat() * 360F, 0);
+                        entityToSpawn.refreshPositionAndAngles(pos2.getX(), y, pos2.getZ(), world.getRandom().nextFloat() * 360F, 0);
                         world.spawnEntity(entityToSpawn);
+                        Entity entityToSpawn1 = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
+                        entityToSpawn1.refreshPositionAndAngles(pos1.getX(), y, pos2.getZ(), world.getRandom().nextFloat() * 360F, 0);
+                        world.spawnEntity(entityToSpawn1);
+                        Entity entityToSpawn2 = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
+                        entityToSpawn2.refreshPositionAndAngles(pos2.getX(), y, pos1.getZ(), world.getRandom().nextFloat() * 360F, 0);
+                        world.spawnEntity(entityToSpawn2);
                     }
-                    Runnable callback = () -> {
-                        if (world instanceof ServerWorld _level) {
-                            Entity entityToSpawn = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
-                            entityToSpawn.refreshPositionAndAngles(pos2.getX(), y, pos2.getZ(), world.getRandom().nextFloat() * 360F, 0);
-                            world.spawnEntity(entityToSpawn);
-                            Entity entityToSpawn1 = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
-                            entityToSpawn1.refreshPositionAndAngles(pos1.getX(), y, pos2.getZ(), world.getRandom().nextFloat() * 360F, 0);
-                            world.spawnEntity(entityToSpawn1);
-                            Entity entityToSpawn2 = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
-                            entityToSpawn2.refreshPositionAndAngles(pos2.getX(), y, pos1.getZ(), world.getRandom().nextFloat() * 360F, 0);
-                            world.spawnEntity(entityToSpawn2);
-                        }
-                    };
-                    Timeout.create(2, callback);
-                    Timeout.create(4, callback);
-                    Timeout.create(6, callback);
-                    Timeout.create(8, callback);
-                    Timeout.create(10, callback);
-                    Timeout.create(12, callback);
-                    Timeout.create(14, callback);
-                    Timeout.create(16, callback);
-                    Timeout.create(18, callback);
-                    Timeout.create(20, callback);
-                }
-                if (entity.isSneaking()) {
-                    if ((Entity) entity instanceof PlayerEntity _player)
-                        _player.getItemCooldownManager().set(itemtack.getItem(), 300);
-                    SoundUtil.playSound(world, x, y, z, new Identifier("entity.evoker.cast_spell"), 1, 1);
-                    Runnable callback = () -> {
-                        if (world instanceof ServerWorld _level)
-                            for (int i = -2; i <= 2; i += 2)
-                                for (int j = -2; j <= 2; j += 2) {
-                                    Entity entityToSpawn = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
-                                    entityToSpawn.refreshPositionAndAngles(x + i, y, z + j, world.getRandom().nextFloat() * 360F, 0);
-                                    world.spawnEntity(entityToSpawn);
-                                }
-                    };
-                    Timeout.create(0, callback);
-                    Timeout.create(4, callback);
-                    Timeout.create(8, callback);
-                    Timeout.create(12, callback);
-                    Timeout.create(16, callback);
-                    Timeout.create(20, callback);
-                }
+                };
+                Timeout.create(2, callback);
+                Timeout.create(4, callback);
+                Timeout.create(6, callback);
+                Timeout.create(8, callback);
+                Timeout.create(10, callback);
+                Timeout.create(12, callback);
+                Timeout.create(14, callback);
+                Timeout.create(16, callback);
+                Timeout.create(18, callback);
+                Timeout.create(20, callback);
+            }
+            if (entity.isSneaking()) {
+                if ((Entity) entity instanceof PlayerEntity _player)
+                    _player.getItemCooldownManager().set(itemtack.getItem(), 300);
+                SoundUtil.playSound(world, x, y, z, new Identifier("entity.evoker.cast_spell"), 1, 1);
+                Runnable callback = () -> {
+                    if (world instanceof ServerWorld _level)
+                        for (int i = -2; i <= 2; i += 2)
+                            for (int j = -2; j <= 2; j += 2) {
+                                Entity entityToSpawn = new EvokerFangsEntity(EntityType.EVOKER_FANGS, _level);
+                                entityToSpawn.refreshPositionAndAngles(x + i, y, z + j, world.getRandom().nextFloat() * 360F, 0);
+                                world.spawnEntity(entityToSpawn);
+                            }
+                };
+                Timeout.create(0, callback);
+                Timeout.create(4, callback);
+                Timeout.create(8, callback);
+                Timeout.create(12, callback);
+                Timeout.create(16, callback);
+                Timeout.create(20, callback);
             }
         }
         return ar;
@@ -179,5 +181,10 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
     @Override
     public Episode getEpisode() {
         return Episode.AlreadyDead;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().seizing_shadow_halberd;
     }
 }

@@ -7,8 +7,10 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.*;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -36,7 +38,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
+public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo, IManaRequire {
     public BlueDiamondSwordItem() {
         super(ToolMaterialUtil.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
     }
@@ -68,6 +70,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
@@ -205,5 +208,10 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
     @Override
     public Episode getEpisode() {
         return Episode.Unknown;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().blue_diamond_sword;
     }
 }

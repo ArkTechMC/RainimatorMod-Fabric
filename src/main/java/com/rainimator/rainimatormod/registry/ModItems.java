@@ -6,7 +6,6 @@ import com.iafenvoy.annotationlib.annotation.TargetId;
 import com.iafenvoy.annotationlib.annotation.registration.Group;
 import com.iafenvoy.annotationlib.annotation.registration.ItemReg;
 import com.iafenvoy.annotationlib.annotation.registration.Link;
-import com.iafenvoy.annotationlib.annotation.registration.ObjectReg;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.annotationlib.util.TargetType;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
@@ -439,7 +438,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static Item HEROBRINE_HEAD = null;
 
     @CallbackHandler
-    public static void init(){
+    public static void init() {
         FuelRegistry.INSTANCE.add(ModItems.HOT_IRON, 2000);
     }
 }

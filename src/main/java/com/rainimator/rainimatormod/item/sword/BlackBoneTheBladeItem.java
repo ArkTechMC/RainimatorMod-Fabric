@@ -8,7 +8,9 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +27,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
+public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo, IManaRequire {
     public BlackBoneTheBladeItem() {
         super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, new Settings().fireproof());
     }
@@ -47,6 +49,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
@@ -91,5 +94,10 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     @Override
     public Episode getEpisode() {
         return Episode.WeAreTheDanger;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().blackbone_the_blade;
     }
 }

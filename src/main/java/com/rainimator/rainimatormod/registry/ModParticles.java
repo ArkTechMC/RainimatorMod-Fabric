@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.registry;
 
+import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.particle.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -11,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 
-public class ModParticles {
+public class ModParticles implements IAnnotatedRegistryEntry {
     public static final ParticleType<DefaultParticleType> PURPLE_LIGHT = register("purple_light", () -> new DefaultParticleType(false));
     public static final ParticleType<DefaultParticleType> RED_FLOWER = register("red_flower", () -> new DefaultParticleType(false));
     public static final ParticleType<DefaultParticleType> SNOW = register("snow", () -> new DefaultParticleType(false));

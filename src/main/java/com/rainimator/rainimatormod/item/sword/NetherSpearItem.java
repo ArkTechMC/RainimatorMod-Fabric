@@ -7,6 +7,8 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import dev.emi.trinkets.api.Trinket;
@@ -30,7 +32,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, Trinket {
+public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, Trinket, IManaRequire {
     public NetherSpearItem() {
         super(ToolMaterialUtil.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, new Settings().fireproof());
     }
@@ -50,6 +52,7 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
@@ -123,5 +126,10 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
     @Override
     public Episode getEpisode() {
         return Episode.HardPillToSwallow;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().nether_spear;
     }
 }

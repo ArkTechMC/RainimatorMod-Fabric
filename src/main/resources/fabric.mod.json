@@ -29,12 +29,15 @@
       "com.rainimator.rainimatormod.compat.emi.BossSpawnRecipePlugin"
     ],
     "annotation_lib": [
+      "com.rainimator.rainimatormod.config.ModConfig",
+      "com.rainimator.rainimatormod.config.ManaConfig",
       "com.rainimator.rainimatormod.registry.ModBlocks",
       "com.rainimator.rainimatormod.registry.ModBanners",
       "com.rainimator.rainimatormod.registry.ModEffects",
       "com.rainimator.rainimatormod.registry.ModEntities",
       "com.rainimator.rainimatormod.registry.ModItems",
-      "com.rainimator.rainimatormod.registry.ModCreativeTabs"
+      "com.rainimator.rainimatormod.registry.ModCreativeTabs",
+      "com.rainimator.rainimatormod.command.UpdateConfigCommand"
     ],
     "annotation_lib_client": [
       "com.rainimator.rainimatormod.network.EnderBookOpenHandler"

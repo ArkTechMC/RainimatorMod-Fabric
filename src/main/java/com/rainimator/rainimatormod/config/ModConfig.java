@@ -1,33 +1,19 @@
 package com.rainimator.rainimatormod.config;
 
-import com.google.gson.Gson;
+import com.iafenvoy.annotationlib.annotation.config.ConfigFile;
+import com.iafenvoy.annotationlib.api.AnnotationApi;
+import com.iafenvoy.annotationlib.api.IAnnotatedConfigEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
 
-import java.io.FileReader;
-import java.io.IOException;
-
-public class ModConfig {
-    private static ModConfig INSTANCE = new ModConfig();
-    private static final String CONFIG_PATH = "./config/" + RainimatorMod.MOD_ID + "/";
+@ConfigFile(path = "./config/" + RainimatorMod.MOD_ID, file = "main.json")
+public class ModConfig implements IAnnotatedConfigEntry {
     public FractionType fraction = FractionType.OFF;
     public int manaHudX = 0;
     public int manaHudY = 0;
-
-    public ModConfig() {
-    }
+    public double baseMaxMana = 100;
+    public double baseRestoreSpeed = 3;
 
     public static ModConfig getInstance() {
-        return INSTANCE;
-    }
-
-    public static void load() {
-        RainimatorMod.LOGGER.info("Loading Rainimator Mod Config...");
-        try {
-            FileReader reader = new FileReader(CONFIG_PATH + "main.json");
-            INSTANCE = new Gson().fromJson(reader, ModConfig.class);
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return AnnotationApi.getConfig(ModConfig.class);
     }
 }

@@ -1,6 +1,8 @@
 package com.rainimator.rainimatormod.item.tool;
 
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -18,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class HerobrineDiamondPickaxeItem extends PickaxeItem {
+public class HerobrineDiamondPickaxeItem extends PickaxeItem implements IManaRequire {
     public HerobrineDiamondPickaxeItem() {
         super(ToolMaterialUtil.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, new Settings().fireproof());
     }
@@ -43,6 +45,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         super.useOnBlock(context);
+        if (!this.tryUse(context.getPlayer())) return ActionResult.PASS;
         World world = context.getWorld();
         double x = context.getBlockPos().getX();
         double y = context.getBlockPos().getY();
@@ -65,5 +68,10 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     @Environment(EnvType.CLIENT)
     public boolean hasGlint(ItemStack itemtack) {
         return true;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().herobrine_diamond_pickaxe;
     }
 }

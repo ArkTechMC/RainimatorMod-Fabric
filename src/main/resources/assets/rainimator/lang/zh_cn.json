@@ -83,6 +83,7 @@
   "gui.rainimator.detail.zecanirn_the_blade": "§5由§d末影巨剑§5升级而来，拥有者变种末影之力的巨剑，其内部含有巨大的恐怖力量\n§5当使用者潜行时右键可发动§d末影十字斩§5：发动者随机瞬移到四个边缘位置对8*8范围内的所有目标进行6次斩击，被斩击的目标会发生4次爆体\n§5如果使用者内在的末影之力不够强大，则需要消耗一块§d末影能量石§5来发动此技能\n§c由于这种力量有反噬型性，使用者使用§d末影十字斩§c时会对自身造成一定伤害\n§a需要副手拿§d末影能量石§a才可以发动§d末影十字斩§5！",
   "gui.rainimator.item_info.alt_info": "§7按下LAlt查看更多信息",
   "gui.rainimator.item_info.appear": "首次出现于：",
+  "item.rainimator.wings_of_salvation": "救赎之翼",
   "item.rainimator.abigail_spawn_egg": "Abigail刷怪蛋",
   "item.rainimator.abigail_spear": "地狱血枪",
   "item.rainimator.agetha_spawn_egg": "Agetha刷怪蛋",
@@ -301,5 +302,6 @@
   "itemGroup.rainimator.rainimator_mobs": "Rainimator生物",
   "emi.category.rainimator.boss_spawn_recipe": "Boss召唤",
   "patchouli.rainimator.book_name": "RainimatorMod游玩指南",
-  "patchouli.rainimator.book_landing_text": "这里是一段介绍文本"
+  "patchouli.rainimator.book_landing_text": "这里是一段介绍文本",
+  "message.rainimator.mana.not_enough": "魔力值不足！"
 }

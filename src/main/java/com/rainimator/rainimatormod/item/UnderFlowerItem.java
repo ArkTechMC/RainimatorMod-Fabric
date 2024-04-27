@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +16,7 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class UnderFlowerItem extends FoilItemBase {
+public class UnderFlowerItem extends FoilItemBase implements IManaRequire {
     public UnderFlowerItem() {
         super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
     }
@@ -22,6 +24,7 @@ public class UnderFlowerItem extends FoilItemBase {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         super.useOnBlock(context);
+        if(!this.tryUse(context.getPlayer())) return ActionResult.PASS;
         World world = context.getWorld();
         double x = context.getBlockPos().getX();
         double y = context.getBlockPos().getY();
@@ -40,5 +43,10 @@ public class UnderFlowerItem extends FoilItemBase {
             entity.getItemCooldownManager().set(itemtack.getItem(), 400);
         }
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().under_flower;
     }
 }

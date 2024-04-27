@@ -4,7 +4,9 @@ import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -25,7 +27,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class FallenSoulAxeItem extends FoilSwordItemBase {
+public class FallenSoulAxeItem extends FoilSwordItemBase  implements IManaRequire {
     public FallenSoulAxeItem() {
         super(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, new Settings().fireproof());
     }
@@ -41,6 +43,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         final double x = entity.getX();
         final double y = entity.getY();
         final double z = entity.getZ();
@@ -84,5 +87,10 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
             }
         }
         return ar;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().fallen_soul_axe;
     }
 }

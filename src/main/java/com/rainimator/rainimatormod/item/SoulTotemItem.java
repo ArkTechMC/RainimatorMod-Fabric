@@ -3,7 +3,9 @@ package com.rainimator.rainimatormod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -28,7 +30,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SoulTotemItem extends FoilItemBase {
+public class SoulTotemItem extends FoilItemBase implements IManaRequire {
     public SoulTotemItem() {
         super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
     }
@@ -36,6 +38,7 @@ public class SoulTotemItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if(!this.tryUse(entity)) return ar;
         ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();
@@ -97,5 +100,10 @@ public class SoulTotemItem extends FoilItemBase {
                         world.spawnEntity(new ExperienceOrbEntity(world, entity.getX(), entity.getY(), entity.getZ(), 1));
             }
         }
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().soul_totem;
     }
 }

@@ -8,9 +8,10 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.compat.cca.ManaComponent;
+import com.rainimator.rainimatormod.config.ManaConfig;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import dev.emi.trinkets.api.Trinket;
@@ -24,7 +25,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -37,7 +37,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import java.util.Comparator;
 import java.util.List;
 
-public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Trinket {
+public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Trinket, IManaRequire {
     private static final List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
             Triple.of(0, 0, 0),
             Triple.of(1, 0, 0),
@@ -71,6 +71,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
 
         Vec3d _center = entity.getPos();
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
@@ -165,5 +166,10 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     @Override
     public Episode getEpisode() {
         return Episode.ColdAsIce;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().rain_sword;
     }
 }

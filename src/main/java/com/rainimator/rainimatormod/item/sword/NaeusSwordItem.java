@@ -5,6 +5,8 @@ import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.config.ManaConfig;
+import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -22,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class NaeusSwordItem extends SwordItemBase {
+public class NaeusSwordItem extends SwordItemBase implements IManaRequire {
     public NaeusSwordItem() {
         super(ToolMaterialUtil.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof());
     }
@@ -39,6 +41,7 @@ public class NaeusSwordItem extends SwordItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
+        if (!this.tryUse(entity)) return ar;
         Vec3d _center = entity.getPos();
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(6.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityIterator : _entfound) {
@@ -58,5 +61,10 @@ public class NaeusSwordItem extends SwordItemBase {
             }
         }
         return ar;
+    }
+
+    @Override
+    public double manaPerUse() {
+        return ManaConfig.getInstance().naeus_sword;
     }
 }
