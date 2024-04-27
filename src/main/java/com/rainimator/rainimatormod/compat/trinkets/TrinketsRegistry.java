@@ -5,11 +5,8 @@ import com.rainimator.rainimatormod.renderer.BackItemRenderer;
 import com.rainimator.rainimatormod.renderer.WingsOfSalvationRenderer;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.item.Items;
 
-@Environment(EnvType.CLIENT)
 public class TrinketsRegistry {
     public static void registerClient() {
         TrinketRendererRegistry.registerRenderer(Items.WOODEN_SWORD, new BackItemRenderer());

@@ -3,9 +3,10 @@ package com.rainimator.rainimatormod;
 import com.mojang.logging.LogUtils;
 import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
 import com.rainimator.rainimatormod.config.ModConfig;
-import com.rainimator.rainimatormod.registry.*;
+import com.rainimator.rainimatormod.registry.ModFeatures;
+import com.rainimator.rainimatormod.registry.ModSounds;
+import com.rainimator.rainimatormod.registry.ModTrades;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 
 public class RainimatorMod implements ModInitializer {
@@ -14,10 +15,6 @@ public class RainimatorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        if (FabricLoader.getInstance().isModLoaded("annoying_villagersbychentu")) {
-            LOGGER.error("[annoying_villagersbychentu] failed to load");
-            System.exit(1);
-        }
         ModFeatures.addFeatures();
         ModSounds.registerSounds();
         ModTrades.registerTrades();

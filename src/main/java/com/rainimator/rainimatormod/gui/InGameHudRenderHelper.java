@@ -20,6 +20,10 @@ public class InGameHudRenderHelper {
         return String.format("%.0f", number);
     }
 
+    public static String getValueText(double mana, double maxMana) {
+        return formatNumber(mana) + "/" + formatNumber(maxMana);
+    }
+
     public static void render(DrawContext context, MinecraftClient client, PlayerEntity playerEntity, int scaledWidth, int scaledHeight, int vehicleHeartCount) {
         if (playerEntity != null && !playerEntity.isInvulnerable()) {
             ManaComponent manaComponent = ManaComponent.MANA_COMPONENT.get(playerEntity);
@@ -30,10 +34,9 @@ public class InGameHudRenderHelper {
                     int x = width + ModConfig.getInstance().manaHudY;
                     double mana = manaComponent.getMana();
                     double maxMana = manaComponent.getMaxMana();
-                    context.drawTexture(MANA_ICON, x - 2, y, 0, 10, 84, 5, 256, 256);
-                    context.drawTexture(MANA_ICON, x - 2, y, 0, 15, (int) (84 * mana / maxMana), 5, 256, 256);
-                    String values = formatNumber(mana) + "/" + formatNumber(maxMana);
-                    context.drawCenteredTextWithShadow(client.textRenderer, Text.literal(values), width + 41, y - 7, -1);
+                    context.drawTexture(MANA_ICON, x - 2, y - 7, 0, 10, 84, 5, 256, 256);
+                    context.drawTexture(MANA_ICON, x - 2, y - 7, 0, 15, (int) (84 * mana / maxMana), 5, 256, 256);
+                    context.drawCenteredTextWithShadow(client.textRenderer, Text.literal(getValueText(mana, maxMana)), width + 41, y - 14, -1);
                 }
             }
         }

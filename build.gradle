@@ -34,6 +34,16 @@ repositories {
         name "iAFEnvoy Maven Repositories Releases"
         url "https://maven.iafenvoy.com/releases"
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -60,6 +70,9 @@ dependencies {
 
     // Patchouli
     modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
+
+    // Asteor Bar
+    modImplementation "curse.maven:asteorbar-959237:5212120"
 
     // Cardinal-Components-API
     // Don't need this. Trinkets has embedded version 5.2.0.
