@@ -23,17 +23,18 @@
       "com.rainimator.rainimatormod.RainimatorModClient"
     ],
     "cardinal-components-entity": [
-      "com.rainimator.rainimatormod.compat.cca.ManaComponentEntry"
+      "com.rainimator.rainimatormod.network.ManaComponentEntry"
     ],
     "emi": [
       "com.rainimator.rainimatormod.compat.emi.BossSpawnRecipePlugin"
     ],
     "annotation_lib": [
-      "com.rainimator.rainimatormod.config.ModConfig",
-      "com.rainimator.rainimatormod.config.ManaConfig",
+      "com.rainimator.rainimatormod.data.config.ModConfig",
+      "com.rainimator.rainimatormod.data.config.ManaConfig",
       "com.rainimator.rainimatormod.registry.ModBlocks",
       "com.rainimator.rainimatormod.registry.ModBanners",
       "com.rainimator.rainimatormod.registry.ModEffects",
+      "com.rainimator.rainimatormod.registry.ModEnchantments",
       "com.rainimator.rainimatormod.registry.ModEntities",
       "com.rainimator.rainimatormod.registry.ModItems",
       "com.rainimator.rainimatormod.registry.ModCreativeTabs",

@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.registry.util;
 
-import com.rainimator.rainimatormod.compat.cca.ManaComponent;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 

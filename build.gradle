@@ -44,6 +44,9 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    flatDir{
+        dirs "remapped-libs"
+    }
 }
 
 dependencies {
@@ -52,7 +55,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
+    // Required dependencies
+    // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // AnnotationLib
@@ -64,6 +68,10 @@ dependencies {
     // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"
 
+    // Cardinal Components API
+    // Don't need this. Trinkets has embedded version 5.2.0.
+
+    // Optional dependencies
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
@@ -74,8 +82,10 @@ dependencies {
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5212120"
 
-    // Cardinal-Components-API
-    // Don't need this. Trinkets has embedded version 5.2.0.
+    // [TR] Tech Reborn
+    modImplementation "team.reborn.energy:energy:3.0.0" //in flat, extracted from tech reborn
+    modImplementation "reborncore:reborncore:5.8.7" //in flat, extracted from tech reborn
+    modImplementation "curse.maven:techreborn-233564:4708962"
 }
 
 processResources {

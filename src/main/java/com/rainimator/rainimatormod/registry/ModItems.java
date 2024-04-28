@@ -129,7 +129,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item BLUE_DIAMOND_SWORD = new BlueDiamondSwordItem();
     @ItemReg(group = @TargetId("main"))
-    public static final WingsOfSalvationItem WINGS_OF_SALVATION = new WingsOfSalvationItem();
+    public static final WingsOfSalvationItem WINGS_OF_SALVATION = WingsOfSalvationItem.create();
     //axe
     @ItemReg(group = @TargetId("main"))
     public static final Item DIAMOND_HATCHET = new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings());

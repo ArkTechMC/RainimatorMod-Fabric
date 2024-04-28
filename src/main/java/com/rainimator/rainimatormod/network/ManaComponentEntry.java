@@ -1,4 +1,4 @@
-package com.rainimator.rainimatormod.compat.cca;
+package com.rainimator.rainimatormod.network;
 
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;

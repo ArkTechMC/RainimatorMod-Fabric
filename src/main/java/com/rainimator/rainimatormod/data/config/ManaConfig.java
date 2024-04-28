@@ -23,6 +23,7 @@ public class ManaConfig implements IAnnotatedConfigEntry {
     public double soul_totem = 5;
     public double under_flower = 5;
     public double wings_of_salvation_second = 10;
+    public double wings_of_salvation_boost = 25;
 
     public static ManaConfig getInstance() {
         return AnnotationApi.getConfig(ManaConfig.class);

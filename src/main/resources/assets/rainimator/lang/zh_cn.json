@@ -303,5 +303,9 @@
   "emi.category.rainimator.boss_spawn_recipe": "Boss召唤",
   "patchouli.rainimator.book_name": "RainimatorMod游玩指南",
   "patchouli.rainimator.book_landing_text": "这里是一段介绍文本",
-  "message.rainimator.mana.not_enough": "魔力值不足！"
+  "message.rainimator.mana.not_enough": "魔力值不足！",
+  "enchantment.rainimator.mana_regeneration": "魔力恢复",
+  "enchantment.rainimator.mana_upgrade": "魔力提升",
+  "keybinding.rainimator.ability": "释放技能",
+  "keybinding.rainimator.category": "Rainimator Mod"
 }

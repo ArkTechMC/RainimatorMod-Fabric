@@ -1,7 +1,7 @@
 package com.rainimator.rainimatormod.compat.asteorbar;
 
 import com.afoxxvi.asteorbar.overlay.parts.SimpleBarOverlay;
-import com.rainimator.rainimatormod.compat.cca.ManaComponent;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.renderer.gui.InGameHudRenderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 
