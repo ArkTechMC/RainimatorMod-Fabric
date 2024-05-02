@@ -2,8 +2,8 @@ package com.rainimator.rainimatormod.item.tool;
 
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class IntelligenceTomahawkItem extends AxeItem implements IManaRequire {
+public class IntelligenceTomahawkItem extends AxeItem {
     public IntelligenceTomahawkItem() {
         super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPHIRE), 1.0F, -2.2F, new Settings());
     }
@@ -30,7 +30,7 @@ public class IntelligenceTomahawkItem extends AxeItem implements IManaRequire {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if(!this.tryUse(entity)) return ar;
+        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().intelligence_tomahawk)) return ar;
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(2.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
@@ -54,10 +54,5 @@ public class IntelligenceTomahawkItem extends AxeItem implements IManaRequire {
             entity.getItemCooldownManager().set(itemtack.getItem(), 600);
         }
         return ar;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().intelligence_tomahawk;
     }
 }

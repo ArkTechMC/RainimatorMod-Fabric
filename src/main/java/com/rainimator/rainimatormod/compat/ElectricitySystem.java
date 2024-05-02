@@ -4,9 +4,13 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class ElectricitySystem {
-    private static ElectricitySource currentElectricityProvider = null;
+    private static final ElectricitySource currentElectricityProvider;
 
-    private static void find() {
+    public static ElectricitySource getType() {
+        return currentElectricityProvider;
+    }
+
+    static {
         RainimatorMod.LOGGER.info("Trying to find electricity provider for Rainimator Mod.");
         boolean ae2 = FabricLoader.getInstance().isModLoaded("appliedenergistics2");
         boolean tr = FabricLoader.getInstance().isModLoaded("techreborn");
@@ -18,11 +22,5 @@ public class ElectricitySystem {
             currentElectricityProvider = ElectricitySource.TR;
         } else
             currentElectricityProvider = ElectricitySource.NONE;
-    }
-
-    public static ElectricitySource getType() {
-        if (currentElectricityProvider == null)
-            find();
-        return currentElectricityProvider;
     }
 }

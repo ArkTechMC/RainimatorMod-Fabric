@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SapphireBlock extends Block {
     public SapphireBlock() {
-        super(Settings.create().sounds(BlockSoundGroup.STONE).strength(4.0F, 10.0F));
+        super(Settings.create().requiresTool().strength(4.0F, 10.0F));
     }
 
     @Override

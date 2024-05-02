@@ -19,7 +19,7 @@ import java.util.List;
 
 public class RubyOreBlock extends Block {
     public RubyOreBlock() {
-        super(FabricBlockSettings.create().strength(4.0f));
+        super(FabricBlockSettings.create().requiresTool().strength(4.0f));
     }
 
     @Override

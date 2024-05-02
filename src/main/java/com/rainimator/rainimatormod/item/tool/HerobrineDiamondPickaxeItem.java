@@ -1,15 +1,15 @@
 package com.rainimator.rainimatormod.item.tool;
 
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class HerobrineDiamondPickaxeItem extends PickaxeItem implements IManaRequire {
+public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     public HerobrineDiamondPickaxeItem() {
         super(ToolMaterialUtil.of(2500, 20.0F, 5.0F, 4, 25, Items.DIAMOND), 1, -2.2F, new Settings().fireproof());
     }
@@ -45,20 +45,20 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem implements IManaReq
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         super.useOnBlock(context);
-        if (!this.tryUse(context.getPlayer())) return ActionResult.PASS;
         World world = context.getWorld();
         double x = context.getBlockPos().getX();
         double y = context.getBlockPos().getY();
         double z = context.getBlockPos().getZ();
         if (context.getPlayer() != null) {
-            world.breakBlock(new BlockPos((int) x, (int) y, (int) z), false);
-            if (!world.isClient())
-                world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
-            if (context.getPlayer() instanceof PlayerEntity)
+            BlockState blockState = world.getBlockState(VecUtil.createBlockPos(x, y, z));
+            if (blockState.getBlock().getHardness() >= 0 && ManaComponent.tryUse(context.getPlayer(), ManaConfig.getInstance().herobrine_diamond_pickaxe)) {
+                world.breakBlock(VecUtil.createBlockPos(x, y, z), false);
+                if (!world.isClient())
+                    world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
                 if (!context.getPlayer().getWorld().isClient())
                     context.getPlayer().sendMessage(Text.translatable("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
-            if (context.getPlayer() instanceof PlayerEntity)
-                context.getPlayer().getItemCooldownManager().set(context.getStack().getItem(), 4800);
+                context.getPlayer().getItemCooldownManager().set(context.getStack().getItem(), 60);
+            }
         }
 
         return ActionResult.SUCCESS;
@@ -68,10 +68,5 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem implements IManaReq
     @Environment(EnvType.CLIENT)
     public boolean hasGlint(ItemStack itemtack) {
         return true;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().herobrine_diamond_pickaxe;
     }
 }

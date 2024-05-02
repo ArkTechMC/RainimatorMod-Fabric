@@ -9,9 +9,9 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo, IManaRequire {
+public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
     public ZecanirnTheBladeItem() {
         super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE, ModItems.SUPER_RUBY), 3, -2.2F, new Settings());
     }
@@ -98,18 +98,16 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
-
-        Vec3d _center = entity.getPos();
-        List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityiterator : _entfound) {
-            if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
-            if (_livEnt.getMainHandStack().getItem() == ModItems.ZECANIRN_THE_BLADE) {
-                if (entity instanceof PlayerEntity)
-                    entity.getItemCooldownManager().set(ar.getValue().getItem(), 0);
-                continue;
-            }
-            if (entity.isSneaking()) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().zecanirn_the_blade)) {
+            Vec3d _center = entity.getPos();
+            List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+            for (Entity entityiterator : _entfound) {
+                if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
+                if (_livEnt.getMainHandStack().getItem() == ModItems.ZECANIRN_THE_BLADE) {
+                    if (entity instanceof PlayerEntity)
+                        entity.getItemCooldownManager().set(ar.getValue().getItem(), 0);
+                    continue;
+                }
                 if (entity.getHealth() > 5.0F) {
                     entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
                     ItemStack _setstack = new ItemStack(Blocks.AIR);
@@ -161,10 +159,5 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     @Override
     public Episode getEpisode() {
         return Episode.Goodbye;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().zecanirn_the_blade;
     }
 }

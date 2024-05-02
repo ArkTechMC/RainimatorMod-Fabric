@@ -9,8 +9,8 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +27,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo, IManaRequire {
+public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
     public BlackBoneTheBladeItem() {
         super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, new Settings().fireproof());
     }
@@ -49,12 +49,11 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
-        if (entity.isSneaking()) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().blackbone_the_blade)) {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);
@@ -94,10 +93,5 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
     @Override
     public Episode getEpisode() {
         return Episode.WeAreTheDanger;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().blackbone_the_blade;
     }
 }

@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModEffects;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.Entity;
@@ -38,7 +38,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo, IManaRequire {
+public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo {
     public SeizingShadowHalberdItem() {
         super(ToolMaterialUtil.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof());
     }
@@ -55,12 +55,12 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
 
+        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().seizing_shadow_halberd)) return ar;
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
@@ -181,10 +181,5 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
     @Override
     public Episode getEpisode() {
         return Episode.AlreadyDead;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().seizing_shadow_halberd;
     }
 }

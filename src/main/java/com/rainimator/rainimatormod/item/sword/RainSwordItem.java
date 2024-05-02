@@ -9,9 +9,9 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import dev.emi.trinkets.api.Trinket;
@@ -37,7 +37,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import java.util.Comparator;
 import java.util.List;
 
-public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Trinket, IManaRequire {
+public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Trinket {
     private static final List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
             Triple.of(0, 0, 0),
             Triple.of(1, 0, 0),
@@ -71,17 +71,15 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
-
         Vec3d _center = entity.getPos();
-        List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityiterator : _entfound) {
-            if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
-            if (_livEnt.getMainHandStack().getItem() == ModItems.RAIN_SWORD) {
-                entityiterator.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
-                continue;
-            }
-            if (entity.isSneaking()) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().rain_sword)) {
+            List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+            for (Entity entityiterator : _entfound) {
+                if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
+                if (_livEnt.getMainHandStack().getItem() == ModItems.RAIN_SWORD) {
+                    entityiterator.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
+                    continue;
+                }
                 if (entityiterator instanceof MobEntity _entity)
                     _entity.getNavigation().stop();
                 SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
@@ -166,10 +164,5 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     @Override
     public Episode getEpisode() {
         return Episode.ColdAsIce;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().rain_sword;
     }
 }

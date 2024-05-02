@@ -6,8 +6,6 @@ import com.iafenvoy.annotationlib.api.IAnnotatedNetworkEntry;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.util.ModConstants;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Blocks;
@@ -22,7 +20,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@Environment(EnvType.SERVER)
 @NetworkHandler(@TargetId(namespace = RainimatorMod.MOD_ID, value = ModConstants.ENDER_BOOK_SKILL_PACKET_PATH))
 public class EnderBookActionHandler implements IAnnotatedNetworkEntry, ServerPlayNetworking.PlayChannelHandler {
     @Override

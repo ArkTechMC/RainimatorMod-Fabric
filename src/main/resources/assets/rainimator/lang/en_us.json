@@ -2,6 +2,8 @@
   "block.rainimator.blue_diamond_block": "Bluediamondblock",
   "block.rainimator.dark_obsidian_block": "Darkobsidianblock",
   "block.rainimator.dark_obsidian_block.running": "释放能量中",
+  "block.rainimator.dark_obsidian_block.tooltip.biome": "初始群系：",
+  "biome.rainimator.unknown": "未知群系",
   "block.rainimator.deepslate_ruby_ore": "Deepslate Sappries Ore",
   "block.rainimator.deepslate_sapphire_ore": "Deepslate Sappries Ore",
   "block.rainimator.mystic_ore": "Mysticore",

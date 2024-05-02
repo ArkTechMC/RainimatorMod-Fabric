@@ -22,7 +22,7 @@ public class BlueDiamondBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
     public BlueDiamondBlock() {
-        super(FabricBlockSettings.create().strength(4.0f));
+        super(FabricBlockSettings.create().requiresTool().strength(4.0f));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 

@@ -4,9 +4,9 @@ import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
 import dev.emi.trinkets.api.Trinket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class EnderBigSwordItem extends SwordItemBase implements Trinket, IManaRequire {
+public class EnderBigSwordItem extends SwordItemBase implements Trinket {
     public EnderBigSwordItem() {
         super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
     }
@@ -30,13 +30,12 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket, IManaRe
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
-        if (entity.isSneaking()) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().ender_big_sword)) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             BlockPos blockPos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());
@@ -49,11 +48,6 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket, IManaRe
             }
         }
         return ar;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().ender_big_sword;
     }
 }
 

@@ -129,7 +129,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item BLUE_DIAMOND_SWORD = new BlueDiamondSwordItem();
     @ItemReg(group = @TargetId("main"))
-    public static final WingsOfSalvationItem WINGS_OF_SALVATION = WingsOfSalvationItem.create();
+    public static final Item WINGS_OF_SALVATION = WingsOfSalvationItem.create();
     //axe
     @ItemReg(group = @TargetId("main"))
     public static final Item DIAMOND_HATCHET = new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings());
@@ -202,18 +202,18 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item SAPPHIRE_LEGGINGS = new SapphireArmorItem.Leggings();
     @ItemReg(group = @TargetId("main"))
     public static final Item SAPPHIRE_BOOTS = new SapphireArmorItem.Boots();
-    @ItemReg(group = @TargetId("main"), value = "magic_hat")
-    public static final Item MAGIC_HAT_HELMET = new MagicHatItem.Helmet();
     @ItemReg(group = @TargetId("main"))
-    public static final Item NETHER_THE_CROWN_HELMET = new NetherTheCrownItem.Helmet();
+    public static final Item MAGIC_HAT = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
-    public static final Item GLUTTON_HELMET = new GluttonArmorItem.Helmet();
+    public static final Item NETHER_THE_CROWN_HELMET = new NetherTheCrownItem();
     @ItemReg(group = @TargetId("main"))
-    public static final Item PIGLIN_KING_CROWN = new PiglinKingCrownItem.Helmet();
+    public static final Item GLUTTON_HELMET = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
-    public static final Item KING_NORMAL_CROWN = new KingNormalCrownItem.Helmet();
+    public static final Item PIGLIN_KING_CROWN = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
-    public static final Item PORKSHIRE_KING_CROWN = new PorkshireKingCrownItem.Helmet();
+    public static final Item KING_NORMAL_CROWN = new ItemBase(p -> p);
+    @ItemReg(group = @TargetId("main"))
+    public static final Item PORKSHIRE_KING_CROWN = new ItemBase(p -> p);
     //tool
     @ItemReg(group = @TargetId("item"))
     public static final Item RUBY_PICKAXE = new RubyPickaxeItem();

@@ -15,11 +15,10 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 
-@Environment(EnvType.CLIENT)
 @NetworkHandler(@TargetId(namespace = RainimatorMod.MOD_ID, value = ModConstants.ENDER_BOOK_SKILL_PACKET_PATH))
 public class EnderBookOpenHandler implements IAnnotatedNetworkEntry, ClientPlayNetworking.PlayChannelHandler {
     @Override
     public void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-        client.setScreen(new EnderBookSkillScreen(Text.literal("Ender Book")));
+        client.execute(() -> client.setScreen(new EnderBookSkillScreen(Text.literal("Ender Book"))));
     }
 }

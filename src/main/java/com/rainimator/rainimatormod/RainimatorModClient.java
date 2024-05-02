@@ -1,6 +1,8 @@
 package com.rainimator.rainimatormod;
 
 import com.afoxxvi.asteorbar.overlay.FabricGuiRegistry;
+import com.rainimator.rainimatormod.compat.ElectricitySource;
+import com.rainimator.rainimatormod.compat.ElectricitySystem;
 import com.rainimator.rainimatormod.compat.asteorbar.ElectricityHud;
 import com.rainimator.rainimatormod.compat.asteorbar.ManaHud;
 import com.rainimator.rainimatormod.compat.trinkets.TrinketsRegistry;
@@ -22,7 +24,8 @@ public class RainimatorModClient implements ClientModInitializer {
         TrinketsRegistry.registerClient();
         if (FabricLoader.getInstance().isModLoaded("asteorbar")) {
             FabricGuiRegistry.REGISTRY.add(FabricGuiRegistry.REGISTRY.size() - 1, new ManaHud());
-            FabricGuiRegistry.REGISTRY.add(FabricGuiRegistry.REGISTRY.size() - 1, new ElectricityHud());
+            if (ElectricitySystem.getType() != ElectricitySource.NONE)
+                FabricGuiRegistry.REGISTRY.add(FabricGuiRegistry.REGISTRY.size() - 1, new ElectricityHud());
         }
     }
 }

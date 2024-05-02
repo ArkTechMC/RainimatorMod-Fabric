@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SapphireOreBlock extends Block {
     public SapphireOreBlock() {
-        super(FabricBlockSettings.create().strength(4.0f));
+        super(FabricBlockSettings.create().requiresTool().strength(4.0f));
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import dev.emi.trinkets.api.Trinket;
@@ -32,7 +32,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, Trinket, IManaRequire {
+public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, Trinket {
     public NetherSpearItem() {
         super(ToolMaterialUtil.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, new Settings().fireproof());
     }
@@ -52,50 +52,50 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
         double x = entity.getX();
         final double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
-        if (entity.isSneaking())
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().nether_spear)) {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
-        BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
-        if (world instanceof ServerWorld _level) {
-            LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-            if (entityToSpawn != null) {
-                entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos1.getX(), (int) y, pos1.getZ())));
-                entityToSpawn.setCosmetic(true);
-                _level.spawnEntity(entityToSpawn);
-            }
-        }
-
-        world.setBlockState(new BlockPos(pos1.getX(), (int) y, pos1.getZ()), Blocks.FIRE.getDefaultState(), 3);
-
-        Runnable callback = () -> {
-            BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+            BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             if (world instanceof ServerWorld _level) {
                 LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                 if (entityToSpawn != null) {
-                    entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos.getZ())));
+                    entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos1.getX(), (int) y, pos1.getZ())));
                     entityToSpawn.setCosmetic(true);
                     _level.spawnEntity(entityToSpawn);
                 }
             }
-            world.setBlockState(new BlockPos(pos.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
-        };
-        Timeout.create(2, callback);
-        Timeout.create(4, callback);
-        Timeout.create(6, callback);
-        Timeout.create(8, callback);
-        Timeout.create(10, callback);
-        Timeout.create(12, callback);
-        Timeout.create(14, callback);
-        Timeout.create(16, callback);
-        Timeout.create(18, callback);
-        Timeout.create(20, callback);
 
-        if (entity instanceof PlayerEntity)
-            entity.getItemCooldownManager().set(itemtack.getItem(), 1200);
+            world.setBlockState(new BlockPos(pos1.getX(), (int) y, pos1.getZ()), Blocks.FIRE.getDefaultState(), 3);
+
+            Runnable callback = () -> {
+                BlockPos pos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(12.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
+                if (world instanceof ServerWorld _level) {
+                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
+                    if (entityToSpawn != null) {
+                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos(pos.getX(), (int) y, pos.getZ())));
+                        entityToSpawn.setCosmetic(true);
+                        _level.spawnEntity(entityToSpawn);
+                    }
+                }
+                world.setBlockState(new BlockPos(pos.getX(), (int) y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
+            };
+            Timeout.create(2, callback);
+            Timeout.create(4, callback);
+            Timeout.create(6, callback);
+            Timeout.create(8, callback);
+            Timeout.create(10, callback);
+            Timeout.create(12, callback);
+            Timeout.create(14, callback);
+            Timeout.create(16, callback);
+            Timeout.create(18, callback);
+            Timeout.create(20, callback);
+
+            if (entity instanceof PlayerEntity)
+                entity.getItemCooldownManager().set(itemtack.getItem(), 1200);
+        }
 
         return ar;
     }
@@ -126,10 +126,5 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, T
     @Override
     public Episode getEpisode() {
         return Episode.HardPillToSwallow;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().nether_spear;
     }
 }

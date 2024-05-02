@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.compat.asteorbar;
 import com.afoxxvi.asteorbar.overlay.parts.SimpleBarOverlay;
 import com.rainimator.rainimatormod.compat.ElectricitySource;
 import com.rainimator.rainimatormod.compat.ElectricitySystem;
+import com.rainimator.rainimatormod.item.trinket.WingsOfSalvationForTR;
 import com.rainimator.rainimatormod.item.trinket.WingsOfSalvationItem;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.util.NumberUtil;
@@ -28,7 +29,7 @@ public class ElectricityHud extends SimpleBarOverlay {
         parameters.centerColor = 0xFFFFFF;
         parameters.centerText = "";
         Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(playerEntity);
-        if (ModItems.WINGS_OF_SALVATION instanceof WingsOfSalvationItem.WingsOfSalvationForTR tr && component.isPresent()) {
+        if (ModItems.WINGS_OF_SALVATION instanceof WingsOfSalvationForTR tr && component.isPresent()) {
             List<Pair<SlotReference, ItemStack>> stacks = component.get().getEquipped(ModItems.WINGS_OF_SALVATION);
             if (stacks.size() > 0) {
                 ItemStack stack = stacks.get(0).getRight();

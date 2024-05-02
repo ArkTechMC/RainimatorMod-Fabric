@@ -1,33 +1,33 @@
 package com.rainimator.rainimatormod.item.armor;
 
-import com.iafenvoy.mcrconvertlib.item.ArmorMaterialUtil;
-import com.iafenvoy.mcrconvertlib.item.ArmorWithTickItem;
+import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import com.rainimator.rainimatormod.entity.WitheredSkeletonsEntity;
 import com.rainimator.rainimatormod.registry.ModItems;
+import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.Trinket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class NetherTheCrownItem extends ArmorWithTickItem {
-    public NetherTheCrownItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("nether_the_crown", new int[]{13, 15, 16, 11}, 30, new int[]{0, 0, 0, 5}, 15, null, 0.0F, 0.0F), slot, properties);
+public class NetherTheCrownItem extends ItemBase implements Trinket {
+    public NetherTheCrownItem() {
+        super(p -> p);
     }
 
     @Override
-    public void onArmorTick(World world, PlayerEntity entity) {
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         if (entity == null) {
             return;
         }
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
-        List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(16.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        List<Entity> _entfound = entity.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(16.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.NETHER_THE_CROWN_HELMET) {
                 if (entityiterator instanceof WitheredSkeletonsEntity) {
@@ -60,12 +60,6 @@ public class NetherTheCrownItem extends ArmorWithTickItem {
                     _entity.getNavigation().stop();
                 }
             }
-        }
-    }
-
-    public static class Helmet extends NetherTheCrownItem {
-        public Helmet() {
-            super(Type.HELMET, new Settings().fireproof());
         }
     }
 }

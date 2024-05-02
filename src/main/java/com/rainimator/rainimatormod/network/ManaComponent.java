@@ -100,6 +100,7 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
     }
 
     public static boolean tryUse(PlayerEntity player,double amount){
+        if(player.isCreative()) return true;
         if (ManaComponent.MANA_COMPONENT.get(player).tryUseMana(amount)) return true;
         player.sendMessage(Text.translatable("message.rainimator.mana.not_enough"), true);
         return false;

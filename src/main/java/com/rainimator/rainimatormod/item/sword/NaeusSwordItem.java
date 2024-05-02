@@ -6,7 +6,7 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.data.config.ManaConfig;
-import com.rainimator.rainimatormod.registry.util.IManaRequire;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class NaeusSwordItem extends SwordItemBase implements IManaRequire {
+public class NaeusSwordItem extends SwordItemBase {
     public NaeusSwordItem() {
         super(ToolMaterialUtil.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof());
     }
@@ -41,11 +41,10 @@ public class NaeusSwordItem extends SwordItemBase implements IManaRequire {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!this.tryUse(entity)) return ar;
         Vec3d _center = entity.getPos();
-        List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(6.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityIterator : _entfound) {
-            if (entity.isSneaking()) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().naeus_sword)) {
+            List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(6.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+            for (Entity entityIterator : _entfound) {
                 if (entityIterator instanceof PlayerEntity)
                     entity.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
                 else {
@@ -61,10 +60,5 @@ public class NaeusSwordItem extends SwordItemBase implements IManaRequire {
             }
         }
         return ar;
-    }
-
-    @Override
-    public double manaPerUse() {
-        return ManaConfig.getInstance().naeus_sword;
     }
 }

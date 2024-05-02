@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.compat.trinkets;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.renderer.BackItemRenderer;
 import com.rainimator.rainimatormod.renderer.WingsOfSalvationRenderer;
+import com.rainimator.rainimatormod.renderer.armor.*;
+import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.minecraft.item.Items;
@@ -20,9 +22,16 @@ public class TrinketsRegistry {
         TrinketRendererRegistry.registerRenderer(ModItems.RAIN_SWORD, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.ABIGAIL_SPEAR, new BackItemRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.WINGS_OF_SALVATION, new WingsOfSalvationRenderer());
+
+        TrinketRendererRegistry.registerRenderer(ModItems.KING_NORMAL_CROWN, new KingNormalCrownRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.GLUTTON_HELMET, new GluttonArmorHelmetRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.MAGIC_HAT, new MagicHatRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.NETHER_THE_CROWN_HELMET, new NetherTheCrownRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.PIGLIN_KING_CROWN, new PiglinKingCrownRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.PORKSHIRE_KING_CROWN, new PorkshireKingCrownRenderer());
     }
 
     public static void registerCommon() {
-        TrinketsApi.registerTrinket(ModItems.WINGS_OF_SALVATION, ModItems.WINGS_OF_SALVATION);
+        TrinketsApi.registerTrinket(ModItems.WINGS_OF_SALVATION, (Trinket) ModItems.WINGS_OF_SALVATION);
     }
 }
