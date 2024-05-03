@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rainimator",
-  "version": "0.5",
+  "version": "${version}",
   "name": "Rainimator",
   "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
   "authors": [
