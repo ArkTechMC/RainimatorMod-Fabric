@@ -8,11 +8,13 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class BlueDiamondArmorsItem extends ArmorWithTickItem {
     public BlueDiamondArmorsItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, null, 5.0F, 0.3F, ModItems.BLUE_DIAMOND), slot, properties);
+        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 5.0F, 0.3F, ModItems.BLUE_DIAMOND), slot, properties);
     }
 
     @Override

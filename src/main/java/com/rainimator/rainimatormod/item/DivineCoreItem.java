@@ -2,8 +2,8 @@ package com.rainimator.rainimatormod.item;
 
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -35,7 +35,7 @@ public class DivineCoreItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().divine_core)) return ar;
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.divine_core).get())) return ar;
         ItemStack itemtack = ar.getValue();
 
         if (entity.getHealth() == entity.getMaxHealth()) {

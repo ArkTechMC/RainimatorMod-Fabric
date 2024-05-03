@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.item;
 
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +19,8 @@ public class NetherNuclearReactorItem extends ItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().nether_nuclear_reactor)) return ar;
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.nether_nuclear_reactor).get()))
+            return ar;
         ItemStack itemtack = ar.getValue();
         if (!entity.getWorld().isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 400, 0));

@@ -139,6 +139,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
                 if (!_player.getWorld().isClient())
                     _player.sendMessage(Text.translatable("item.rainimator.mysterious_gift_box.goodluck4"), true);
             _player.getInventory().insertStack(stack);
+            _player.getInventory().markDirty();
         }
         return retval;
     }

@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.renderer.gui;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.data.config.ModConfig;
+import com.rainimator.rainimatormod.network.ManaComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

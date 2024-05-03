@@ -9,11 +9,13 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class PatrickArmorItem extends ArmorWithTickItem {
     public PatrickArmorItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, null, 3.0F, 0.0F,ModItems.SUPER_SAPPHIRE), slot, properties);
+        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 3.0F, 0.0F, ModItems.SUPER_SAPPHIRE), slot, properties);
     }
 
     @Override

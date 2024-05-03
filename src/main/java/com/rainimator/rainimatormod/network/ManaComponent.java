@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.network;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.data.config.ModConfig;
 import com.rainimator.rainimatormod.registry.ModEnchantments;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3;
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
@@ -30,8 +30,8 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
 
     public ManaComponent(LivingEntity entity) {
         this.entity = entity;
-        this.restoreSpeed = ModConfig.getInstance().baseRestoreSpeed;
-        this.maxMana = ModConfig.getInstance().baseMaxMana;
+        this.restoreSpeed = entity.getWorld().getGameRules().get(ModGameRules.baseRestoreSpeed).get();
+        this.maxMana = entity.getWorld().getGameRules().get(ModGameRules.baseMaxMana).get();
     }
 
     @Override
@@ -71,18 +71,18 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
     }
 
     private void measureMaxMana() {
-        double base = ModConfig.getInstance().baseMaxMana, multiple = 1.0, modifier = 0.0;
+        double base = this.entity.getWorld().getGameRules().get(ModGameRules.baseMaxMana).get(), multiple = 1.0, modifier = 0.0;
         Map<EquipmentSlot, ItemStack> upgrade = ModEnchantments.MANA_UPGRADE.getEquipment(this.entity);
         for (Map.Entry<EquipmentSlot, ItemStack> entry : upgrade.entrySet())
-            multiple += EnchantmentHelper.getLevel(ModEnchantments.MANA_UPGRADE, entry.getValue());
+            multiple += (double) EnchantmentHelper.getLevel(ModEnchantments.MANA_UPGRADE, entry.getValue()) / 10;
         this.maxMana = base * multiple + modifier;
     }
 
     private void measureRestoreSpeed() {
-        double base = ModConfig.getInstance().baseRestoreSpeed, multiple = 1.0, modifier = 0.0;
+        double base = this.entity.getWorld().getGameRules().get(ModGameRules.baseRestoreSpeed).get(), multiple = 1.0, modifier = 0.0;
         Map<EquipmentSlot, ItemStack> regeneration = ModEnchantments.MANA_REGENERATION.getEquipment(this.entity);
         for (Map.Entry<EquipmentSlot, ItemStack> entry : regeneration.entrySet())
-            multiple += EnchantmentHelper.getLevel(ModEnchantments.MANA_REGENERATION, entry.getValue());
+            multiple += (double) EnchantmentHelper.getLevel(ModEnchantments.MANA_REGENERATION, entry.getValue()) / 10;
         this.restoreSpeed = base * multiple + modifier;
     }
 
@@ -99,8 +99,8 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
         ManaComponent.MANA_COMPONENT.sync(entity);
     }
 
-    public static boolean tryUse(PlayerEntity player,double amount){
-        if(player.isCreative()) return true;
+    public static boolean tryUse(PlayerEntity player, double amount) {
+        if (player.isCreative()) return true;
         if (ManaComponent.MANA_COMPONENT.get(player).tryUseMana(amount)) return true;
         player.sendMessage(Text.translatable("message.rainimator.mana.not_enough"), true);
         return false;

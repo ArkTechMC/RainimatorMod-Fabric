@@ -4,8 +4,8 @@ import com.iafenvoy.mcrconvertlib.item.FoilSwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +48,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
         final double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(x, y, z);
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().fallen_soul_axe)) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.fallen_soul_axe).get())) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(5.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;

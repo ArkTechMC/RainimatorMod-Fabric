@@ -3,8 +3,8 @@ package com.rainimator.rainimatormod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
@@ -38,7 +38,7 @@ public class SoulTotemItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().soul_totem)) return ar;
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.soul_totem).get())) return ar;
         ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();

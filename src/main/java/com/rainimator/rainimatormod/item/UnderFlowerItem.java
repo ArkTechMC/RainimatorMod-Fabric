@@ -3,8 +3,8 @@ package com.rainimator.rainimatormod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,7 +25,8 @@ public class UnderFlowerItem extends FoilItemBase {
     public ActionResult useOnBlock(ItemUsageContext context) {
         super.useOnBlock(context);
         if (context.getPlayer() == null) return ActionResult.PASS;
-        if (!ManaComponent.tryUse(context.getPlayer(), ManaConfig.getInstance().soul_totem)) return ActionResult.PASS;
+        if (!ManaComponent.tryUse(context.getPlayer(), context.getWorld().getGameRules().get(ModGameRules.under_flower).get()))
+            return ActionResult.PASS;
         World world = context.getWorld();
         double x = context.getBlockPos().getX();
         double y = context.getBlockPos().getY();

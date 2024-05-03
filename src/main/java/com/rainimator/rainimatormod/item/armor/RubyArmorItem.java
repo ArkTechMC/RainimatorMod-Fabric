@@ -8,11 +8,13 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class RubyArmorItem extends ArmorWithTickItem {
     public RubyArmorItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("ruby_armor", new int[]{13, 15, 16, 11}, 40, new int[]{5, 10, 12, 6}, 25, null, 2.5F, 0.0F), slot, properties);
+        super(ArmorMaterialUtil.of("ruby_armor", new int[]{13, 15, 16, 11}, 40, new int[]{5, 10, 12, 6}, 25, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 2.5F, 0.0F), slot, properties);
     }
 
     @Override

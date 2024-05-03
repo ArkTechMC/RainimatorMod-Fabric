@@ -24,6 +24,10 @@ public class DarkObsidianBlockEntity extends BlockEntity {
         return this.biome;
     }
 
+    public void setBiome(RegistryKey<Biome> biome) {
+        this.biome = biome;
+    }
+
     public void setBiome(ItemStack itemStack, RegistryEntry<Biome> current) {
         NbtCompound compound = itemStack.getOrCreateNbt();
         String name = compound.getString(DarkObsidianBlock.NBT_KEY);
@@ -31,10 +35,6 @@ public class DarkObsidianBlockEntity extends BlockEntity {
             this.setBiome(current.getKey().orElse(RegistryKey.of(RegistryKeys.BIOME, null)));
         else
             this.setBiome(RegistryKey.of(RegistryKeys.BIOME, new Identifier(name)));
-    }
-
-    public void setBiome(RegistryKey<Biome> biome) {
-        this.biome = biome;
     }
 
     @Override

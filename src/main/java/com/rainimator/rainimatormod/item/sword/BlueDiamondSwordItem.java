@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.*;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
@@ -75,7 +75,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         final Vec3d _center = new Vec3d(x, y, z);
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().blue_diamond_sword)) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.blue_diamond_sword).get())) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.BLUE_DIAMOND_SWORD) {

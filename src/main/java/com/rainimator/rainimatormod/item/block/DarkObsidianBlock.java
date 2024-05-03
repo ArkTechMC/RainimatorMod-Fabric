@@ -63,11 +63,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
             EntityUtil.summon(ModEntities.DARK_ZOMBIE, world, x, y, z + RandomHelper.nextInt(1, 3));
             EntityUtil.summon(ModEntities.AZALEA, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(Blocks.WITHER_ROSE);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
-            EntityUtil.summon(ModEntities.KRALOS, world, x, y, z);
-        });
+        consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.KRALOS, world, x, y, z));
         consumers.put(Items.TOTEM_OF_UNDYING, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.KLAUS, world, x, y, z);
             EntityUtil.summon(EntityType.PILLAGER, world, x, y, z - RandomHelper.nextInt(1, 3));
@@ -75,35 +71,21 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
             EntityUtil.summon(EntityType.PILLAGER, world, x - RandomHelper.nextInt(1, 3), y, z);
             EntityUtil.summon(EntityType.PILLAGER, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(Blocks.WITHER_SKELETON_SKULL);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
-            EntityUtil.summon(ModEntities.GIGABONE, world, x, y, z);
-        });
+        consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.GIGABONE, world, x, y, z));
         consumers.put(ModItems.SOUL_PEOPLE, (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(ModItems.SOUL_PEOPLE);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.NAMTAR, world, x, y, z);
             EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(ModEntities.MUTATED, world, x, y, z + RandomHelper.nextInt(1, 3));
             EntityUtil.summon(ModEntities.SKELETON_SNOW, world, x + RandomHelper.nextInt(1, 3), y, z);
             EntityUtil.summon(ModEntities.WITHER_SHIELD, world, x - RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(ModItems.WITHER_BONE, (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(ModItems.WITHER_BONE);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
-            EntityUtil.summon(ModEntities.BIG_UNDEAD_SKELETON, world, x, y, z);
-        });
+        consumers.put(ModItems.WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.BIG_UNDEAD_SKELETON, world, x, y, z));
         consumers.put(Items.GOLDEN_SWORD, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.PIGLIN_COMMANDER, world, x, y, z));
         consumers.put(Items.GOLD_INGOT, (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(Items.GOLD_INGOT);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_KING, world, x, y, z);
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(Blocks.GOLD_BLOCK.asItem(), (entity, world, x, y, z) -> {
-            ItemStack _stktoremove = new ItemStack(Blocks.GOLD_BLOCK);
-            entity.getInventory().remove(p -> _stktoremove.getItem() == p.getItem(), 1, entity.playerScreenHandler.getCraftingInput());
             EntityUtil.summon(ModEntities.PIGLIN_KING_ZOMBIES, world, x, y, z);
             EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
@@ -233,9 +215,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
             SoundUtil.playSound(world, x, y, z, new Identifier("block.portal.travel"), 1, 1);
             if (!world.isClient() && world.getServer() != null)
                 world.getServer().getPlayerManager().broadcast(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
-            ItemStack _setstack = new ItemStack(Blocks.AIR);
-            _setstack.setCount(1);
-            entity.setStackInHand(Hand.MAIN_HAND, _setstack);
+            entity.getMainHandStack().decrement(1);
             entity.getInventory().markDirty();
             if (world instanceof ServerWorld _level)
                 Timeout.create(60, () -> {

@@ -21,9 +21,17 @@ public class DaryllEntityProjectile extends PersistentProjectileEntity implement
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if(this.inGround)
+            this.remove(RemovalReason.DISCARDED);
+    }
+
+    @Override
     protected void onHit(LivingEntity livingEntity) {
         super.onHit(livingEntity);
         livingEntity.setStuckArrowCount(livingEntity.getStuckArrowCount() - 1);
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @Override

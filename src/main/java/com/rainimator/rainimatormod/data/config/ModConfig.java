@@ -11,11 +11,6 @@ public class ModConfig implements IAnnotatedConfigEntry {
     public FractionType fraction = FractionType.OFF;
     public int manaHudX = 0;
     public int manaHudY = 0;
-    public double baseMaxMana = 100;
-    public double baseRestoreSpeed = 3;
-    public boolean enableWingsCreativeFly = false;
-    public double wingsBoostSpeed = 5.0;
-    public ElectricitySource electricity = ElectricitySource.NONE;
 
     public static ModConfig getInstance() {
         return AnnotationApi.getConfig(ModConfig.class);

@@ -24,6 +24,14 @@ public class CiaraEntityProjectile extends PersistentProjectileEntity implements
     protected void onHit(LivingEntity livingEntity) {
         super.onHit(livingEntity);
         livingEntity.setStuckArrowCount(livingEntity.getStuckArrowCount() - 1);
+        this.remove(RemovalReason.DISCARDED);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(this.inGround)
+            this.remove(RemovalReason.DISCARDED);
     }
 
     @Override

@@ -6,9 +6,9 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
 import com.rainimator.rainimatormod.registry.ModEffects;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.entity.Entity;
@@ -60,7 +60,8 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
 
-        if (!ManaComponent.tryUse(entity, ManaConfig.getInstance().seizing_shadow_halberd)) return ar;
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.seizing_shadow_halberd).get()))
+            return ar;
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {

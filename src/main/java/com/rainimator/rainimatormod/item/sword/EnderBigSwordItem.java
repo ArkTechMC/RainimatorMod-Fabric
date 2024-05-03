@@ -3,8 +3,8 @@ package com.rainimator.rainimatormod.item.sword;
 import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticles;
 import dev.emi.trinkets.api.Trinket;
@@ -35,7 +35,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().ender_big_sword)) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.ender_big_sword).get())) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             BlockPos blockPos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());

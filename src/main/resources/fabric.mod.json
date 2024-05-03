@@ -30,7 +30,6 @@
     ],
     "annotation_lib": [
       "com.rainimator.rainimatormod.data.config.ModConfig",
-      "com.rainimator.rainimatormod.data.config.ManaConfig",
       "com.rainimator.rainimatormod.registry.ModBlocks",
       "com.rainimator.rainimatormod.registry.ModBanners",
       "com.rainimator.rainimatormod.registry.ModEffects",
@@ -38,7 +37,6 @@
       "com.rainimator.rainimatormod.registry.ModEntities",
       "com.rainimator.rainimatormod.registry.ModItems",
       "com.rainimator.rainimatormod.registry.ModCreativeTabs",
-      "com.rainimator.rainimatormod.command.UpdateConfigCommand",
       "com.rainimator.rainimatormod.network.EnderBookActionHandler",
       "com.rainimator.rainimatormod.network.AbilityHotkeyHandler"
     ],

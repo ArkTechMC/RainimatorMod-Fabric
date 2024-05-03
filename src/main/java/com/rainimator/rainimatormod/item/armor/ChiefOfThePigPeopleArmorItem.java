@@ -9,11 +9,13 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class ChiefOfThePigPeopleArmorItem extends ArmorWithTickItem {
     public ChiefOfThePigPeopleArmorItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("chief_of_the_pig_people_armors", new int[]{13, 15, 16, 11}, 25, new int[]{5, 10, 12, 5}, 10, null, 3.0F, 0F, Items.NETHERITE_INGOT), slot, properties);
+        super(ArmorMaterialUtil.of("chief_of_the_pig_people_armors", new int[]{13, 15, 16, 11}, 25, new int[]{5, 10, 12, 5}, 10, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 3.0F, 0F, Items.NETHERITE_INGOT), slot, properties);
     }
 
     @Override

@@ -7,25 +7,25 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class WriteCricleParticle extends SpriteBillboardParticle {
+public class YellowStearParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteSet;
 
-    protected WriteCricleParticle(ClientWorld world, double x, double y, double z, double vx, double vy, double vz, SpriteProvider spriteSet) {
+    protected YellowStearParticle(ClientWorld world, double x, double y, double z, double vx, double vy, double vz, SpriteProvider spriteSet) {
         super(world, x, y, z);
         this.spriteSet = spriteSet;
         this.setBoundingBoxSpacing(0.2F, 0.2F);
-        this.scale *= 2.0F;
-        this.maxAge = Math.max(1, 63 + this.random.nextInt(84) - 42);
+
+        this.maxAge = 42;
         this.gravityStrength = 0.0F;
-        this.collidesWithWorld = false;
+        this.collidesWithWorld = true;
         this.velocityX = vx * 0.0D;
         this.velocityY = vy * 0.0D;
         this.velocityZ = vz * 0.0D;
         this.setSpriteForAge(spriteSet);
     }
 
-    public static WriteCricleParticleProvider provider(SpriteProvider spriteSet) {
-        return new WriteCricleParticleProvider(spriteSet);
+    public static YellowStearsParticleProvider provider(SpriteProvider spriteSet) {
+        return new YellowStearsParticleProvider(spriteSet);
     }
 
     @Override
@@ -42,18 +42,18 @@ public class WriteCricleParticle extends SpriteBillboardParticle {
     public void tick() {
         super.tick();
         if (!this.dead)
-            this.setSprite(this.spriteSet.getSprite(this.age / 2 % 17 + 1, 17));
+            this.setSprite(this.spriteSet.getSprite(this.age / 2 % 7 + 1, 7));
     }
 
-    public static class WriteCricleParticleProvider implements ParticleFactory<DefaultParticleType> {
+    public static class YellowStearsParticleProvider implements ParticleFactory<DefaultParticleType> {
         private final SpriteProvider spriteSet;
 
-        public WriteCricleParticleProvider(SpriteProvider spriteSet) {
+        public YellowStearsParticleProvider(SpriteProvider spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         public Particle createParticle(DefaultParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new WriteCricleParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+            return new YellowStearParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
         }
     }
 }

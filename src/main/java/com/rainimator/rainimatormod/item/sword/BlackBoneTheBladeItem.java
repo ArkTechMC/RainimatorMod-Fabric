@@ -8,8 +8,8 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.data.config.ManaConfig;
 import com.rainimator.rainimatormod.network.ManaComponent;
+import com.rainimator.rainimatormod.registry.ModGameRules;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.util.Episode;
@@ -53,7 +53,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
         final double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, ManaConfig.getInstance().blackbone_the_blade)) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.blackbone_the_blade).get())) {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);
