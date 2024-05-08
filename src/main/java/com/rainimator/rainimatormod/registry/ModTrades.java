@@ -26,7 +26,7 @@ public class ModTrades {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2, factories -> factories.addAll(List.of(
                 new BuyWithPrice(new ItemStack(ModItems.RAW_RUBY), new ItemStack(ModItems.SAPPHIRE), 25, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.RUBY), 25, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.RUBY, 2), new ItemStack(ModItems.RUBY_PICKAXE_1), 1, 25, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.RUBY, 2), new ItemStack(ModItems.RUBY_PICKAXE), 1, 25, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.RUBY, 2), new ItemStack(ModItems.RUBY_AXE), 1, 25, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.SAPPHIRE, 2), new ItemStack(ModItems.SAPPHIRE_PICKAXE), 1, 25, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.SAPPHIRE, 2), new ItemStack(ModItems.SAPPHIRE_AXE), 1, 25, 0.05F)
@@ -49,7 +49,7 @@ public class ModTrades {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> factories.addAll(List.of(
                 new BuyWithPrice(new ItemStack(ModItems.ZOMBIE_HEART, 10), new ItemStack(ModItems.WITHER_BONE, 2), new ItemStack(ModItems.SUPER_RUBY), 5, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.ZOMBIE_HEART, 10), new ItemStack(ModItems.WITHER_BONE, 2), new ItemStack(ModItems.SUPER_SAPPHIRE), 5, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.BAO_ZHU), new ItemStack(ModItems.WITHER_BONE), new ItemStack(ModItems.MAGIC_STARD), 5, 5, 0.05F)
+                new BuyWithPrice(new ItemStack(ModItems.BAO_ZHU), new ItemStack(ModItems.WITHER_BONE), new ItemStack(ModItems.MAGIC_STAR), 5, 5, 0.05F)
         )));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 3, factories -> factories.addAll(List.of(
                 new BuyWithPrice(new ItemStack(ModItems.ZOMBIE_HEART, 20), new ItemStack(ModItems.WITHER_BONE, 5), new ItemStack(ModItems.BLUE_DIAMOND), 3, 5, 0.05F),
@@ -63,7 +63,7 @@ public class ModTrades {
                 new BuyWithPrice(new ItemStack(ModItems.RUBY, 2), new ItemStack(ModItems.SAPPHIRE, 2), new ItemStack(ModItems.BLUE_DIAMOND), 3, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.HOT_IRON, 2), new ItemStack(Items.IRON_SWORD), new ItemStack(ModItems.NETHERITE_FLAME_SABER), 1, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.SUPER_RUBY), new ItemStack(Items.IRON_SWORD), new ItemStack(ModItems.RED_GOLD_DAGGER), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.MAGIC_STARD, 5), new ItemStack(ModItems.BLACK_GUN), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.MAGIC_STAR, 5), new ItemStack(ModItems.BLACK_GUN), 1, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.SUPER_RUBY), new ItemStack(ModItems.NEAUS_SOULS), 1, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.SUPER_SAPPHIRE), new ItemStack(ModItems.NEAUS_SOULS), 1, 5, 0.05F)
         )));
@@ -73,15 +73,15 @@ public class ModTrades {
                 new BuyWithPrice(new ItemStack(Items.ROTTEN_FLESH, 3), new ItemStack(Items.GOLDEN_CARROT), 10, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(Items.STRING, 3), new ItemStack(Items.GOLDEN_CARROT), 10, 5, 0.05F),
                 new BuyWithPrice(new ItemStack(Items.BONE, 3), new ItemStack(Items.GOLDEN_CARROT), 10, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.COPPER_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.IRON_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.GOLD_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.REDSTONE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.EMERALD_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.LAPIS_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(Blocks.NETHERITE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(ModBlocks.SAPPHIRE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
-                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STARD), new ItemStack(ModBlocks.RUBY_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F)
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.COPPER_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.IRON_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.GOLD_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.REDSTONE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.EMERALD_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.LAPIS_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(Blocks.NETHERITE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(ModBlocks.SAPPHIRE_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F),
+                new BuyWithPrice(new ItemStack(ModItems.MAGIC_STAR), new ItemStack(ModBlocks.RUBY_BLOCK), new ItemStack(Blocks.DIAMOND_BLOCK), 1, 5, 0.05F)
         )));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> factories.add(
                 new BuyWithPrice(new ItemStack(Items.REDSTONE, 5), new ItemStack(ModItems.SOUL_PEOPLE, 2), 5, 5, 0.05F)
@@ -97,7 +97,7 @@ public class ModTrades {
                 new BuyWithPrice(new ItemStack(ModItems.SUPER_DIAMOND_APPLE), new ItemStack(ModItems.LIGHT_HEART), new ItemStack(ModItems.DIAMOND_APPLE_SUPPER, 2), 2, 5, 0.05F)
         )));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 5, factories -> factories.add(
-                new BuyWithPrice(new ItemStack(ModItems.RUBY_PICKAXE), new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.DIAMOND_HATCHET), 1, 5, 0.05F)
+                new BuyWithPrice(new ItemStack(ModItems.GEMSTONE_MIXTURE), new ItemStack(ModItems.BLUE_DIAMOND), new ItemStack(ModItems.DIAMOND_HATCHET), 1, 5, 0.05F)
         ));
         //FLETCHER
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FLETCHER, 1, factories -> factories.addAll(List.of(

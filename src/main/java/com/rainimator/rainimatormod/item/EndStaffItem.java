@@ -59,11 +59,11 @@ public class EndStaffItem extends ItemBase {
     @Override
     public void onStoppedUsing(ItemStack itemtack, World world, LivingEntity entityLiving, int timeLeft) {
         if (!world.isClient() && entityLiving instanceof ServerPlayerEntity entity) {
-            ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == ModItems.MAGIC_STARD));
+            ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == ModItems.MAGIC_STAR));
             if (stack == ItemStack.EMPTY)
                 for (int i = 0; i < (entity.getInventory()).main.size(); i++) {
                     ItemStack teststack = (entity.getInventory()).main.get(i);
-                    if (teststack.getItem() == ModItems.MAGIC_STARD) {
+                    if (teststack.getItem() == ModItems.MAGIC_STAR) {
                         stack = teststack;
                         break;
                     }
@@ -73,7 +73,7 @@ public class EndStaffItem extends ItemBase {
                 itemtack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
                 if ((entity.getAbilities()).creativeMode) {
                     entityarrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-                } else if ((new ItemStack(ModItems.MAGIC_STARD)).isDamageable()) {
+                } else if ((new ItemStack(ModItems.MAGIC_STAR)).isDamageable()) {
                     if (stack.damage(1, world.getRandom(), entity)) {
                         stack.decrement(1);
                         stack.setDamage(0);

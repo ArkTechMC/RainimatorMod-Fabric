@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "1": {
-      "item": "rainimator:super_sapphire"
+      "item": "rainimator:super_sugilite"
     },
     "2": {
       "item": "minecraft:netherite_scrap"
@@ -19,7 +19,7 @@
       "item": "rainimator:deep_sickle"
     },
     "4": {
-      "item": "rainimator:ruby_pickaxe"
+      "item": "rainimator:gemstone_mixture"
     }
   },
   "result": {

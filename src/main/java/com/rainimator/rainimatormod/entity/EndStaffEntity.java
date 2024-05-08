@@ -61,7 +61,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
 
     @Override
     protected ItemStack asItemStack() {
-        return new ItemStack(ModItems.MAGIC_STARD);
+        return new ItemStack(ModItems.MAGIC_STAR);
     }
 
     @Override

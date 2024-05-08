@@ -1,11 +1,13 @@
 package com.rainimator.rainimatormod.mixin;
 
 import com.google.common.collect.ImmutableMap;
+import com.mojang.authlib.GameProfile;
 import com.rainimator.rainimatormod.entity.HerobrineEntity;
 import com.rainimator.rainimatormod.registry.ModSkulls;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.SkullBlock;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.SkullBlockEntityModel;
 import net.minecraft.client.render.block.entity.SkullBlockEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
@@ -35,5 +37,11 @@ public class SkullBlockEntityRendererMixin {
         builder.putAll(cir.getReturnValue());
         builder.put(ModSkulls.SkullType.HEROBRINE, new SkullEntityModel(modelLoader.getModelPart(EntityModelLayers.ZOMBIE_HEAD)));
         cir.setReturnValue(builder.build());
+    }
+
+    @Inject(method = "getRenderLayer", at = @At("HEAD"), cancellable = true)
+    private static void getOwnLayers(SkullBlock.SkullType type, GameProfile profile, CallbackInfoReturnable<RenderLayer> cir) {
+        if (type == ModSkulls.SkullType.HEROBRINE)
+            cir.setReturnValue(RenderLayer.getEntityCutoutNoCull(HerobrineEntity.texture.getTexture()));
     }
 }

@@ -149,7 +149,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
         boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, (ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
+            ParticleUtil.spawnCircleParticles(world, ModParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
         return ret_val;
     }
 

@@ -8,13 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 public class HerobrineArmorItem extends ArmorItem {
-    public HerobrineArmorItem(Type slot, Item.Settings properties) {
-        super(ArmorMaterialUtil.of("herobrine_armors", new int[]{13, 15, 16, 11}, 20, new int[]{0, 0, 20, 0}, 17, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 5.0F, 0.0F, ModItems.SUPER_RUBY, ModItems.HEROBRINE_CHESTPLATE), slot, properties);
-    }
-
-    public static class Chestplate extends HerobrineArmorItem {
-        public Chestplate() {
-            super(Type.CHESTPLATE, new Settings());
-        }
+    public HerobrineArmorItem(Type slot) {
+        super(ArmorMaterialUtil.of("herobrine_armors", new int[]{13, 15, 16, 11}, 20, new int[]{0, 0, 20, 0}, 17, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 5.0F, 0.0F, ModItems.SUPER_RUBY, ModItems.HEROBRINE_CHESTPLATE), slot, new Settings());
     }
 }

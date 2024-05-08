@@ -1,19 +1,23 @@
 package com.rainimator.rainimatormod.item.block;
 
+import com.rainimator.rainimatormod.registry.ModBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import java.util.Collections;
 import java.util.List;
 
 public class RubyBlock extends Block {
     public RubyBlock() {
-        super(FabricBlockSettings.create().requiresTool().strength(4.0f));
+        super(FabricBlockSettings.create().requiresTool().strength(6).sounds(BlockSoundGroup.METAL));
     }
 
     @Override
@@ -22,10 +26,8 @@ public class RubyBlock extends Block {
     }
 
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
-        if (!dropsOriginal.isEmpty())
-            return dropsOriginal;
-        return Collections.singletonList(new ItemStack(this, 1));
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        dropStack(world,pos,new ItemStack(ModBlocks.RUBY_BLOCK));
     }
 }

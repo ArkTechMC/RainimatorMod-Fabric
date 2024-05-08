@@ -16,6 +16,9 @@
   "icon": "logo.jpg",
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "com.rainimator.rainimatormod.datagen.ModDataGenerator"
+    ],
     "main": [
       "com.rainimator.rainimatormod.RainimatorMod"
     ],
@@ -36,7 +39,7 @@
       "com.rainimator.rainimatormod.registry.ModEnchantments",
       "com.rainimator.rainimatormod.registry.ModEntities",
       "com.rainimator.rainimatormod.registry.ModItems",
-      "com.rainimator.rainimatormod.registry.ModCreativeTabs",
+      "com.rainimator.rainimatormod.registry.ModItemGroups",
       "com.rainimator.rainimatormod.network.EnderBookActionHandler",
       "com.rainimator.rainimatormod.network.AbilityHotkeyHandler"
     ],

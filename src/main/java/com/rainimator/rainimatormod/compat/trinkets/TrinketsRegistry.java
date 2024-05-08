@@ -26,7 +26,7 @@ public class TrinketsRegistry {
         TrinketRendererRegistry.registerRenderer(ModItems.KING_NORMAL_CROWN, new KingNormalCrownRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.GLUTTON_HELMET, new GluttonArmorHelmetRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.MAGIC_HAT, new MagicHatRenderer());
-        TrinketRendererRegistry.registerRenderer(ModItems.NETHER_THE_CROWN_HELMET, new NetherTheCrownRenderer());
+        TrinketRendererRegistry.registerRenderer(ModItems.NETHER_THE_CROWN, new NetherTheCrownRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.PIGLIN_KING_CROWN, new PiglinKingCrownRenderer());
         TrinketRendererRegistry.registerRenderer(ModItems.PORKSHIRE_KING_CROWN, new PorkshireKingCrownRenderer());
     }

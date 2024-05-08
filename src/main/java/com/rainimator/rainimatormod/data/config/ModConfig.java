@@ -4,7 +4,6 @@ import com.iafenvoy.annotationlib.annotation.config.ConfigFile;
 import com.iafenvoy.annotationlib.api.AnnotationApi;
 import com.iafenvoy.annotationlib.api.IAnnotatedConfigEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.compat.ElectricitySource;
 
 @ConfigFile(path = "./config/" + RainimatorMod.MOD_ID, file = "main.json")
 public class ModConfig implements IAnnotatedConfigEntry {

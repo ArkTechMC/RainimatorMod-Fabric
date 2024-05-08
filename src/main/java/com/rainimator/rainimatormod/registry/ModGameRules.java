@@ -11,6 +11,7 @@ public class ModGameRules {
     public static final GameRules.Key<DoubleRule> baseMaxMana = register("basic.baseMaxMana", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(100));
     public static final GameRules.Key<DoubleRule> baseRestoreSpeed = register("basic.baseRestoreSpeed", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(3));
     public static final GameRules.Key<GameRules.BooleanRule> enableWingsCreativeFly = register("basic.enableWingsCreativeFly", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false));
+    public static final GameRules.Key<GameRules.BooleanRule> enableArmorEffect = register("basic.enableArmorEffect", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(true));
     //mana
     public static final GameRules.Key<DoubleRule> blackbone_the_blade = register("mana.blackbone_the_blade", GameRules.Category.MISC, GameRuleFactory.createDoubleRule(30));
     public static final GameRules.Key<DoubleRule> blue_diamond_sword = register("mana.blue_diamond_sword", GameRules.Category.MISC, GameRuleFactory.createDoubleRule(40));

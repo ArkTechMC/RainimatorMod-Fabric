@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.item.block;
 
+import com.rainimator.rainimatormod.registry.ModBlocks;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class DeepslateRubyOreBlock extends Block {
     public DeepslateRubyOreBlock() {
-        super(FabricBlockSettings.create().requiresTool().strength(4.0f));
+        super(FabricBlockSettings.create().requiresTool().strength(4));
     }
 
     @Override
@@ -28,39 +29,8 @@ public class DeepslateRubyOreBlock extends Block {
     }
 
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
-        if (!dropsOriginal.isEmpty())
-            return dropsOriginal;
-        return Collections.singletonList(new ItemStack(ModItems.RAW_RUBY));
-    }
-
-    @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
-        double x = pos.getX();
-        double y = pos.getY();
-        double z = pos.getZ();
-        if (player != null) {
-            double[] p = {0.25, 0.2, 0.15, 0.1, 0.05};
-            for (int i = 1; i <= EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.getMainHandStack()); i++)
-                if (Math.random() < p[i - 1]) {
-                    for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_RUBY));
-                        entityToSpawn.setPickupDelay(50);
-                        world.spawnEntity(entityToSpawn);
-                    }
-                    break;
-                }
-            for (int i = 1; i <= EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.getOffHandStack()); i++)
-                if (Math.random() < p[i - 1]) {
-                    for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_RUBY));
-                        entityToSpawn.setPickupDelay(50);
-                        world.spawnEntity(entityToSpawn);
-                    }
-                    break;
-                }
-        }
+        dropStack(world,pos,new ItemStack(ModItems.RAW_RUBY));
     }
 }

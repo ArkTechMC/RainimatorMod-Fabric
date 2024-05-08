@@ -1,18 +1,24 @@
 package com.rainimator.rainimatormod.item.block;
 
+import com.rainimator.rainimatormod.registry.ModBlocks;
+import com.rainimator.rainimatormod.registry.ModItems;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import java.util.Collections;
 import java.util.List;
 
 public class SapphireBlock extends Block {
     public SapphireBlock() {
-        super(Settings.create().requiresTool().strength(4.0F, 10.0F));
+        super(FabricBlockSettings.create().requiresTool().strength(6).sounds(BlockSoundGroup.METAL));
     }
 
     @Override
@@ -21,10 +27,8 @@ public class SapphireBlock extends Block {
     }
 
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
-        if (!dropsOriginal.isEmpty())
-            return dropsOriginal;
-        return Collections.singletonList(new ItemStack(this, 1));
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        dropStack(world,pos,new ItemStack(ModBlocks.SAPPHIRE_BLOCK));
     }
 }

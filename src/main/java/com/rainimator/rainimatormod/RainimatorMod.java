@@ -16,9 +16,10 @@ public class RainimatorMod implements ModInitializer {
         ModFeatures.addFeatures();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
-        FabricApiCall.run();
         TrinketsRegistry.registerCommon();
         ModParticles.init();
         ModGameRules.init();
+        ModPotions.init();
+        FabricApiCall.run();
     }
 }

@@ -151,7 +151,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback1 = () -> {
                             if (world instanceof ServerWorld _level)
-                                _level.spawnParticles((DefaultParticleType) ModParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
+                                _level.spawnParticles(ModParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
                         };
                         Runnable callback2 = () -> {
                             entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
@@ -186,7 +186,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 if (!world.isClient())
                                     world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, World.ExplosionSourceType.NONE);
                                 if (world instanceof ServerWorld _level)
-                                    _level.spawnParticles((DefaultParticleType) ModParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
+                                    _level.spawnParticles(ModParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
                             }
                         });
                     }

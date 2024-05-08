@@ -1,16 +1,14 @@
 package com.rainimator.rainimatormod;
 
-import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.ModPotions;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Pair;
@@ -19,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class FabricApiCall {
-    public static void run(){
-        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0)));
+    public static void run() {
+        FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(ModItems.BLUE_DIAMOND), ModPotions.PURIFICATION_POTION);
         EntityElytraEvents.CUSTOM.register((entity, tickElytra) -> {
             Optional<TrinketComponent> optional = TrinketsApi.getTrinketComponent(entity);
             if (optional.isEmpty()) return false;

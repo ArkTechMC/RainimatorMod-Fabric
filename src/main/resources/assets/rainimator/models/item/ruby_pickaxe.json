@@ -1,6 +1,7 @@
 {
-  "parent": "item/handheld",
+  "parent": "rainimator:custom/ruby_pickaxe",
   "textures": {
-    "layer0": "rainimator:item/rubypickaxe"
+    "0": "rainimator:item/ruby_pickaxe",
+    "particle": "rainimator:item/ruby_pickaxe"
   }
 }

@@ -20,16 +20,14 @@ import com.rainimator.rainimatormod.item.shield.NetheriteShieldItem;
 import com.rainimator.rainimatormod.item.shield.SnowShieldItem;
 import com.rainimator.rainimatormod.item.sword.*;
 import com.rainimator.rainimatormod.item.tool.*;
+import com.rainimator.rainimatormod.item.trinket.NetherTheCrownItem;
 import com.rainimator.rainimatormod.item.trinket.WingsOfSalvationItem;
 import com.rainimator.rainimatormod.registry.util.MusicItemBase;
 import com.rainimator.rainimatormod.registry.util.SpawnEggBase;
 import com.rainimator.rainimatormod.util.Episode;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
 @ModId(RainimatorMod.MOD_ID)
@@ -44,6 +42,10 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item GLUTTON_SLEDGE_HAMMER = new SwordItem(ToolMaterialUtil.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, new Item.Settings().fireproof());
     @ItemReg(group = @TargetId("item"))
     public static final Item RUBY = new ItemBase(p -> p);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ = new ItemBase(p -> p);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
     public static final Item RED_GOLD_DAGGER = new RedGoldDaggerItem();
     @ItemReg(group = @TargetId("main"))
@@ -60,17 +62,37 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @Link(type = TargetType.BLOCK, target = @TargetId("ruby_block"))
     public static Item RUBY_BLOCK = null;
     @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_RUBY = new ItemBase(p -> p.maxCount(32));
+    public static final Item RAW_RUBY = new ItemBase(p -> p);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RAW_SUGILITE = new ItemBase(p -> p);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RAW_TOPAZ = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("item"))
     public static final Item SUPER_SAPPHIRE = new ItemBase(Item.Settings::fireproof);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUPER_SUGILITE = new ItemBase(Item.Settings::fireproof);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUPER_TOPAZ = new ItemBase(Item.Settings::fireproof);
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_ore"))
+    public static Item TOPAZ_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_ore"))
+    public static Item SUGILITE_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_block"))
+    public static Item TOPAZ_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_block"))
+    public static Item SUGILITE_BLOCK = null;
     @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_HELMET = new PatrickArmorItem.Helmet();
+    public static final Item PATRICK_HELMET = new PatrickArmorItem(ArmorItem.Type.HELMET);
     @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_CHESTPLATE = new PatrickArmorItem.Chestplate();
+    public static final Item PATRICK_CHESTPLATE = new PatrickArmorItem(ArmorItem.Type.CHESTPLATE);
     @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_LEGGINGS = new PatrickArmorItem.Leggings();
+    public static final Item PATRICK_LEGGINGS = new PatrickArmorItem(ArmorItem.Type.LEGGINGS);
     @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_BOOTS = new PatrickArmorItem.Boots();
+    public static final Item PATRICK_BOOTS = new PatrickArmorItem(ArmorItem.Type.BOOTS);
     @ItemReg(group = @TargetId("main"))
     public static final Item RAIN_SWORD = new RainSwordItem();
     @ItemReg(group = @TargetId("main"))
@@ -106,27 +128,27 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_block"))
     public static Item SAPPHIRE_BLOCK = null;
     @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_SAPPHIRE = new ItemBase(p -> p.maxCount(32));
+    public static final Item RAW_SAPPHIRE = new ItemBase(p -> p);
     //armor
     @ItemReg(group = @TargetId("item"))
     public static final Item HOT_IRON = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
     public static final Item HOT_GLOVES = new HotGlovesItem();
     @ItemReg(group = @TargetId("main"))
-    public static final Item HEROBRINE_CHESTPLATE = new HerobrineArmorItem.Chestplate();
+    public static final Item HEROBRINE_CHESTPLATE = new HerobrineArmorItem(ArmorItem.Type.CHESTPLATE);
     @ItemReg(group = @TargetId("item"))
     public static final Item BLUE_DIAMOND = new BlueDiamondItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLUE_DIAMOND_HELMET = new BlueDiamondArmorsItem.Helmet();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLUE_DIAMOND_CHESTPLATE = new BlueDiamondArmorsItem.Chestplate();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLUE_DIAMOND_LEGGINGS = new BlueDiamondArmorsItem.Leggings();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLUE_DIAMOND_BOOTS = new BlueDiamondArmorsItem.Boots();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item BLUE_DIAMOND_HELMET = new BlueDiamondArmorsItem(ArmorItem.Type.HELMET);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item BLUE_DIAMOND_CHESTPLATE = new BlueDiamondArmorsItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item BLUE_DIAMOND_LEGGINGS = new BlueDiamondArmorsItem(ArmorItem.Type.LEGGINGS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item BLUE_DIAMOND_BOOTS = new BlueDiamondArmorsItem(ArmorItem.Type.BOOTS);
     @ItemReg(group = @TargetId("main"))
     public static final Item DIAMOND_LANCE = new DiamondLanceItem();
-    @ItemReg(group = @TargetId("main"))
+    @ItemReg(group = @TargetId("item"))
     public static final Item BLUE_DIAMOND_SWORD = new BlueDiamondSwordItem();
     @ItemReg(group = @TargetId("main"))
     public static final Item WINGS_OF_SALVATION = WingsOfSalvationItem.create();
@@ -169,43 +191,59 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("item"))
     public static final Item ICED_HEART = new ItemBase(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
     @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_HELMET = new ChiefOfThePigPeopleArmorItem.Helmet();
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_HELMET = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.HELMET);
     @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE = new ChiefOfThePigPeopleArmorItem.Chestplate();
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.CHESTPLATE);
     @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS = new ChiefOfThePigPeopleArmorItem.Leggings();
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.LEGGINGS);
     @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_BOOTS = new ChiefOfThePigPeopleArmorItem.Boots();
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_BOOTS = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.BOOTS);
     @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_HELMET = new SoldiersArmorItem.Helmet();
+    public static final Item SOLDIERS_ARMOR_HELMET = new SoldiersArmorItem(ArmorItem.Type.HELMET);
     @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_CHESTPLATE = new SoldiersArmorItem.Chestplate();
+    public static final Item SOLDIERS_ARMOR_CHESTPLATE = new SoldiersArmorItem(ArmorItem.Type.CHESTPLATE);
     @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_LEGGINGS = new SoldiersArmorItem.Leggings();
+    public static final Item SOLDIERS_ARMOR_LEGGINGS = new SoldiersArmorItem(ArmorItem.Type.LEGGINGS);
     @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_BOOTS = new SoldiersArmorItem.Boots();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RAIN_CHESTPLATE = new RainArmorItem.Chestplate();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_HELMET = new RubyArmorItem.Helmet();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_CHESTPLATE = new RubyArmorItem.Chestplate();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_LEGGINGS = new RubyArmorItem.Leggings();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_BOOTS = new RubyArmorItem.Boots();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_HELMET = new SapphireArmorItem.Helmet();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_CHESTPLATE = new SapphireArmorItem.Chestplate();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_LEGGINGS = new SapphireArmorItem.Leggings();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_BOOTS = new SapphireArmorItem.Boots();
+    public static final Item SOLDIERS_ARMOR_BOOTS = new SoldiersArmorItem(ArmorItem.Type.BOOTS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RAIN_CHESTPLATE = new RainArmorItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_HELMET = new RubyArmorItem(ArmorItem.Type.HELMET);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_CHESTPLATE = new RubyArmorItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_LEGGINGS = new RubyArmorItem(ArmorItem.Type.LEGGINGS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_BOOTS = new RubyArmorItem(ArmorItem.Type.BOOTS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_HELMET = new SapphireArmorItem(ArmorItem.Type.HELMET);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_CHESTPLATE = new SapphireArmorItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_LEGGINGS = new SapphireArmorItem(ArmorItem.Type.LEGGINGS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_BOOTS = new SapphireArmorItem(ArmorItem.Type.BOOTS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_HELMET = new SugiliteArmorItem(ArmorItem.Type.HELMET);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_CHESTPLATE = new SugiliteArmorItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_LEGGINGS = new SugiliteArmorItem(ArmorItem.Type.LEGGINGS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_BOOTS = new SugiliteArmorItem(ArmorItem.Type.BOOTS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_HELMET = new TopazArmorItem(ArmorItem.Type.HELMET);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_CHESTPLATE = new TopazArmorItem(ArmorItem.Type.CHESTPLATE);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_LEGGINGS = new TopazArmorItem(ArmorItem.Type.LEGGINGS);
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_BOOTS = new TopazArmorItem(ArmorItem.Type.BOOTS);
     @ItemReg(group = @TargetId("main"))
     public static final Item MAGIC_HAT = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
-    public static final Item NETHER_THE_CROWN_HELMET = new NetherTheCrownItem();
+    public static final Item NETHER_THE_CROWN = new NetherTheCrownItem();
     @ItemReg(group = @TargetId("main"))
     public static final Item GLUTTON_HELMET = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
@@ -216,7 +254,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item PORKSHIRE_KING_CROWN = new ItemBase(p -> p);
     //tool
     @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_PICKAXE = new RubyPickaxeItem();
+    public static final Item GEMSTONE_MIXTURE = new FoilItemBase(p -> p.maxCount(1).rarity(Rarity.EPIC));
     @ItemReg(group = @TargetId("main"))
     public static final Item HEROBRINE_DIAMOND_PICKAXE = new HerobrineDiamondPickaxeItem();
     @ItemReg(group = @TargetId("item"))
@@ -234,7 +272,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item END_STAFF = new EndStaffItem();
     @ItemReg(group = @TargetId("item"))
-    public static final Item MAGIC_STARD = new ItemBase(p -> p.maxDamage(5));
+    public static final Item MAGIC_STAR = new ItemBase(p -> p.maxDamage(5));
     @ItemReg(group = @TargetId("main"))
     public static final Item LIGHT_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof());
     @ItemReg(group = @TargetId("main"))
@@ -249,28 +287,48 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item SEIZING_SHADOW_HALBERD = new SeizingShadowHalberdItem();
     @ItemReg(group = @TargetId("item"))
     public static final Item ENDER_BOOK = new EnderBookItem();
-    @ItemReg(group = @TargetId("item"))
+    @ItemReg(group = @TargetId("main"))
     public static final Item COTTON_CANDY = new CottonCandyItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_SWORD = new SapphireSwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_SWORD = new RubySwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_AXE = new SapphireAxeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_AXE = new RubyAxeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_PICKAXE = new SapphirePickaxeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_PICKAXE_1 = new RubyPickaxe1Item();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_SHOVEL = new SapphireShovelItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_SHOVEL = new RubyShovelItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SAPPHIRE_HOE = new SapphireHoeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RUBY_HOE = new RubyHoeItem();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_SWORD = new SapphireTools.Sword();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_SWORD = new RubyTools.Sword();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_AXE = new SapphireTools.Axe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_AXE = new RubyTools.Axe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_PICKAXE = new SapphireTools.Pickaxe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_PICKAXE = new RubyTools.Pickaxe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_SHOVEL = new SapphireTools.Shovel();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_SHOVEL = new RubyTools.Shovel();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SAPPHIRE_HOE = new SapphireTools.Hoe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item RUBY_HOE = new RubyTools.Hoe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_SWORD = new SugiliteTools.Sword();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_SWORD = new TopazTools.Sword();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_AXE = new SugiliteTools.Axe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_AXE = new TopazTools.Axe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_PICKAXE = new SugiliteTools.Pickaxe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_PICKAXE = new TopazTools.Pickaxe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_SHOVEL = new SugiliteTools.Shovel();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_SHOVEL = new TopazTools.Shovel();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item SUGILITE_HOE = new SugiliteTools.Hoe();
+    @ItemReg(group = @TargetId("item"))
+    public static final Item TOPAZ_HOE = new TopazTools.Hoe();
     @ItemReg(group = @TargetId("item"))
     public static final Item DIAMOND_APPLE_SUPPER = new DiamondAppleSupperItem();
     @ItemReg(group = @TargetId("main"))

@@ -9,6 +9,7 @@ group = project.maven_group
 loom {
     accessWidenerPath = file("src/main/resources/rainimator.accesswidener")
 }
+
 fabricApi {
     configureDataGeneration()
 }
@@ -44,8 +45,11 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    flatDir{
+    flatDir {
         dirs "remapped-libs"
+    }
+    repositories {
+        maven { url 'https://api.modrinth.com/maven' }
     }
 }
 

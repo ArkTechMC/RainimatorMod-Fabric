@@ -52,7 +52,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
     public static final String NBT_KEY = "biome";
 
     public DarkObsidianBlock() {
-        super(FabricBlockSettings.create().requiresTool().strength(50.0F, 1200.0F));
+        super(FabricBlockSettings.create().requiresTool().strength(50, 1200));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
@@ -106,7 +106,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
             EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x + RandomHelper.nextInt(1, 3));
             EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x - RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.MAGIC_STARD, (entity, world, x, y, z) -> {
+        consumers.put(ModItems.MAGIC_STAR, (entity, world, x, y, z) -> {
             EntityUtil.summon(ModEntities.PATRICK, world, x, y, z);
             EntityUtil.summon(ModEntities.HILDA, world, x, y, x - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(ModEntities.SOLDIERS, world, x, y, x + RandomHelper.nextInt(1, 3));

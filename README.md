@@ -46,7 +46,7 @@ Find out them by yourself! (~~You can also see the code.~~)
 Add part of them firstly since the skins are hard to find.
 
 Summon them by using the `Dark Obsidian Block`.
-See summon recipes with `JEI`.
+See summon recipes with `EMI`.
 
 ### Item Description (Not Work **NOW**)
 

@@ -48,7 +48,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHER_SPEAR));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_THE_CROWN_HELMET));
+        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_THE_CROWN));
     }
 
     @AttributeBuilder
