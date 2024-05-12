@@ -5,13 +5,11 @@ import com.iafenvoy.annotationlib.annotation.registration.RegisterAll;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.item.block.*;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SkullBlock;
-import net.minecraft.block.WallSkullBlock;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
+@SuppressWarnings("unused")
 public class ModBlocks implements IAnnotatedRegistryEntry {
     public static final Block RUBY_ORE = new RubyOreBlock();
     public static final Block SAPPHIRE_ORE = new SapphireOreBlock();
@@ -26,7 +24,4 @@ public class ModBlocks implements IAnnotatedRegistryEntry {
     public static final Block TOPAZ_BLOCK = new TopazBlock();
     public static final Block BLUE_DIAMOND_BLOCK = new BlueDiamondBlock();
     public static final Block MYSTIC_ORE = new MysticoreBlock();
-    //skull
-    public static final Block HEROBRINE_HEAD = new SkullBlock(ModSkulls.SkullType.HEROBRINE, AbstractBlock.Settings.create());
-    public static final Block HEROBRINE_WALL_HEAD = new WallSkullBlock(ModSkulls.SkullType.HEROBRINE, AbstractBlock.Settings.create());
 }

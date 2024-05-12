@@ -7,10 +7,10 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class YellowStearParticle extends SpriteBillboardParticle {
+public class YellowStarsParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteSet;
 
-    protected YellowStearParticle(ClientWorld world, double x, double y, double z, double vx, double vy, double vz, SpriteProvider spriteSet) {
+    protected YellowStarsParticle(ClientWorld world, double x, double y, double z, double vx, double vy, double vz, SpriteProvider spriteSet) {
         super(world, x, y, z);
         this.spriteSet = spriteSet;
         this.setBoundingBoxSpacing(0.2F, 0.2F);
@@ -53,7 +53,7 @@ public class YellowStearParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new YellowStearParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+            return new YellowStarsParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
         }
     }
 }

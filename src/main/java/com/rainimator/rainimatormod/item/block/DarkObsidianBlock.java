@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-public class DarkObsidianBlock extends Block implements BlockEntityProvider {
+public class DarkObsidianBlock extends BlockWithEntity {
     public static final HashMap<Item, Consumer5<PlayerEntity, ServerWorld, Integer, Integer, Integer>> consumers = new HashMap<>();
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final String NBT_KEY = "biome";
@@ -153,7 +153,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK_ENTITY);
+        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK);
         placed.ifPresent(x -> x.setBiome(itemStack, world.getBiome(pos)));
     }
 
@@ -161,7 +161,7 @@ public class DarkObsidianBlock extends Block implements BlockEntityProvider {
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
         ItemStack dropStack = new ItemStack(ModItems.DARK_OBSIDIAN_BLOCK);
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK_ENTITY);
+        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK);
         placed.ifPresent(x -> {
             RegistryKey<Biome> key = placed.get().getBiome();
             Optional<RegistryKey<Biome>> current = world.getBiome(pos).getKey();

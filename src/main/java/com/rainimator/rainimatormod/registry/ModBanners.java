@@ -16,13 +16,13 @@ import net.minecraft.util.Pair;
 @SuppressWarnings("unused")
 public class ModBanners implements IAnnotatedRegistryEntry {
     @Group(@TargetId("main"))
-    public static final ItemStack FROST = BannerUtil.create("frost", Items.CYAN_BANNER,
+    public static final ItemStack FROST = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".frost", Items.CYAN_BANNER,
             new Pair<>(BannerPatterns.CROSS, DyeColor.WHITE),
             new Pair<>(BannerPatterns.STRAIGHT_CROSS, DyeColor.WHITE),
             new Pair<>(BannerPatterns.CURLY_BORDER, DyeColor.WHITE),
             new Pair<>(BannerPatterns.FLOWER, DyeColor.LIGHT_BLUE));
     @Group(@TargetId("main"))
-    public static final ItemStack UNDEAD = BannerUtil.create("undead", Items.LIGHT_GRAY_BANNER,
+    public static final ItemStack UNDEAD = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".undead", Items.LIGHT_GRAY_BANNER,
             new Pair<>(BannerPatterns.CROSS, DyeColor.BLACK),
             new Pair<>(BannerPatterns.STRAIGHT_CROSS, DyeColor.BLACK),
             new Pair<>(BannerPatterns.TRIANGLES_TOP, DyeColor.BLACK),
@@ -30,7 +30,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.SKULL, DyeColor.LIGHT_GRAY),
             new Pair<>(BannerPatterns.SKULL, DyeColor.WHITE));
     @Group(@TargetId("main"))
-    public static final ItemStack NETHER = BannerUtil.create("nether", Items.BLACK_BANNER,
+    public static final ItemStack NETHER = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".nether", Items.BLACK_BANNER,
             new Pair<>(BannerPatterns.TRIANGLES_TOP, DyeColor.ORANGE),
             new Pair<>(BannerPatterns.TRIANGLES_BOTTOM, DyeColor.ORANGE),
             new Pair<>(BannerPatterns.CIRCLE, DyeColor.YELLOW),
@@ -39,7 +39,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.CURLY_BORDER, DyeColor.BLACK),
             new Pair<>(BannerPatterns.BORDER, DyeColor.BLACK));
     @Group(@TargetId("main"))
-    public static final ItemStack DRAGONSPIRE = BannerUtil.create("dragonspire", Items.BLUE_BANNER,
+    public static final ItemStack DRAGONSPIRE = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".dragonspire", Items.BLUE_BANNER,
             new Pair<>(BannerPatterns.SMALL_STRIPES, DyeColor.BLACK),
             new Pair<>(BannerPatterns.TRIANGLES_TOP, DyeColor.BLACK),
             new Pair<>(BannerPatterns.TRIANGLES_BOTTOM, DyeColor.BLACK),
@@ -48,7 +48,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.CIRCLE, DyeColor.LIGHT_BLUE),
             new Pair<>(BannerPatterns.BORDER, DyeColor.BLACK));
     @Group(@TargetId("main"))
-    public static final ItemStack ENDER_PIRATE = BannerUtil.create("ender_pirate", Items.PURPLE_BANNER,
+    public static final ItemStack ENDER_PIRATE = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".ender_pirate", Items.PURPLE_BANNER,
             new Pair<>(BannerPatterns.GRADIENT, DyeColor.BLACK),
             new Pair<>(BannerPatterns.STRAIGHT_CROSS, DyeColor.MAGENTA),
             new Pair<>(BannerPatterns.TRIANGLES_TOP, DyeColor.WHITE),
@@ -57,7 +57,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.TRIANGLES_BOTTOM, DyeColor.MAGENTA),
             new Pair<>(BannerPatterns.SKULL, DyeColor.WHITE));
     @Group(@TargetId("main"))
-    public static final ItemStack THE_GATEKEEPERS = BannerUtil.create("the_gatekeepers", Items.CYAN_BANNER,
+    public static final ItemStack THE_GATEKEEPERS = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".the_gatekeepers", Items.CYAN_BANNER,
             new Pair<>(BannerPatterns.STRIPE_BOTTOM, DyeColor.MAGENTA),
             new Pair<>(BannerPatterns.SMALL_STRIPES, DyeColor.PURPLE),
             new Pair<>(BannerPatterns.HALF_HORIZONTAL, DyeColor.PURPLE),
@@ -68,7 +68,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.SMALL_STRIPES, DyeColor.BLACK),
             new Pair<>(BannerPatterns.CURLY_BORDER, DyeColor.BLACK));
     @Group(@TargetId("main"))
-    public static final ItemStack ORCHID_CITY = BannerUtil.create("orchid_city", Items.GRAY_BANNER,
+    public static final ItemStack ORCHID_CITY = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".orchid_city", Items.GRAY_BANNER,
             new Pair<>(BannerPatterns.GRADIENT, DyeColor.MAGENTA),
             new Pair<>(BannerPatterns.CROSS, DyeColor.WHITE),
             new Pair<>(BannerPatterns.CROSS, DyeColor.BLACK),
@@ -78,7 +78,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.CIRCLE, DyeColor.MAGENTA),
             new Pair<>(BannerPatterns.FLOWER, DyeColor.WHITE));
     @Group(@TargetId("main"))
-    public static final ItemStack LIGHTBORNE_ISLES = BannerUtil.create("lightborne_isles", Items.WHITE_BANNER,
+    public static final ItemStack LIGHTBORNE_ISLES = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".lightborne_isles", Items.WHITE_BANNER,
             new Pair<>(BannerPatterns.STRIPE_CENTER, DyeColor.GRAY),
             new Pair<>(BannerPatterns.STRIPE_MIDDLE, DyeColor.GRAY),
             new Pair<>(BannerPatterns.CURLY_BORDER, DyeColor.BLACK),
@@ -86,7 +86,7 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.FLOWER, DyeColor.LIGHT_GRAY),
             new Pair<>(BannerPatterns.CIRCLE, DyeColor.WHITE));
     @Group(@TargetId("main"))
-    public static final ItemStack THE_UMBRAL_KINGDOM = BannerUtil.create("the_umbral_kingdom", Items.BLACK_BANNER,
+    public static final ItemStack THE_UMBRAL_KINGDOM = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".the_umbral_kingdom", Items.BLACK_BANNER,
             new Pair<>(BannerPatterns.STRIPE_CENTER, DyeColor.WHITE),
             new Pair<>(BannerPatterns.BRICKS, DyeColor.LIGHT_BLUE),
             new Pair<>(BannerPatterns.BRICKS, DyeColor.BLACK),
@@ -99,14 +99,14 @@ public class ModBanners implements IAnnotatedRegistryEntry {
             new Pair<>(BannerPatterns.FLOWER, DyeColor.BLACK),
             new Pair<>(BannerPatterns.SKULL, DyeColor.BLACK));
     @Group(@TargetId("main"))
-    public static final ItemStack CHORUS_BAY = BannerUtil.create("chorus_bay", Items.LIGHT_BLUE_BANNER,
+    public static final ItemStack CHORUS_BAY = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".chorus_bay", Items.LIGHT_BLUE_BANNER,
             new Pair<>(BannerPatterns.GRADIENT, DyeColor.BLUE),
             new Pair<>(BannerPatterns.TRIANGLES_TOP, DyeColor.WHITE),
             new Pair<>(BannerPatterns.FLOWER, DyeColor.LIGHT_BLUE),
             new Pair<>(BannerPatterns.CURLY_BORDER, DyeColor.BLACK),
             new Pair<>(BannerPatterns.CIRCLE, DyeColor.WHITE));
     @Group(@TargetId("main"))
-    public static final ItemStack VOID_ISLANDS = BannerUtil.create("void_islands", Items.WHITE_BANNER,
+    public static final ItemStack VOID_ISLANDS = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".void_islands", Items.WHITE_BANNER,
             new Pair<>(BannerPatterns.GRADIENT, DyeColor.BLACK),
             new Pair<>(BannerPatterns.SMALL_STRIPES, DyeColor.BLACK),
             new Pair<>(BannerPatterns.RHOMBUS, DyeColor.WHITE),
