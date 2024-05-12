@@ -206,7 +206,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item SOLDIERS_ARMOR_LEGGINGS = new SoldiersArmorItem(ArmorItem.Type.LEGGINGS);
     @ItemReg(group = @TargetId("main"))
     public static final Item SOLDIERS_ARMOR_BOOTS = new SoldiersArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("item"))
+    @ItemReg(group = @TargetId("main"))
     public static final Item RAIN_CHESTPLATE = new RainArmorItem(ArmorItem.Type.CHESTPLATE);
     @ItemReg(group = @TargetId("item"))
     public static final Item RUBY_HELMET = new RubyArmorItem(ArmorItem.Type.HELMET);
@@ -277,7 +277,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item LIGHT_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof());
     @ItemReg(group = @TargetId("main"))
     public static final Item NETHERITE_SHIELD = new NetheriteShieldItem();
-    @ItemReg(group = @TargetId("main"))
+    @ItemReg(group = @TargetId("item"))
     public static final Item DIVINE_CORE = new DivineCoreItem();
     @ItemReg(group = @TargetId("main"))
     public static final Item SNOW_SHIELD = new SnowShieldItem();
@@ -341,8 +341,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item BLACK_GUN = new BlackGunItem();
     @ItemReg(group = @TargetId("main"))
     public static final Item BLACK_DEATH_SWORD = new BlackDeathSwordItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item PURIFICATION = new PurificationItem();
     @ItemReg(group = @TargetId("item"))
     public static final Item MYSTERIOUS_GIFT_BOX = new MysteriousGiftBoxItem();
     @ItemReg(group = @TargetId("main"))
@@ -494,6 +492,123 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @Group(@TargetId("mobs"))
     @Link(type = TargetType.SKULL, targets = {@TargetId("herobrine_head"), @TargetId("herobrine_wall_head")})
     public static Item HEROBRINE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("ceris_head"), @TargetId("ceris_wall_head")})
+    public static Item CERIS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("zombies_head"), @TargetId("zombies_wall_head")})
+    public static Item ZOMBIES_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("naeus_head"), @TargetId("naeus_wall_head")})
+    public static Item NAEUS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("rain_head"), @TargetId("rain_wall_head")})
+    public static Item RAIN_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("abigail_head"), @TargetId("abigail_wall_head")})
+    public static Item ABIGAIL_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("patrick_head"), @TargetId("patrick_wall_head")})
+    public static Item PATRICK_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("blackbone_head"), @TargetId("blackbone_wall_head")})
+    public static Item BLACKBONE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("hogsworth_head"), @TargetId("hogsworth_wall_head")})
+    public static Item HOGSWORTH_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("ciara_head"), @TargetId("ciara_wall_head")})
+    public static Item CIARA_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("hilda_head"), @TargetId("hilda_wall_head")})
+    public static Item HILDA_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("soldiers_head"), @TargetId("soldiers_wall_head")})
+    public static Item SOLDIERS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("withered_skeletons_head"), @TargetId("withered_skeletons_wall_head")})
+    public static Item WITHERED_SKELETONS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("dark_shield_head"), @TargetId("dark_shield_wall_head")})
+    public static Item DARK_SHIELD_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("dark_zombie_head"), @TargetId("dark_zombie_wall_head")})
+    public static Item DARK_ZOMBIE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("vordus_head"), @TargetId("vordus_wall_head")})
+    public static Item VORDUS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("wither_shield_head"), @TargetId("wither_shield_wall_head")})
+    public static Item WITHER_SHIELD_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("skeleton_snow_head"), @TargetId("skeleton_snow_wall_head")})
+    public static Item SKELETON_SNOW_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("piglin_king_head"), @TargetId("piglin_king_wall_head")})
+    public static Item PIGLIN_KING_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("glutton_head"), @TargetId("glutton_wall_head")})
+    public static Item GLUTTON_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("glutton_old_head"), @TargetId("glutton_old_wall_head")})
+    public static Item GLUTTON_OLD_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("porkshire_head"), @TargetId("porkshire_wall_head")})
+    public static Item PORKSHIRE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("naeus_king_head"), @TargetId("naeus_king_wall_head")})
+    public static Item NAEUS_KING_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("tusk_head"), @TargetId("tusk_wall_head")})
+    public static Item TUSK_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("brots_head"), @TargetId("brots_wall_head")})
+    public static Item BROTS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("zombie_pig_head"), @TargetId("zombie_pig_wall_head")})
+    public static Item ZOMBIE_PIG_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("mutated_head"), @TargetId("mutated_wall_head")})
+    public static Item MUTATED_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("namtar_head"), @TargetId("namtar_wall_head")})
+    public static Item NAMTAR_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("agetha_head"), @TargetId("agetha_wall_head")})
+    public static Item AGETHA_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("tricer_head"), @TargetId("tricer_wall_head")})
+    public static Item TRICER_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("big_black_skeleton_head"), @TargetId("big_black_skeleton_wall_head")})
+    public static Item BIG_BLACK_SKELETON_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("archer_head"), @TargetId("archer_wall_head")})
+    public static Item ARCHER_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("daryll_head"), @TargetId("daryll_wall_head")})
+    public static Item DARYLL_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("null_like_head"), @TargetId("null_like_wall_head")})
+    public static Item NULL_LIKE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("gigabone_head"), @TargetId("gigabone_wall_head")})
+    public static Item GIGABONE_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("klaus_head"), @TargetId("klaus_wall_head")})
+    public static Item KLAUS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("klaus_2_head"), @TargetId("klaus_2_wall_head")})
+    public static Item KLAUS_2_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("kralos_head"), @TargetId("kralos_wall_head")})
+    public static Item KRALOS_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("arabella_head"), @TargetId("arabella_wall_head")})
+    public static Item ARABELLA_HEAD = null;
+    @Group(@TargetId("mobs"))
+    @Link(type = TargetType.SKULL, targets = {@TargetId("azalea_head"), @TargetId("azalea_wall_head")})
+    public static Item AZALEA_HEAD = null;
 
     @CallbackHandler
     public static void init() {

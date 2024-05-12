@@ -12,14 +12,11 @@ public class RainimatorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModBlockEntities.register();
         ModFeatures.addFeatures();
         ModSounds.registerSounds();
         ModTrades.registerTrades();
         TrinketsRegistry.registerCommon();
-        ModParticles.init();
         ModGameRules.init();
-        ModPotions.init();
         FabricApiCall.run();
     }
 }

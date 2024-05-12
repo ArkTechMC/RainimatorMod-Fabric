@@ -18,9 +18,6 @@ public class RainimatorModClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModModels.registerLayerDefinitions();
         ModEntities.registerEntityRenderers();
-        ModRenderers.registerRenderers();
-        ModParticles.registerParticles();
-        ModKeybindings.register();
         TrinketsRegistry.registerClient();
         if (FabricLoader.getInstance().isModLoaded("asteorbar")) {
             FabricGuiRegistry.REGISTRY.add(FabricGuiRegistry.REGISTRY.size() - 1, new ManaHud());

@@ -26,7 +26,4 @@ public class ModBlocks implements IAnnotatedRegistryEntry {
     public static final Block TOPAZ_BLOCK = new TopazBlock();
     public static final Block BLUE_DIAMOND_BLOCK = new BlueDiamondBlock();
     public static final Block MYSTIC_ORE = new MysticoreBlock();
-    //skull
-    public static final Block HEROBRINE_HEAD = new SkullBlock(ModSkulls.SkullType.HEROBRINE, AbstractBlock.Settings.create());
-    public static final Block HEROBRINE_WALL_HEAD = new WallSkullBlock(ModSkulls.SkullType.HEROBRINE, AbstractBlock.Settings.create());
 }

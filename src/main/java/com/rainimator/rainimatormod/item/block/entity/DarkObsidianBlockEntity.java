@@ -17,7 +17,7 @@ public class DarkObsidianBlockEntity extends BlockEntity {
     private RegistryKey<Biome> biome;
 
     public DarkObsidianBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.DARK_OBSIDIAN_BLOCK_ENTITY, pos, state);
+        super(ModBlockEntities.DARK_OBSIDIAN_BLOCK, pos, state);
     }
 
     public RegistryKey<Biome> getBiome() {

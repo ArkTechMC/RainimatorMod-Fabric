@@ -8,8 +8,7 @@
   ],
   "client": [
     "DrawContextMixin",
-    "InGameHudMixin",
-    "SkullBlockEntityRendererMixin"
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
