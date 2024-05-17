@@ -17,36 +17,36 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.rainimator.rainimatormod.RainimatorMod"
+      "dev.rainimator.mod.RainimatorMod"
     ],
     "client": [
-      "com.rainimator.rainimatormod.RainimatorModClient"
+      "dev.rainimator.mod.RainimatorModClient"
     ],
     "cardinal-components-entity": [
-      "com.rainimator.rainimatormod.network.ManaComponentEntry"
+      "dev.rainimator.mod.network.ManaComponentEntry"
     ],
     "emi": [
-      "com.rainimator.rainimatormod.compat.emi.BossSpawnRecipePlugin"
+      "dev.rainimator.mod.compat.emi.BossSpawnRecipePlugin"
     ],
     "annotation_lib": [
-      "com.rainimator.rainimatormod.data.config.ModConfig",
-      "com.rainimator.rainimatormod.registry.ModBlockEntities",
-      "com.rainimator.rainimatormod.registry.ModBlocks",
-      "com.rainimator.rainimatormod.registry.ModBanners",
-      "com.rainimator.rainimatormod.registry.ModEffects",
-      "com.rainimator.rainimatormod.registry.ModEnchantments",
-      "com.rainimator.rainimatormod.registry.ModEntities",
-      "com.rainimator.rainimatormod.registry.ModItems",
-      "com.rainimator.rainimatormod.registry.ModItemGroups",
-      "com.rainimator.rainimatormod.registry.ModParticles",
-      "com.rainimator.rainimatormod.registry.ModPotions",
-      "com.rainimator.rainimatormod.registry.ModSkulls",
-      "com.rainimator.rainimatormod.network.EnderBookActionHandler",
-      "com.rainimator.rainimatormod.network.AbilityHotkeyHandler"
+      "dev.rainimator.mod.data.config.ModConfig",
+      "dev.rainimator.mod.registry.ModBlockEntities",
+      "dev.rainimator.mod.registry.ModBlocks",
+      "dev.rainimator.mod.registry.ModBanners",
+      "dev.rainimator.mod.registry.ModEffects",
+      "dev.rainimator.mod.registry.ModEnchantments",
+      "dev.rainimator.mod.registry.ModEntities",
+      "dev.rainimator.mod.registry.ModItems",
+      "dev.rainimator.mod.registry.ModItemGroups",
+      "dev.rainimator.mod.registry.ModParticles",
+      "dev.rainimator.mod.registry.ModPotions",
+      "dev.rainimator.mod.registry.ModSkulls",
+      "dev.rainimator.mod.network.EnderBookActionHandler",
+      "dev.rainimator.mod.network.AbilityHotkeyHandler"
     ],
     "annotation_lib_client": [
-      "com.rainimator.rainimatormod.network.EnderBookOpenHandler",
-      "com.rainimator.rainimatormod.registry.ModKeybindings"
+      "dev.rainimator.mod.network.EnderBookOpenHandler",
+      "dev.rainimator.mod.registry.ModKeybindings"
     ],
     "annotation_lib_server": [
     ]
