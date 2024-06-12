@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item;
 
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

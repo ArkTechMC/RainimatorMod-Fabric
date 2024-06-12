@@ -2,15 +2,22 @@
   "schemaVersion": 1,
   "id": "rainimator",
   "version": "${version}",
-  "name": "Rainimator",
+  "name": "Rainimator Mod",
   "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
   "authors": [
     "Triceratops",
-    "IAFEnvoy"
+    {
+      "name": "IAFEnvoy",
+      "contact": {
+        "homepage": "https://iafenvoy.com",
+        "sources": "https://github.com/IAFEnvoy"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/rainimatormod",
-    "sources": "https://github.com/RainimatorModDev/RainimatorMod"
+    "sources": "https://github.com/RainimatorModDev/RainimatorMod",
+    "issues": "https://github.com/RainimatorModDev/RainimatorMod/issues"
   },
   "license": "LGPL-3.0",
   "icon": "logo.jpg",
@@ -23,7 +30,7 @@
       "dev.rainimator.mod.RainimatorModClient"
     ],
     "cardinal-components-entity": [
-      "dev.rainimator.mod.network.ManaComponentEntry"
+      "dev.rainimator.mod.data.component.ModComponentEntry"
     ],
     "emi": [
       "dev.rainimator.mod.compat.emi.BossSpawnRecipePlugin"
@@ -38,11 +45,9 @@
       "dev.rainimator.mod.registry.ModEntities",
       "dev.rainimator.mod.registry.ModItems",
       "dev.rainimator.mod.registry.ModItemGroups",
-      "dev.rainimator.mod.registry.ModParticles",
       "dev.rainimator.mod.registry.ModPotions",
       "dev.rainimator.mod.registry.ModSkulls",
-      "dev.rainimator.mod.network.EnderBookActionHandler",
-      "dev.rainimator.mod.network.AbilityHotkeyHandler"
+      "dev.rainimator.mod.network.EnderBookActionHandler"
     ],
     "annotation_lib_client": [
       "dev.rainimator.mod.network.EnderBookOpenHandler",
@@ -53,7 +58,11 @@
   },
   "custom": {
     "cardinal-components": [
-      "rainimator:mana"
+      "rainimator:mana",
+      "rainimator:ability"
+    ],
+    "avaritia-disable-recipe": [
+      "rainimator:ender_big_sword"
     ]
   },
   "accessWidener": "rainimator.accesswidener",

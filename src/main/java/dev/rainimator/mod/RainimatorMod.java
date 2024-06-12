@@ -1,12 +1,11 @@
 package dev.rainimator.mod;
 
 import com.mojang.logging.LogUtils;
+import dev.rainimator.mod.ability.AbilityManager;
 import dev.rainimator.mod.compat.trinkets.TrinketsRegistry;
-import dev.rainimator.mod.registry.ModFeatures;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModSounds;
-import dev.rainimator.mod.registry.ModTrades;
+import dev.rainimator.mod.registry.*;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import org.slf4j.Logger;
 
 public class RainimatorMod implements ModInitializer {
@@ -20,6 +19,8 @@ public class RainimatorMod implements ModInitializer {
         ModTrades.registerTrades();
         TrinketsRegistry.registerCommon();
         ModGameRules.init();
+        ModParticles.init();
         FabricApiCall.run();
+        AbilityManager.init();
     }
 }

@@ -1,7 +1,6 @@
 {
-  "parent": "rainimator:custom/ruby_shovel",
+  "parent": "item/generated",
   "textures": {
-    "0": "rainimator:item/ruby_shovel",
-    "particle": "rainimator:item/ruby_shovel"
+    "layer0": "rainimator:item/ruby_shovel"
   }
 }

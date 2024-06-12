@@ -7,7 +7,7 @@ import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.*;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import dev.rainimator.mod.registry.ModItems;
 import dev.rainimator.mod.registry.ModParticles;

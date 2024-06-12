@@ -1,7 +1,6 @@
 {
-  "parent": "rainimator:custom/ruby_hoe",
+  "parent": "item/generated",
   "textures": {
-    "0": "rainimator:item/ruby_hoe",
-    "particle": "rainimator:item/ruby_hoe"
+    "layer0": "rainimator:item/ruby_hoe"
   }
 }

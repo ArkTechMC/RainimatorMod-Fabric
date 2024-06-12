@@ -8,7 +8,7 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import dev.rainimator.mod.registry.ModItems;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;

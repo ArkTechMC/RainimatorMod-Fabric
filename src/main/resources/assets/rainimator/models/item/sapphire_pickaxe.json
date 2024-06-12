@@ -1,7 +1,6 @@
 {
-  "parent": "rainimator:custom/sapphire_pickaxe",
+  "parent": "item/generated",
   "textures": {
-    "0": "rainimator:item/sapphire_pickaxe",
-    "particle": "rainimator:item/sapphire_pickaxe"
+    "layer0": "rainimator:item/sapphire_pickaxe"
   }
 }

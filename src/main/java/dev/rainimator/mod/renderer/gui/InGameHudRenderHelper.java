@@ -2,7 +2,7 @@ package dev.rainimator.mod.renderer.gui;
 
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.config.ModConfig;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

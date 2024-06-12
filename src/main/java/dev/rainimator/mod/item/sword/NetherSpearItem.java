@@ -8,7 +8,7 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;

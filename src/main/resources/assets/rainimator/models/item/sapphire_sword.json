@@ -1,7 +1,6 @@
 {
-  "parent": "rainimator:custom/sapphire_sword",
+  "parent": "item/generated",
   "textures": {
-    "0": "rainimator:item/sapphire_sword",
-    "particle": "rainimator:item/sapphire_sword"
+    "layer0": "rainimator:item/sapphire_sword"
   }
 }

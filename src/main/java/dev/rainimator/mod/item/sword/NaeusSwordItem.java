@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

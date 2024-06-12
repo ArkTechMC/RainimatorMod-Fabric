@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-
 public class BlackGunItem extends ItemBase {
     public BlackGunItem() {
         super(p -> p.maxDamage(800));

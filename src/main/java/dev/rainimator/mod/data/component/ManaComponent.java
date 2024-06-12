@@ -1,4 +1,4 @@
-package dev.rainimator.mod.network;
+package dev.rainimator.mod.data.component;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3;
@@ -66,7 +66,7 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
         if (this.entity instanceof PlayerEntity player && player.isCreative()) return true;
         if (amount > this.mana) return false;
         this.mana -= amount;
-        doSync(this.entity);
+        this.doSync();
         return true;
     }
 
@@ -95,8 +95,8 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
             this.mana = this.maxMana;
     }
 
-    public static void doSync(LivingEntity entity) {
-        ManaComponent.MANA_COMPONENT.sync(entity);
+    public void doSync() {
+        ManaComponent.MANA_COMPONENT.sync(this.entity);
     }
 
     public static boolean tryUse(PlayerEntity player, double amount) {

@@ -7,6 +7,8 @@ import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import com.iafenvoy.mcrconvertlib.render.SkullRenderRegistry;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.entity.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SkullBlock;
@@ -104,7 +106,7 @@ public class ModSkulls implements IAnnotatedRegistryEntry {
         KLAUS_2, KRALOS, ARABELLA, AZALEA
     }
 
-    @CallbackHandler
+    @CallbackHandler(environment = EnvType.CLIENT)
     public static void init() {
         SkullRenderRegistry.register(SkullType.HEROBRINE, HerobrineEntity.texture.getTexture(), HEROBRINE_HEAD, HEROBRINE_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD, CERIS_WALL_HEAD);
@@ -124,7 +126,7 @@ public class ModSkulls implements IAnnotatedRegistryEntry {
         SkullRenderRegistry.register(SkullType.VORDUS, VordusEntity.texture.getTexture(), VORDUS_HEAD, VORDUS_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.WITHER_SHIELD, WitherShieldEntity.texture.getTexture(), WITHER_SHIELD_HEAD, WITHER_SHIELD_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.SKELETON_SNOW, SkeletonSnowEntity.texture.getTexture(), SKELETON_SNOW_HEAD, SKELETON_SNOW_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.PIGLIN_KING,ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD, PIGLIN_KING_WALL_HEAD);
+        SkullRenderRegistry.register(SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD, PIGLIN_KING_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.GLUTTON, PiglinKingZombiesEntity.texture.getTexture(), GLUTTON_HEAD, GLUTTON_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.GLUTTON_OLD, PiglinKingZombieEntity.texture.getTexture(), GLUTTON_OLD_HEAD, GLUTTON_OLD_WALL_HEAD);
         SkullRenderRegistry.register(SkullType.PORKSHIRE, PiglinCommanderEntity.texture.getTexture(), PORKSHIRE_HEAD, PORKSHIRE_WALL_HEAD);

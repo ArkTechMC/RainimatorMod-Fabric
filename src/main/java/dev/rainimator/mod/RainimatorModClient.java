@@ -8,6 +8,7 @@ import dev.rainimator.mod.compat.asteorbar.ManaHud;
 import dev.rainimator.mod.compat.trinkets.TrinketsRegistry;
 import dev.rainimator.mod.registry.ModEntities;
 import dev.rainimator.mod.registry.ModModels;
+import dev.rainimator.mod.registry.ModParticles;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,7 +19,7 @@ public class RainimatorModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModModels.registerLayerDefinitions();
-        ModEntities.registerEntityRenderers();
+        ModParticles.registerParticles();
         TrinketsRegistry.registerClient();
         if (FabricLoader.getInstance().isModLoaded("asteorbar")) {
             FabricGuiRegistry.REGISTRY.add(FabricGuiRegistry.REGISTRY.size() - 1, new ManaHud());

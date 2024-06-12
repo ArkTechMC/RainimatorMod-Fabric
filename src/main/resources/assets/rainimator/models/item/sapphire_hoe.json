@@ -1,7 +1,6 @@
 {
-  "parent": "rainimator:custom/sapphire_hoe",
+  "parent": "item/generated",
   "textures": {
-    "0": "rainimator:item/sapphire_hoe",
-    "particle": "rainimator:item/sapphire_hoe"
+    "layer0": "rainimator:item/sapphire_hoe"
   }
 }

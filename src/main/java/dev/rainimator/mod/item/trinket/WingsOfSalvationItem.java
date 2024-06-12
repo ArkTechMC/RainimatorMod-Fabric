@@ -5,7 +5,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.compat.ElectricitySource;
 import dev.rainimator.mod.compat.ElectricitySystem;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.entity.LivingEntity;

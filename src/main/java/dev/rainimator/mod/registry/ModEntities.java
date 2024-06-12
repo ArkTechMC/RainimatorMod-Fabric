@@ -132,6 +132,7 @@ public class ModEntities implements IAnnotatedRegistryEntry {
     }
 
     @Environment(EnvType.CLIENT)
+    @CallbackHandler(environment = EnvType.CLIENT)
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(HEROBRINE, HerobrineEntity.texture::createRenderer);
         EntityRendererRegistry.register(CERIS, CerisEntity.texture::createRenderer);

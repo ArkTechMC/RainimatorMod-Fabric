@@ -4,7 +4,7 @@ import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
-import dev.rainimator.mod.network.ManaComponent;
+import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.ModGameRules;
 import dev.rainimator.mod.registry.ModItems;
 import dev.rainimator.mod.registry.ModParticles;
