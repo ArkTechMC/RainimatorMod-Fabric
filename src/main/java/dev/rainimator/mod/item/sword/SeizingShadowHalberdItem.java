@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModGameRules;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorGameRules;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.entity.Entity;
@@ -48,7 +48,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D)
             if (!entity.getWorld().isClient())
-                entity.addStatusEffect(new StatusEffectInstance(ModEffects.SHADOW_EROSION, 200, 0));
+                entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SHADOW_EROSION, 200, 0));
         return retval;
     }
 
@@ -60,12 +60,12 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
 
-        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.seizing_shadow_halberd).get()))
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.seizing_shadow_halberd).get()))
             return ar;
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.SHADOW_EROSION))) {
+            if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(RainimatorEffects.SHADOW_EROSION))) {
                 if ((Entity) entity instanceof PlayerEntity _player)
                     _player.getItemCooldownManager().set(itemtack.getItem(), 300);
 

@@ -8,9 +8,9 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.*;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -39,7 +39,7 @@ import java.util.List;
 
 public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlueDiamondSwordItem() {
-        super(ToolMaterialUtil.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(3000, 4.0F, 15.0F, 0, 30, RainimatorItems.BLUE_DIAMOND), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override
@@ -74,10 +74,10 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         final Vec3d _center = new Vec3d(x, y, z);
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.blue_diamond_sword).get())) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.blue_diamond_sword).get())) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
-                if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.BLUE_DIAMOND_SWORD) {
+                if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.BLUE_DIAMOND_SWORD) {
                     if (itemtack.damage(0, entity.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);
@@ -150,7 +150,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback1 = () -> {
                             if (world instanceof ServerWorld _level)
-                                _level.spawnParticles(ModParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
+                                _level.spawnParticles(RainimatorParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
                         };
                         Runnable callback2 = () -> {
                             entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
@@ -185,7 +185,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 if (!world.isClient())
                                     world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, World.ExplosionSourceType.NONE);
                                 if (world instanceof ServerWorld _level)
-                                    _level.spawnParticles(ModParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
+                                    _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
                             }
                         });
                     }

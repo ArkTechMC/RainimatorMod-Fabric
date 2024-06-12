@@ -7,9 +7,9 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -42,7 +42,7 @@ public class NullLikeEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACK_DEATH_SWORD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.BLACK_DEATH_SWORD));
     }
 
     @AttributeBuilder
@@ -93,34 +93,34 @@ public class NullLikeEntity extends MonsterEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this.hasStatusEffect(ModEffects.FEAR_DARK))
+        if (this.hasStatusEffect(RainimatorEffects.FEAR_DARK))
             this.clearStatusEffects();
-        else if (this.hasStatusEffect(ModEffects.SOUL_DEATH))
+        else if (this.hasStatusEffect(RainimatorEffects.SOUL_DEATH))
             this.clearStatusEffects();
         else if (this.hasStatusEffect(StatusEffects.POISON))
             this.clearStatusEffects();
         else if (this.hasStatusEffect(StatusEffects.WEAKNESS))
             this.clearStatusEffects();
         else if (Math.random() < 0.3D) {//TODO: Optimize
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle((ParticleEffect) ModParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle((ParticleEffect) RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
             if (!this.getWorld().isClient()) {
@@ -160,7 +160,7 @@ public class NullLikeEntity extends MonsterEntityBase {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.FLOWER_WHITE, x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.FLOWER_WHITE, x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())

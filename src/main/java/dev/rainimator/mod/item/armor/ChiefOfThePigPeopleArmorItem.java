@@ -2,8 +2,8 @@ package dev.rainimator.mod.item.armor;
 
 import com.iafenvoy.mcrconvertlib.item.ArmorMaterialUtil;
 import com.iafenvoy.mcrconvertlib.item.ArmorWithTickItem;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,11 +23,11 @@ public class ChiefOfThePigPeopleArmorItem extends ArmorWithTickItem {
         if (entity == null)
             return;
         if (!entity.getWorld().isClient() &&
-                world.getGameRules().getBoolean(ModGameRules.enableArmorEffect) &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_BOOTS) {
+                world.getGameRules().getBoolean(RainimatorGameRules.enableArmorEffect) &&
+                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS &&
+                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_BOOTS) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 1));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 80, 1));
         }

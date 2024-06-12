@@ -5,9 +5,9 @@ import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public class EnderBigSwordItem extends SwordItemBase implements Trinket {
     public EnderBigSwordItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, RainimatorItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.2F, new Settings());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.ender_big_sword).get())) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.ender_big_sword).get())) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             BlockPos blockPos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());
@@ -43,7 +43,7 @@ public class EnderBigSwordItem extends SwordItemBase implements Trinket {
                 _serverPlayer.networkHandler.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ(), entity.getYaw(), entity.getPitch());
             SoundUtil.playSound(world, x, y, z, new Identifier("entity.enderman.teleport"), 1.0F, 1.0F);
             if (world instanceof ServerWorld _level) {
-                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
+                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 300);
             }
         }

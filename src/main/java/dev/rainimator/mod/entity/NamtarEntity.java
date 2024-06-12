@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -28,7 +28,7 @@ public class NamtarEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 20;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_GOLDEN_SWORD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_GOLDEN_SWORD));
     }
 
     @AttributeBuilder

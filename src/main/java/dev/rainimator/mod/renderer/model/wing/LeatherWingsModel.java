@@ -138,7 +138,7 @@ public class LeatherWingsModel<T extends LivingEntity> extends WingEntityModel<T
         modelPartData14.addChild("rightWingStrut02Leather", ModelPartBuilder.create().uv(0, 4)
                         .cuboid(0.1F, 0.0F, -1.0F, 0.0F, 6.0F, 16.0F, true),
                 ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        ModelPartData modelPartData15 = modelPartData11.addChild("rightWingStrut03",ModelPartBuilder.create().uv(21, 0)
+        ModelPartData modelPartData15 = modelPartData11.addChild("rightWingStrut03", ModelPartBuilder.create().uv(21, 0)
                         .cuboid(-0.4F, -0.5F, -0.5F, 1.0F, 1.0F, 16.0F, true),
                 ModelTransform.of(0.0F, 1.0F, 5.0F, -1.6581F, 0.0F, 0.0F));
         modelPartData15.addChild("rightWingStrut03Leather", ModelPartBuilder.create().uv(0, 12)
@@ -160,9 +160,9 @@ public class LeatherWingsModel<T extends LivingEntity> extends WingEntityModel<T
     @Override
     public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         super.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-        if(this.state == State.IDLE || this.state == State.CROUCHING)
+        if (this.state == State.IDLE || this.state == State.CROUCHING)
             this.leftWing03.pitch = (float) Math.toRadians(-60);
-        if(this.state == State.FLYING)
+        if (this.state == State.FLYING)
             this.leftWing03.pitch = (float) Math.toRadians(-32.5);
         this.rightWing03.pitch = this.leftWing03.pitch;
     }

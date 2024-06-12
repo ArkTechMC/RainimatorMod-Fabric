@@ -8,8 +8,8 @@ import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -36,13 +36,13 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class BlackBoneEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"blackbone");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "blackbone");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public BlackBoneEntity(EntityType<BlackBoneEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKBONE_THE_BLADE_SINGLE_HAND));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.BLACKBONE_THE_BLADE_SINGLE_HAND));
     }
 
     @AttributeBuilder
@@ -80,11 +80,11 @@ public class BlackBoneEntity extends MonsterEntityBase {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.hasStatusEffect(ModEffects.FEAR_DARK))
+            if (this.hasStatusEffect(RainimatorEffects.FEAR_DARK))
                 this.clearStatusEffects();
-            else if (this.hasStatusEffect(ModEffects.ICE_PEOPLE))
+            else if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE))
                 this.clearStatusEffects();
-            else if (this.hasStatusEffect(ModEffects.SOUL_DEATH))
+            else if (this.hasStatusEffect(RainimatorEffects.SOUL_DEATH))
                 this.clearStatusEffects();
             else if (this.hasStatusEffect(StatusEffects.POISON))
                 this.clearStatusEffects();
@@ -92,18 +92,18 @@ public class BlackBoneEntity extends MonsterEntityBase {
                 this.clearStatusEffects();
             else {
                 if (Math.random() < 0.2) {
-                    if (sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.FEAR_DARK)) {
+                    if (sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(RainimatorEffects.FEAR_DARK)) {
                         sourceentity.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 12);
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 500, 1));
                     }
                 } else {
-                    if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(ModEffects.FEAR_DARK))) {
+                    if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(RainimatorEffects.FEAR_DARK))) {
                         SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
                         if (this.getWorld() instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1, 1, 1, 1);
                         if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
-                            _entity.addStatusEffect(new StatusEffectInstance(ModEffects.FEAR_DARK, 300, 0));
+                            _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.FEAR_DARK, 300, 0));
                         sourceentity.setOnFireFor(10);
                     }
                 }
@@ -191,9 +191,9 @@ public class BlackBoneEntity extends MonsterEntityBase {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (this.hasStatusEffect(ModEffects.STUNNED))
+        if (this.hasStatusEffect(RainimatorEffects.STUNNED))
             if (!this.getWorld().isClient()) {
-                this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
+                this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 200, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 2));
             }
         if (!this.isAlive())

@@ -6,10 +6,10 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -40,8 +40,8 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.RAIN_SWORD));
-        this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.RAIN_CHESTPLATE));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.RAIN_SWORD));
+        this.equipStack(EquipmentSlot.CHEST, new ItemStack(RainimatorItems.RAIN_CHESTPLATE));
     }
 
     @AttributeBuilder
@@ -100,34 +100,34 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         double y = this.getY();
         double z = this.getZ();
         if (Math.random() < 0.2D) {//TODO: Optimize
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(ModParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
             if (!this.getWorld().isClient()) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
-        if (this.hasStatusEffect(ModEffects.STUNNED))
+        if (this.hasStatusEffect(RainimatorEffects.STUNNED))
             if (!this.getWorld().isClient()) {
-                this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
+                this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 200, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 3));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 3));
             }
@@ -156,13 +156,13 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.SNOW, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.SNOW, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;
     }
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        RainEntityProjectile entityarrow = new RainEntityProjectile(ModEntities.RAIN_PROJECTILE, this, this.getWorld());
+        RainEntityProjectile entityarrow = new RainEntityProjectile(RainimatorEntities.RAIN_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

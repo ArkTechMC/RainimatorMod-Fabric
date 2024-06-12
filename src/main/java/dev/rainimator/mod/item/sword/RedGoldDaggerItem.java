@@ -3,14 +3,14 @@ package dev.rainimator.mod.item.sword;
 import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 
 public class RedGoldDaggerItem extends SwordItemBase {
     public RedGoldDaggerItem() {
-        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, ModItems.RUBY), 3, -2.0F, new Settings());
+        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, RainimatorItems.RUBY), 3, -2.0F, new Settings());
     }
 
     @Override

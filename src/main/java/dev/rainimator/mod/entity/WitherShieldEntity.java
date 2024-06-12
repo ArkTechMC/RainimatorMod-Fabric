@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -28,8 +28,8 @@ public class WitherShieldEntity extends MonsterEntityBase {
     public WitherShieldEntity(EntityType<WitherShieldEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 20;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_FLAME_SABER));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.NETHERITE_SHIELD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.NETHERITE_FLAME_SABER));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.NETHERITE_SHIELD));
     }
 
     @AttributeBuilder

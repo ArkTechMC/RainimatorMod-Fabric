@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModSounds {
+public class RainimatorSounds {
     public static final String[] idMap = new String[]{
             "blackbone", "ceris_live", "ceris_skill", "ceris_f", "him_skill", "naeus_living", "fire_soul", "rain_sword_skill", "rain_sword_skill_2",
             "blackbone_living", "blackbone_skill", "naeus_roll", "ceris_death", "naeus_sword_1", "power_skill", "under_flower",

@@ -3,7 +3,7 @@ package dev.rainimator.mod.renderer;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.renderer.model.wing.WingsOfSalvationModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -29,7 +29,7 @@ public class WingsOfSalvationRenderer implements TrinketRenderer {
 
     @Override
     public void render(ItemStack itemtack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (itemtack.getItem() == ModItems.WINGS_OF_SALVATION && entity instanceof AbstractClientPlayerEntity player) {
+        if (itemtack.getItem() == RainimatorItems.WINGS_OF_SALVATION && entity instanceof AbstractClientPlayerEntity player) {
             WingsOfSalvationModel<AbstractClientPlayerEntity> wingModel = new WingsOfSalvationModel<>(WingsOfSalvationModel.createLayer().createModel());
             PlayerEntityModel<AbstractClientPlayerEntity> model = (PlayerEntityModel<AbstractClientPlayerEntity>) contextModel;
             matrices.push();

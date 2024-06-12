@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.block;
 
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -43,8 +43,8 @@ public class MysticoreBlock extends Block {
         lootTable.add(Pair.of(Items.EMERALD, 0.5D));
         lootTable.add(Pair.of(Items.LAPIS_LAZULI, 0.4D));
         lootTable.add(Pair.of(Items.DIAMOND, 0.3D));
-        lootTable.add(Pair.of(ModItems.RAW_SAPPHIRE, 0.2D));
-        lootTable.add(Pair.of(ModItems.RAW_RUBY, 0.1D));
+        lootTable.add(Pair.of(RainimatorItems.RAW_SAPPHIRE, 0.2D));
+        lootTable.add(Pair.of(RainimatorItems.RAW_RUBY, 0.1D));
     }
 
     @Override

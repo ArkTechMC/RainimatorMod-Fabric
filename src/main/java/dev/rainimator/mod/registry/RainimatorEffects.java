@@ -9,7 +9,7 @@ import net.minecraft.entity.effect.StatusEffect;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
-public class ModEffects implements IAnnotatedRegistryEntry {
+public class RainimatorEffects implements IAnnotatedRegistryEntry {
     public static final StatusEffect FEAR_DARK = new FeardarkMobEffect();
     public static final StatusEffect ICE_PEOPLE = new IcePeopleMobEffect();
     public static final StatusEffect SOUL_DEATH = new SoulDeathMobEffect();

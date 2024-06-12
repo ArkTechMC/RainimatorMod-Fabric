@@ -3,7 +3,7 @@ package dev.rainimator.mod.item;
 import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +35,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
         SoundUtil.playSound(world, x, y, z, new Identifier("entity.ender_pearl.throw"), 1, 1);
 
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
         if (entity.isSprinting()) {
             World projectileLevel = entity.getWorld();
             if (!projectileLevel.isClient()) {
@@ -95,7 +95,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
                     _serverPlayer.networkHandler.requestTeleport(x, y, z, entity.getYaw(), entity.getPitch());
                 SoundUtil.playSound(world, x, y, z, new Identifier("entity.enderman.teleport"), 1.0F, 1.0F);
                 if (world instanceof ServerWorld) {
-                    ((ServerWorld) world).spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
+                    ((ServerWorld) world).spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
                 }
             });
         }

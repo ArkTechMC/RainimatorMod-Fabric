@@ -2,7 +2,7 @@ package dev.rainimator.mod.effect;
 
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -30,7 +30,7 @@ public class IcePeopleMobEffect extends StatusEffect {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 500, 0));
         }
         if (entity.getWorld() instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.SNOW, entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 20.0D, 0.0D, 0.001D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.SNOW, entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 20.0D, 0.0D, 0.001D);
         entity.damage(DamageUtil.build(entity, DamageTypes.FREEZE), 1.0F);
     }
 

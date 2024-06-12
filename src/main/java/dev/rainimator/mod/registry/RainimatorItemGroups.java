@@ -12,11 +12,11 @@ import net.minecraft.text.Text;
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
 @SuppressWarnings("unused")
-public class ModItemGroups implements IAnnotatedRegistryEntry {
+public class RainimatorItemGroups implements IAnnotatedRegistryEntry {
     public static final ItemGroup MAIN = FabricItemGroup.builder().entries((displayContext, entries) -> {
-    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator")).icon(() -> new ItemStack(ModItems.WARRIOR_HEART)).build();
+    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator")).icon(() -> new ItemStack(RainimatorItems.WARRIOR_HEART)).build();
     public static final ItemGroup MOBS = FabricItemGroup.builder().entries((displayContext, entries) -> {
-    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs")).icon(() -> new ItemStack(ModItems.ICE_HEART)).build();
+    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs")).icon(() -> new ItemStack(RainimatorItems.ICE_HEART)).build();
     public static final ItemGroup ITEM = FabricItemGroup.builder().entries((displayContext, entries) -> {
-    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item")).icon(() -> new ItemStack(ModItems.ENDER_HEART)).build();
+    }).displayName(Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item")).icon(() -> new ItemStack(RainimatorItems.ENDER_HEART)).build();
 }

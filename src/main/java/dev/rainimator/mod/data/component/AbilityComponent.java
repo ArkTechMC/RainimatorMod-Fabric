@@ -20,9 +20,8 @@ import java.util.List;
 
 public class AbilityComponent implements ComponentV3, AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<AbilityComponent> ABILITY_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(RainimatorMod.MOD_ID, "ability"), AbilityComponent.class);
-
-    public LivingEntity entity;
     private final List<Ability> abilities = new ArrayList<>();
+    public LivingEntity entity;
     private boolean enabled = true;
 
     public AbilityComponent(LivingEntity entity) {
@@ -51,14 +50,14 @@ public class AbilityComponent implements ComponentV3, AutoSyncedComponent, Commo
     }
 
     public boolean addAbility(Ability ability) {
-        if(this.abilities.contains(ability)) return false;
+        if (this.abilities.contains(ability)) return false;
         this.abilities.add(ability);
         this.doSync();
         return true;
     }
 
-    public boolean removeAbility(Ability ability){
-        if(!this.abilities.contains(ability)) return false;
+    public boolean removeAbility(Ability ability) {
+        if (!this.abilities.contains(ability)) return false;
         this.abilities.remove(ability);
         this.doSync();
         return true;

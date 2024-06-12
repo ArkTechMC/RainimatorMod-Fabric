@@ -23,7 +23,7 @@ public class DaryllEntityProjectile extends PersistentProjectileEntity implement
     @Override
     public void tick() {
         super.tick();
-        if(this.inGround)
+        if (this.inGround)
             this.remove(RemovalReason.DISCARDED);
     }
 

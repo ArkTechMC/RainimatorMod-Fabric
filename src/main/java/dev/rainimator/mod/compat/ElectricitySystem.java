@@ -6,10 +6,6 @@ import net.fabricmc.loader.api.FabricLoader;
 public class ElectricitySystem {
     private static final ElectricitySource currentElectricityProvider;
 
-    public static ElectricitySource getType() {
-        return currentElectricityProvider;
-    }
-
     static {
         RainimatorMod.LOGGER.info("Trying to find electricity provider for Rainimator Mod.");
         boolean ae2 = FabricLoader.getInstance().isModLoaded("appliedenergistics2");
@@ -22,5 +18,9 @@ public class ElectricitySystem {
             currentElectricityProvider = ElectricitySource.TR;
         } else
             currentElectricityProvider = ElectricitySource.NONE;
+    }
+
+    public static ElectricitySource getType() {
+        return currentElectricityProvider;
     }
 }

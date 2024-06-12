@@ -7,7 +7,7 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
+import dev.rainimator.mod.registry.RainimatorEntities;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -79,11 +79,11 @@ public class ArcherEntity extends MonsterEntityBase {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
         if (!(world instanceof ServerWorld _level)) return ret_val;
         if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.SOLDIERS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.SOLDIERS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.AGETHA, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.AGETHA, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.ARCHER, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.ARCHER, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         return ret_val;
     }
 

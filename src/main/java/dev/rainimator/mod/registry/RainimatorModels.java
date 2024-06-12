@@ -6,7 +6,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 
 @Environment(EnvType.CLIENT)
-public class ModModels {
+public class RainimatorModels {
     public static void registerLayerDefinitions() {
         EntityModelLayerRegistry.registerModelLayer(ModelPorkshireKingCrown.LAYER_LOCATION, ModelPorkshireKingCrown::createBodyLayer);
         EntityModelLayerRegistry.registerModelLayer(ModelMagic.LAYER_LOCATION, ModelMagic::createBodyLayer);

@@ -3,7 +3,7 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -37,8 +37,8 @@ public class VordusEntity extends EndermanEntity {
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHT_SWORD));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHT_SWORD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.LIGHT_SWORD));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.LIGHT_SWORD));
     }
 
     public static DefaultAttributeContainer.Builder createEndermanAttributes() {

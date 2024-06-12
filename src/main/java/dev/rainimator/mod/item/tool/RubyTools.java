@@ -7,6 +7,11 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 
 public class RubyTools {
+    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
+        if (Math.random() < 0.5D)
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 10, 0));
+    }
+
     public static class Axe extends AxeItem {
         public Axe() {
             super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
@@ -15,7 +20,7 @@ public class RubyTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean ret_val = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return ret_val;
         }
     }
@@ -28,7 +33,7 @@ public class RubyTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -41,7 +46,7 @@ public class RubyTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -54,7 +59,7 @@ public class RubyTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -67,13 +72,8 @@ public class RubyTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
-    }
-
-    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity){
-        if (Math.random() < 0.5D)
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE,10,0));
     }
 }

@@ -1,6 +1,6 @@
 package dev.rainimator.mod.registry.util;
 
-import dev.rainimator.mod.registry.ModSounds;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MusicItemBase extends MusicDiscItem {
     public MusicItemBase(String musicId) {
-        super(2, ModSounds.REGISTRY.get(musicId), new Settings().maxCount(1).rarity(Rarity.RARE), 0);
+        super(2, RainimatorSounds.REGISTRY.get(musicId), new Settings().maxCount(1).rarity(Rarity.RARE), 0);
     }//TODO:LENGTH
 
     @Override

@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.gamerule.v1.rule.DoubleRule;
 import net.minecraft.world.GameRules;
 
-public class ModGameRules {
+public class RainimatorGameRules {
     //main
     public static final GameRules.Key<DoubleRule> baseMaxMana = register("basic.baseMaxMana", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(100));
     public static final GameRules.Key<DoubleRule> baseRestoreSpeed = register("basic.baseRestoreSpeed", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(3));

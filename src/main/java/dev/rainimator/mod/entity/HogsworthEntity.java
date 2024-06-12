@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,6 +21,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+
 public class HogsworthEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
 
@@ -28,7 +29,7 @@ public class HogsworthEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.NETHERITE_SHIELD));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.NETHERITE_SHIELD));
     }
 
     @AttributeBuilder

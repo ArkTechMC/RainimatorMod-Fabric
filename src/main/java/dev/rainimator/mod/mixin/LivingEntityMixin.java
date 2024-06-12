@@ -1,7 +1,7 @@
 package dev.rainimator.mod.mixin;
 
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,6 +22,6 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void dropBox(DamageSource damageSource, CallbackInfo ci) {
         if (Math.random() < 0.05 && this.getWorld() instanceof ServerWorld serverWorld)
-            EntityUtil.item(serverWorld, this.getX(), this.getY(), this.getZ(), ModItems.MYSTERIOUS_GIFT_BOX, 10);
+            EntityUtil.item(serverWorld, this.getX(), this.getY(), this.getZ(), RainimatorItems.MYSTERIOUS_GIFT_BOX, 10);
     }
 }

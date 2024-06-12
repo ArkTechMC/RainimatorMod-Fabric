@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -30,8 +30,8 @@ public class AzaleaEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEP_SICKLE));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.DEEP_SICKLE));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DEEP_SICKLE));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.DEEP_SICKLE));
     }
 
     @AttributeBuilder

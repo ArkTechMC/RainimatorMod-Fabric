@@ -1,7 +1,7 @@
 package dev.rainimator.mod.data.fraction;
 
 import dev.rainimator.mod.entity.*;
-import dev.rainimator.mod.registry.ModBanners;
+import dev.rainimator.mod.registry.RainimatorBanners;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.mob.HostileEntity;
@@ -11,51 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Fraction {
-    FROST(ModBanners.FROST),
-    UNDEAD(ModBanners.UNDEAD),
-    NETHER(ModBanners.NETHER),
-    ENDER(ModBanners.DRAGONSPIRE);
-    private final ItemStack banner;
-    private final List<Class<? extends LivingEntity>> members = new ArrayList<>();
-
-    Fraction(ItemStack banner) {
-        this.banner = banner;
-    }
-
-    public ItemStack getBanner() {
-        return this.banner;
-    }
-
-    public void addMember(Class<? extends LivingEntity> clazz) {
-        this.members.add(clazz);
-    }
-
-    private static Fraction find(Class<? extends LivingEntity> clazz) {
-        for (Fraction fraction : Fraction.values())
-            if (fraction.members.contains(clazz))
-                return fraction;
-        return null;
-    }
-
-    private static void addTarget(HostileEntity entity, Fraction fraction) {
-        for (Fraction f : Fraction.values())
-            if (f != fraction)
-                for (Class<? extends LivingEntity> clazz : f.members)
-                    entity.targetSelector.add(1, new ActiveTargetGoal<>(entity, clazz, false, false));
-    }
-
-    public static void findAndAddTarget(HostileEntity entity) {
-        Fraction fraction = find(entity.getClass());
-        if (fraction != null)
-            addTarget(entity, fraction);
-//        entity.targetSelector.add(1, new ActiveTargetGoal<>(entity, PlayerEntity.class, false, livingEntity -> {
-//            if(livingEntity instanceof PlayerEntity player){
-//
-//            }
-//            return true;
-//        }));
-    }
-
+    FROST(RainimatorBanners.FROST),
+    UNDEAD(RainimatorBanners.UNDEAD),
+    NETHER(RainimatorBanners.NETHER),
+    ENDER(RainimatorBanners.DRAGONSPIRE);
     static {
         UNDEAD.addMember(HerobrineEntity.class);
         ENDER.addMember(CerisEntity.class);
@@ -101,5 +60,46 @@ public enum Fraction {
         NETHER.addMember(KralosEntity.class);
         ENDER.addMember(ArabellaEntity.class);
         UNDEAD.addMember(AzaleaEntity.class);
+    }
+
+    private final ItemStack banner;
+    private final List<Class<? extends LivingEntity>> members = new ArrayList<>();
+
+    Fraction(ItemStack banner) {
+        this.banner = banner;
+    }
+
+    private static Fraction find(Class<? extends LivingEntity> clazz) {
+        for (Fraction fraction : Fraction.values())
+            if (fraction.members.contains(clazz))
+                return fraction;
+        return null;
+    }
+
+    private static void addTarget(HostileEntity entity, Fraction fraction) {
+        for (Fraction f : Fraction.values())
+            if (f != fraction)
+                for (Class<? extends LivingEntity> clazz : f.members)
+                    entity.targetSelector.add(1, new ActiveTargetGoal<>(entity, clazz, false, false));
+    }
+
+    public static void findAndAddTarget(HostileEntity entity) {
+        Fraction fraction = find(entity.getClass());
+        if (fraction != null)
+            addTarget(entity, fraction);
+//        entity.targetSelector.add(1, new ActiveTargetGoal<>(entity, PlayerEntity.class, false, livingEntity -> {
+//            if(livingEntity instanceof PlayerEntity player){
+//
+//            }
+//            return true;
+//        }));
+    }
+
+    public ItemStack getBanner() {
+        return this.banner;
+    }
+
+    public void addMember(Class<? extends LivingEntity> clazz) {
+        this.members.add(clazz);
     }
 }

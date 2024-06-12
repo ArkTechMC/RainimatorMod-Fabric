@@ -5,7 +5,6 @@ import dev.rainimator.mod.ability.AbilityManager;
 import dev.rainimator.mod.compat.trinkets.TrinketsRegistry;
 import dev.rainimator.mod.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import org.slf4j.Logger;
 
 public class RainimatorMod implements ModInitializer {
@@ -14,12 +13,12 @@ public class RainimatorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModFeatures.addFeatures();
-        ModSounds.registerSounds();
-        ModTrades.registerTrades();
+        RainimatorFeatures.addFeatures();
+        RainimatorSounds.registerSounds();
+        RainimatorTrades.registerTrades();
         TrinketsRegistry.registerCommon();
-        ModGameRules.init();
-        ModParticles.init();
+        RainimatorGameRules.init();
+        RainimatorParticles.init();
         FabricApiCall.run();
         AbilityManager.init();
     }

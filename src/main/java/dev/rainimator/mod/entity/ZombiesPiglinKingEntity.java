@@ -7,7 +7,7 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -34,7 +34,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class ZombiesPiglinKingEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"zombies_piglin_king");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies_piglin_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public ZombiesPiglinKingEntity(EntityType<ZombiesPiglinKingEntity> type, World world) {
@@ -42,8 +42,8 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.KING_ZOMBIE_PIG_MAN_SWORD));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.PIGLIN_KING_CROWN));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.KING_ZOMBIE_PIG_MAN_SWORD));
+        this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.PIGLIN_KING_CROWN));
     }
 
     @AttributeBuilder

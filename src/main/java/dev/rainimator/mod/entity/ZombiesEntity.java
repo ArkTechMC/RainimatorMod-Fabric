@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -29,7 +29,7 @@ public class ZombiesEntity extends MonsterEntityBase {
     public ZombiesEntity(EntityType<ZombiesEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.IRON_LONG_SPEAR));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.IRON_LONG_SPEAR));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
         this.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));

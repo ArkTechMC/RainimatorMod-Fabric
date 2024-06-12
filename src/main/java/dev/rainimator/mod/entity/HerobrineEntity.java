@@ -10,9 +10,9 @@ import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -65,12 +65,12 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
         this.setPersistent();
         switch (stage) {
             case First -> {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.HEROBRINE_TOMAHAWK));
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.HEROBRINE_TOMAHAWK));
                 this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.AIR));
             }
             case Second -> {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD));
-                this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD));
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.BLUE_DIAMOND_SWORD));
+                this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.BLUE_DIAMOND_SWORD));
             }
         }
     }
@@ -116,18 +116,18 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
         Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (this.hasStatusEffect(ModEffects.ICE_PEOPLE)) {
+            if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE)) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 this.requestTeleport(x, y + 4.0D, z);
                 continue;
             }
-            if (this.hasStatusEffect(StatusEffects.POISON) || this.hasStatusEffect(StatusEffects.WITHER) || this.hasStatusEffect(ModEffects.SOUL_DEATH)) {
+            if (this.hasStatusEffect(StatusEffects.POISON) || this.hasStatusEffect(StatusEffects.WITHER) || this.hasStatusEffect(RainimatorEffects.SOUL_DEATH)) {
                 this.clearStatusEffects();
                 continue;
             }
-            if (this.hasStatusEffect(ModEffects.STUNNED)) {
+            if (this.hasStatusEffect(RainimatorEffects.STUNNED)) {
                 if (!this.getWorld().isClient()) {
-                    this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
+                    this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 200, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 3));
                 }
                 continue;
@@ -214,7 +214,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem()) {
                             this.getNavigation().stop();
                             this.requestTeleport(this.getX(), this.getY(), this.getZ());
-                            ItemStack _setstack = new ItemStack(ModItems.SOUL_PEOPLE);
+                            ItemStack _setstack = new ItemStack(RainimatorItems.SOUL_PEOPLE);
                             _setstack.setCount(1);
                             this.setStackInHand(Hand.OFF_HAND, _setstack);
                             if (!this.getWorld().isClient()) {
@@ -282,7 +282,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                                             "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
                                 this.setHealth(this.getHealth() + 20);
                                 if (this.getWorld() instanceof ServerWorld _level) {
-                                    MobEntity entityToSpawn = new HerobrineEntity(ModEntities.HEROBRINE, _level, Stage.Second);
+                                    MobEntity entityToSpawn = new HerobrineEntity(RainimatorEntities.HEROBRINE, _level, Stage.Second);
                                     entityToSpawn.refreshPositionAndAngles(this.getX(), (this.getY() + 1), this.getZ(), this.getWorld().getRandom().nextFloat() * 360F, 0);
                                     entityToSpawn.initialize(_level, this.getWorld().getLocalDifficulty(entityToSpawn.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
                                     this.getWorld().spawnEntity(entityToSpawn);
@@ -314,7 +314,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                 }
                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
                 if (this.getWorld() instanceof ServerWorld _level) {
-                    MobEntity entityToSpawn = new BlackBoneEntity(ModEntities.BLACKBONE, _level);
+                    MobEntity entityToSpawn = new BlackBoneEntity(RainimatorEntities.BLACKBONE, _level);
                     entityToSpawn.refreshPositionAndAngles(this.getX(), (this.getY() + 3), this.getZ(), this.getWorld().getRandom().nextFloat() * 360F, 0);
                     entityToSpawn.initialize(_level, this.getWorld().getLocalDifficulty(entityToSpawn.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
                     this.getWorld().spawnEntity(entityToSpawn);

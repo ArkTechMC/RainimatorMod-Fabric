@@ -37,21 +37,21 @@
     ],
     "annotation_lib": [
       "dev.rainimator.mod.data.config.ModConfig",
-      "dev.rainimator.mod.registry.ModBlockEntities",
-      "dev.rainimator.mod.registry.ModBlocks",
-      "dev.rainimator.mod.registry.ModBanners",
-      "dev.rainimator.mod.registry.ModEffects",
-      "dev.rainimator.mod.registry.ModEnchantments",
-      "dev.rainimator.mod.registry.ModEntities",
-      "dev.rainimator.mod.registry.ModItems",
-      "dev.rainimator.mod.registry.ModItemGroups",
-      "dev.rainimator.mod.registry.ModPotions",
-      "dev.rainimator.mod.registry.ModSkulls",
+      "dev.rainimator.mod.registry.RainimatorBlockEntities",
+      "dev.rainimator.mod.registry.RainimatorBlocks",
+      "dev.rainimator.mod.registry.RainimatorBanners",
+      "dev.rainimator.mod.registry.RainimatorEffects",
+      "dev.rainimator.mod.registry.RainimatorEnchantments",
+      "dev.rainimator.mod.registry.RainimatorEntities",
+      "dev.rainimator.mod.registry.RainimatorItems",
+      "dev.rainimator.mod.registry.RainimatorItemGroups",
+      "dev.rainimator.mod.registry.RainimatorPotions",
+      "dev.rainimator.mod.registry.RainimatorSkulls",
       "dev.rainimator.mod.network.EnderBookActionHandler"
     ],
     "annotation_lib_client": [
       "dev.rainimator.mod.network.EnderBookOpenHandler",
-      "dev.rainimator.mod.registry.ModKeybindings"
+      "dev.rainimator.mod.registry.RainimatorKeybindings"
     ],
     "annotation_lib_server": [
     ]

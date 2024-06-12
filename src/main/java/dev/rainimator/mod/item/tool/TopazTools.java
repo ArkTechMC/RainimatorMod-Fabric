@@ -7,6 +7,13 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.*;
 
 public class TopazTools {
+    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
+        if (Math.random() < 0.5D) {
+            entity.setOnFireFor(5);
+            entity.damage(DamageUtil.build(sourceentity, DamageTypes.IN_FIRE), 2.0F);
+        }
+    }
+
     public static class Axe extends AxeItem {
         public Axe() {
             super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
@@ -15,7 +22,7 @@ public class TopazTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean ret_val = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return ret_val;
         }
     }
@@ -28,7 +35,7 @@ public class TopazTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -41,7 +48,7 @@ public class TopazTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -54,7 +61,7 @@ public class TopazTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
         }
     }
@@ -67,15 +74,8 @@ public class TopazTools {
         @Override
         public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
-            onPostHit(entity,sourceentity);
+            onPostHit(entity, sourceentity);
             return retval;
-        }
-    }
-
-    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity){
-        if (Math.random() < 0.5D) {
-            entity.setOnFireFor(5);
-            entity.damage(DamageUtil.build(sourceentity, DamageTypes.IN_FIRE), 2.0F);
         }
     }
 }

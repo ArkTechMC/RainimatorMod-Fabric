@@ -10,9 +10,9 @@ import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -39,14 +39,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
 public class NaeusEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"naeus");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "naeus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS);
 
     public NaeusEntity(EntityType<NaeusEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NAEUS_SWORD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.NAEUS_SWORD));
     }
 
     @AttributeBuilder
@@ -106,9 +106,9 @@ public class NaeusEntity extends MonsterEntityBase {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.hasStatusEffect(ModEffects.ICE_PEOPLE))
+            if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE))
                 this.clearStatusEffects();
-            else if (this.hasStatusEffect(ModEffects.SOUL_DEATH))
+            else if (this.hasStatusEffect(RainimatorEffects.SOUL_DEATH))
                 this.clearStatusEffects();
             else if (this.hasStatusEffect(StatusEffects.WITHER))
                 this.clearStatusEffects();
@@ -117,10 +117,10 @@ public class NaeusEntity extends MonsterEntityBase {
             else if (Math.random() < 0.5D) {
                 SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
+                    _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
                 if (sourceentity instanceof LivingEntity _entity)
                     if (!_entity.getWorld().isClient())
-                        _entity.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_DEATH, 100, 1));
+                        _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SOUL_DEATH, 100, 1));
                 if (!this.getWorld().isClient()) {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 2));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 300, 1));
@@ -201,7 +201,7 @@ public class NaeusEntity extends MonsterEntityBase {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -224,15 +224,15 @@ public class NaeusEntity extends MonsterEntityBase {
         double y = this.getY();
         if (this.getWorld() instanceof ServerWorld _level) {
             BlockPos blockPos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(-1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos();
-            _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, blockPos.getX(), y + 1.4D, blockPos.getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, blockPos.getX(), y + 1.4D, blockPos.getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
         }
         if (this.getHealth() <= 75.0F) {
             if (!this.getWorld().isClient())
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
-            if (this.hasStatusEffect(ModEffects.STUNNED)) {
+            if (this.hasStatusEffect(RainimatorEffects.STUNNED)) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 4));
-                this.removeStatusEffect(ModEffects.STUNNED);
+                this.removeStatusEffect(RainimatorEffects.STUNNED);
             }
         }
         if (!this.isAlive())

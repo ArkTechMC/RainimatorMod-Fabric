@@ -7,7 +7,7 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
+import dev.rainimator.mod.registry.RainimatorEntities;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,8 +23,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+
 public class GigaBoneEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"gigabone");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "gigabone");
 
     public GigaBoneEntity(EntityType<GigaBoneEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -73,7 +74,7 @@ public class GigaBoneEntity extends MonsterEntityBase {
                 if (Math.random() < 0.2D)
                     EntityUtil.summon(EntityType.WITHER_SKELETON, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
                 else if (Math.random() < 0.2D)
-                    EntityUtil.summon(ModEntities.WITHERED_SKELETONS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+                    EntityUtil.summon(RainimatorEntities.WITHERED_SKELETONS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         return super.damage(source, amount);
     }
 

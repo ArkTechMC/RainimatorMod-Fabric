@@ -30,7 +30,7 @@ public class CiaraEntityProjectile extends PersistentProjectileEntity implements
     @Override
     public void tick() {
         super.tick();
-        if(this.inGround)
+        if (this.inGround)
             this.remove(RemovalReason.DISCARDED);
     }
 

@@ -10,9 +10,9 @@ import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -40,15 +40,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
 public class NaeusKingEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"naeus_king");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "naeus_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
 
     public NaeusKingEntity(EntityType<NaeusKingEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHER_SPEAR));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_THE_CROWN));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.NETHER_SPEAR));
+        this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.NETHER_THE_CROWN));
     }
 
     @AttributeBuilder
@@ -103,7 +103,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.hasStatusEffect(ModEffects.ICE_PEOPLE))
+            if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE))
                 this.clearStatusEffects();
             else {
                 if (Math.random() < 0.5D) {
@@ -111,13 +111,13 @@ public class NaeusKingEntity extends MonsterEntityBase {
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
                     if (!this.getWorld().isClient()) {
-                        this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 100, 0));
+                        this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 100, 0));
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 1));
                     }
                     if (sourceentity instanceof LivingEntity _entity)
                         if (!_entity.getWorld().isClient())
-                            _entity.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_DEATH, 100, 0));
+                            _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SOUL_DEATH, 100, 0));
                     sourceentity.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 5.0F);
                 }
                 if (Math.random() < 0.1D) {
@@ -202,7 +202,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
         double z = this.getZ();
         SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_living"), 1, 1);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -226,7 +226,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this.hasStatusEffect(ModEffects.ICE_PEOPLE) || this.hasStatusEffect(ModEffects.FEAR_DARK) || this.hasStatusEffect(ModEffects.SOUL_DEATH)) {
+        if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE) || this.hasStatusEffect(RainimatorEffects.FEAR_DARK) || this.hasStatusEffect(RainimatorEffects.SOUL_DEATH)) {
             this.clearStatusEffects();
             this.requestTeleport(x, (y + 3), z);
         }

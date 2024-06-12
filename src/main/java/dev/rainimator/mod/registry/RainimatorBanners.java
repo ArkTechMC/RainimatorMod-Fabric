@@ -14,7 +14,7 @@ import net.minecraft.util.Pair;
 
 @ModId(RainimatorMod.MOD_ID)
 @SuppressWarnings("unused")
-public class ModBanners implements IAnnotatedRegistryEntry {
+public class RainimatorBanners implements IAnnotatedRegistryEntry {
     @Group(@TargetId("main"))
     public static final ItemStack FROST = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".frost", Items.CYAN_BANNER,
             new Pair<>(BannerPatterns.CROSS, DyeColor.WHITE),

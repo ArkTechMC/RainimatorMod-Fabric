@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -28,7 +28,7 @@ public class MutatedEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 15;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SKULL_CRUSHER));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.SKULL_CRUSHER));
     }
 
     @AttributeBuilder

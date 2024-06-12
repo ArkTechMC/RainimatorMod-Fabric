@@ -32,7 +32,7 @@ import net.minecraft.util.Rarity;
 
 @ModId(RainimatorMod.MOD_ID)
 @SuppressWarnings("unused")
-public class ModItems implements IAnnotatedRegistryEntry {
+public class RainimatorItems implements IAnnotatedRegistryEntry {
     //resources
     @ItemReg(group = @TargetId("item"))
     public static final Item SUPER_RUBY = new ItemBase(Item.Settings::fireproof);
@@ -52,15 +52,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item BLACKBONE_THE_BLADE = new BlackBoneTheBladeItem();
     @ItemReg(group = @TargetId("main"))
     public static final Item BLACKBONE_THE_BLADE_SINGLE_HAND = new BlackBoneTheBladeSingleHandItem();
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_ore"))
-    public static Item RUBY_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_ruby_ore"))
-    public static Item DEEPSLATE_RUBY_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_block"))
-    public static Item RUBY_BLOCK = null;
     @ItemReg(group = @TargetId("item"))
     public static final Item RAW_RUBY = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("item"))
@@ -73,18 +64,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item SUPER_SUGILITE = new ItemBase(Item.Settings::fireproof);
     @ItemReg(group = @TargetId("item"))
     public static final Item SUPER_TOPAZ = new ItemBase(Item.Settings::fireproof);
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_ore"))
-    public static Item TOPAZ_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_ore"))
-    public static Item SUGILITE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_block"))
-    public static Item TOPAZ_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_block"))
-    public static Item SUGILITE_BLOCK = null;
     @ItemReg(group = @TargetId("main"))
     public static final Item PATRICK_HELMET = new PatrickArmorItem(ArmorItem.Type.HELMET);
     @ItemReg(group = @TargetId("main"))
@@ -102,9 +81,9 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item ENDER_BIG_SWORD = new EnderBigSwordItem();
     @ItemReg(group = @TargetId("main"))
-    public static final Item LASER_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(3000, 4.0F, 13.0F, 1, 18, ModItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings());
+    public static final Item LASER_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(3000, 4.0F, 13.0F, 1, 18, RainimatorItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings());
     @ItemReg(group = @TargetId("main"))
-    public static final Item MACE = new SwordItem(ToolMaterialUtil.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof());
+    public static final Item MACE = new SwordItem(ToolMaterialUtil.of(12000, 4.0F, 10.0F, 0, 10, RainimatorItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof());
     @ItemReg(group = @TargetId("item"))
     public static final Item SAPPHIRE = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("main"))
@@ -117,16 +96,7 @@ public class ModItems implements IAnnotatedRegistryEntry {
     @ItemReg(group = @TargetId("main"))
     public static final Item SOLDIERS_WAR_HAMMER = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 6.0F, 0, 5, SAPPHIRE), 3, -2.2F, new Item.Settings());
     @ItemReg(group = @TargetId("main"))
-    public static final Item THE_BLUE_DAGGER = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 5.0F, 1, 10, ModItems.SAPPHIRE), 3, -2.0F, new Item.Settings());
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_ore"))
-    public static Item SAPPHIRE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_sapphire_ore"))
-    public static Item DEEPSLATE_SAPPHIRE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_block"))
-    public static Item SAPPHIRE_BLOCK = null;
+    public static final Item THE_BLUE_DAGGER = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 5.0F, 1, 10, RainimatorItems.SAPPHIRE), 3, -2.0F, new Item.Settings());
     @ItemReg(group = @TargetId("item"))
     public static final Item RAW_SAPPHIRE = new ItemBase(p -> p);
     //armor
@@ -155,12 +125,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
     //axe
     @ItemReg(group = @TargetId("main"))
     public static final Item DIAMOND_HATCHET = new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings());
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("blue_diamond_block"))
-    public static Item BLUE_DIAMOND_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("dark_obsidian_block"))
-    public static Item DARK_OBSIDIAN_BLOCK = null;
     @ItemReg(group = @TargetId("item"))
     public static final Item ZOMBIE_HEART = new ZombieHeartItem();
     @ItemReg(group = @TargetId("item"))
@@ -179,9 +143,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item DIAMOND_PIECE = new ItemBase(p -> p);
     @ItemReg(group = @TargetId("item"))
     public static final Item BAO_ZHU = new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON));
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("mystic_ore"))
-    public static Item MYSTIC_ORE = null;
     @ItemReg(group = @TargetId("item"))
     public static final Item SOUL_PEOPLE = new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON));
     @ItemReg(group = @TargetId("item"))
@@ -389,85 +350,85 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item AMETHYST_WAR_HAMMER = new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings());
     //spawn egg
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item HEROBRINE_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, ModEntities.HEROBRINE, -10092544, -65536, new Item.Settings());
+    public static final Item HEROBRINE_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.HEROBRINE, -10092544, -65536, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item CERIS_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, ModEntities.CERIS, -10092442, -65281, new Item.Settings());
+    public static final Item CERIS_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.CERIS, -10092442, -65281, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.ZOMBIES, -16724941, -16751104, new Item.Settings());
+    public static final Item ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIES, -16724941, -16751104, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAEUS_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, ModEntities.NAEUS, -10066330, -3355444, new Item.Settings());
+    public static final Item NAEUS_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.NAEUS, -10066330, -3355444, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item RAIN_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, ModEntities.RAIN, -16777063, -13408513, new Item.Settings());
+    public static final Item RAIN_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.RAIN, -16777063, -13408513, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ABIGAIL_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, ModEntities.ABIGAIL, -65332, -39169, new Item.Settings());
+    public static final Item ABIGAIL_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.ABIGAIL, -65332, -39169, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item PATRICK_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, ModEntities.PATRICK, -16737895, -13369345, new Item.Settings());
+    public static final Item PATRICK_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.PATRICK, -16737895, -13369345, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item BLACKBONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, ModEntities.BLACKBONE, -16777216, -10066330, new Item.Settings());
+    public static final Item BLACKBONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.BLACKBONE, -16777216, -10066330, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item HOGSWORTH_SPAWN_EGG = new SpawnEggBase(Episode.HardPillToSwallow, ModEntities.HOGSWORTH, -26215, -13108, new Item.Settings());
+    public static final Item HOGSWORTH_SPAWN_EGG = new SpawnEggBase(Episode.HardPillToSwallow, RainimatorEntities.HOGSWORTH, -26215, -13108, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item CIARA_SPAWN_EGG = new SpawnEggBase(Episode.Nightmares, ModEntities.CIARA, -52378, -39220, new Item.Settings());
+    public static final Item CIARA_SPAWN_EGG = new SpawnEggBase(Episode.Nightmares, RainimatorEntities.CIARA, -52378, -39220, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item HILDA_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIceRemake, ModEntities.HILDA, -256, -3355444, new Item.Settings());
+    public static final Item HILDA_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIceRemake, RainimatorEntities.HILDA, -256, -3355444, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item SOLDIERS_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.SOLDIERS, -1, -1, new Item.Settings());
+    public static final Item SOLDIERS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.SOLDIERS, -1, -1, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item WITHERED_SKELETONS_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.WITHERED_SKELETONS, -13421773, -10066330, new Item.Settings());
+    public static final Item WITHERED_SKELETONS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.WITHERED_SKELETONS, -13421773, -10066330, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARK_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.DARK_SHIELD, -6736897, -16777216, new Item.Settings());
+    public static final Item DARK_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.DARK_SHIELD, -6736897, -16777216, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARK_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.DARK_ZOMBIE, -16751104, -13369549, new Item.Settings());
+    public static final Item DARK_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.DARK_ZOMBIE, -16751104, -13369549, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item VORDUS_SPAWN_EGG = new SpawnEggBase(Episode.Goodbye, ModEntities.VORDUS, -13421773, -3355648, new Item.Settings());
+    public static final Item VORDUS_SPAWN_EGG = new SpawnEggBase(Episode.Goodbye, RainimatorEntities.VORDUS, -13421773, -3355648, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item WITHER_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings());
+    public static final Item WITHER_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item SKELETON_SNOW_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings());
+    public static final Item SKELETON_SNOW_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings());
+    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_KING_ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings());
+    public static final Item PIGLIN_KING_ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_KING_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings());
+    public static final Item PIGLIN_KING_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_COMMANDER_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings());
+    public static final Item PIGLIN_COMMANDER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAEUS_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.NAEUS_KING, -6737152, -65536, new Item.Settings());
+    public static final Item NAEUS_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NAEUS_KING, -6737152, -65536, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item TUSK_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.TUSK, -13159, -13108, new Item.Settings());
+    public static final Item TUSK_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.TUSK, -13159, -13108, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item BROTS_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.BROTS, -3399168, -9175040, new Item.Settings());
+    public static final Item BROTS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.BROTS, -3399168, -9175040, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIE_PIGLIN_ART_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, new Item.Settings());
+    public static final Item ZOMBIE_PIGLIN_ART_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item MUTATED_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.MUTATED, -5134336, -16735132, new Item.Settings());
+    public static final Item MUTATED_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.MUTATED, -5134336, -16735132, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAMTAR_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.NAMTAR, -7274496, -12544, new Item.Settings());
+    public static final Item NAMTAR_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NAMTAR, -7274496, -12544, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item AGETHA_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.AGETHA, -6710887, -3381760, new Item.Settings());
+    public static final Item AGETHA_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.AGETHA, -6710887, -3381760, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item TRICER_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.TRICER, -3407872, -16777216, new Item.Settings());
+    public static final Item TRICER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.TRICER, -3407872, -16777216, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item BIG_UNDEAD_SKELETON_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, new Item.Settings());
+    public static final Item BIG_UNDEAD_SKELETON_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ARCHER_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.ARCHER, -6710887, -16750951, new Item.Settings());
+    public static final Item ARCHER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ARCHER, -6710887, -16750951, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARYLL_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, ModEntities.DARYLL, -6737152, -1, new Item.Settings());
+    public static final Item DARYLL_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.DARYLL, -6737152, -1, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item NULL_LIKE_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.NULL_LIKE, -1, -16777216, new Item.Settings());
+    public static final Item NULL_LIKE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NULL_LIKE, -1, -16777216, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item GIGABONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, ModEntities.GIGABONE, -10066330, -3355393, new Item.Settings());
+    public static final Item GIGABONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.GIGABONE, -10066330, -3355393, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item KLAUS_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.KLAUS, -10066432, -16764109, new Item.Settings());
+    public static final Item KLAUS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS, -10066432, -16764109, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item KLAUS_2_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.KLAUS_2, -6711040, -16751002, new Item.Settings());
+    public static final Item KLAUS_2_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS_2, -6711040, -16751002, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item KRALOS_SPAWN_EGG = new SpawnEggBase(Episode.None, ModEntities.KRALOS, -16777165, -6750157, new Item.Settings());
+    public static final Item KRALOS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KRALOS, -16777165, -6750157, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item ARABELLA_SPAWN_EGG = new SpawnEggBase(Episode.ToTheVoid, ModEntities.ARABELLA, -3407668, -13369345, new Item.Settings());
+    public static final Item ARABELLA_SPAWN_EGG = new SpawnEggBase(Episode.ToTheVoid, RainimatorEntities.ARABELLA, -3407668, -13369345, new Item.Settings());
     @ItemReg(group = @TargetId("mobs"))
-    public static final Item AZALEA_SPAWN_EGG = new SpawnEggBase(Episode.PreachToTheChoir, ModEntities.AZALEA, -256, -16738048, new Item.Settings());
+    public static final Item AZALEA_SPAWN_EGG = new SpawnEggBase(Episode.PreachToTheChoir, RainimatorEntities.AZALEA, -256, -16738048, new Item.Settings());
     //music
     @ItemReg(group = @TargetId("item"))
     public static final Item HIM_MUSIC = new MusicItemBase("him_music_boss");
@@ -489,6 +450,45 @@ public class ModItems implements IAnnotatedRegistryEntry {
     public static final Item KRALOS_MUSIC = new MusicItemBase("kralos_boss_music");
     @ItemReg(group = @TargetId("item"))
     public static final Item KLAUS_MUSIC = new MusicItemBase("klaus_boss_music");
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_ore"))
+    public static Item RUBY_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_ruby_ore"))
+    public static Item DEEPSLATE_RUBY_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_block"))
+    public static Item RUBY_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_ore"))
+    public static Item TOPAZ_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_ore"))
+    public static Item SUGILITE_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_block"))
+    public static Item TOPAZ_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_block"))
+    public static Item SUGILITE_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_ore"))
+    public static Item SAPPHIRE_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_sapphire_ore"))
+    public static Item DEEPSLATE_SAPPHIRE_ORE = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_block"))
+    public static Item SAPPHIRE_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("blue_diamond_block"))
+    public static Item BLUE_DIAMOND_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("dark_obsidian_block"))
+    public static Item DARK_OBSIDIAN_BLOCK = null;
+    @Group(@TargetId("item"))
+    @Link(type = TargetType.BLOCK, target = @TargetId("mystic_ore"))
+    public static Item MYSTIC_ORE = null;
     @Group(@TargetId("mobs"))
     @Link(type = TargetType.SKULL, targets = {@TargetId("herobrine_head"), @TargetId("herobrine_wall_head")})
     public static Item HEROBRINE_HEAD = null;
@@ -612,6 +612,6 @@ public class ModItems implements IAnnotatedRegistryEntry {
 
     @CallbackHandler
     public static void init() {
-        FuelRegistry.INSTANCE.add(ModItems.HOT_IRON, 2000);
+        FuelRegistry.INSTANCE.add(RainimatorItems.HOT_IRON, 2000);
     }
 }

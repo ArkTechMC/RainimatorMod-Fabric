@@ -5,7 +5,7 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -31,7 +31,7 @@ public class DarkZombieEntity extends MonsterEntityBase {
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 10;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMOND_LANCE));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DIAMOND_LANCE));
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
         this.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
     }

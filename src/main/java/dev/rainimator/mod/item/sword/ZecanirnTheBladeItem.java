@@ -9,9 +9,9 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -41,16 +41,16 @@ import java.util.List;
 
 public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
     public ZecanirnTheBladeItem() {
-        super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE, ModItems.SUPER_RUBY), 3, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE, RainimatorItems.SUPER_RUBY), 3, -2.2F, new Settings());
     }
 
     @Override
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
         boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (entity instanceof MobEntity _entity) _entity.setTarget(sourceentity);
-        if (sourceentity.getMainHandStack().getItem() == ModItems.ZECANIRN_THE_BLADE) if (Math.random() < 0.9D) {
+        if (sourceentity.getMainHandStack().getItem() == RainimatorItems.ZECANIRN_THE_BLADE) if (Math.random() < 0.9D) {
             if (entity.getWorld() instanceof ServerWorld _level)
-                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
+                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
             if (Math.random() < 0.5D)
                 SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "sword_teleport1"), 4.0F, 1.0F);
             else if (Math.random() < 0.5D)
@@ -96,12 +96,12 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.zecanirn_the_blade).get())) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.zecanirn_the_blade).get())) {
             Vec3d _center = entity.getPos();
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
-                if (_livEnt.getMainHandStack().getItem() == ModItems.ZECANIRN_THE_BLADE) {
+                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.ZECANIRN_THE_BLADE) {
                     if (entity instanceof PlayerEntity) entity.getItemCooldownManager().set(ar.getValue().getItem(), 0);
                     continue;
                 }
@@ -113,7 +113,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                     entity.getInventory().markDirty();
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
                     if (world instanceof ServerWorld _level)
-                        _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
+                        _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
                     SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
 
                     Runnable callback = () -> {
@@ -124,9 +124,9 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                         entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 15.0F);
                         if (world instanceof ServerWorld _level) {
                             for (double z = -7; z <= 7; z++)
-                                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
                             for (double x = -7; x <= 7; x++)
-                                _level.spawnParticles((ParticleEffect) ModParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
                         }
                         SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
                     };
@@ -149,7 +149,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
         boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, ModParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
+            ParticleUtil.spawnCircleParticles(world, RainimatorParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
         return ret_val;
     }
 

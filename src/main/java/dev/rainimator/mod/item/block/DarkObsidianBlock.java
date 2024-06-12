@@ -7,9 +7,9 @@ import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.block.entity.DarkObsidianBlockEntity;
-import dev.rainimator.mod.registry.ModBlockEntities;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorBlockEntities;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -57,62 +57,62 @@ public class DarkObsidianBlock extends BlockWithEntity {
     }
 
     public static synchronized void initConsumers() {
-        consumers.put(ModItems.LIGHT_HEART, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.HEROBRINE, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIES, world, x, y, z - RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.DARK_ZOMBIE, world, x, y, z + RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.AZALEA, world, x + RandomHelper.nextInt(1, 3), y, z);
+        consumers.put(RainimatorItems.LIGHT_HEART, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.HEROBRINE, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.ZOMBIES, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.DARK_ZOMBIE, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.AZALEA, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.KRALOS, world, x, y, z));
+        consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.KRALOS, world, x, y, z));
         consumers.put(Items.TOTEM_OF_UNDYING, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.KLAUS, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.KLAUS, world, x, y, z);
             EntityUtil.summon(EntityType.PILLAGER, world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(EntityType.PILLAGER, world, x, y, z + RandomHelper.nextInt(1, 3));
             EntityUtil.summon(EntityType.PILLAGER, world, x - RandomHelper.nextInt(1, 3), y, z);
             EntityUtil.summon(EntityType.PILLAGER, world, x + RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.GIGABONE, world, x, y, z));
-        consumers.put(ModItems.SOUL_PEOPLE, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.NAMTAR, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.MUTATED, world, x, y, z + RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.SKELETON_SNOW, world, x + RandomHelper.nextInt(1, 3), y, z);
-            EntityUtil.summon(ModEntities.WITHER_SHIELD, world, x - RandomHelper.nextInt(1, 3), y, z);
+        consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.GIGABONE, world, x, y, z));
+        consumers.put(RainimatorItems.SOUL_PEOPLE, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.NAMTAR, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.MUTATED, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.SKELETON_SNOW, world, x + RandomHelper.nextInt(1, 3), y, z);
+            EntityUtil.summon(RainimatorEntities.WITHER_SHIELD, world, x - RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(ModItems.WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.BIG_UNDEAD_SKELETON, world, x, y, z));
-        consumers.put(Items.GOLDEN_SWORD, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.PIGLIN_COMMANDER, world, x, y, z));
+        consumers.put(RainimatorItems.WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.BIG_UNDEAD_SKELETON, world, x, y, z));
+        consumers.put(Items.GOLDEN_SWORD, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.PIGLIN_COMMANDER, world, x, y, z));
         consumers.put(Items.GOLD_INGOT, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_KING, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_KING, world, x, y, z);
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(Blocks.GOLD_BLOCK.asItem(), (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.PIGLIN_KING_ZOMBIES, world, x, y, z);
-            EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.PIGLIN_KING_ZOMBIES, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_ART, world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.BAO_ZHU, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.NULL_LIKE, world, x, y, z));
-        consumers.put(ModItems.WARRIOR_HEART, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.NAEUS, world, x, y, z);
-            EntityUtil.summon(ModEntities.WITHERED_SKELETONS, world, x, y, z - RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.HOGSWORTH, world, x, y, z + RandomHelper.nextInt(1, 3));
+        consumers.put(RainimatorItems.BAO_ZHU, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.NULL_LIKE, world, x, y, z));
+        consumers.put(RainimatorItems.WARRIOR_HEART, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.NAEUS, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.WITHERED_SKELETONS, world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.HOGSWORTH, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.ICE_HEART, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.RAIN, world, x, y, z);
-            EntityUtil.summon(ModEntities.CIARA, world, x, y, z + RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.DARYLL, world, x, y, z - RandomHelper.nextInt(1, 3));
+        consumers.put(RainimatorItems.ICE_HEART, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.RAIN, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.CIARA, world, x, y, z + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.DARYLL, world, x, y, z - RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.ENDER_HEART, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.CERIS, world, x, y, z);
-            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x + RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.DARK_SHIELD, world, x, y, x - RandomHelper.nextInt(1, 3));
+        consumers.put(RainimatorItems.ENDER_HEART, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.CERIS, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.DARK_SHIELD, world, x, y, x + RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.DARK_SHIELD, world, x, y, x - RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.MAGIC_STAR, (entity, world, x, y, z) -> {
-            EntityUtil.summon(ModEntities.PATRICK, world, x, y, z);
-            EntityUtil.summon(ModEntities.HILDA, world, x, y, x - RandomHelper.nextInt(1, 3));
-            EntityUtil.summon(ModEntities.SOLDIERS, world, x, y, x + RandomHelper.nextInt(1, 3));
+        consumers.put(RainimatorItems.MAGIC_STAR, (entity, world, x, y, z) -> {
+            EntityUtil.summon(RainimatorEntities.PATRICK, world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.HILDA, world, x, y, x - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.SOLDIERS, world, x, y, x + RandomHelper.nextInt(1, 3));
         });
-        consumers.put(ModItems.NETHERITE_WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.BLACKBONE, world, x, y, z));
-        consumers.put(ModItems.UNDER_FLOWER, (entity, world, x, y, z) -> EntityUtil.summon(ModEntities.ABIGAIL, world, x, y, z));
+        consumers.put(RainimatorItems.NETHERITE_WITHER_BONE, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.BLACKBONE, world, x, y, z));
+        consumers.put(RainimatorItems.UNDER_FLOWER, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.ABIGAIL, world, x, y, z));
     }
 
     @Override
@@ -153,15 +153,15 @@ public class DarkObsidianBlock extends BlockWithEntity {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK);
+        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK);
         placed.ifPresent(x -> x.setBiome(itemStack, world.getBiome(pos)));
     }
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
-        ItemStack dropStack = new ItemStack(ModItems.DARK_OBSIDIAN_BLOCK);
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, ModBlockEntities.DARK_OBSIDIAN_BLOCK);
+        ItemStack dropStack = new ItemStack(RainimatorItems.DARK_OBSIDIAN_BLOCK);
+        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK);
         placed.ifPresent(x -> {
             RegistryKey<Biome> key = placed.get().getBiome();
             Optional<RegistryKey<Biome>> current = world.getBiome(pos).getKey();

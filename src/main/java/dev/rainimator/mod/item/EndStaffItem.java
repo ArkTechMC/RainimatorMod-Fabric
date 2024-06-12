@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import dev.rainimator.mod.entity.EndStaffEntity;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -59,11 +59,11 @@ public class EndStaffItem extends ItemBase {
     @Override
     public void onStoppedUsing(ItemStack itemtack, World world, LivingEntity entityLiving, int timeLeft) {
         if (!world.isClient() && entityLiving instanceof ServerPlayerEntity entity) {
-            ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == ModItems.MAGIC_STAR));
+            ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == RainimatorItems.MAGIC_STAR));
             if (stack == ItemStack.EMPTY)
                 for (int i = 0; i < (entity.getInventory()).main.size(); i++) {
                     ItemStack teststack = (entity.getInventory()).main.get(i);
-                    if (teststack.getItem() == ModItems.MAGIC_STAR) {
+                    if (teststack.getItem() == RainimatorItems.MAGIC_STAR) {
                         stack = teststack;
                         break;
                     }
@@ -73,7 +73,7 @@ public class EndStaffItem extends ItemBase {
                 itemtack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
                 if ((entity.getAbilities()).creativeMode) {
                     entityarrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-                } else if ((new ItemStack(ModItems.MAGIC_STAR)).isDamageable()) {
+                } else if ((new ItemStack(RainimatorItems.MAGIC_STAR)).isDamageable()) {
                     if (stack.damage(1, world.getRandom(), entity)) {
                         stack.decrement(1);
                         stack.setDamage(0);

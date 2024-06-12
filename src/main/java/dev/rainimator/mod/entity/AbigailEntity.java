@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.DamageUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -29,12 +29,12 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"abigail");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "abigail");
 
     public AbigailEntity(EntityType<AbigailEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ABIGAIL_SPEAR));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ABIGAIL_SPEAR));
     }
 
     @AttributeBuilder
@@ -107,7 +107,7 @@ public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob 
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        AbigailEntityProjectile entityarrow = new AbigailEntityProjectile(ModEntities.ABIGAIL_PROJECTILE, this, this.getWorld());
+        AbigailEntityProjectile entityarrow = new AbigailEntityProjectile(RainimatorEntities.ABIGAIL_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

@@ -9,8 +9,8 @@ import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -42,14 +42,14 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class KralosEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"kralos");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kralos");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
 
     public KralosEntity(EntityType<KralosEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FALLEN_SOUL_AXE));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.FALLEN_SOUL_AXE));
     }
 
     @AttributeBuilder
@@ -111,7 +111,7 @@ public class KralosEntity extends MonsterEntityBase {
             if (this.getHealth() < 60.0F) {
                 if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) == 0) {
                     if (!this.getWorld().isClient())
-                        this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 9999, 0));
+                        this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 9999, 0));
                     this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
                     if (this.getWorld() instanceof ServerWorld _level)
                         EntityUtil.lightening(_level, x, y, z);

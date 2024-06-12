@@ -1,9 +1,9 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.EntityType;
@@ -37,11 +37,11 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
             if (!_level.isClient())
                 _level.createExplosion(null, x, y, z, 3.0F, World.ExplosionSourceType.NONE);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ModParticles.LIGHTENING_ARC, x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
+            _level.spawnParticles((ParticleEffect) RainimatorParticles.LIGHTENING_ARC, x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
     }
 
     public static EndStaffEntity shoot(World world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        EndStaffEntity entityarrow = new EndStaffEntity(ModEntities.END_STAFF, entity, world);
+        EndStaffEntity entityarrow = new EndStaffEntity(RainimatorEntities.END_STAFF, entity, world);
         entityarrow.setVelocity((entity.getRotationVec(1.0F)).x, (entity.getRotationVec(1.0F)).y, (entity.getRotationVec(1.0F)).z, power * 2.0F, 0.0F);
         entityarrow.setSilent(true);
         entityarrow.setCritical(true);
@@ -61,7 +61,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
 
     @Override
     protected ItemStack asItemStack() {
-        return new ItemStack(ModItems.MAGIC_STAR);
+        return new ItemStack(RainimatorItems.MAGIC_STAR);
     }
 
     @Override

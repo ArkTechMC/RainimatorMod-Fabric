@@ -6,8 +6,8 @@ import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModEnchantments;
-import dev.rainimator.mod.registry.ModGameRules;
+import dev.rainimator.mod.registry.RainimatorEnchantments;
+import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -30,8 +30,15 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
 
     public ManaComponent(LivingEntity entity) {
         this.entity = entity;
-        this.restoreSpeed = entity.getWorld().getGameRules().get(ModGameRules.baseRestoreSpeed).get();
-        this.maxMana = entity.getWorld().getGameRules().get(ModGameRules.baseMaxMana).get();
+        this.restoreSpeed = entity.getWorld().getGameRules().get(RainimatorGameRules.baseRestoreSpeed).get();
+        this.maxMana = entity.getWorld().getGameRules().get(RainimatorGameRules.baseMaxMana).get();
+    }
+
+    public static boolean tryUse(PlayerEntity player, double amount) {
+        if (player.isCreative()) return true;
+        if (ManaComponent.MANA_COMPONENT.get(player).tryUseMana(amount)) return true;
+        player.sendMessage(Text.translatable("message.rainimator.mana.not_enough"), true);
+        return false;
     }
 
     @Override
@@ -71,18 +78,18 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
     }
 
     private void measureMaxMana() {
-        double base = this.entity.getWorld().getGameRules().get(ModGameRules.baseMaxMana).get(), multiple = 1.0, modifier = 0.0;
-        Map<EquipmentSlot, ItemStack> upgrade = ModEnchantments.MANA_UPGRADE.getEquipment(this.entity);
+        double base = this.entity.getWorld().getGameRules().get(RainimatorGameRules.baseMaxMana).get(), multiple = 1.0, modifier = 0.0;
+        Map<EquipmentSlot, ItemStack> upgrade = RainimatorEnchantments.MANA_UPGRADE.getEquipment(this.entity);
         for (Map.Entry<EquipmentSlot, ItemStack> entry : upgrade.entrySet())
-            multiple += (double) EnchantmentHelper.getLevel(ModEnchantments.MANA_UPGRADE, entry.getValue()) / 10;
+            multiple += (double) EnchantmentHelper.getLevel(RainimatorEnchantments.MANA_UPGRADE, entry.getValue()) / 10;
         this.maxMana = base * multiple + modifier;
     }
 
     private void measureRestoreSpeed() {
-        double base = this.entity.getWorld().getGameRules().get(ModGameRules.baseRestoreSpeed).get(), multiple = 1.0, modifier = 0.0;
-        Map<EquipmentSlot, ItemStack> regeneration = ModEnchantments.MANA_REGENERATION.getEquipment(this.entity);
+        double base = this.entity.getWorld().getGameRules().get(RainimatorGameRules.baseRestoreSpeed).get(), multiple = 1.0, modifier = 0.0;
+        Map<EquipmentSlot, ItemStack> regeneration = RainimatorEnchantments.MANA_REGENERATION.getEquipment(this.entity);
         for (Map.Entry<EquipmentSlot, ItemStack> entry : regeneration.entrySet())
-            multiple += (double) EnchantmentHelper.getLevel(ModEnchantments.MANA_REGENERATION, entry.getValue()) / 10;
+            multiple += (double) EnchantmentHelper.getLevel(RainimatorEnchantments.MANA_REGENERATION, entry.getValue()) / 10;
         this.restoreSpeed = base * multiple + modifier;
     }
 
@@ -97,12 +104,5 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
 
     public void doSync() {
         ManaComponent.MANA_COMPONENT.sync(this.entity);
-    }
-
-    public static boolean tryUse(PlayerEntity player, double amount) {
-        if (player.isCreative()) return true;
-        if (ManaComponent.MANA_COMPONENT.get(player).tryUseMana(amount)) return true;
-        player.sendMessage(Text.translatable("message.rainimator.mana.not_enough"), true);
-        return false;
     }
 }

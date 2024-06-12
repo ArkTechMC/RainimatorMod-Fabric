@@ -3,7 +3,7 @@ package dev.rainimator.mod.item.tool;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.world.VecUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
+import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -51,7 +51,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
         double z = context.getBlockPos().getZ();
         if (context.getPlayer() != null) {
             BlockState blockState = world.getBlockState(VecUtil.createBlockPos(x, y, z));
-            if (blockState.getBlock().getHardness() >= 0 && ManaComponent.tryUse(context.getPlayer(), context.getWorld().getGameRules().get(ModGameRules.herobrine_diamond_pickaxe).get())) {
+            if (blockState.getBlock().getHardness() >= 0 && ManaComponent.tryUse(context.getPlayer(), context.getWorld().getGameRules().get(RainimatorGameRules.herobrine_diamond_pickaxe).get())) {
                 world.breakBlock(VecUtil.createBlockPos(x, y, z), false);
                 if (!world.isClient())
                     world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));

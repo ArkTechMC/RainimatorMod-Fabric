@@ -24,7 +24,7 @@ import net.minecraft.world.Heightmap;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
-public class ModEntities implements IAnnotatedRegistryEntry {
+public class RainimatorEntities implements IAnnotatedRegistryEntry {
     public static final EntityType<HerobrineEntity> HEROBRINE = build(HerobrineEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
     public static final EntityType<CerisEntity> CERIS = build(CerisEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
     public static final EntityType<ZombiesEntity> ZOMBIES = build(ZombiesEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
@@ -117,18 +117,18 @@ public class ModEntities implements IAnnotatedRegistryEntry {
 
     @CallbackHandler
     public static void addLivingEntityToBiomes() {
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.AGETHA, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.ARCHER, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.BROTS, 5, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.END_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.DARK_SHIELD, 1, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.DARK_ZOMBIE, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.HILDA, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.SNOW_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.SKELETON_SNOW, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, ModEntities.SOLDIERS, 10, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.TUSK, 5, 1, 1);
-        BiomeModifications.addSpawn(context -> new Identifier("nether_wastes").equals(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.WITHERED_SKELETONS, 19, 2, 2);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.WITHER_SHIELD, 3, 1, 1);
-        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, ModEntities.ZOMBIES, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.AGETHA, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.ARCHER, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.BROTS, 5, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.END_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.DARK_SHIELD, 1, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.DARK_ZOMBIE, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.HILDA, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.SNOW_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.SKELETON_SNOW, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.SOLDIERS, 10, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.TUSK, 5, 1, 1);
+        BiomeModifications.addSpawn(context -> new Identifier("nether_wastes").equals(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.WITHERED_SKELETONS, 19, 2, 2);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.WITHER_SHIELD, 3, 1, 1);
+        BiomeModifications.addSpawn(context -> SpawnBiome.COMMON_SPAWN_BIOMES.contains(context.getBiomeKey().getValue()), SpawnGroup.MONSTER, RainimatorEntities.ZOMBIES, 10, 1, 1);
     }
 
     @Environment(EnvType.CLIENT)

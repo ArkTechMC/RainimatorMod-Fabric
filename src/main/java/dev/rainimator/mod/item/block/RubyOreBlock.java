@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.block;
 
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,6 +23,6 @@ public class RubyOreBlock extends Block {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
-        dropStack(world,pos,new ItemStack(ModItems.RAW_RUBY));
+        dropStack(world, pos, new ItemStack(RainimatorItems.RAW_RUBY));
     }
 }

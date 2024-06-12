@@ -8,8 +8,8 @@ import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -38,7 +38,7 @@ public class ArabellaEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDER_CURVED_SWORD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_CURVED_SWORD));
     }
 
     @AttributeBuilder
@@ -81,7 +81,7 @@ public class ArabellaEntity extends MonsterEntityBase {
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
-                ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) ModParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
+                ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) RainimatorParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
                 entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }
         }

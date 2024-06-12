@@ -7,9 +7,9 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModItems;
-import dev.rainimator.mod.registry.ModParticles;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -44,8 +44,8 @@ public class KlausEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEP_WAR_HAMMER));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.KING_NORMAL_CROWN));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DEEP_WAR_HAMMER));
+        this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.KING_NORMAL_CROWN));
     }
 
     @AttributeBuilder
@@ -102,20 +102,20 @@ public class KlausEntity extends MonsterEntityBase {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.getMainHandStack().getItem() == ModItems.DEEP_WAR_HAMMER || this.getMainHandStack().getItem() == ModItems.LASER_SWORD) {
+            if (this.getMainHandStack().getItem() == RainimatorItems.DEEP_WAR_HAMMER || this.getMainHandStack().getItem() == RainimatorItems.LASER_SWORD) {
                 if (Math.random() < 0.3) {
-                    ItemStack _setstack = new ItemStack(ModItems.LASER_SWORD);
+                    ItemStack _setstack = new ItemStack(RainimatorItems.LASER_SWORD);
                     _setstack.setCount(1);
                     this.setStackInHand(Hand.MAIN_HAND, _setstack);
                 } else if (Math.random() < 0.4) {
-                    ItemStack _setstack = new ItemStack(ModItems.DEEP_WAR_HAMMER);
+                    ItemStack _setstack = new ItemStack(RainimatorItems.DEEP_WAR_HAMMER);
                     _setstack.setCount(1);
                     this.setStackInHand(Hand.MAIN_HAND, _setstack);
                 }
             }
             if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, ((LivingEntity) this).getEquippedStack(EquipmentSlot.HEAD)) != 0) {
                 if (!this.getWorld().isClient())
-                    this.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 200, 0));
+                    this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 200, 0));
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                 if (Math.random() < 0.1) {
@@ -131,13 +131,13 @@ public class KlausEntity extends MonsterEntityBase {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
                 if (Math.random() < 0.1) {
                     if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
-                        _entity.addStatusEffect(new StatusEffectInstance(ModEffects.STUNNED, 100, 0));
+                        _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.STUNNED, 100, 0));
                     SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "stunned"), 1, 1);
                     if ((WorldAccess) this.getWorld() instanceof ServerWorld _level)
-                        _level.spawnParticles((DefaultParticleType) (ModParticles.YELLOW_STARS), x, y, z, 50, 1, 2, 1, 1);
+                        _level.spawnParticles((DefaultParticleType) (RainimatorParticles.YELLOW_STARS), x, y, z, 50, 1, 2, 1, 1);
                 }
             }
-            if (this.getMainHandStack().getItem() == ModItems.SOUL_RAIDING_HAMMER) {
+            if (this.getMainHandStack().getItem() == RainimatorItems.SOUL_RAIDING_HAMMER) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 1));
                 if (Math.random() < 0.1) {
@@ -148,7 +148,7 @@ public class KlausEntity extends MonsterEntityBase {
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 1));
                 }
             }
-            if (this.getMainHandStack().getItem() == ModItems.SEIZING_SHADOW_HALBERD) {
+            if (this.getMainHandStack().getItem() == RainimatorItems.SEIZING_SHADOW_HALBERD) {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 2));
                 if (Math.random() < 0.1) {

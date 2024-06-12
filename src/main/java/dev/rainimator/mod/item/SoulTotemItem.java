@@ -4,8 +4,8 @@ import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -38,7 +38,7 @@ public class SoulTotemItem extends FoilItemBase {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.soul_totem).get())) return ar;
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.soul_totem).get())) return ar;
         ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();
@@ -90,7 +90,7 @@ public class SoulTotemItem extends FoilItemBase {
                 }
             }
         }
-        if (entity instanceof PlayerEntity _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ModItems.SOUL_TOTEM))) {
+        if (entity instanceof PlayerEntity _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(RainimatorItems.SOUL_TOTEM))) {
             if (world.isDay()) {
                 LivingEntity _entity = (LivingEntity) entity;
                 if (!_entity.getWorld().isClient())

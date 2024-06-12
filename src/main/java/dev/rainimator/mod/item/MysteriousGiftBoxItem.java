@@ -3,7 +3,7 @@ package dev.rainimator.mod.item;
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -36,7 +36,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Blocks.SWEET_BERRY_BUSH, 3, ""));
         lootTable.add(Triple.of(Items.GOLD_NUGGET, 5, ""));
         lootTable.add(Triple.of(Items.IRON_NUGGET, 5, ""));
-        lootTable.add(Triple.of(ModItems.COTTON_CANDY, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.COTTON_CANDY, 3, ""));
         lootTable.add(Triple.of(Items.GLOW_BERRIES, 3, ""));
         lootTable.add(Triple.of(Items.STICK, 6, ""));
         lootTable.add(Triple.of(Items.FEATHER, 3, ""));
@@ -63,12 +63,12 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Items.ENDER_EYE, 3, ""));
         lootTable.add(Triple.of(Items.AMETHYST_SHARD, 3, ""));
         lootTable.add(Triple.of(Items.QUARTZ, 5, ""));
-        lootTable.add(Triple.of(ModItems.ZOMBIE_HEART, 3, ""));
-        lootTable.add(Triple.of(ModItems.WITHER_BONE, 3, ""));
-        lootTable.add(Triple.of(ModItems.NETHERITE_WITHER_BONE, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorItems.ZOMBIE_HEART, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.WITHER_BONE, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.NETHERITE_WITHER_BONE, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.IRON_INGOT, 3, ""));
         lootTable.add(Triple.of(Blocks.IRON_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
-        lootTable.add(Triple.of(ModItems.HOT_IRON, 3, "item.rainimator.mysterious_gift_box.goodluck2"));
+        lootTable.add(Triple.of(RainimatorItems.HOT_IRON, 3, "item.rainimator.mysterious_gift_box.goodluck2"));
         lootTable.add(Triple.of(Items.EXPERIENCE_BOTTLE, 3, ""));
         lootTable.add(Triple.of(Items.BLAZE_ROD, 3, ""));
         lootTable.add(Triple.of(Items.BLAZE_POWDER, 5, "item.rainimator.mysterious_gift_box.goodluck1"));
@@ -80,22 +80,22 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Items.GOLDEN_CARROT, 5, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.DIAMOND, 5, ""));
         lootTable.add(Triple.of(Blocks.DIAMOND_BLOCK, 1, ""));
-        lootTable.add(Triple.of(ModItems.BLUE_DIAMOND, 5, "item.rainimator.mysterious_gift_box.goodluck2"));
+        lootTable.add(Triple.of(RainimatorItems.BLUE_DIAMOND, 5, "item.rainimator.mysterious_gift_box.goodluck2"));
         lootTable.add(Triple.of(Items.GOLD_INGOT, 5, ""));
         lootTable.add(Triple.of(Blocks.GOLD_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.NETHERITE_INGOT, 5, ""));
         lootTable.add(Triple.of(Blocks.NETHERITE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
-        lootTable.add(Triple.of(ModItems.SAPPHIRE, 3, ""));
-        lootTable.add(Triple.of(ModItems.SAPPHIRE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
-        lootTable.add(Triple.of(ModItems.RUBY, 3, ""));
-        lootTable.add(Triple.of(ModItems.RUBY_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorItems.SAPPHIRE, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.SAPPHIRE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorItems.RUBY, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.RUBY_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.EMERALD, 5, ""));
         lootTable.add(Triple.of(Blocks.EMERALD_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
-        lootTable.add(Triple.of(ModItems.SOUL_PEOPLE, 3, ""));
-        lootTable.add(Triple.of(ModItems.SUPER_DIAMOND_APPLE, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorItems.SOUL_PEOPLE, 3, ""));
+        lootTable.add(Triple.of(RainimatorItems.SUPER_DIAMOND_APPLE, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Blocks.LAPIS_BLOCK, 1, ""));
         lootTable.add(Triple.of(Blocks.REDSTONE_BLOCK, 1, ""));
-        lootTable.add(Triple.of(ModItems.MYSTERIOUS_GIFT_BOX, 1, "item.rainimator.mysterious_gift_box.goodluck3"));
+        lootTable.add(Triple.of(RainimatorItems.MYSTERIOUS_GIFT_BOX, 1, "item.rainimator.mysterious_gift_box.goodluck3"));
     }
 
     @Override
@@ -123,7 +123,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
 
         if (entity instanceof PlayerEntity _player) {
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
-            ItemStack _stktoremove = new ItemStack(ModItems.MYSTERIOUS_GIFT_BOX);
+            ItemStack _stktoremove = new ItemStack(RainimatorItems.MYSTERIOUS_GIFT_BOX);
             _player.getInventory().remove(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.playerScreenHandler.getCraftingInput());
             ItemStack stack = new ItemStack(Items.AIR);
             if (lootTable.size() == 0) initLootTable();

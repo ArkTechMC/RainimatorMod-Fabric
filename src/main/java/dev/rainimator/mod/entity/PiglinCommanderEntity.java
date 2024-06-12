@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -33,8 +33,8 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 20;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_GOLDEN_SWORD));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.PORKSHIRE_KING_CROWN));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_GOLDEN_SWORD));
+        this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.PORKSHIRE_KING_CROWN));
     }
 
     @AttributeBuilder
@@ -96,9 +96,9 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof ServerWorld _level) {
-            EntityUtil.summon(ModEntities.MUTATED,_level,x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.MUTATED, _level, x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
             if (Math.random() < 0.4D)
-                EntityUtil.summon(ModEntities.ZOMBIE_PIGLIN_ART,_level,x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
+                EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_ART, _level, x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
         }
         return retval;
     }

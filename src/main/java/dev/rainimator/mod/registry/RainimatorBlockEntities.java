@@ -10,6 +10,6 @@ import net.minecraft.block.entity.BlockEntityType;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
-public class ModBlockEntities implements IAnnotatedRegistryEntry {
-    public static final BlockEntityType<DarkObsidianBlockEntity> DARK_OBSIDIAN_BLOCK = FabricBlockEntityTypeBuilder.create(DarkObsidianBlockEntity::new, ModBlocks.DARK_OBSIDIAN_BLOCK).build();
+public class RainimatorBlockEntities implements IAnnotatedRegistryEntry {
+    public static final BlockEntityType<DarkObsidianBlockEntity> DARK_OBSIDIAN_BLOCK = FabricBlockEntityTypeBuilder.create(DarkObsidianBlockEntity::new, RainimatorBlocks.DARK_OBSIDIAN_BLOCK).build();
 }

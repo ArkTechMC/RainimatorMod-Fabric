@@ -5,8 +5,8 @@ import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -48,11 +48,11 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
         final double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(x, y, z);
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.fallen_soul_axe).get())) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.fallen_soul_axe).get())) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(5.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
-                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == ModItems.FALLEN_SOUL_AXE) {
+                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.FALLEN_SOUL_AXE) {
                     if (itemtack.damage(0, entity.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);

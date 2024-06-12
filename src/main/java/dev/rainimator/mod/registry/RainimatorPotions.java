@@ -9,6 +9,6 @@ import net.minecraft.potion.Potion;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
-public class ModPotions implements IAnnotatedRegistryEntry {
-    public static final Potion PURIFICATION_POTION = new Potion("purification", new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0));
+public class RainimatorPotions implements IAnnotatedRegistryEntry {
+    public static final Potion PURIFICATION_POTION = new Potion("purification", new StatusEffectInstance(RainimatorEffects.PURIFICATION, 3000, 0));
 }

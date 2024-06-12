@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.block.entity;
 
 import dev.rainimator.mod.item.block.DarkObsidianBlock;
-import dev.rainimator.mod.registry.ModBlockEntities;
+import dev.rainimator.mod.registry.RainimatorBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ public class DarkObsidianBlockEntity extends BlockEntity {
     private RegistryKey<Biome> biome;
 
     public DarkObsidianBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.DARK_OBSIDIAN_BLOCK, pos, state);
+        super(RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK, pos, state);
     }
 
     public RegistryKey<Biome> getBiome() {

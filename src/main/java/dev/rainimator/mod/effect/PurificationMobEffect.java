@@ -1,7 +1,7 @@
 package dev.rainimator.mod.effect;
 
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModEffects;
+import dev.rainimator.mod.registry.RainimatorEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -18,10 +18,10 @@ public class PurificationMobEffect extends StatusEffect {
     }
 
     public static synchronized void initEffectList() {
-        effects.add(ModEffects.FEAR_DARK);
-        effects.add(ModEffects.SOUL_DEATH);
-        effects.add(ModEffects.STUNNED);
-        effects.add(ModEffects.ICE_PEOPLE);
+        effects.add(RainimatorEffects.FEAR_DARK);
+        effects.add(RainimatorEffects.SOUL_DEATH);
+        effects.add(RainimatorEffects.STUNNED);
+        effects.add(RainimatorEffects.ICE_PEOPLE);
         effects.add(StatusEffects.BAD_OMEN);
         effects.add(StatusEffects.BLINDNESS);
         effects.add(StatusEffects.HUNGER);

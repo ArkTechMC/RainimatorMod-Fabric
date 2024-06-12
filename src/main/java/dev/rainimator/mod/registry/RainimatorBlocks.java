@@ -10,7 +10,7 @@ import net.minecraft.block.Block;
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
 @SuppressWarnings("unused")
-public class ModBlocks implements IAnnotatedRegistryEntry {
+public class RainimatorBlocks implements IAnnotatedRegistryEntry {
     public static final Block RUBY_ORE = new RubyOreBlock();
     public static final Block SAPPHIRE_ORE = new SapphireOreBlock();
     public static final Block SUGILITE_ORE = new SugiliteOreBlock();

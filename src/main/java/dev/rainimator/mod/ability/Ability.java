@@ -31,6 +31,10 @@ public abstract class Ability {
         return this.id;
     }
 
+    public enum AbilityType {
+        NONE, RING, ITEM
+    }
+
     public static abstract class AbilityWithRing extends Ability {
         public AbilityWithRing(String id, double manaRequired) {
             super(id, manaRequired);
@@ -71,9 +75,5 @@ public abstract class Ability {
         public boolean release(PlayerEntity player) {
             return false;
         }
-    }
-
-    public enum AbilityType {
-        NONE, RING, ITEM
     }
 }

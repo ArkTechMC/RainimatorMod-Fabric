@@ -7,7 +7,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.rainimator.mod.compat.ElectricitySource;
 import dev.rainimator.mod.compat.ElectricitySystem;
 import dev.rainimator.mod.item.trinket.WingsOfSalvationForTR;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.util.NumberUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -28,8 +28,8 @@ public class ElectricityHud extends SimpleBarOverlay {
         parameters.centerColor = 0xFFFFFF;
         parameters.centerText = "";
         Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(playerEntity);
-        if (ModItems.WINGS_OF_SALVATION instanceof WingsOfSalvationForTR tr && component.isPresent()) {
-            List<Pair<SlotReference, ItemStack>> stacks = component.get().getEquipped(ModItems.WINGS_OF_SALVATION);
+        if (RainimatorItems.WINGS_OF_SALVATION instanceof WingsOfSalvationForTR tr && component.isPresent()) {
+            List<Pair<SlotReference, ItemStack>> stacks = component.get().getEquipped(RainimatorItems.WINGS_OF_SALVATION);
             if (stacks.size() > 0) {
                 ItemStack stack = stacks.get(0).getRight();
                 long stored = tr.getStoredEnergy(stack), max = tr.getEnergyCapacity();
@@ -45,6 +45,6 @@ public class ElectricityHud extends SimpleBarOverlay {
     protected boolean shouldRender(PlayerEntity playerEntity) {
         if (ElectricitySystem.getType() == ElectricitySource.NONE) return false;
         Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(playerEntity);
-        return component.map(trinketComponent -> trinketComponent.isEquipped(ModItems.WINGS_OF_SALVATION)).orElse(false);
+        return component.map(trinketComponent -> trinketComponent.isEquipped(RainimatorItems.WINGS_OF_SALVATION)).orElse(false);
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.enchantment.Enchantment;
 
 @ModId(RainimatorMod.MOD_ID)
 @RegisterAll
-public class ModEnchantments implements IAnnotatedRegistryEntry {
+public class RainimatorEnchantments implements IAnnotatedRegistryEntry {
     public static final Enchantment MANA_REGENERATION = new ManaRegeneration();
     public static final Enchantment MANA_UPGRADE = new ManaUpgrade();
     public static final Enchantment MAGIC_PROTECTION = new MagicProtection();

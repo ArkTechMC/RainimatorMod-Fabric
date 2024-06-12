@@ -9,7 +9,7 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
@@ -25,25 +25,25 @@ import java.util.List;
 public class BossSpawnRecipePlugin implements EmiPlugin {
     private static final Identifier BOSS_SPAWN = new Identifier(RainimatorMod.MOD_ID, "boss_spawn_recipe");
     private static final EmiTexture TEXTURE = new EmiTexture(new Identifier(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
-    private static final EmiStack WORKSTATION = EmiStack.of(ModItems.DARK_OBSIDIAN_BLOCK);
+    private static final EmiStack WORKSTATION = EmiStack.of(RainimatorItems.DARK_OBSIDIAN_BLOCK);
     private static final EmiRecipeCategory BOSS_SPAWN_CATEGORY = new EmiRecipeCategory(BOSS_SPAWN, WORKSTATION, TEXTURE);
     private static final List<BossSpawnRecipe> RECIPES = List.of(
-            new BossSpawnRecipe("herobrine", ModItems.LIGHT_HEART, ModItems.HEROBRINE_SPAWN_EGG),
-            new BossSpawnRecipe("kralos", Blocks.WITHER_ROSE, ModItems.KRALOS_SPAWN_EGG),
-            new BossSpawnRecipe("klaus", Items.TOTEM_OF_UNDYING, ModItems.KLAUS_SPAWN_EGG),
-            new BossSpawnRecipe("gigabone", Blocks.WITHER_SKELETON_SKULL, ModItems.GIGABONE_SPAWN_EGG),
-            new BossSpawnRecipe("namtar", ModItems.SOUL_PEOPLE, ModItems.NAMTAR_SPAWN_EGG),
-            new BossSpawnRecipe("big_undead_skeleton", ModItems.WITHER_BONE, ModItems.BIG_UNDEAD_SKELETON_SPAWN_EGG),
-            new BossSpawnRecipe("piglin_commander", Items.GOLDEN_SWORD, ModItems.PIGLIN_COMMANDER_SPAWN_EGG),
-            new BossSpawnRecipe("zombie_piglin_king", Items.GOLD_INGOT, ModItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG),
-            new BossSpawnRecipe("piglin_king_zombies", Blocks.GOLD_BLOCK, ModItems.PIGLIN_KING_ZOMBIES_SPAWN_EGG),
-            new BossSpawnRecipe("null_like", ModItems.BAO_ZHU, ModItems.NULL_LIKE_SPAWN_EGG),
-            new BossSpawnRecipe("naeus", ModItems.WARRIOR_HEART, ModItems.NAEUS_SPAWN_EGG),
-            new BossSpawnRecipe("ciara", ModItems.ICE_HEART, ModItems.CIARA_SPAWN_EGG),
-            new BossSpawnRecipe("ceris", ModItems.ENDER_HEART, ModItems.CERIS_SPAWN_EGG),
-            new BossSpawnRecipe("patrick", ModItems.MAGIC_STAR, ModItems.PATRICK_SPAWN_EGG),
-            new BossSpawnRecipe("blackbone", ModItems.NETHERITE_WITHER_BONE, ModItems.BLACKBONE_SPAWN_EGG),
-            new BossSpawnRecipe("abigail", ModItems.UNDER_FLOWER, ModItems.ABIGAIL_SPAWN_EGG)
+            new BossSpawnRecipe("herobrine", RainimatorItems.LIGHT_HEART, RainimatorItems.HEROBRINE_SPAWN_EGG),
+            new BossSpawnRecipe("kralos", Blocks.WITHER_ROSE, RainimatorItems.KRALOS_SPAWN_EGG),
+            new BossSpawnRecipe("klaus", Items.TOTEM_OF_UNDYING, RainimatorItems.KLAUS_SPAWN_EGG),
+            new BossSpawnRecipe("gigabone", Blocks.WITHER_SKELETON_SKULL, RainimatorItems.GIGABONE_SPAWN_EGG),
+            new BossSpawnRecipe("namtar", RainimatorItems.SOUL_PEOPLE, RainimatorItems.NAMTAR_SPAWN_EGG),
+            new BossSpawnRecipe("big_undead_skeleton", RainimatorItems.WITHER_BONE, RainimatorItems.BIG_UNDEAD_SKELETON_SPAWN_EGG),
+            new BossSpawnRecipe("piglin_commander", Items.GOLDEN_SWORD, RainimatorItems.PIGLIN_COMMANDER_SPAWN_EGG),
+            new BossSpawnRecipe("zombie_piglin_king", Items.GOLD_INGOT, RainimatorItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG),
+            new BossSpawnRecipe("piglin_king_zombies", Blocks.GOLD_BLOCK, RainimatorItems.PIGLIN_KING_ZOMBIES_SPAWN_EGG),
+            new BossSpawnRecipe("null_like", RainimatorItems.BAO_ZHU, RainimatorItems.NULL_LIKE_SPAWN_EGG),
+            new BossSpawnRecipe("naeus", RainimatorItems.WARRIOR_HEART, RainimatorItems.NAEUS_SPAWN_EGG),
+            new BossSpawnRecipe("ciara", RainimatorItems.ICE_HEART, RainimatorItems.CIARA_SPAWN_EGG),
+            new BossSpawnRecipe("ceris", RainimatorItems.ENDER_HEART, RainimatorItems.CERIS_SPAWN_EGG),
+            new BossSpawnRecipe("patrick", RainimatorItems.MAGIC_STAR, RainimatorItems.PATRICK_SPAWN_EGG),
+            new BossSpawnRecipe("blackbone", RainimatorItems.NETHERITE_WITHER_BONE, RainimatorItems.BLACKBONE_SPAWN_EGG),
+            new BossSpawnRecipe("abigail", RainimatorItems.UNDER_FLOWER, RainimatorItems.ABIGAIL_SPAWN_EGG)
     );
 
     @Override

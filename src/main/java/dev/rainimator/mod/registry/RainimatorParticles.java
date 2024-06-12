@@ -13,7 +13,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 @ModId(RainimatorMod.MOD_ID)
-public class ModParticles {
+public class RainimatorParticles {
     public static final DefaultParticleType PURPLE_LIGHT = register("purple_light", FabricParticleTypes.simple());
     public static final DefaultParticleType RED_FLOWER = register("red_flower", FabricParticleTypes.simple());
     public static final DefaultParticleType SNOW = register("snow", FabricParticleTypes.simple());
@@ -38,19 +38,19 @@ public class ModParticles {
 
     @Environment(EnvType.CLIENT)
     public static void registerParticles() {
-        ParticleFactoryRegistry.getInstance().register(ModParticles.PURPLE_LIGHT, PurpleLightParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.RED_FLOWER, RedFlowerParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.SNOW, SnowParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.LIGHTING_1, Lighting1Particle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.LIGHTING_2, Lighting2Particle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.YELLOW_LIGHTENING, YellowLightingParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.LIGHTENING_ARC, LightingArcParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.ENDER_DAGGER, EnderDaggerParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.WHITE_CIRCLE, WhiteCircleParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.DARK_CIRCLE, DarkCircleParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.FLOWER_WHITE, FlowerWriteParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.SWEATER_SNOW, SweaterSnowParticle::provider);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.YELLOW_STARS, YellowStarsParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.PURPLE_LIGHT, PurpleLightParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.RED_FLOWER, RedFlowerParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.SNOW, SnowParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.LIGHTING_1, Lighting1Particle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.LIGHTING_2, Lighting2Particle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.YELLOW_LIGHTENING, YellowLightingParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.LIGHTENING_ARC, LightingArcParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.ENDER_DAGGER, EnderDaggerParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.WHITE_CIRCLE, WhiteCircleParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.DARK_CIRCLE, DarkCircleParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.FLOWER_WHITE, FlowerWriteParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.SWEATER_SNOW, SweaterSnowParticle::provider);
+        ParticleFactoryRegistry.getInstance().register(RainimatorParticles.YELLOW_STARS, YellowStarsParticle::provider);
     }
 }
 

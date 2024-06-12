@@ -4,7 +4,7 @@ import com.iafenvoy.mcrconvertlib.item.ItemBase;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.entity.WitheredSkeletonsEntity;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +29,7 @@ public class NetherTheCrownItem extends ItemBase implements Trinket {
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         List<Entity> _entfound = entity.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(16.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == ModItems.NETHER_THE_CROWN) {
+            if (entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.NETHER_THE_CROWN) {
                 if (entityiterator instanceof WitheredSkeletonsEntity) {
                     MobEntity _entity = (MobEntity) entityiterator;
                     _entity.getNavigation().stop();

@@ -7,6 +7,12 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 
 public class SugiliteTools {
+    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
+        if (Math.random() < 0.5D) {
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 20, 0));
+        }
+    }
+
     public static class Axe extends AxeItem {
         public Axe() {
             super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
@@ -69,12 +75,6 @@ public class SugiliteTools {
             boolean retval = super.postHit(itemtack, entity, sourceentity);
             onPostHit(entity, sourceentity);
             return retval;
-        }
-    }
-
-    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
-        if (Math.random() < 0.5D) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 20, 0));
         }
     }
 }

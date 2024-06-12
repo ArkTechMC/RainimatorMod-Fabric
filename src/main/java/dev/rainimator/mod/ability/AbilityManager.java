@@ -7,6 +7,10 @@ import java.util.HashMap;
 public class AbilityManager {
     private static final HashMap<String, Ability> abilities = new HashMap<>();
 
+    static {
+        register(Ability.EMPTY);
+    }
+
     public static Ability getOrEmpty(String id) {
         return abilities.getOrDefault(id, Ability.EMPTY);
     }
@@ -19,9 +23,5 @@ public class AbilityManager {
         AnnotationApi.registerHotkeyHandler("ability", (server, player, handler, buf, responseSender) -> {
             System.out.println(111);
         });
-    }
-
-    static {
-        register(Ability.EMPTY);
     }
 }

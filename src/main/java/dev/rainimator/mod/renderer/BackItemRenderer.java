@@ -2,7 +2,7 @@ package dev.rainimator.mod.renderer;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,12 +23,12 @@ public class BackItemRenderer implements TrinketRenderer {
     private static final HashMap<Item, Consumer<MatrixStack>> specialItemPose = new HashMap<>();
 
     public static void initPoseConsumers() {
-        specialItemPose.put(ModItems.ENDER_BIG_SWORD, poseStack -> {
+        specialItemPose.put(RainimatorItems.ENDER_BIG_SWORD, poseStack -> {
             poseStack.translate(-0.4, 0.4, 0.25);
             poseStack.scale(0.6F, 0.6F, 0.6F);
             poseStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(45));
         });
-        specialItemPose.put(ModItems.RAIN_SWORD, poseStack -> {
+        specialItemPose.put(RainimatorItems.RAIN_SWORD, poseStack -> {
             poseStack.translate(-0.8, 0.8, 0.6);
             poseStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(45));
         });

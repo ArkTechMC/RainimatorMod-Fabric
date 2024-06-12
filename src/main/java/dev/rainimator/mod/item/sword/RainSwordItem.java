@@ -10,9 +10,9 @@ import com.iafenvoy.mcrconvertlib.world.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModEffects;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.block.Blocks;
@@ -53,7 +53,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     );
 
     public RainSwordItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE), 3, -2.0F, new Settings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE), 3, -2.0F, new Settings());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
         if (Math.random() < 0.1D)
             if (entity instanceof LivingEntity)
                 if (!entity.getWorld().isClient()) {
-                    entity.addStatusEffect(new StatusEffectInstance(ModEffects.ICE_PEOPLE, 100, 0));
+                    entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE, 100, 0));
                     entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0));
                 }
         return ret_val;
@@ -72,11 +72,11 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         Vec3d _center = entity.getPos();
-        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.rain_sword).get())) {
+        if (entity.isSneaking() && ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.rain_sword).get())) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
-                if (_livEnt.getMainHandStack().getItem() == ModItems.RAIN_SWORD) {
+                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD) {
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
                     continue;
                 }
@@ -88,7 +88,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
                     world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.ICE.getDefaultState(), 3);
                 if (!_livEnt.getWorld().isClient()) {
                     _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 540, 4));
-                    _livEnt.addStatusEffect(new StatusEffectInstance(ModEffects.ICE_PEOPLE, 500, 0));
+                    _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE, 500, 0));
                 }
                 if (entity instanceof PlayerEntity)
                     entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
@@ -123,7 +123,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
             List<Entity> _ent_found = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityIterator : _ent_found) {
                 if (!(entityIterator instanceof LivingEntity _livEnt)) continue;
-                if (_livEnt.getMainHandStack().getItem() == ModItems.RAIN_SWORD) {
+                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD) {
                     if (itemtack.damage(0, world.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);
@@ -149,7 +149,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, Tri
                         Timeout.create(120, callback);
                         Timeout.create(180, () -> {
                             if (!_livEnt.getWorld().isClient()) {
-                                _livEnt.addStatusEffect(new StatusEffectInstance(ModEffects.ICE_PEOPLE, 100, 0));
+                                _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE, 100, 0));
                                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                             }
                             SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier("block.conduit.activate"), 1.0F, 1.0F);

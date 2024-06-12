@@ -10,7 +10,7 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 
-public class ModFeatures {
+public class RainimatorFeatures {
     public static final RegistryKey<PlacedFeature> RUBY_ORE = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(RainimatorMod.MOD_ID, "ruby_ore"));
     public static final RegistryKey<PlacedFeature> SAPPHIRE_ORE = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(RainimatorMod.MOD_ID, "sapphire_ore"));
     public static final RegistryKey<PlacedFeature> SUGILITE_ORE = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(RainimatorMod.MOD_ID, "sugilite_ore"));

@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item;
 
 import com.iafenvoy.mcrconvertlib.item.ItemBase;
-import dev.rainimator.mod.registry.ModEffects;
+import dev.rainimator.mod.registry.RainimatorEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -45,7 +45,7 @@ public class PurificationItem extends ItemBase {
         ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
         super.finishUsing(itemtack, world, entity);
         if (!entity.getWorld().isClient())
-            entity.addStatusEffect(new StatusEffectInstance(ModEffects.PURIFICATION, 3000, 0));
+            entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION, 3000, 0));
         if (itemtack.isEmpty())
             return retval;
         if (entity instanceof PlayerEntity player)

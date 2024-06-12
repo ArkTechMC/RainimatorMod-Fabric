@@ -2,8 +2,8 @@ package dev.rainimator.mod.item.tool;
 
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.registry.ModGameRules;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -24,13 +24,13 @@ import java.util.List;
 
 public class IntelligenceTomahawkItem extends AxeItem {
     public IntelligenceTomahawkItem() {
-        super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPHIRE), 1.0F, -2.2F, new Settings());
+        super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, RainimatorItems.SAPPHIRE), 1.0F, -2.2F, new Settings());
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!ManaComponent.tryUse(entity, world.getGameRules().get(ModGameRules.intelligence_tomahawk).get()))
+        if (!ManaComponent.tryUse(entity, world.getGameRules().get(RainimatorGameRules.intelligence_tomahawk).get()))
             return ar;
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());

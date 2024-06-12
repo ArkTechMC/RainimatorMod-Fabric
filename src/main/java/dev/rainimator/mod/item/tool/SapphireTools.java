@@ -7,6 +7,14 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 
 public class SapphireTools {
+    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
+        if (Math.random() < 0.5D)
+            if (!entity.getWorld().isClient()) {
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0));
+            }
+    }
+
     public static class Axe extends AxeItem {
         public Axe() {
             super(ToolMaterialUtil.of(1500, 10.0F, 8.0F, 3, 20), 1.0F, -2.2F, new Settings());
@@ -70,13 +78,5 @@ public class SapphireTools {
             onPostHit(entity, sourceentity);
             return retval;
         }
-    }
-
-    private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
-        if (Math.random() < 0.5D)
-            if (!entity.getWorld().isClient()) {
-                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));
-                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0));
-            }
     }
 }

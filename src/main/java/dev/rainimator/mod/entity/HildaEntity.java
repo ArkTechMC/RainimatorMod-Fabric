@@ -7,8 +7,8 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -26,14 +26,15 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+
 public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hilda");
 
     public HildaEntity(EntityType<HildaEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WAR_HAMMER));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SHIELD));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.SOLDIERS_WAR_HAMMER));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.BLUE_DIAMOND_SHIELD));
     }
 
     @AttributeBuilder
@@ -76,17 +77,17 @@ public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
         if (!(world instanceof ServerWorld _level)) return ret_val;
         if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.SOLDIERS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.SOLDIERS, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.AGETHA, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.AGETHA, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(ModEntities.ARCHER, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.ARCHER, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         return ret_val;
     }
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        HildaEntityProjectile entityarrow = new HildaEntityProjectile(ModEntities.HILDA_PROJECTILE, this, this.getWorld());
+        HildaEntityProjectile entityarrow = new HildaEntityProjectile(RainimatorEntities.HILDA_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

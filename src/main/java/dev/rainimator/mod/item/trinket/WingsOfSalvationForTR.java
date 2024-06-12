@@ -2,7 +2,7 @@ package dev.rainimator.mod.item.trinket;
 
 import com.iafenvoy.mcrconvertlib.misc.Timeout;
 import dev.emi.trinkets.api.SlotReference;
-import dev.rainimator.mod.registry.ModGameRules;
+import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import reborncore.common.powerSystem.RcEnergyTier;
 public class WingsOfSalvationForTR extends WingsOfSalvationItem implements RcEnergyItem {
     @Override
     public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        if (entity instanceof PlayerEntity player && entity.getWorld().getGameRules().get(ModGameRules.enableWingsCreativeFly).get() && !player.isCreative()) {
+        if (entity instanceof PlayerEntity player && entity.getWorld().getGameRules().get(RainimatorGameRules.enableWingsCreativeFly).get() && !player.isCreative()) {
             player.getAbilities().allowFlying = false;
             Timeout.create(0, () -> {
                 if (slot.inventory().getStack(slot.index()).getItem() != this) {
@@ -26,7 +26,7 @@ public class WingsOfSalvationForTR extends WingsOfSalvationItem implements RcEne
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         if (entity instanceof PlayerEntity player) {
-            if (entity.getWorld().getGameRules().get(ModGameRules.enableWingsCreativeFly).get() && !player.isCreative()) {
+            if (entity.getWorld().getGameRules().get(RainimatorGameRules.enableWingsCreativeFly).get() && !player.isCreative()) {
                 if (!player.getAbilities().allowFlying) {
                     player.getAbilities().allowFlying = true;
                     player.sendAbilitiesUpdate();

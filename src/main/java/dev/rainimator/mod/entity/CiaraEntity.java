@@ -5,8 +5,8 @@ import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
 import com.iafenvoy.mcrconvertlib.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -33,8 +33,8 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
     public CiaraEntity(EntityType<CiaraEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_BLUE_DAGGER));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.THE_BLUE_DAGGER));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER));
+        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER));
     }
 
     @AttributeBuilder
@@ -80,7 +80,7 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
             this.setStackInHand(Hand.OFF_HAND, _setstack);
 
         } else if (Math.random() < 0.2D) {
-            ItemStack _setstack = new ItemStack(ModItems.THE_BLUE_DAGGER);
+            ItemStack _setstack = new ItemStack(RainimatorItems.THE_BLUE_DAGGER);
             _setstack.setCount(1);
             this.setStackInHand(Hand.OFF_HAND, _setstack);
         }
@@ -108,7 +108,7 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        CiaraEntityProjectile entityarrow = new CiaraEntityProjectile(ModEntities.CIARA_PROJECTILE, this, this.getWorld());
+        CiaraEntityProjectile entityarrow = new CiaraEntityProjectile(RainimatorEntities.CIARA_PROJECTILE, this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

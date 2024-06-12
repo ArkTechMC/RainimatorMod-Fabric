@@ -7,7 +7,7 @@ import com.iafenvoy.mcrconvertlib.render.Stage;
 import com.iafenvoy.mcrconvertlib.world.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.ModEntities;
+import dev.rainimator.mod.registry.RainimatorEntities;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class BigUndeadSkeletonEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID,"big_blackbone");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "big_blackbone");
 
     public BigUndeadSkeletonEntity(EntityType<BigUndeadSkeletonEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -69,7 +69,7 @@ public class BigUndeadSkeletonEntity extends MonsterEntityBase {
                 if (Math.random() < 0.2D)
                     EntityUtil.summon(EntityType.WITHER_SKELETON, _level, this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ());
                 else if (Math.random() < 0.2D)
-                    EntityUtil.summon(ModEntities.WITHERED_SKELETONS, _level, this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ());
+                    EntityUtil.summon(RainimatorEntities.WITHERED_SKELETONS, _level, this.getX() + RandomHelper.nextInt(1, 3), this.getY() + 2.0D, this.getZ());
         return super.damage(source, amount);
     }
 

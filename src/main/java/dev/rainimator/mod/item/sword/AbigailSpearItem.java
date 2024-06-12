@@ -3,7 +3,7 @@ package dev.rainimator.mod.item.sword;
 import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
 import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
 import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import dev.rainimator.mod.registry.ModItems;
+import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.entity.LivingEntity;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public class AbigailSpearItem extends SwordItemBase implements IRainimatorInfo {
     public AbigailSpearItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 8.0F, 1, 20, ModItems.SUPER_RUBY), 3, -2.0F, new Settings().fireproof());
+        super(ToolMaterialUtil.of(2000, 4.0F, 8.0F, 1, 20, RainimatorItems.SUPER_RUBY), 3, -2.0F, new Settings().fireproof());
     }
 
     @Override
