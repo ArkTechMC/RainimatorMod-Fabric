@@ -63,7 +63,7 @@ dependencies {
     modImplementation "com.iafenvoy:annotationlib:${annotationlib_version}"
 
     // McrConvertLib
-    modImplementation "com.iafenvoy:mcrconvertlib:${mcrconvertlib_version}"
+    modImplementation(include("com.iafenvoy:mcrconvertlib:${mcrconvertlib_version}"))
 
     // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"

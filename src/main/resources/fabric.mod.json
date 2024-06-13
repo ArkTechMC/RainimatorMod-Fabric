@@ -16,8 +16,8 @@
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/rainimatormod",
-    "sources": "https://github.com/RainimatorModDev/RainimatorMod",
-    "issues": "https://github.com/RainimatorModDev/RainimatorMod/issues"
+    "sources": "https://github.com/ArkTechMC/RainimatorMod",
+    "issues": "https://github.com/ArkTechMC/RainimatorMod/issues"
   },
   "license": "LGPL-3.0",
   "icon": "logo.jpg",
@@ -60,9 +60,6 @@
     "cardinal-components": [
       "rainimator:mana",
       "rainimator:ability"
-    ],
-    "avaritia-disable-recipe": [
-      "rainimator:ender_big_sword"
     ]
   },
   "accessWidener": "rainimator.accesswidener",
