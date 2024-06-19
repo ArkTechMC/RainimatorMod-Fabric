@@ -4,7 +4,7 @@ import com.iafenvoy.annotationlib.annotation.CallbackHandler;
 import com.iafenvoy.annotationlib.annotation.ModId;
 import com.iafenvoy.annotationlib.annotation.registration.RegisterAll;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
-import com.iafenvoy.mcrconvertlib.render.SkullRenderRegistry;
+import dev.rainimator.mod.renderer.util.SkullRenderRegistry;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.entity.*;
 import net.fabricmc.api.EnvType;

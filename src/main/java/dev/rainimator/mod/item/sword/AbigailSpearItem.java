@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item.sword;
 
-import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
+import dev.rainimator.mod.item.util.SwordItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
+import dev.rainimator.mod.util.RandomHelper;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;

@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item;
 
-import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.item.util.FoilItemBase;
+import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.RainimatorGameRules;

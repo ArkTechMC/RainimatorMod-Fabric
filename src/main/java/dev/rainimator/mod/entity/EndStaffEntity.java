@@ -1,6 +1,6 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;

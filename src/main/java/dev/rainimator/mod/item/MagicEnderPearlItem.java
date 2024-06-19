@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item;
 
-import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.item.util.FoilItemBase;
+import dev.rainimator.mod.util.Timeout;
+import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

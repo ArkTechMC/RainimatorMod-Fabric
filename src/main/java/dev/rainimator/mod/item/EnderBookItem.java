@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item;
 
-import com.iafenvoy.mcrconvertlib.item.ItemBase;
+import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.util.ModConstants;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

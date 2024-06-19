@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import dev.rainimator.mod.ability.AbilityManager;
 import dev.rainimator.mod.compat.trinkets.TrinketsRegistry;
 import dev.rainimator.mod.registry.*;
+import dev.rainimator.mod.util.Timeout;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 
@@ -13,6 +14,7 @@ public class RainimatorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        Timeout.startTimeout();
         RainimatorFeatures.addFeatures();
         RainimatorSounds.registerSounds();
         RainimatorTrades.registerTrades();

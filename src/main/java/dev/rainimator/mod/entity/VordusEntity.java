@@ -1,6 +1,6 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.mcrconvertlib.render.Stage;
+import dev.rainimator.mod.renderer.util.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;

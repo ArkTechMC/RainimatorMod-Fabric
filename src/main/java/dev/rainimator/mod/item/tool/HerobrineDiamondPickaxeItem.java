@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.tool;
 
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.iafenvoy.mcrconvertlib.world.VecUtil;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
+import dev.rainimator.mod.util.VecUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.fabricmc.api.EnvType;

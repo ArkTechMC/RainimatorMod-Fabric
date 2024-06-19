@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.sword;
 
-import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import dev.rainimator.mod.item.util.SwordItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;

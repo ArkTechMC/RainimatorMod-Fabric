@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.tool;
 
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
+import dev.rainimator.mod.util.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.*;

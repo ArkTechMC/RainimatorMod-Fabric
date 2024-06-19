@@ -4,7 +4,7 @@ import com.iafenvoy.annotationlib.annotation.ModId;
 import com.iafenvoy.annotationlib.annotation.TargetId;
 import com.iafenvoy.annotationlib.annotation.registration.Group;
 import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
-import com.iafenvoy.mcrconvertlib.item.BannerUtil;
+import dev.rainimator.mod.item.util.BannerUtil;
 import dev.rainimator.mod.RainimatorMod;
 import net.minecraft.block.entity.BannerPatterns;
 import net.minecraft.item.ItemStack;

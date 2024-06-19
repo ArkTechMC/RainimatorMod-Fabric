@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.armor;
 
-import com.iafenvoy.mcrconvertlib.item.ArmorMaterialUtil;
+import dev.rainimator.mod.item.util.ArmorMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.registry.Registries;

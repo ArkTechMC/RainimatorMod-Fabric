@@ -3,7 +3,7 @@ package dev.rainimator.mod.network;
 import com.iafenvoy.annotationlib.annotation.TargetId;
 import com.iafenvoy.annotationlib.annotation.network.NetworkHandler;
 import com.iafenvoy.annotationlib.api.IAnnotatedNetworkEntry;
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import dev.rainimator.mod.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.util.ModConstants;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;

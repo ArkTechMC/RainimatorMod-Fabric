@@ -1,6 +1,6 @@
 package dev.rainimator.mod.effect;
 
-import com.iafenvoy.mcrconvertlib.world.DamageUtil;
+import dev.rainimator.mod.util.DamageUtil;
 import dev.rainimator.mod.RainimatorMod;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;

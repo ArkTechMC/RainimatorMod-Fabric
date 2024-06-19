@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.tool;
 
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import dev.rainimator.mod.registry.RainimatorItems;

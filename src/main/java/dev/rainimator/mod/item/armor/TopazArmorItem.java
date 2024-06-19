@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.armor;
 
-import com.iafenvoy.mcrconvertlib.item.ArmorMaterialUtil;
-import com.iafenvoy.mcrconvertlib.item.ArmorWithTickItem;
+import dev.rainimator.mod.item.util.ArmorMaterialUtil;
+import dev.rainimator.mod.item.util.ArmorWithTickItem;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;

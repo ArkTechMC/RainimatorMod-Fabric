@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.tool;
 
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

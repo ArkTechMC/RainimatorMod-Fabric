@@ -1,10 +1,10 @@
 package dev.rainimator.mod.item.sword;
 
-import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import com.iafenvoy.mcrconvertlib.world.DamageUtil;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.item.util.SwordItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
+import dev.rainimator.mod.util.RandomHelper;
+import dev.rainimator.mod.util.DamageUtil;
+import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;

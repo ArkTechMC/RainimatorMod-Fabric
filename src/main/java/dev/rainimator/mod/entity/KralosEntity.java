@@ -1,12 +1,12 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
-import com.iafenvoy.mcrconvertlib.item.MonsterEntityBase;
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
-import com.iafenvoy.mcrconvertlib.render.Stage;
-import com.iafenvoy.mcrconvertlib.world.EntityUtil;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
-import com.iafenvoy.mcrconvertlib.world.VecUtil;
+import dev.rainimator.mod.item.util.MonsterEntityBase;
+import dev.rainimator.mod.util.Timeout;
+import dev.rainimator.mod.renderer.util.Stage;
+import dev.rainimator.mod.util.EntityUtil;
+import dev.rainimator.mod.util.SoundUtil;
+import dev.rainimator.mod.util.VecUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;

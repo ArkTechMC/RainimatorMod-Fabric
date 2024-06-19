@@ -71,7 +71,6 @@
     "fabric": "*",
     "minecraft": "1.20.1",
     "annotation_lib": "*",
-    "mcrconvertlib": "*",
     "trinkets": "*"
   }
 }

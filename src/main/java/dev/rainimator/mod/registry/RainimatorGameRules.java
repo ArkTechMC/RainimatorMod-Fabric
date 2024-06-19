@@ -8,6 +8,7 @@ import net.minecraft.world.GameRules;
 
 public class RainimatorGameRules {
     //main
+    public static final GameRules.Key<GameRules.BooleanRule> showModLightening = GameRuleRegistry.register("showLightening", GameRules.Category.UPDATES, GameRuleFactory.createBooleanRule(true));
     public static final GameRules.Key<DoubleRule> baseMaxMana = register("basic.baseMaxMana", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(100));
     public static final GameRules.Key<DoubleRule> baseRestoreSpeed = register("basic.baseRestoreSpeed", GameRules.Category.PLAYER, GameRuleFactory.createDoubleRule(3));
     public static final GameRules.Key<GameRules.BooleanRule> enableWingsCreativeFly = register("basic.enableWingsCreativeFly", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false));

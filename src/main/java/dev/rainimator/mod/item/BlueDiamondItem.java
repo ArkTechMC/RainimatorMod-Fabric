@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item;
 
-import com.iafenvoy.mcrconvertlib.item.FoilItemBase;
+import dev.rainimator.mod.item.util.FoilItemBase;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

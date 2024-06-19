@@ -1,11 +1,11 @@
 package dev.rainimator.mod.item.sword;
 
-import com.iafenvoy.mcrconvertlib.item.SwordItemBase;
-import com.iafenvoy.mcrconvertlib.item.ToolMaterialUtil;
-import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
-import com.iafenvoy.mcrconvertlib.world.ParticleUtil;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.item.util.SwordItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
+import dev.rainimator.mod.util.RandomHelper;
+import dev.rainimator.mod.util.Timeout;
+import dev.rainimator.mod.util.ParticleUtil;
+import dev.rainimator.mod.util.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;

@@ -1,10 +1,10 @@
 package dev.rainimator.mod.item.block;
 
-import com.iafenvoy.mcrconvertlib.misc.Consumer5;
-import com.iafenvoy.mcrconvertlib.misc.RandomHelper;
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
-import com.iafenvoy.mcrconvertlib.world.EntityUtil;
-import com.iafenvoy.mcrconvertlib.world.SoundUtil;
+import dev.rainimator.mod.util.Consumer5;
+import dev.rainimator.mod.util.RandomHelper;
+import dev.rainimator.mod.util.Timeout;
+import dev.rainimator.mod.util.EntityUtil;
+import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.block.entity.DarkObsidianBlockEntity;
 import dev.rainimator.mod.registry.RainimatorBlockEntities;

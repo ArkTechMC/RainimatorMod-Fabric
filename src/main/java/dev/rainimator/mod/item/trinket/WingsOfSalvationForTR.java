@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.trinket;
 
-import com.iafenvoy.mcrconvertlib.misc.Timeout;
+import dev.rainimator.mod.util.Timeout;
 import dev.emi.trinkets.api.SlotReference;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.minecraft.entity.LivingEntity;

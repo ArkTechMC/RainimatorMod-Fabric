@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.trinket;
 
-import com.iafenvoy.mcrconvertlib.item.ItemBase;
+import dev.rainimator.mod.item.util.ItemBase;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.compat.ElectricitySource;
