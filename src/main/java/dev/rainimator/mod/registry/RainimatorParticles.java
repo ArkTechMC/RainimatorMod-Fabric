@@ -1,6 +1,5 @@
 package dev.rainimator.mod.registry;
 
-import com.iafenvoy.annotationlib.annotation.ModId;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.particle.*;
 import net.fabricmc.api.EnvType;
@@ -12,7 +11,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-@ModId(RainimatorMod.MOD_ID)
 public class RainimatorParticles {
     public static final DefaultParticleType PURPLE_LIGHT = register("purple_light", FabricParticleTypes.simple());
     public static final DefaultParticleType RED_FLOWER = register("red_flower", FabricParticleTypes.simple());
@@ -29,8 +27,7 @@ public class RainimatorParticles {
     public static final DefaultParticleType YELLOW_STARS = register("yellow_stars", FabricParticleTypes.simple());
 
     private static DefaultParticleType register(String name, DefaultParticleType obj) {
-        Registry.register(Registries.PARTICLE_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
-        return obj;
+        return Registry.register(Registries.PARTICLE_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
     }
 
     public static void init() {

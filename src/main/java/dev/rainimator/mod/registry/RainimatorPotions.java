@@ -1,14 +1,19 @@
 package dev.rainimator.mod.registry;
 
-import com.iafenvoy.annotationlib.annotation.ModId;
-import com.iafenvoy.annotationlib.annotation.registration.RegisterAll;
-import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
 import dev.rainimator.mod.RainimatorMod;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.potion.Potion;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
-@ModId(RainimatorMod.MOD_ID)
-@RegisterAll
-public class RainimatorPotions implements IAnnotatedRegistryEntry {
-    public static final Potion PURIFICATION_POTION = new Potion("purification", new StatusEffectInstance(RainimatorEffects.PURIFICATION, 3000, 0));
+public class RainimatorPotions {
+    public static final Potion PURIFICATION_POTION = register("purification", new Potion("purification", new StatusEffectInstance(RainimatorEffects.PURIFICATION, 3000, 0)));
+
+    private static Potion register(String name, Potion potion) {
+        return Registry.register(Registries.POTION, new Identifier(RainimatorMod.MOD_ID, name), potion);
+    }
+
+    public static void init() {
+    }
 }

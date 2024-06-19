@@ -1,5 +1,6 @@
 package dev.rainimator.mod.item.block;
 
+import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.util.Consumer5;
 import dev.rainimator.mod.util.RandomHelper;
 import dev.rainimator.mod.util.Timeout;
@@ -160,7 +161,7 @@ public class DarkObsidianBlock extends BlockWithEntity {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
-        ItemStack dropStack = new ItemStack(RainimatorItems.DARK_OBSIDIAN_BLOCK);
+        ItemStack dropStack = new ItemStack(RainimatorBlocks.DARK_OBSIDIAN_BLOCK);
         Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK);
         placed.ifPresent(x -> {
             RegistryKey<Biome> key = placed.get().getBiome();

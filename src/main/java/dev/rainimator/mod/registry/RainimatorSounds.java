@@ -22,7 +22,11 @@ public class RainimatorSounds {
     };
     public static final Map<String, SoundEvent> REGISTRY = new HashMap<>();
 
-    public static void registerSounds() {
+    public static void init(){
+        registerSounds();
+    }
+
+    private static void registerSounds() {
         for (String id : idMap) {
             Identifier location = new Identifier(RainimatorMod.MOD_ID, id);
             SoundEvent soundEvent = SoundEvent.of(location);

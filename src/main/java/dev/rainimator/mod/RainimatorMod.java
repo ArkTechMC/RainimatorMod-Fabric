@@ -2,7 +2,6 @@ package dev.rainimator.mod;
 
 import com.mojang.logging.LogUtils;
 import dev.rainimator.mod.ability.AbilityManager;
-import dev.rainimator.mod.compat.trinkets.TrinketsRegistry;
 import dev.rainimator.mod.registry.*;
 import dev.rainimator.mod.util.Timeout;
 import net.fabricmc.api.ModInitializer;
@@ -15,12 +14,23 @@ public class RainimatorMod implements ModInitializer {
     @Override
     public void onInitialize() {
         Timeout.startTimeout();
-        RainimatorFeatures.addFeatures();
-        RainimatorSounds.registerSounds();
-        RainimatorTrades.registerTrades();
-        TrinketsRegistry.registerCommon();
+
+        RainimatorBanners.init();
+        RainimatorBlockEntities.init();
+        RainimatorBlocks.init();
+        RainimatorEffects.init();
+        RainimatorEnchantments.init();
+        RainimatorEntities.init();
+        RainimatorFeatures.init();
         RainimatorGameRules.init();
+        RainimatorItemGroups.init();
+        RainimatorItems.init();
         RainimatorParticles.init();
+        RainimatorPotions.init();
+        RainimatorSkulls.init();
+        RainimatorSounds.init();
+        RainimatorTrades.registerTrades();
+
         FabricApiCall.run();
         AbilityManager.init();
     }

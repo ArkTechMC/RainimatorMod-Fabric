@@ -1,17 +1,5 @@
 package dev.rainimator.mod.registry;
 
-import com.iafenvoy.annotationlib.annotation.CallbackHandler;
-import com.iafenvoy.annotationlib.annotation.ModId;
-import com.iafenvoy.annotationlib.annotation.TargetId;
-import com.iafenvoy.annotationlib.annotation.registration.Group;
-import com.iafenvoy.annotationlib.annotation.registration.ItemReg;
-import com.iafenvoy.annotationlib.annotation.registration.Link;
-import com.iafenvoy.annotationlib.api.IAnnotatedRegistryEntry;
-import com.iafenvoy.annotationlib.util.TargetType;
-import dev.rainimator.mod.item.util.FoilItemBase;
-import dev.rainimator.mod.item.util.FoilSwordItemBase;
-import dev.rainimator.mod.item.util.ItemBase;
-import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.*;
 import dev.rainimator.mod.item.armor.*;
@@ -22,595 +10,234 @@ import dev.rainimator.mod.item.sword.*;
 import dev.rainimator.mod.item.tool.*;
 import dev.rainimator.mod.item.trinket.NetherTheCrownItem;
 import dev.rainimator.mod.item.trinket.WingsOfSalvationItem;
+import dev.rainimator.mod.item.util.FoilItemBase;
+import dev.rainimator.mod.item.util.FoilSwordItemBase;
+import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.util.MusicItemBase;
 import dev.rainimator.mod.registry.util.SpawnEggBase;
 import dev.rainimator.mod.util.Episode;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
-@ModId(RainimatorMod.MOD_ID)
 @SuppressWarnings("unused")
-public class RainimatorItems implements IAnnotatedRegistryEntry {
+public class RainimatorItems {
     //resources
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUPER_RUBY = new ItemBase(Item.Settings::fireproof);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item ABIGAIL_SPEAR = new AbigailSpearItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item GLUTTON_SLEDGE_HAMMER = new SwordItem(ToolMaterialUtil.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RED_GOLD_DAGGER = new RedGoldDaggerItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLACKBONE_THE_BLADE = new BlackBoneTheBladeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLACKBONE_THE_BLADE_SINGLE_HAND = new BlackBoneTheBladeSingleHandItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_RUBY = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_SUGILITE = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_TOPAZ = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUPER_SAPPHIRE = new ItemBase(Item.Settings::fireproof);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUPER_SUGILITE = new ItemBase(Item.Settings::fireproof);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUPER_TOPAZ = new ItemBase(Item.Settings::fireproof);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_HELMET = new PatrickArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_CHESTPLATE = new PatrickArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_LEGGINGS = new PatrickArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PATRICK_BOOTS = new PatrickArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RAIN_SWORD = new RainSwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item HEROBRINE_TOMAHAWK = new HerobrineTomahawkItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item ZECANIRN_THE_BLADE = new ZecanirnTheBladeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item ENDER_BIG_SWORD = new EnderBigSwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item LASER_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(3000, 4.0F, 13.0F, 1, 18, RainimatorItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item MACE = new SwordItem(ToolMaterialUtil.of(12000, 4.0F, 10.0F, 0, 10, RainimatorItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item INTELLIGENCE_TOMAHAWK = new IntelligenceTomahawkItem();
-    //sword
-    @ItemReg(group = @TargetId("main"))
-    public static final Item GENERAL_PATRICK_LONG_KNIVES = new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_HALBERD = new SwordItem(ToolMaterialUtil.of(1500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_WAR_HAMMER = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 6.0F, 0, 5, SAPPHIRE), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item THE_BLUE_DAGGER = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 5.0F, 1, 10, RainimatorItems.SAPPHIRE), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RAW_SAPPHIRE = new ItemBase(p -> p);
-    //armor
-    @ItemReg(group = @TargetId("item"))
-    public static final Item HOT_IRON = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item HOT_GLOVES = new HotGlovesItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item HEROBRINE_CHESTPLATE = new HerobrineArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND = new BlueDiamondItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND_HELMET = new BlueDiamondArmorsItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND_CHESTPLATE = new BlueDiamondArmorsItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND_LEGGINGS = new BlueDiamondArmorsItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND_BOOTS = new BlueDiamondArmorsItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item DIAMOND_LANCE = new DiamondLanceItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLUE_DIAMOND_SWORD = new BlueDiamondSwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item WINGS_OF_SALVATION = WingsOfSalvationItem.create();
-    //axe
-    @ItemReg(group = @TargetId("main"))
-    public static final Item DIAMOND_HATCHET = new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ZOMBIE_HEART = new ZombieHeartItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item WITHER_BONE = new ItemBase(p -> p.maxCount(16).fireproof());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NETHERITE_WITHER_BONE = new FoilItemBase(p -> p.maxCount(16).fireproof());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ICE_HEART = new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item WARRIOR_HEART = new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ENDER_HEART = new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item LIGHT_HEART = new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item DIAMOND_PIECE = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BAO_ZHU = new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SOUL_PEOPLE = new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ENDER_STONE = new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.UNCOMMON));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NEAUS_SOULS = new FoilItemBase(p -> p.maxCount(32).fireproof().rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ICED_HEART = new ItemBase(p -> p.maxCount(1).rarity(Rarity.UNCOMMON));
-    @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_HELMET = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item CHIEF_OF_THE_PIG_PEOPLE_BOOTS = new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_HELMET = new SoldiersArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_CHESTPLATE = new SoldiersArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_LEGGINGS = new SoldiersArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIERS_ARMOR_BOOTS = new SoldiersArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RAIN_CHESTPLATE = new RainArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_HELMET = new RubyArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_CHESTPLATE = new RubyArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_LEGGINGS = new RubyArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_BOOTS = new RubyArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_HELMET = new SapphireArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_CHESTPLATE = new SapphireArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_LEGGINGS = new SapphireArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_BOOTS = new SapphireArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_HELMET = new SugiliteArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_CHESTPLATE = new SugiliteArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_LEGGINGS = new SugiliteArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_BOOTS = new SugiliteArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_HELMET = new TopazArmorItem(ArmorItem.Type.HELMET);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_CHESTPLATE = new TopazArmorItem(ArmorItem.Type.CHESTPLATE);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_LEGGINGS = new TopazArmorItem(ArmorItem.Type.LEGGINGS);
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_BOOTS = new TopazArmorItem(ArmorItem.Type.BOOTS);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item MAGIC_HAT = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NETHER_THE_CROWN = new NetherTheCrownItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item GLUTTON_HELMET = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PIGLIN_KING_CROWN = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item KING_NORMAL_CROWN = new ItemBase(p -> p);
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PORKSHIRE_KING_CROWN = new ItemBase(p -> p);
-    //tool
-    @ItemReg(group = @TargetId("item"))
-    public static final Item GEMSTONE_MIXTURE = new FoilItemBase(p -> p.maxCount(1).rarity(Rarity.EPIC));
-    @ItemReg(group = @TargetId("main"))
-    public static final Item HEROBRINE_DIAMOND_PICKAXE = new HerobrineDiamondPickaxeItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUPER_DIAMOND_APPLE = new SuperDiamondAppleItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NAEUS_SWORD = new NaeusSwordItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NETHER_SPEAR = new NetherSpearItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NETHERITE_FLAME_SABER = new NetheriteFlameSaberItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NETHERITE_NUCLEAR_REACTOR = new NetherNuclearReactorItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NIGHTMARES = new NightmaresItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item END_STAFF = new EndStaffItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item MAGIC_STAR = new ItemBase(p -> p.maxDamage(5));
-    @ItemReg(group = @TargetId("main"))
-    public static final Item LIGHT_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NETHERITE_SHIELD = new NetheriteShieldItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item DIVINE_CORE = new DivineCoreItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SNOW_SHIELD = new SnowShieldItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item FALLEN_SOUL_AXE = new FallenSoulAxeItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SEIZING_SHADOW_HALBERD = new SeizingShadowHalberdItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item ENDER_BOOK = new EnderBookItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item COTTON_CANDY = new CottonCandyItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_SWORD = new SapphireTools.Sword();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_SWORD = new RubyTools.Sword();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_AXE = new SapphireTools.Axe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_AXE = new RubyTools.Axe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_PICKAXE = new SapphireTools.Pickaxe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_PICKAXE = new RubyTools.Pickaxe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_SHOVEL = new SapphireTools.Shovel();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_SHOVEL = new RubyTools.Shovel();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SAPPHIRE_HOE = new SapphireTools.Hoe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item RUBY_HOE = new RubyTools.Hoe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_SWORD = new SugiliteTools.Sword();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_SWORD = new TopazTools.Sword();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_AXE = new SugiliteTools.Axe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_AXE = new TopazTools.Axe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_PICKAXE = new SugiliteTools.Pickaxe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_PICKAXE = new TopazTools.Pickaxe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_SHOVEL = new SugiliteTools.Shovel();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_SHOVEL = new TopazTools.Shovel();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SUGILITE_HOE = new SugiliteTools.Hoe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item TOPAZ_HOE = new TopazTools.Hoe();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item DIAMOND_APPLE_SUPPER = new DiamondAppleSupperItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item ENDER_CURVED_SWORD = new EnderCurvedSwordItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item UNDER_FLOWER = new UnderFlowerItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLUE_DIAMOND_SHIELD = new BlueDiamondShieldItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLACK_GUN = new BlackGunItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLACK_DEATH_SWORD = new BlackDeathSwordItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item MYSTERIOUS_GIFT_BOX = new MysteriousGiftBoxItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item RAIN_LAZYED_SWORD = new FoilSwordItemBase(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 15), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("item"))
-    public static final Item MAGIC_ENDER_PEARL = new MagicEnderPearlItem();
-    @ItemReg(group = @TargetId("item"))
-    public static final Item SOUL_TOTEM = new SoulTotemItem();
-    @ItemReg(group = @TargetId("main"))
-    public static final Item KING_ZOMBIE_PIG_MAN_SWORD = new SwordItem(ToolMaterialUtil.of(500, 0.0F, 6.0F, 0, 25, Items.GOLD_INGOT), 3, -2.3F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item EMERALD_BLADE = new SwordItem(ToolMaterialUtil.of(1200, 4.0F, 5.0F, 0, 3, Blocks.EMERALD_BLOCK), 3, -2.2F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item BLADE_OF_THE_WHIRLWIND = new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 6.0F, 0, 2, Blocks.OAK_LEAVES), 3, -2.8F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SNOW_DIAMOND_SWORD = new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 0, 2, Blocks.SNOW_BLOCK), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item NETHER_SICKLE = new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 3.0F, 1, 2, Blocks.STRIPPED_WARPED_STEM), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item THE_GOLDEN_SWORD = new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 1, 5, Blocks.GOLD_BLOCK), 3, -2.0F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item DEEP_SICKLE = new SwordItem(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 1, 2, Blocks.MOSS_BLOCK), 3, -2.4F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item IRON_DAGGER = new SwordItem(ToolMaterialUtil.of(1400, 4.0F, 7.0F, 1, 8, Blocks.IRON_BLOCK.asItem(), Items.IRON_INGOT), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item DEEP_WAR_HAMMER = new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 5), 3, -2.3F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SKULL_CRUSHER = new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 15), 3, -2.2F, new Item.Settings().fireproof());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item IRON_LONG_SPEAR = new SwordItem(ToolMaterialUtil.of(500, 0.0F, 3.0F, 0, 1), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item GOLDEN_PLUNDERING_AXE = new SwordItem(ToolMaterialUtil.of(1200, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item PLUNDERING_THE_GIANT_AXE = new SwordItem(ToolMaterialUtil.of(1300, 0.0F, 7.0F, 0, 8), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item LIGHT_SWORD_EVER = new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 8.0F, 0, 30), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item DIAMOND_BIG_SWORD = new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 9.0F, 0, 15), 3, -2.3F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOLDIER_SPEAR = new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item SOUL_RAIDING_HAMMER = new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item KATANA = new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, new Item.Settings());
-    @ItemReg(group = @TargetId("main"))
-    public static final Item AMETHYST_WAR_HAMMER = new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings());
-    //spawn egg
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item HEROBRINE_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.HEROBRINE, -10092544, -65536, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item CERIS_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.CERIS, -10092442, -65281, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIES, -16724941, -16751104, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAEUS_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.NAEUS, -10066330, -3355444, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item RAIN_SPAWN_EGG = new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.RAIN, -16777063, -13408513, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ABIGAIL_SPAWN_EGG = new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.ABIGAIL, -65332, -39169, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item PATRICK_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.PATRICK, -16737895, -13369345, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item BLACKBONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.BLACKBONE, -16777216, -10066330, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item HOGSWORTH_SPAWN_EGG = new SpawnEggBase(Episode.HardPillToSwallow, RainimatorEntities.HOGSWORTH, -26215, -13108, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item CIARA_SPAWN_EGG = new SpawnEggBase(Episode.Nightmares, RainimatorEntities.CIARA, -52378, -39220, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item HILDA_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIceRemake, RainimatorEntities.HILDA, -256, -3355444, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item SOLDIERS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.SOLDIERS, -1, -1, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item WITHERED_SKELETONS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.WITHERED_SKELETONS, -13421773, -10066330, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARK_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.DARK_SHIELD, -6736897, -16777216, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARK_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.DARK_ZOMBIE, -16751104, -13369549, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item VORDUS_SPAWN_EGG = new SpawnEggBase(Episode.Goodbye, RainimatorEntities.VORDUS, -13421773, -3355648, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item WITHER_SHIELD_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item SKELETON_SNOW_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_KING_ZOMBIES_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_KING_ZOMBIE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item PIGLIN_COMMANDER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAEUS_KING_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NAEUS_KING, -6737152, -65536, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item TUSK_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.TUSK, -13159, -13108, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item BROTS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.BROTS, -3399168, -9175040, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ZOMBIE_PIGLIN_ART_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item MUTATED_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.MUTATED, -5134336, -16735132, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item NAMTAR_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NAMTAR, -7274496, -12544, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item AGETHA_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.AGETHA, -6710887, -3381760, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item TRICER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.TRICER, -3407872, -16777216, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item BIG_UNDEAD_SKELETON_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ARCHER_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.ARCHER, -6710887, -16750951, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item DARYLL_SPAWN_EGG = new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.DARYLL, -6737152, -1, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item NULL_LIKE_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.NULL_LIKE, -1, -16777216, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item GIGABONE_SPAWN_EGG = new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.GIGABONE, -10066330, -3355393, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item KLAUS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS, -10066432, -16764109, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item KLAUS_2_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS_2, -6711040, -16751002, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item KRALOS_SPAWN_EGG = new SpawnEggBase(Episode.None, RainimatorEntities.KRALOS, -16777165, -6750157, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item ARABELLA_SPAWN_EGG = new SpawnEggBase(Episode.ToTheVoid, RainimatorEntities.ARABELLA, -3407668, -13369345, new Item.Settings());
-    @ItemReg(group = @TargetId("mobs"))
-    public static final Item AZALEA_SPAWN_EGG = new SpawnEggBase(Episode.PreachToTheChoir, RainimatorEntities.AZALEA, -256, -16738048, new Item.Settings());
-    //music
-    @ItemReg(group = @TargetId("item"))
-    public static final Item HIM_MUSIC = new MusicItemBase("him_music_boss");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item CERIS_MUSIC = new MusicItemBase("ceris_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NULL_MUSIC = new MusicItemBase("null_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item BLACKBONE_MUSIC = new MusicItemBase("blackbone_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item PIGLIN_KING_MUSIC = new MusicItemBase("piglin_king_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item NAEUS_MUSIC = new MusicItemBase("naeus_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item GLUTTON_MUSIC = new MusicItemBase("glutton_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item HIM_ONE_LIVES = new MusicItemBase("him_one_lives");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item KRALOS_MUSIC = new MusicItemBase("kralos_boss_music");
-    @ItemReg(group = @TargetId("item"))
-    public static final Item KLAUS_MUSIC = new MusicItemBase("klaus_boss_music");
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_ore"))
-    public static Item RUBY_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_ruby_ore"))
-    public static Item DEEPSLATE_RUBY_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("ruby_block"))
-    public static Item RUBY_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_ore"))
-    public static Item TOPAZ_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_ore"))
-    public static Item SUGILITE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("topaz_block"))
-    public static Item TOPAZ_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sugilite_block"))
-    public static Item SUGILITE_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_ore"))
-    public static Item SAPPHIRE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("deepslate_sapphire_ore"))
-    public static Item DEEPSLATE_SAPPHIRE_ORE = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("sapphire_block"))
-    public static Item SAPPHIRE_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("blue_diamond_block"))
-    public static Item BLUE_DIAMOND_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("dark_obsidian_block"))
-    public static Item DARK_OBSIDIAN_BLOCK = null;
-    @Group(@TargetId("item"))
-    @Link(type = TargetType.BLOCK, target = @TargetId("mystic_ore"))
-    public static Item MYSTIC_ORE = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("herobrine_head"), @TargetId("herobrine_wall_head")})
-    public static Item HEROBRINE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("ceris_head"), @TargetId("ceris_wall_head")})
-    public static Item CERIS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("zombies_head"), @TargetId("zombies_wall_head")})
-    public static Item ZOMBIES_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("naeus_head"), @TargetId("naeus_wall_head")})
-    public static Item NAEUS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("rain_head"), @TargetId("rain_wall_head")})
-    public static Item RAIN_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("abigail_head"), @TargetId("abigail_wall_head")})
-    public static Item ABIGAIL_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("patrick_head"), @TargetId("patrick_wall_head")})
-    public static Item PATRICK_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("blackbone_head"), @TargetId("blackbone_wall_head")})
-    public static Item BLACKBONE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("hogsworth_head"), @TargetId("hogsworth_wall_head")})
-    public static Item HOGSWORTH_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("ciara_head"), @TargetId("ciara_wall_head")})
-    public static Item CIARA_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("hilda_head"), @TargetId("hilda_wall_head")})
-    public static Item HILDA_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("soldiers_head"), @TargetId("soldiers_wall_head")})
-    public static Item SOLDIERS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("withered_skeletons_head"), @TargetId("withered_skeletons_wall_head")})
-    public static Item WITHERED_SKELETONS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("dark_shield_head"), @TargetId("dark_shield_wall_head")})
-    public static Item DARK_SHIELD_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("dark_zombie_head"), @TargetId("dark_zombie_wall_head")})
-    public static Item DARK_ZOMBIE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("vordus_head"), @TargetId("vordus_wall_head")})
-    public static Item VORDUS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("wither_shield_head"), @TargetId("wither_shield_wall_head")})
-    public static Item WITHER_SHIELD_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("skeleton_snow_head"), @TargetId("skeleton_snow_wall_head")})
-    public static Item SKELETON_SNOW_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("piglin_king_head"), @TargetId("piglin_king_wall_head")})
-    public static Item PIGLIN_KING_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("glutton_head"), @TargetId("glutton_wall_head")})
-    public static Item GLUTTON_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("glutton_old_head"), @TargetId("glutton_old_wall_head")})
-    public static Item GLUTTON_OLD_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("porkshire_head"), @TargetId("porkshire_wall_head")})
-    public static Item PORKSHIRE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("naeus_king_head"), @TargetId("naeus_king_wall_head")})
-    public static Item NAEUS_KING_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("tusk_head"), @TargetId("tusk_wall_head")})
-    public static Item TUSK_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("brots_head"), @TargetId("brots_wall_head")})
-    public static Item BROTS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("zombie_pig_head"), @TargetId("zombie_pig_wall_head")})
-    public static Item ZOMBIE_PIG_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("mutated_head"), @TargetId("mutated_wall_head")})
-    public static Item MUTATED_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("namtar_head"), @TargetId("namtar_wall_head")})
-    public static Item NAMTAR_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("agetha_head"), @TargetId("agetha_wall_head")})
-    public static Item AGETHA_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("tricer_head"), @TargetId("tricer_wall_head")})
-    public static Item TRICER_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("big_black_skeleton_head"), @TargetId("big_black_skeleton_wall_head")})
-    public static Item BIG_BLACK_SKELETON_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("archer_head"), @TargetId("archer_wall_head")})
-    public static Item ARCHER_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("daryll_head"), @TargetId("daryll_wall_head")})
-    public static Item DARYLL_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("null_like_head"), @TargetId("null_like_wall_head")})
-    public static Item NULL_LIKE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("gigabone_head"), @TargetId("gigabone_wall_head")})
-    public static Item GIGABONE_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("klaus_head"), @TargetId("klaus_wall_head")})
-    public static Item KLAUS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("klaus_2_head"), @TargetId("klaus_2_wall_head")})
-    public static Item KLAUS_2_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("kralos_head"), @TargetId("kralos_wall_head")})
-    public static Item KRALOS_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("arabella_head"), @TargetId("arabella_wall_head")})
-    public static Item ARABELLA_HEAD = null;
-    @Group(@TargetId("mobs"))
-    @Link(type = TargetType.SKULL, targets = {@TargetId("azalea_head"), @TargetId("azalea_wall_head")})
-    public static Item AZALEA_HEAD = null;
+    public static final Item SUPER_RUBY = register("super_ruby", new ItemBase(Item.Settings::fireproof));
+    public static final Item ABIGAIL_SPEAR = register("abigail_spear", new AbigailSpearItem());
+    public static final Item GLUTTON_SLEDGE_HAMMER = register("glutton_sledge_hammer", new SwordItem(ToolMaterialUtil.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item RUBY = register("ruby", new ItemBase(p -> p));
+    public static final Item TOPAZ = register("topaz", new ItemBase(p -> p));
+    public static final Item SUGILITE = register("sugilite", new ItemBase(p -> p));
+    public static final Item RED_GOLD_DAGGER = register("red_gold_dagger", new RedGoldDaggerItem());
+    public static final Item BLACKBONE_THE_BLADE = register("blackbone_the_blade", new BlackBoneTheBladeItem());
+    public static final Item BLACKBONE_THE_BLADE_SINGLE_HAND = register("blackbone_the_blade_single_hand", new BlackBoneTheBladeSingleHandItem());
+    public static final Item RAW_RUBY = register("raw_ruby", new ItemBase(p -> p));
+    public static final Item RAW_SUGILITE = register("raw_sugilite", new ItemBase(p -> p));
+    public static final Item RAW_TOPAZ = register("raw_topaz", new ItemBase(p -> p));
+    public static final Item SUPER_SAPPHIRE = register("super_sapphire", new ItemBase(Item.Settings::fireproof));
+    public static final Item SUPER_SUGILITE = register("super_sugilite", new ItemBase(Item.Settings::fireproof));
+    public static final Item SUPER_TOPAZ = register("super_topaz", new ItemBase(Item.Settings::fireproof));
+    public static final Item PATRICK_HELMET = register("patrick_helmet", new PatrickArmorItem(ArmorItem.Type.HELMET));
+    public static final Item PATRICK_CHESTPLATE = register("patrick_chestplate", new PatrickArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item PATRICK_LEGGINGS = register("patrick_leggings", new PatrickArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item PATRICK_BOOTS = register("patrick_boots", new PatrickArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item RAIN_SWORD = register("rain_sword", new RainSwordItem());
+    public static final Item HEROBRINE_TOMAHAWK = register("herobrine_tomahawk", new HerobrineTomahawkItem());
+    public static final Item ZECANIRN_THE_BLADE = register("zecanirn_the_blade", new ZecanirnTheBladeItem());
+    public static final Item ENDER_BIG_SWORD = register("ender_big_sword", new EnderBigSwordItem());
+    public static final Item LASER_SWORD = register("laser_sword", new FoilSwordItemBase(ToolMaterialUtil.of(3000, 4.0F, 13.0F, 1, 18, RainimatorItems.SUPER_SAPPHIRE, Items.ENDER_EYE), 3, -2.4F, new Item.Settings()));
+    public static final Item MACE = register("mace", new SwordItem(ToolMaterialUtil.of(12000, 4.0F, 10.0F, 0, 10, RainimatorItems.SUPER_SAPPHIRE), 3, -2.6F, new Item.Settings().fireproof()));
+    public static final Item SAPPHIRE = register("sapphire", new ItemBase(p -> p));
+    public static final Item INTELLIGENCE_TOMAHAWK = register("intelligence_tomahawk", new IntelligenceTomahawkItem());
+    public static final Item GENERAL_PATRICK_LONG_KNIVES = register("general_patrick_long_knives", new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings().fireproof()));
+    public static final Item SOLDIERS_HALBERD = register("soldiers_halberd", new SwordItem(ToolMaterialUtil.of(1500, 4.0F, 7.0F, 0, 5, SAPPHIRE), 3, -2.0F, new Item.Settings()));
+    public static final Item SOLDIERS_WAR_HAMMER = register("soldiers_war_hammer", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 6.0F, 0, 5, SAPPHIRE), 3, -2.2F, new Item.Settings()));
+    public static final Item THE_BLUE_DAGGER = register("the_blue_dagger", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 5.0F, 1, 10, RainimatorItems.SAPPHIRE), 3, -2.0F, new Item.Settings()));
+    public static final Item RAW_SAPPHIRE = register("raw_sapphire", new ItemBase(p -> p));
+    public static final Item HOT_IRON = register("hot_iron", new ItemBase(p -> p));
+    public static final Item HOT_GLOVES = register("hot_gloves", new HotGlovesItem());
+    public static final Item HEROBRINE_CHESTPLATE = register("herobrine_chestplate", new HerobrineArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item BLUE_DIAMOND = register("blue_diamond", new BlueDiamondItem());
+    public static final Item BLUE_DIAMOND_HELMET = register("blue_diamond_helmet", new BlueDiamondArmorsItem(ArmorItem.Type.HELMET));
+    public static final Item BLUE_DIAMOND_CHESTPLATE = register("blue_diamond_chestplate", new BlueDiamondArmorsItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item BLUE_DIAMOND_LEGGINGS = register("blue_diamond_leggings", new BlueDiamondArmorsItem(ArmorItem.Type.LEGGINGS));
+    public static final Item BLUE_DIAMOND_BOOTS = register("blue_diamond_boots", new BlueDiamondArmorsItem(ArmorItem.Type.BOOTS));
+    public static final Item DIAMOND_LANCE = register("diamond_lance", new DiamondLanceItem());
+    public static final Item BLUE_DIAMOND_SWORD = register("blue_diamond_sword", new BlueDiamondSwordItem());
+    public static final Item WINGS_OF_SALVATION = register("wings_of_salvation", WingsOfSalvationItem.create());
+    public static final Item DIAMOND_HATCHET = register("diamond_hatchet", new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings()));
+    public static final Item ZOMBIE_HEART = register("zombie_heart", new ZombieHeartItem());
+    public static final Item WITHER_BONE = register("wither_bone", new ItemBase(p -> p.maxCount(16).fireproof()));
+    public static final Item NETHERITE_WITHER_BONE = register("netherite_wither_bone", new FoilItemBase(p -> p.maxCount(16).fireproof()));
+    public static final Item ICE_HEART = register("ice_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
+    public static final Item WARRIOR_HEART = register("warrior_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
+    public static final Item ENDER_HEART = register("ender_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
+    public static final Item LIGHT_HEART = register("light_heart", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.EPIC)));
+    public static final Item DIAMOND_PIECE = register("diamond_piece", new ItemBase(p -> p));
+    public static final Item BAO_ZHU = register("bao_zhu", new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON)));
+    public static final Item SOUL_PEOPLE = register("soul_people", new FoilItemBase(p -> p.maxCount(32).rarity(Rarity.UNCOMMON)));
+    public static final Item ENDER_STONE = register("ender_stone", new FoilItemBase(p -> p.maxCount(1).fireproof().rarity(Rarity.UNCOMMON)));
+    public static final Item NEAUS_SOULS = register("neaus_souls", new FoilItemBase(p -> p.maxCount(32).fireproof().rarity(Rarity.EPIC)));
+    public static final Item ICED_HEART = register("iced_heart", new ItemBase(p -> p.maxCount(1).rarity(Rarity.UNCOMMON)));
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_HELMET = register("chief_of_the_pig_people_helmet", new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.HELMET));
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE = register("chief_of_the_pig_people_chestplate", new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS = register("chief_of_the_pig_people_leggings", new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item CHIEF_OF_THE_PIG_PEOPLE_BOOTS = register("chief_of_the_pig_people_boots", new ChiefOfThePigPeopleArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item SOLDIERS_ARMOR_HELMET = register("soldiers_armor_helmet", new SoldiersArmorItem(ArmorItem.Type.HELMET));
+    public static final Item SOLDIERS_ARMOR_CHESTPLATE = register("soldiers_armor_chestplate", new SoldiersArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item SOLDIERS_ARMOR_LEGGINGS = register("soldiers_armor_leggings", new SoldiersArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item SOLDIERS_ARMOR_BOOTS = register("soldiers_armor_boots", new SoldiersArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item RAIN_CHESTPLATE = register("rain_chestplate", new RainArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item RUBY_HELMET = register("ruby_helmet", new RubyArmorItem(ArmorItem.Type.HELMET));
+    public static final Item RUBY_CHESTPLATE = register("ruby_chestplate", new RubyArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item RUBY_LEGGINGS = register("ruby_leggings", new RubyArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item RUBY_BOOTS = register("ruby_boots", new RubyArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item SAPPHIRE_HELMET = register("sapphire_helmet", new SapphireArmorItem(ArmorItem.Type.HELMET));
+    public static final Item SAPPHIRE_CHESTPLATE = register("sapphire_chestplate", new SapphireArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item SAPPHIRE_LEGGINGS = register("sapphire_leggings", new SapphireArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item SAPPHIRE_BOOTS = register("sapphire_boots", new SapphireArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item SUGILITE_HELMET = register("sugilite_helmet", new SugiliteArmorItem(ArmorItem.Type.HELMET));
+    public static final Item SUGILITE_CHESTPLATE = register("sugilite_chestplate", new SugiliteArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item SUGILITE_LEGGINGS = register("sugilite_leggings", new SugiliteArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item SUGILITE_BOOTS = register("sugilite_boots", new SugiliteArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item TOPAZ_HELMET = register("topaz_helmet", new TopazArmorItem(ArmorItem.Type.HELMET));
+    public static final Item TOPAZ_CHESTPLATE = register("topaz_chestplate", new TopazArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final Item TOPAZ_LEGGINGS = register("topaz_leggings", new TopazArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final Item TOPAZ_BOOTS = register("topaz_boots", new TopazArmorItem(ArmorItem.Type.BOOTS));
+    public static final Item MAGIC_HAT = register("magic_hat", new ItemBase(p -> p));
+    public static final Item NETHER_THE_CROWN = register("nether_the_crown", new NetherTheCrownItem());
+    public static final Item GLUTTON_HELMET = register("glutton_helmet", new ItemBase(p -> p));
+    public static final Item PIGLIN_KING_CROWN = register("piglin_king_crown", new ItemBase(p -> p));
+    public static final Item KING_NORMAL_CROWN = register("king_normal_crown", new ItemBase(p -> p));
+    public static final Item PORKSHIRE_KING_CROWN = register("porkshire_king_crown", new ItemBase(p -> p));
+    public static final Item GEMSTONE_MIXTURE = register("gemstone_mixture", new FoilItemBase(p -> p.maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item HEROBRINE_DIAMOND_PICKAXE = register("herobrine_diamond_pickaxe", new HerobrineDiamondPickaxeItem());
+    public static final Item SUPER_DIAMOND_APPLE = register("super_diamond_apple", new SuperDiamondAppleItem());
+    public static final Item NAEUS_SWORD = register("naeus_sword", new NaeusSwordItem());
+    public static final Item NETHER_SPEAR = register("nether_spear", new NetherSpearItem());
+    public static final Item NETHERITE_FLAME_SABER = register("netherite_flame_saber", new NetheriteFlameSaberItem());
+    public static final Item NETHERITE_NUCLEAR_REACTOR = register("netherite_nuclear_reactor", new NetherNuclearReactorItem());
+    public static final Item NIGHTMARES = register("nightmares", new NightmaresItem());
+    public static final Item END_STAFF = register("end_staff", new EndStaffItem());
+    public static final Item MAGIC_STAR = register("magic_star", new ItemBase(p -> p.maxDamage(5)));
+    public static final Item LIGHT_SWORD = register("light_sword", new FoilSwordItemBase(ToolMaterialUtil.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item NETHERITE_SHIELD = register("netherite_shield", new NetheriteShieldItem());
+    public static final Item DIVINE_CORE = register("divine_core", new DivineCoreItem());
+    public static final Item SNOW_SHIELD = register("snow_shield", new SnowShieldItem());
+    public static final Item FALLEN_SOUL_AXE = register("fallen_soul_axe", new FallenSoulAxeItem());
+    public static final Item SEIZING_SHADOW_HALBERD = register("seizing_shadow_halberd", new SeizingShadowHalberdItem());
+    public static final Item ENDER_BOOK = register("ender_book", new EnderBookItem());
+    public static final Item COTTON_CANDY = register("cotton_candy", new CottonCandyItem());
+    public static final Item SAPPHIRE_SWORD = register("sapphire_sword", new SapphireTools.Sword());
+    public static final Item RUBY_SWORD = register("ruby_sword", new RubyTools.Sword());
+    public static final Item SAPPHIRE_AXE = register("sapphire_axe", new SapphireTools.Axe());
+    public static final Item RUBY_AXE = register("ruby_axe", new RubyTools.Axe());
+    public static final Item SAPPHIRE_PICKAXE = register("sapphire_pickaxe", new SapphireTools.Pickaxe());
+    public static final Item RUBY_PICKAXE = register("ruby_pickaxe", new RubyTools.Pickaxe());
+    public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new SapphireTools.Shovel());
+    public static final Item RUBY_SHOVEL = register("ruby_shovel", new RubyTools.Shovel());
+    public static final Item SAPPHIRE_HOE = register("sapphire_hoe", new SapphireTools.Hoe());
+    public static final Item RUBY_HOE = register("ruby_hoe", new RubyTools.Hoe());
+    public static final Item SUGILITE_SWORD = register("sugilite_sword", new SugiliteTools.Sword());
+    public static final Item TOPAZ_SWORD = register("topaz_sword", new TopazTools.Sword());
+    public static final Item SUGILITE_AXE = register("sugilite_axe", new SugiliteTools.Axe());
+    public static final Item TOPAZ_AXE = register("topaz_axe", new TopazTools.Axe());
+    public static final Item SUGILITE_PICKAXE = register("sugilite_pickaxe", new SugiliteTools.Pickaxe());
+    public static final Item TOPAZ_PICKAXE = register("topaz_pickaxe", new TopazTools.Pickaxe());
+    public static final Item SUGILITE_SHOVEL = register("sugilite_shovel", new SugiliteTools.Shovel());
+    public static final Item TOPAZ_SHOVEL = register("topaz_shovel", new TopazTools.Shovel());
+    public static final Item SUGILITE_HOE = register("sugilite_hoe", new SugiliteTools.Hoe());
+    public static final Item TOPAZ_HOE = register("topaz_hoe", new TopazTools.Hoe());
+    public static final Item DIAMOND_APPLE_SUPPER = register("diamond_apple_supper", new DiamondAppleSupperItem());
+    public static final Item ENDER_CURVED_SWORD = register("ender_curved_sword", new EnderCurvedSwordItem());
+    public static final Item UNDER_FLOWER = register("under_flower", new UnderFlowerItem());
+    public static final Item BLUE_DIAMOND_SHIELD = register("blue_diamond_shield", new BlueDiamondShieldItem());
+    public static final Item BLACK_GUN = register("black_gun", new BlackGunItem());
+    public static final Item BLACK_DEATH_SWORD = register("black_death_sword", new BlackDeathSwordItem());
+    public static final Item MYSTERIOUS_GIFT_BOX = register("mysterious_gift_box", new MysteriousGiftBoxItem());
+    public static final Item RAIN_LAZYED_SWORD = register("rain_lazyed_sword", new FoilSwordItemBase(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 15), 3, -2.0F, new Item.Settings()));
+    public static final Item MAGIC_ENDER_PEARL = register("magic_ender_pearl", new MagicEnderPearlItem());
+    public static final Item SOUL_TOTEM = register("soul_totem", new SoulTotemItem());
+    public static final Item KING_ZOMBIE_PIG_MAN_SWORD = register("king_zombie_pig_man_sword", new SwordItem(ToolMaterialUtil.of(500, 0.0F, 6.0F, 0, 25, Items.GOLD_INGOT), 3, -2.3F, new Item.Settings()));
+    public static final Item EMERALD_BLADE = register("emerald_blade", new SwordItem(ToolMaterialUtil.of(1200, 4.0F, 5.0F, 0, 3, Blocks.EMERALD_BLOCK), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item BLADE_OF_THE_WHIRLWIND = register("blade_of_the_whirlwind", new SwordItem(ToolMaterialUtil.of(2500, 4.0F, 6.0F, 0, 2, Blocks.OAK_LEAVES), 3, -2.8F, new Item.Settings()));
+    public static final Item SNOW_DIAMOND_SWORD = register("snow_diamond_sword", new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 0, 2, Blocks.SNOW_BLOCK), 3, -2.0F, new Item.Settings()));
+    public static final Item NETHER_SICKLE = register("nether_sickle", new SwordItem(ToolMaterialUtil.of(2000, 4.0F, 3.0F, 1, 2, Blocks.STRIPPED_WARPED_STEM), 3, -2.0F, new Item.Settings()));
+    public static final Item THE_GOLDEN_SWORD = register("the_golden_sword", new SwordItem(ToolMaterialUtil.of(3000, 4.0F, 6.0F, 1, 5, Blocks.GOLD_BLOCK), 3, -2.0F, new Item.Settings().fireproof()));
+    public static final Item DEEP_SICKLE = register("deep_sickle", new SwordItem(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 1, 2, Blocks.MOSS_BLOCK), 3, -2.4F, new Item.Settings()));
+    public static final Item IRON_DAGGER = register("iron_dagger", new SwordItem(ToolMaterialUtil.of(1400, 4.0F, 7.0F, 1, 8, Blocks.IRON_BLOCK.asItem(), Items.IRON_INGOT), 3, -2.0F, new Item.Settings()));
+    public static final Item DEEP_WAR_HAMMER = register("deep_war_hammer", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 8.0F, 0, 5), 3, -2.3F, new Item.Settings()));
+    public static final Item SKULL_CRUSHER = register("skull_crusher", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 15), 3, -2.2F, new Item.Settings().fireproof()));
+    public static final Item IRON_LONG_SPEAR = register("iron_long_spear", new SwordItem(ToolMaterialUtil.of(500, 0.0F, 3.0F, 0, 1), 3, -2.2F, new Item.Settings()));
+    public static final Item GOLDEN_PLUNDERING_AXE = register("golden_plundering_axe", new SwordItem(ToolMaterialUtil.of(1200, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
+    public static final Item PLUNDERING_THE_GIANT_AXE = register("plundering_the_giant_axe", new SwordItem(ToolMaterialUtil.of(1300, 0.0F, 7.0F, 0, 8), 3, -2.2F, new Item.Settings()));
+    public static final Item LIGHT_SWORD_EVER = register("light_sword_ever", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 8.0F, 0, 30), 3, -2.0F, new Item.Settings()));
+    public static final Item DIAMOND_BIG_SWORD = register("diamond_big_sword", new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 9.0F, 0, 15), 3, -2.3F, new Item.Settings()));
+    public static final Item SOLDIER_SPEAR = register("soldier_spear", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 5.0F, 0, 10), 3, -2.2F, new Item.Settings()));
+    public static final Item SOUL_RAIDING_HAMMER = register("soul_raiding_hammer", new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, new Item.Settings()));
+    public static final Item KATANA = register("katana", new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, new Item.Settings()));
+    public static final Item AMETHYST_WAR_HAMMER = register("amethyst_war_hammer", new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings()));
+    public static final Item HEROBRINE_SPAWN_EGG = register("herobrine_spawn_egg", new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.HEROBRINE, -10092544, -65536, new Item.Settings()));
+    public static final Item CERIS_SPAWN_EGG = register("ceris_spawn_egg", new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.CERIS, -10092442, -65281, new Item.Settings()));
+    public static final Item ZOMBIES_SPAWN_EGG = register("zombies_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIES, -16724941, -16751104, new Item.Settings()));
+    public static final Item NAEUS_SPAWN_EGG = register("naeus_spawn_egg", new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.NAEUS, -10066330, -3355444, new Item.Settings()));
+    public static final Item RAIN_SPAWN_EGG = register("rain_spawn_egg", new SpawnEggBase(Episode.TheStruggle, RainimatorEntities.RAIN, -16777063, -13408513, new Item.Settings()));
+    public static final Item ABIGAIL_SPAWN_EGG = register("abigail_spawn_egg", new SpawnEggBase(Episode.BeginAgain, RainimatorEntities.ABIGAIL, -65332, -39169, new Item.Settings()));
+    public static final Item PATRICK_SPAWN_EGG = register("patrick_spawn_egg", new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.PATRICK, -16737895, -13369345, new Item.Settings()));
+    public static final Item BLACKBONE_SPAWN_EGG = register("blackbone_spawn_egg", new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.BLACKBONE, -16777216, -10066330, new Item.Settings()));
+    public static final Item HOGSWORTH_SPAWN_EGG = register("hogsworth_spawn_egg", new SpawnEggBase(Episode.HardPillToSwallow, RainimatorEntities.HOGSWORTH, -26215, -13108, new Item.Settings()));
+    public static final Item CIARA_SPAWN_EGG = register("ciara_spawn_egg", new SpawnEggBase(Episode.Nightmares, RainimatorEntities.CIARA, -52378, -39220, new Item.Settings()));
+    public static final Item HILDA_SPAWN_EGG = register("hilda_spawn_egg", new SpawnEggBase(Episode.ColdAsIceRemake, RainimatorEntities.HILDA, -256, -3355444, new Item.Settings()));
+    public static final Item SOLDIERS_SPAWN_EGG = register("soldiers_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.SOLDIERS, -1, -1, new Item.Settings()));
+    public static final Item WITHERED_SKELETONS_SPAWN_EGG = register("withered_skeletons_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.WITHERED_SKELETONS, -13421773, -10066330, new Item.Settings()));
+    public static final Item DARK_SHIELD_SPAWN_EGG = register("dark_shield_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.DARK_SHIELD, -6736897, -16777216, new Item.Settings()));
+    public static final Item DARK_ZOMBIE_SPAWN_EGG = register("dark_zombie_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.DARK_ZOMBIE, -16751104, -13369549, new Item.Settings()));
+    public static final Item VORDUS_SPAWN_EGG = register("vordus_spawn_egg", new SpawnEggBase(Episode.Goodbye, RainimatorEntities.VORDUS, -13421773, -3355648, new Item.Settings()));
+    public static final Item WITHER_SHIELD_SPAWN_EGG = register("wither_shield_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings()));
+    public static final Item SKELETON_SNOW_SPAWN_EGG = register("skeleton_snow_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings()));
+    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = register("zombies_piglin_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings()));
+    public static final Item PIGLIN_KING_ZOMBIES_SPAWN_EGG = register("piglin_king_zombies_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings()));
+    public static final Item PIGLIN_KING_ZOMBIE_SPAWN_EGG = register("piglin_king_zombie_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings()));
+    public static final Item PIGLIN_COMMANDER_SPAWN_EGG = register("piglin_commander_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings()));
+    public static final Item NAEUS_KING_SPAWN_EGG = register("naeus_king_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.NAEUS_KING, -6737152, -65536, new Item.Settings()));
+    public static final Item TUSK_SPAWN_EGG = register("tusk_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.TUSK, -13159, -13108, new Item.Settings()));
+    public static final Item BROTS_SPAWN_EGG = register("brots_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.BROTS, -3399168, -9175040, new Item.Settings()));
+    public static final Item ZOMBIE_PIGLIN_ART_SPAWN_EGG = register("zombie_piglin_art_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, new Item.Settings()));
+    public static final Item MUTATED_SPAWN_EGG = register("mutated_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.MUTATED, -5134336, -16735132, new Item.Settings()));
+    public static final Item NAMTAR_SPAWN_EGG = register("namtar_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.NAMTAR, -7274496, -12544, new Item.Settings()));
+    public static final Item AGETHA_SPAWN_EGG = register("agetha_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.AGETHA, -6710887, -3381760, new Item.Settings()));
+    public static final Item TRICER_SPAWN_EGG = register("tricer_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.TRICER, -3407872, -16777216, new Item.Settings()));
+    public static final Item BIG_UNDEAD_SKELETON_SPAWN_EGG = register("big_undead_skeleton_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, new Item.Settings()));
+    public static final Item ARCHER_SPAWN_EGG = register("archer_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ARCHER, -6710887, -16750951, new Item.Settings()));
+    public static final Item DARYLL_SPAWN_EGG = register("daryll_spawn_egg", new SpawnEggBase(Episode.ColdAsIce, RainimatorEntities.DARYLL, -6737152, -1, new Item.Settings()));
+    public static final Item NULL_LIKE_SPAWN_EGG = register("null_like_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.NULL_LIKE, -1, -16777216, new Item.Settings()));
+    public static final Item GIGABONE_SPAWN_EGG = register("gigabone_spawn_egg", new SpawnEggBase(Episode.WeAreTheDanger, RainimatorEntities.GIGABONE, -10066330, -3355393, new Item.Settings()));
+    public static final Item KLAUS_SPAWN_EGG = register("klaus_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS, -10066432, -16764109, new Item.Settings()));
+    public static final Item KLAUS_2_SPAWN_EGG = register("klaus_2_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.KLAUS_2, -6711040, -16751002, new Item.Settings()));
+    public static final Item KRALOS_SPAWN_EGG = register("kralos_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.KRALOS, -16777165, -6750157, new Item.Settings()));
+    public static final Item ARABELLA_SPAWN_EGG = register("arabella_spawn_egg", new SpawnEggBase(Episode.ToTheVoid, RainimatorEntities.ARABELLA, -3407668, -13369345, new Item.Settings()));
+    public static final Item AZALEA_SPAWN_EGG = register("azalea_spawn_egg", new SpawnEggBase(Episode.PreachToTheChoir, RainimatorEntities.AZALEA, -256, -16738048, new Item.Settings()));
+    public static final Item HIM_MUSIC = register("him_music", new MusicItemBase("him_music_boss"));
+    public static final Item CERIS_MUSIC = register("ceris_music", new MusicItemBase("ceris_boss_music"));
+    public static final Item NULL_MUSIC = register("null_music", new MusicItemBase("null_boss_music"));
+    public static final Item BLACKBONE_MUSIC = register("blackbone_music", new MusicItemBase("blackbone_boss_music"));
+    public static final Item PIGLIN_KING_MUSIC = register("piglin_king_music", new MusicItemBase("piglin_king_boss_music"));
+    public static final Item NAEUS_MUSIC = register("naeus_music", new MusicItemBase("naeus_boss_music"));
+    public static final Item GLUTTON_MUSIC = register("glutton_music", new MusicItemBase("glutton_boss_music"));
+    public static final Item HIM_ONE_LIVES = register("him_one_lives", new MusicItemBase("him_one_lives"));
+    public static final Item KRALOS_MUSIC = register("kralos_music", new MusicItemBase("kralos_boss_music"));
+    public static final Item KLAUS_MUSIC = register("klaus_music", new MusicItemBase("klaus_boss_music"));
 
-    @CallbackHandler
+    private static <T extends Item> T register(String name, T item) {
+        return Registry.register(Registries.ITEM, new Identifier(RainimatorMod.MOD_ID, name), item);
+    }
+
     public static void init() {
         FuelRegistry.INSTANCE.add(RainimatorItems.HOT_IRON, 2000);
     }

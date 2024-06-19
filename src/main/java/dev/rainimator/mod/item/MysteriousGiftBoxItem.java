@@ -1,6 +1,7 @@
 package dev.rainimator.mod.item;
 
 import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -86,9 +87,9 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Items.NETHERITE_INGOT, 5, ""));
         lootTable.add(Triple.of(Blocks.NETHERITE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(RainimatorItems.SAPPHIRE, 3, ""));
-        lootTable.add(Triple.of(RainimatorItems.SAPPHIRE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorBlocks.SAPPHIRE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(RainimatorItems.RUBY, 3, ""));
-        lootTable.add(Triple.of(RainimatorItems.RUBY_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(RainimatorBlocks.RUBY_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.EMERALD, 5, ""));
         lootTable.add(Triple.of(Blocks.EMERALD_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(RainimatorItems.SOUL_PEOPLE, 3, ""));

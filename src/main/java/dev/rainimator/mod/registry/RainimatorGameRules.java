@@ -32,10 +32,10 @@ public class RainimatorGameRules {
     public static final GameRules.Key<DoubleRule> wings_of_salvation_second = register("mana.wings_of_salvation_second", GameRules.Category.MISC, GameRuleFactory.createDoubleRule(10));
     public static final GameRules.Key<DoubleRule> wings_of_salvation_boost = register("mana.wings_of_salvation_boost", GameRules.Category.MISC, GameRuleFactory.createDoubleRule(25));
 
-    public static void init() {
-    }
-
     private static <T extends GameRules.Rule<T>> GameRules.Key<T> register(String name, GameRules.Category category, GameRules.Type<T> rule) {
         return GameRuleRegistry.register(RainimatorMod.MOD_ID + ":" + name, category, rule);
+    }
+
+    public static void init() {
     }
 }

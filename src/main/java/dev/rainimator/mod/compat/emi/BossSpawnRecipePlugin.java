@@ -9,6 +9,7 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,7 +26,7 @@ import java.util.List;
 public class BossSpawnRecipePlugin implements EmiPlugin {
     private static final Identifier BOSS_SPAWN = new Identifier(RainimatorMod.MOD_ID, "boss_spawn_recipe");
     private static final EmiTexture TEXTURE = new EmiTexture(new Identifier(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
-    private static final EmiStack WORKSTATION = EmiStack.of(RainimatorItems.DARK_OBSIDIAN_BLOCK);
+    private static final EmiStack WORKSTATION = EmiStack.of(RainimatorBlocks.DARK_OBSIDIAN_BLOCK);
     private static final EmiRecipeCategory BOSS_SPAWN_CATEGORY = new EmiRecipeCategory(BOSS_SPAWN, WORKSTATION, TEXTURE);
     private static final List<BossSpawnRecipe> RECIPES = List.of(
             new BossSpawnRecipe("herobrine", RainimatorItems.LIGHT_HEART, RainimatorItems.HEROBRINE_SPAWN_EGG),
