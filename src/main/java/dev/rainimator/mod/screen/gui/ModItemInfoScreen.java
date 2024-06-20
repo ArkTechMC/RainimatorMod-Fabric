@@ -1,7 +1,7 @@
 package dev.rainimator.mod.screen.gui;
 
-import dev.rainimator.mod.util.ComponentUtil;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.util.ComponentUtil;
 import dev.rainimator.mod.util.Episode;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

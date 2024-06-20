@@ -70,7 +70,7 @@ public class RainimatorItems {
     public static final Item BLUE_DIAMOND_BOOTS = register("blue_diamond_boots", new BlueDiamondArmorsItem(ArmorItem.Type.BOOTS));
     public static final Item DIAMOND_LANCE = register("diamond_lance", new DiamondLanceItem());
     public static final Item BLUE_DIAMOND_SWORD = register("blue_diamond_sword", new BlueDiamondSwordItem());
-    public static final Item WINGS_OF_SALVATION = register("wings_of_salvation", WingsOfSalvationItem.create());
+    public static final Item WINGS_OF_SALVATION = register("wings_of_salvation", new WingsOfSalvationItem());
     public static final Item DIAMOND_HATCHET = register("diamond_hatchet", new AxeItem(ToolMaterialUtil.of(1500, 4.0F, 5.0F, 2, 2, BLUE_DIAMOND), 1.0F, -2.0F, new Item.Settings()));
     public static final Item ZOMBIE_HEART = register("zombie_heart", new ZombieHeartItem());
     public static final Item WITHER_BONE = register("wither_bone", new ItemBase(p -> p.maxCount(16).fireproof()));

@@ -1,16 +1,12 @@
 package dev.rainimator.mod.item.block;
 
-import dev.rainimator.mod.registry.RainimatorBlocks;
-import dev.rainimator.mod.util.Consumer5;
-import dev.rainimator.mod.util.RandomHelper;
-import dev.rainimator.mod.util.Timeout;
-import dev.rainimator.mod.util.EntityUtil;
-import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.block.entity.DarkObsidianBlockEntity;
 import dev.rainimator.mod.registry.RainimatorBlockEntities;
+import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.util.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

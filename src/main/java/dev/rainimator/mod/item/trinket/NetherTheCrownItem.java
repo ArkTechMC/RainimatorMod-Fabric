@@ -1,9 +1,9 @@
 package dev.rainimator.mod.item.trinket;
 
-import dev.rainimator.mod.item.util.ItemBase;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.entity.WitheredSkeletonsEntity;
+import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;

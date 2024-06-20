@@ -1,9 +1,9 @@
 package dev.rainimator.mod.item.tool;
 
-import dev.rainimator.mod.item.util.ToolMaterialUtil;
-import dev.rainimator.mod.util.VecUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.util.VecUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;

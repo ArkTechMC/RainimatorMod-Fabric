@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

@@ -1,11 +1,9 @@
 package dev.rainimator.mod.item.trinket;
 
-import dev.rainimator.mod.item.util.ItemBase;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
-import dev.rainimator.mod.compat.ElectricitySource;
-import dev.rainimator.mod.compat.ElectricitySystem;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.entity.LivingEntity;
@@ -14,34 +12,15 @@ import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class WingsOfSalvationItem extends ItemBase implements Trinket, FabricElytraItem {
     protected int lastBoostTick = 0;
 
-    protected WingsOfSalvationItem() {
+    public WingsOfSalvationItem() {
         super(p -> p);
     }
 
     protected static void noEnoughEnergy(PlayerEntity player) {
         player.getAbilities().flying = false;
-    }
-
-    public static WingsOfSalvationItem create() {
-        ElectricitySource source = ElectricitySystem.getType();
-        if (source == ElectricitySource.TR)
-            return get();
-        return new WingsOfSalvationItem();
-    }
-
-    private static WingsOfSalvationItem get() {
-        try {
-            Class<?> clazz = Class.forName("dev.rainimator.mod.item.trinket.WingsOfSalvationForTR");
-            return (WingsOfSalvationItem) clazz.getConstructor().newInstance();
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
-                 NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override

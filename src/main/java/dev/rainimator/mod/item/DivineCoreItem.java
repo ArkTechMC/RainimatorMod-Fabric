@@ -1,9 +1,9 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.item.util.FoilItemBase;
-import dev.rainimator.mod.util.RandomHelper;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;

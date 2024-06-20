@@ -1,13 +1,13 @@
 package dev.rainimator.mod.item.sword;
 
-import dev.rainimator.mod.item.util.SwordItemBase;
-import dev.rainimator.mod.item.util.ToolMaterialUtil;
-import dev.rainimator.mod.util.SoundUtil;
 import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.SwordItemBase;
+import dev.rainimator.mod.item.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

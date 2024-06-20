@@ -1,10 +1,10 @@
 package dev.rainimator.mod.item;
 
+import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorBlocks;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;

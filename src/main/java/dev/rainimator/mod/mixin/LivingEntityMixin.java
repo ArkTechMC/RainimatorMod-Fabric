@@ -1,8 +1,8 @@
 package dev.rainimator.mod.mixin;
 
 import dev.rainimator.mod.item.util.ISwingable;
-import dev.rainimator.mod.util.EntityUtil;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.util.EntityUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

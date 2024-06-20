@@ -1,11 +1,11 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.item.util.FoilItemBase;
-import dev.rainimator.mod.util.Timeout;
-import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorGameRules;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.util.SoundUtil;
+import dev.rainimator.mod.util.Timeout;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;

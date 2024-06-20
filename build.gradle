@@ -27,10 +27,6 @@ repositories {
     maven {
         url = 'https://maven.blamejared.com'
     }
-    maven {
-        name "iAFEnvoy Maven Repositories Releases"
-        url "https://maven.iafenvoy.com/releases"
-    }
     exclusiveContent {
         forRepository {
             maven {
@@ -40,12 +36,6 @@ repositories {
         filter {
             includeGroup "curse.maven"
         }
-    }
-    flatDir {
-        dirs "remapped-libs"
-    }
-    repositories {
-        maven { url 'https://api.modrinth.com/maven' }
     }
 }
 
@@ -72,11 +62,6 @@ dependencies {
 
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5212120"
-
-    // [TR] Tech Reborn
-    modImplementation "team.reborn.energy:energy:3.0.0" //in flat, extracted from tech reborn
-    modImplementation "reborncore:reborncore:5.8.7" //in flat, extracted from tech reborn
-    modImplementation "curse.maven:techreborn-233564:4708962"
 }
 
 processResources {

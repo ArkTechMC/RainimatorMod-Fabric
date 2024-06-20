@@ -1,10 +1,10 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.item.util.FoilItemBase;
-import dev.rainimator.mod.util.SoundUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
+import dev.rainimator.mod.item.util.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorGameRules;
+import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,13 +1,13 @@
 package dev.rainimator.mod.item.sword;
 
+import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.util.SwordItemBase;
 import dev.rainimator.mod.item.util.ToolMaterialUtil;
-import dev.rainimator.mod.util.ParticleUtil;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorParticles;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
+import dev.rainimator.mod.util.ParticleUtil;
+import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
