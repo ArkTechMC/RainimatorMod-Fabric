@@ -2,7 +2,7 @@ package dev.rainimator.mod.compat.asteorbar;
 
 import com.afoxxvi.asteorbar.overlay.parts.SimpleBarOverlay;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.renderer.gui.InGameHudRenderHelper;
+import dev.rainimator.mod.screen.gui.InGameHudRenderHelper;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class ManaHud extends SimpleBarOverlay {

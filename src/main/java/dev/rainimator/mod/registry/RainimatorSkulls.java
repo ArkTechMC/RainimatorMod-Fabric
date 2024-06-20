@@ -143,7 +143,7 @@ public class RainimatorSkulls {
     }
 
     private static Item register(String name, Block head, Block wallHead) {
-        return Registry.register(Registries.ITEM, new Identifier(RainimatorMod.MOD_ID, name), new SkullItem(head, wallHead, new Item.Settings()));
+        return Registry.register(Registries.ITEM, new Identifier(RainimatorMod.MOD_ID, name + "_head"), new SkullItem(head, wallHead, new Item.Settings()));
     }
 
     public static void init() {

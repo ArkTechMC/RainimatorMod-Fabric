@@ -1,22 +1,23 @@
 package dev.rainimator.mod.item;
 
 import dev.rainimator.mod.item.util.ItemBase;
-import dev.rainimator.mod.util.ModConstants;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import dev.rainimator.mod.screen.handler.EnderBookSkillScreenHandler;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EnderBookItem extends ItemBase {
+public class EnderBookItem extends ItemBase implements NamedScreenHandlerFactory {
     public EnderBookItem() {
         super(p -> p.maxCount(1).rarity(Rarity.EPIC));
     }
@@ -29,9 +30,18 @@ public class EnderBookItem extends ItemBase {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
-        TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
-        if (!world.isClient() && entity instanceof ServerPlayerEntity serverPlayer)
-            ServerPlayNetworking.send(serverPlayer, ModConstants.ENDER_BOOK_SKILL_PACKET_ID, PacketByteBufs.create());
-        return ar;
+        entity.openHandledScreen(this);
+        return super.use(world, entity, hand);
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return Text.literal("");
+    }
+
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new EnderBookSkillScreenHandler(syncId, playerInventory);
     }
 }

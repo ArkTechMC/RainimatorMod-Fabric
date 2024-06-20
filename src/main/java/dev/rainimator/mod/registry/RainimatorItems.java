@@ -201,7 +201,7 @@ public class RainimatorItems {
     public static final Item VORDUS_SPAWN_EGG = register("vordus_spawn_egg", new SpawnEggBase(Episode.Goodbye, RainimatorEntities.VORDUS, -13421773, -3355648, new Item.Settings()));
     public static final Item WITHER_SHIELD_SPAWN_EGG = register("wither_shield_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings()));
     public static final Item SKELETON_SNOW_SPAWN_EGG = register("skeleton_snow_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings()));
-    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = register("zombies_piglin_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings()));
+    public static final Item ZOMBIES_PIGLIN_KING_SPAWN_EGG = register("zombies_piglin_king_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings()));
     public static final Item PIGLIN_KING_ZOMBIES_SPAWN_EGG = register("piglin_king_zombies_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings()));
     public static final Item PIGLIN_KING_ZOMBIE_SPAWN_EGG = register("piglin_king_zombie_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings()));
     public static final Item PIGLIN_COMMANDER_SPAWN_EGG = register("piglin_commander_spawn_egg", new SpawnEggBase(Episode.None, RainimatorEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings()));

@@ -34,15 +34,6 @@
     ],
     "emi": [
       "dev.rainimator.mod.compat.emi.BossSpawnRecipePlugin"
-    ],
-    "annotation_lib": [
-      "dev.rainimator.mod.data.config.ModConfig",
-      "dev.rainimator.mod.network.EnderBookActionHandler"
-    ],
-    "annotation_lib_client": [
-      "dev.rainimator.mod.network.EnderBookOpenHandler"
-    ],
-    "annotation_lib_server": [
     ]
   },
   "custom": {
@@ -59,7 +50,6 @@
     "fabricloader": ">=0.15.0",
     "fabric": "*",
     "minecraft": "1.20.1",
-    "annotation_lib": "*",
     "trinkets": "*"
   }
 }

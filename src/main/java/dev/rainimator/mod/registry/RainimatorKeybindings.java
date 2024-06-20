@@ -1,6 +1,7 @@
 package dev.rainimator.mod.registry;
 
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.ability.AbilityManager;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -15,7 +16,7 @@ public class RainimatorKeybindings {
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (ABILITY.wasPressed())
-                ClientPlayNetworking.send(new Identifier(RainimatorMod.MOD_ID, "ability_hotkey"), PacketByteBufs.create());
+                ClientPlayNetworking.send(new Identifier(RainimatorMod.MOD_ID, AbilityManager.ABILITY_KEY), PacketByteBufs.create());
         });
     }
 }

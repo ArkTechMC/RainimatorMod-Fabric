@@ -1,10 +1,13 @@
 package dev.rainimator.mod.ability;
 
-import com.iafenvoy.annotationlib.api.AnnotationApi;
+import dev.rainimator.mod.RainimatorMod;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 
 public class AbilityManager {
+    public static final String ABILITY_KEY = "ability_hotkey";
     private static final HashMap<String, Ability> abilities = new HashMap<>();
 
     static {
@@ -20,7 +23,7 @@ public class AbilityManager {
     }
 
     public static void init() {
-        AnnotationApi.registerHotkeyHandler("ability", (server, player, handler, buf, responseSender) -> {
+        ServerPlayNetworking.registerGlobalReceiver(new Identifier(RainimatorMod.MOD_ID, ABILITY_KEY), (server, player, handler, buf, responseSender) -> {
             System.out.println(111);
         });
     }

@@ -1,8 +1,8 @@
-package dev.rainimator.mod.renderer.gui;
+package dev.rainimator.mod.screen.gui;
 
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaComponent;
-import dev.rainimator.mod.data.config.ModConfig;
+import dev.rainimator.mod.data.config.RainimatorConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -30,8 +30,8 @@ public class InGameHudRenderHelper {
             if (manaComponent.isEnabled()) {
                 int height = scaledHeight - 49, width = scaledWidth / 2 - 91;
                 if (vehicleHeartCount == 0) {
-                    int y = height + ModConfig.getInstance().manaHudX;
-                    int x = width + ModConfig.getInstance().manaHudY;
+                    int y = height + RainimatorConfig.getInstance().manaHudX;
+                    int x = width + RainimatorConfig.getInstance().manaHudY;
                     double mana = manaComponent.getMana();
                     double maxMana = manaComponent.getMaxMana();
                     context.drawTexture(MANA_ICON, x - 2, y - 7, 0, 10, 84, 5, 256, 256);

@@ -20,6 +20,7 @@ public class RainimatorModClient implements ClientModInitializer {
         RainimatorKeybindings.init();
         RainimatorModels.registerLayerDefinitions();
         RainimatorParticles.registerParticles();
+        RainimatorScreenHandlers.registerGui();
         RainimatorSkulls.clientInit();
 
         TrinketsRegistry.registerClient();

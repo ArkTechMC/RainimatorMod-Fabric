@@ -59,9 +59,6 @@ dependencies {
     // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // AnnotationLib
-    modImplementation "com.iafenvoy:annotationlib:${annotationlib_version}"
-
     // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"
 
@@ -72,9 +69,6 @@ dependencies {
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
-    // Patchouli
-    modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5212120"

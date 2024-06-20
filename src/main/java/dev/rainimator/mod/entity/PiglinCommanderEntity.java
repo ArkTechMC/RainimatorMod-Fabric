@@ -1,14 +1,13 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.annotationlib.annotation.registration.AttributeBuilder;
-import dev.rainimator.mod.item.util.MonsterEntityBase;
-import dev.rainimator.mod.util.RandomHelper;
-import dev.rainimator.mod.renderer.util.Stage;
-import dev.rainimator.mod.util.EntityUtil;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.item.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.renderer.util.Stage;
+import dev.rainimator.mod.util.EntityUtil;
+import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -37,7 +36,6 @@ public class PiglinCommanderEntity extends MonsterEntityBase {
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.PORKSHIRE_KING_CROWN));
     }
 
-    @AttributeBuilder
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);

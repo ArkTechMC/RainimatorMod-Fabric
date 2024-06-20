@@ -1,11 +1,6 @@
 package dev.rainimator.mod.network;
 
-import com.iafenvoy.annotationlib.annotation.TargetId;
-import com.iafenvoy.annotationlib.annotation.network.NetworkHandler;
-import com.iafenvoy.annotationlib.api.IAnnotatedNetworkEntry;
 import dev.rainimator.mod.util.Timeout;
-import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.util.ModConstants;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Blocks;
@@ -20,19 +15,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@NetworkHandler(@TargetId(namespace = RainimatorMod.MOD_ID, value = ModConstants.ENDER_BOOK_SKILL_PACKET_PATH))
-public class EnderBookActionHandler implements IAnnotatedNetworkEntry, ServerPlayNetworking.PlayChannelHandler {
+public class EnderBookActionHandler implements ServerPlayNetworking.PlayChannelHandler {
     @Override
     public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
         String target = buf.readString(100);
         Identifier identifier = new Identifier(target);
         RegistryKey<World> dimension;
-        if (identifier.equals(World.OVERWORLD.getValue()))
-            dimension = World.OVERWORLD;
-        else if (identifier.equals(World.NETHER.getValue()))
-            dimension = World.NETHER;
-        else if (identifier.equals(World.END.getValue()))
-            dimension = World.END;
+        if (identifier.equals(World.OVERWORLD.getValue())) dimension = World.OVERWORLD;
+        else if (identifier.equals(World.NETHER.getValue())) dimension = World.NETHER;
+        else if (identifier.equals(World.END.getValue())) dimension = World.END;
         else throw new UnsupportedOperationException();
         if (player.getWorld().getRegistryKey() == dimension)
             player.sendMessage(Text.translatable("item.rainimator.ender_book.error"), false);

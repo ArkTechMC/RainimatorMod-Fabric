@@ -1,4 +1,4 @@
-package dev.rainimator.mod.renderer.gui;
+package dev.rainimator.mod.screen.gui;
 
 import dev.rainimator.mod.util.ComponentUtil;
 import dev.rainimator.mod.RainimatorMod;

@@ -1,6 +1,6 @@
 package dev.rainimator.mod.registry.util;
 
-import dev.rainimator.mod.renderer.gui.ModItemInfoScreen;
+import dev.rainimator.mod.screen.gui.ModItemInfoScreen;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.language.I18n;
