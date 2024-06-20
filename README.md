@@ -1,5 +1,7 @@
 # Rainimator Mod
 
+**This mod has been remade with Architectury: [New Repo](https://github.com/ArkTechMC/RainimatorMod)**
+
 ### Help us translate: [![Crowdin](https://badges.crowdin.net/rainimatormod/localized.svg)](https://crowdin.com/project/rainimatormod)
 
 ---
@@ -18,19 +20,11 @@ And this mod adds the elements appear in them.
 
 `Fabric API`(**Required**): Common toolkits.
 
-`AnnotationLib`(**Required**): Provide a lot of simpler registry.
-
-`McrConvertLib`(**Required**): My library to convert more easily.
-
 `Trinkets`(**Required**): Used for more item slots. (Such as back / belt)
 
 `EMI`(**Optional**): Boss summon recipes view.
 
-`Patchouli`(**Optional**): Guide book. (Not complete yet)
-
 `Asteor Bar`(**Optional**): A better GUI for status bars.
-
-`Tech Reborn`(**Optional**): Electricity provider. Internal mana system will be used if this isn't installed.
 
 ## Features
 
